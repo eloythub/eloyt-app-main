@@ -1,1 +1,9 @@
-# eloyt-app-main
+# Installation
+```
+make
+
+npm install -g yarn
+yarn
+
+```
+

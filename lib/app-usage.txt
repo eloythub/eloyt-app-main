@@ -1,0 +1,10 @@
+
+    -h | --help
+        Show you the help of the script.
+
+    -s | --start
+        Start Packager
+
+    -r | --run <android|ios>
+        Run React Native App On requested platform android|ios
+
