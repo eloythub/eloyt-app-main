@@ -7,3 +7,13 @@ yarn
 
 ```
 
+# Run
+```
+./app --remove com.eloyt --run android
+```
+
+# Help
+```
+./app -h
+./app --help
+```

@@ -34,6 +34,19 @@ while [ "$1" != "" ]; do
             exit
             ;;
 
+        -R | --remove )
+            shift
+
+            if [ -z ${1} ]
+            then
+                EL_PARAM_ANDROID_REMOVE_APP_BUNDLE="com.eloyt"
+            else
+                EL_PARAM_ANDROID_REMOVE_APP_BUNDLE=$1
+            fi
+
+            source ${DIR_CMD}/adb-remove.sh
+            ;;
+
         -r | --run )
             shift
             EL_CMD_RUN=$1
