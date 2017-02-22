@@ -1,4 +1,4 @@
 run:
-	@chmod +x ./app.sh
+	@chmod +x ./app
 	@chmod +x ./lib/*
 	@chmod +x ./lib/**/*
