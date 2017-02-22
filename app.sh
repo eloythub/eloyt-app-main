@@ -20,6 +20,20 @@ while [ "$1" != "" ]; do
             exit
             ;;
 
+        -a | --adb )
+            shift
+
+            if [ -z ${1} ]
+            then
+                EL_PARAM_ADB_PORT=8081
+            else
+                EL_PARAM_ADB_PORT=$1
+            fi
+
+            source ${DIR_CMD}/adb-watch.sh
+            exit
+            ;;
+
         -r | --run )
             shift
             EL_CMD_RUN=$1
@@ -28,13 +42,13 @@ while [ "$1" != "" ]; do
             ;;
 
         -h | --help )
-            cat lib/app-usage.txt
+            cat ${DIR_LIB}/app-usage.txt
             exit 1
             ;;
 
         *)
             log "error" "Wrong Param..."
-            cat lib/app-usage.txt
+            cat ${DIR_LIB}/app-usage.txt
             exit 1
             ;;
     esac

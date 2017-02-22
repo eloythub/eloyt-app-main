@@ -2,6 +2,10 @@
     -h | --help
         Show you the help of the script.
 
+    -a | --adb <port>
+        Adb Service watch
+            default port: "8081"
+
     -s | --start
         Start Packager
 
