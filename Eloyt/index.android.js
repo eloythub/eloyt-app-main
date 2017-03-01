@@ -1,1 +1,3 @@
-require('./Js/BootstrapView');
+import BootstrapView from 'Eloyt/Js/BootstrapView';
+
+export default BootstrapView;
