@@ -54,6 +54,12 @@ while [ "$1" != "" ]; do
             source ${DIR_CMD}/run.sh
             ;;
 
+        -t | --test )
+            shift
+
+            source ${DIR_CMD}/test.sh
+            ;;
+
         -h | --help )
             cat ${DIR_LIB}/app-usage.txt
             exit 1

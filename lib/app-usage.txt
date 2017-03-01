@@ -9,6 +9,9 @@
     -s | --start
         Start Packager
 
+    -t | --test
+        Start Test
+
     -r | --run <android|ios>
         Run React Native App On requested platform android|ios
 
