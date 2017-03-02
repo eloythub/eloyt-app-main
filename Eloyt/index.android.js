@@ -1,3 +1,3 @@
-import IndexView from 'Eloyt/Js/IndexView';
+import IndexView from './Js/IndexView';
 
 export default IndexView;

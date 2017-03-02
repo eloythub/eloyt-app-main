@@ -1,5 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+  },
+});
 
 export default class LoginScene extends Component {
   static contextTypes = {
@@ -10,12 +16,13 @@ export default class LoginScene extends Component {
     const {routes} = this.context;
 
     return (
-      <View>
+      <View style={styles.rootContainer}>
         <Text>Login Scene</Text>
+        <Button onPress={routes.refresh} title="Login" />
       </View>
     );
   }
 }
 
-export const LoginSceneKey = 'login';
+export const LoginSceneKey   = 'login';
 export const LoginSceneTitle = 'login';

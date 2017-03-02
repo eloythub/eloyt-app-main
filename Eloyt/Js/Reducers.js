@@ -1,9 +1,14 @@
 import { combineReducers } from 'redux';
 // Import Components Scenes Reducers here
-import routes from 'Eloyt/Js/Routes';
+import Routes from './Routes';
+import LoginReducer from './Components/Scenes/Login/LoginReducer';
 
 const Reducers = combineReducers({
-  routes,
+  Routes,
+  LoginReducer,
 });
 
 export default Reducers;
+
+export const getRouters      = ({Routes}) => Routes;
+export const getLoginReducer = ({LoginReducer}) => LoginReducer;
