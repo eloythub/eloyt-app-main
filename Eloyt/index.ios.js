@@ -1,3 +1,3 @@
-import BootstrapView from 'Eloyt/Js/BootstrapView';
+import IndexView from 'Eloyt/Js/IndexView';
 
-export default BootstrapView;
+export default IndexView;

@@ -18,3 +18,4 @@ export default class LoginScene extends Component {
 }
 
 export const LoginSceneKey = 'login';
+export const LoginSceneTitle = 'login';

@@ -6,14 +6,20 @@ module.exports = {
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": true,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
       "jsx": true,
     },
     "sourceType": "module",
   },
   "plugins": [
     "react",
+    "transform-class-properties",
   ],
   "rules": {
+
     "indent": [
       "warn",
       2,
