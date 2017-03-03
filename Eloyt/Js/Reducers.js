@@ -1,14 +1,9 @@
 import { combineReducers } from 'redux';
 // Import Components Scenes Reducers here
 import Routes from './Routes';
-import LoginReducer from './Components/Scenes/Login/LoginReducer';
+import LoginReducers from './Components/Scenes/Login/LoginReducers';
 
-const Reducers = combineReducers({
+export default combineReducers({
   Routes,
-  LoginReducer,
+  LoginReducers,
 });
-
-export default Reducers;
-
-export const getRouters      = ({Routes}) => Routes;
-export const getLoginReducer = ({LoginReducer}) => LoginReducer;
