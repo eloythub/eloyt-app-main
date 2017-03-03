@@ -8,7 +8,6 @@ ROOT="$(pwd)"
 DIR_LIB="${ROOT}/lib"
 DIR_CMD="${DIR_LIB}/cmd"
 
-
 log "info" "ELOYT ROCKS !!!"
 
 cd Eloyt ?> /dev/null

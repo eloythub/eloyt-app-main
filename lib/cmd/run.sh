@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-react-native run-${EL_CMD_RUN}
+# --configuration release
+
+if [ "${EL_CMD_RUN}" = "ios" ];
+then
+    react-native run-ios --device
+else
+    react-native run-android
+fi
