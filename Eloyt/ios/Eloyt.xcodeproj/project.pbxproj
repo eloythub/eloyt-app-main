@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -21,6 +22,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1E825C30008B4D2AA704446B /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA99E235D40D49B585622A02 /* libcxxreact.a */; };
+		26267CF6C5AB4F5DA1237357 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADB6F60FD14DE5BA344639 /* libReact.a */; };
 		29E7F501E4BDFCB903C17638 /* libPods-Eloyt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -38,15 +41,17 @@
 		44165732B84B97813E378F6F /* libPods-Eloyt-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6C1CD2F208EA41B59BF08439 /* libRNAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 338771DC5E054A25BE932940 /* libRNAnalytics.a */; };
+		7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		98596FCF0CFB45DFA5555A82 /* libRNCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEB7C71649D403FB92FD47C /* libRNCrashes.a */; };
+		9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */; };
 		B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */; };
 		C05C4DD81E6469A5008F1A3D /* RNMobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */; };
 		C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */; };
 		C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */; };
 		C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */; };
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
-		9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */; };
+		DAE9EA8D875E4F28A76AA726 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187B30F4260A4B30B02971CA /* libjschelpers.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +258,27 @@
 			remoteGlobalIDString = 548694001D8384E600E6685A;
 			remoteInfo = RNAnalytics;
 		};
+		C0CBBC301E6A948200316537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
+			remoteInfo = RCTFBSDK;
+		};
+		C0CBBD7E1E6A9ECF00316537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDD7BF781B2D5125006FDA75;
+			remoteInfo = RNI18n;
+		};
+		C0CBBD801E6A9ECF00316537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDD7BF831B2D5126006FDA75;
+			remoteInfo = RNI18nTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -277,11 +303,14 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Eloyt/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		187B30F4260A4B30B02971CA /* libjschelpers.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libjschelpers.a; sourceTree = "<group>"; };
+		26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libyoga.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Eloyt-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eloyt-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Eloyt-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eloyt-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		338771DC5E054A25BE932940 /* libRNAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalytics.a; sourceTree = "<group>"; };
 		3E57B2170ED97705ECCB92D9 /* Pods-Eloyt-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EloytTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61B014A6972FF904E4E41F09 /* Pods-EloytTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.release.xcconfig"; sourceTree = "<group>"; };
 		63CC70A7CB2BAF181B79A18D /* Pods-EloytTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +318,9 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		89A78D9A21CAA21BCB3D58DA /* Pods-Eloyt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt/Pods-Eloyt.debug.xcconfig"; sourceTree = "<group>"; };
 		9237BD4228D640E59EB82C55 /* RNCrashes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCrashes.xcodeproj; path = "../node_modules/mobile-center-crashes/ios/RNCrashes.xcodeproj"; sourceTree = "<group>"; };
+		97ADB6F60FD14DE5BA344639 /* libReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReact.a; sourceTree = "<group>"; };
+		A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
+		AA99E235D40D49B585622A02 /* libcxxreact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libcxxreact.a; sourceTree = "<group>"; };
 		AEC8C705C58C058CE0C6BD94 /* Pods-Eloyt-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		AF9CFD765242A47FC13B61BB /* Pods-Eloyt-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFEB7C71649D403FB92FD47C /* libRNCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCrashes.a; sourceTree = "<group>"; };
@@ -297,12 +329,14 @@
 		C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenter.framework; sourceTree = "<group>"; };
 		C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterAnalytics.framework; sourceTree = "<group>"; };
 		C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterCrashes.framework; sourceTree = "<group>"; };
+		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
+		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
+		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
 		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
+		C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844C7D7547F4232BC458FA4 /* RNAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalytics.xcodeproj; path = "../node_modules/mobile-center-analytics/ios/RNAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +372,10 @@
 				98596FCF0CFB45DFA5555A82 /* libRNCrashes.a in Frameworks */,
 				29E7F501E4BDFCB903C17638 /* libPods-Eloyt.a in Frameworks */,
 				9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */,
+				26267CF6C5AB4F5DA1237357 /* libReact.a in Frameworks */,
+				7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */,
+				1E825C30008B4D2AA704446B /* libcxxreact.a in Frameworks */,
+				DAE9EA8D875E4F28A76AA726 /* libjschelpers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +524,9 @@
 		75B5CE3F84C0F7F3AB082D73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */,
+				C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */,
+				C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */,
 				D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */,
 				BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */,
 				1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */,
@@ -520,6 +561,7 @@
 				D844C7D7547F4232BC458FA4 /* RNAnalytics.xcodeproj */,
 				9237BD4228D640E59EB82C55 /* RNCrashes.xcodeproj */,
 				57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */,
+				C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -575,6 +617,23 @@
 			isa = PBXGroup;
 			children = (
 				C05C4DCE1E646803008F1A3D /* libRNAnalytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0CBBC2A1E6A948200316537 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0CBBC311E6A948200316537 /* libRCTFBSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C0CBBD5E1E6A9ECF00316537 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0CBBD7F1E6A9ECF00316537 /* libRNI18n.a */,
+				C0CBBD811E6A9ECF00316537 /* RNI18nTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -729,6 +788,10 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
+					ProductGroup = C0CBBC2A1E6A948200316537 /* Products */;
+					ProjectRef = 57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -771,6 +834,10 @@
 				{
 					ProductGroup = C05B1C7D1E6822A700DA8ED3 /* Products */;
 					ProjectRef = 9237BD4228D640E59EB82C55 /* RNCrashes.xcodeproj */;
+				},
+				{
+					ProductGroup = C0CBBD5E1E6A9ECF00316537 /* Products */;
+					ProjectRef = C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -971,6 +1038,27 @@
 			fileType = archive.ar;
 			path = libRNAnalytics.a;
 			remoteRef = C05C4DCD1E646803008F1A3D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0CBBC311E6A948200316537 /* libRCTFBSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTFBSDK.a;
+			remoteRef = C0CBBC301E6A948200316537 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0CBBD7F1E6A9ECF00316537 /* libRNI18n.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNI18n.a;
+			remoteRef = C0CBBD7E1E6A9ECF00316537 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C0CBBD811E6A9ECF00316537 /* RNI18nTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNI18nTests.xctest;
+			remoteRef = C0CBBD801E6A9ECF00316537 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1301,10 +1389,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eloyt.app/Eloyt";
@@ -1325,10 +1418,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eloyt.app/Eloyt";
@@ -1406,10 +1504,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Eloyt-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1439,10 +1542,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Eloyt-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1471,6 +1579,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Eloyt-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1499,6 +1616,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Eloyt-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
