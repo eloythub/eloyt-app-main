@@ -15,5 +15,6 @@ if [ "${EL_CMD_RUN}" = "ios" ];
 then
     react-native run-ios --configuration release  --device
 else
-   react-native run-android --variant=release
+    adb shell pm uninstall com.eloyt && \
+        react-native run-android --variant=release
 fi
