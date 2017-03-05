@@ -1,16 +1,31 @@
 import * as LoginActionsConst from './LoginActionsConst';
 
 const DEFAULT_STATE = {
-  count: 0,
+  accessToken: null,
 };
 
-const LoginReducers = (state = DEFAULT_STATE, {type, payload, data}) => {
+const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
   switch (type) {
-    case LoginActionsConst.LOGIN_SUCCESS:
-      console.log(state);
+    case LoginActionsConst.ON_FACEBOOK_LOGOUT_ACTION:
       return {
         ...state,
-        count: state.count + 1,
+        accessToken: null,
+      };
+    case LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED:
+      console.log(type, data);
+      return {
+        ...state,
+        accessToken: data.response,
+      };
+    case LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED:
+      return {
+        ...state,
+        accessToken: null,
+      };
+    case LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED:
+      return {
+        ...state,
+        accessToken: null,
       };
     default:
       return state;

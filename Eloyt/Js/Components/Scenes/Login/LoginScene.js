@@ -1,21 +1,54 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, Button, Text, Platform, NativeModules } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
-const {StatusBarManager} = NativeModules;
+import TermsAndConditionLink from '../../Misc/TermsAndConditionLink';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+
+import * as LoginActionsConst from './LoginActionsConst';
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    paddingTop: Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
 });
 
 class LoginScene extends Component {
+  componentDidMount() {
+    const {loginActions} = this.props;
+
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        if (data) {
+          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
+        }
+      }
+    );
+  }
+
   static contextTypes = {
     routes: PropTypes.object.isRequired,
   };
+
+  onLoginFinished(error, result) {
+    const {loginActions} = this.props;
+
+    if (error) {
+      loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, result.error);
+    }
+
+    if (result.isCancelled) {
+      loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+    }
+
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
+      }
+    );
+  }
 
   render() {
     //const {routes}       = this.context;
@@ -23,10 +56,13 @@ class LoginScene extends Component {
 
     return (
       <View style={styles.rootContainer}>
-        <Button onPress={loginActions.login} title='login test'/>
-        <Text>
-          Test Message: {this.props.count}
-        </Text>
+        <LoginButton
+          publishPermissions={['publish_actions']}
+          onLoginFinished={this.onLoginFinished.bind(this)}
+          onLogoutFinished={loginActions.onFacebookLogOut}/>
+        <Text>token: {this.props.accessToken}</Text>
+
+        <TermsAndConditionLink />
       </View>
     );
   }
@@ -34,7 +70,7 @@ class LoginScene extends Component {
 
 LoginScene.propTypes = {
   loginActions: PropTypes.object,
-  count: PropTypes.number,
+  accessToken: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
