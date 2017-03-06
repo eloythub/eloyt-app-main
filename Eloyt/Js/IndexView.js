@@ -15,6 +15,7 @@ const Scenes = Actions.create(
       title={LoginSceneTitle}
       key={LoginSceneKey}
       component={ConnectedLoginScene}
+
       initial
     />
   </Scene>

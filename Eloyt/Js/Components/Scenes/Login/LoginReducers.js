@@ -12,7 +12,6 @@ const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
         accessToken: null,
       };
     case LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED:
-      console.log(type, data);
       return {
         ...state,
         accessToken: data.response,

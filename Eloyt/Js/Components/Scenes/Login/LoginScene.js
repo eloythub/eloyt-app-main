@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
 import TermsAndConditionLink from '../../Misc/TermsAndConditionLink';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
-
 import * as LoginActionsConst from './LoginActionsConst';
 
 const styles = StyleSheet.create({
