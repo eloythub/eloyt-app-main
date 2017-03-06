@@ -8,10 +8,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   termsAndServicesText: {
-    fontSize: Platform.OS === 'android' ? 14 : 12,
+    fontSize: 12,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
     fontWeight: 'bold',
     flexDirection: 'column',
+    color: '#ffffff',
   },
   termsAndServicesLink: {
     color: 'blue',
@@ -40,7 +41,6 @@ export default class TermsAndConditionLink extends Component {
         <TouchableOpacity onPress={this.onTermsAndServicesLink.bind(this)}>
           <Text style={[styles.termsAndServicesText, styles.termsAndServicesLink]}> Terms Of Services</Text>
         </TouchableOpacity>
-
       </View>
     );
   }
