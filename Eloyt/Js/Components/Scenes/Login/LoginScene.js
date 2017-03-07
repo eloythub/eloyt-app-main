@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, Dimensions } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
@@ -7,6 +7,7 @@ import TermsAndConditionLink from '../../Misc/TermsAndConditionLink';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import * as LoginActionsConst from './LoginActionsConst';
 import { Row, Grid, Col } from 'react-native-easy-grid';
+import loginFluidBackground from '../../../../Assets/Images/login-fluid-background.jpg';
 import facebookLogo from '../../../../Assets/Images/facebook.png';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
 
@@ -14,7 +15,18 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: '#455a64',
+  },
+  rootMainContainer: {
+    flex: 1,
+    backgroundColor:'rgba(69,90,100,0.8)',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    position: 'absolute',
   },
   loginField: {
     flex: 1,
@@ -28,6 +40,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 40,
     borderWidth: 2,
+    backgroundColor: '#ffffff',
     borderColor: '#ffffff',
     borderStyle: 'solid',
     borderRadius: 3,
@@ -42,8 +55,8 @@ const styles = StyleSheet.create({
   loginButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
-    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
+    color: '#4d6fa9',
+    fontFamily: 'OpenSans',
     paddingRight: 10,
     paddingTop: 1,
   },
@@ -53,19 +66,35 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
   },
   pureLogo: {
-    width: 404,
-    height: 471,
+    width: 90,
+    height: 104.93,
+    alignItems: 'center',
+  },
+  companyNameContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  companyName: {
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  logoSloganContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
   logoSlogan: {
-    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
-  },
-  text1: {
-    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
-  },
-  text2: {
-    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    fontSize: 20,
+    paddingTop: 10,
   },
 });
 
@@ -113,11 +142,20 @@ class LoginScene extends Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <Grid>
-          <Row size={70} style={styleslogoContainer}>
-            <Image source={pureLogo} style={styles.pureLogo}/>
-            <Text style={styles.text1}>Make Networking Great Again</Text>
-            <Text style={styles.text2}>Make Networking Great Again</Text>
+        <Image source={loginFluidBackground} style={styles.backgroundImage}/>
+        <Grid style={styles.rootMainContainer}>
+          <Row size={70}>
+            <Grid>
+              <Row size={30} style={styles.logoContainer}>
+                <Image source={pureLogo} style={styles.pureLogo}/>
+              </Row>
+              <Row size={10} style={styles.companyNameContainer}>
+                <Text style={styles.companyName}>ELOYT</Text>
+              </Row>
+              <Row size={60} style={styles.logoSloganContainer}>
+                <Text style={styles.logoSlogan}>Make Networking Great Again</Text>
+              </Row>
+            </Grid>
           </Row>
           <Row size={30}>
             <View style={styles.loginField}>

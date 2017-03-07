@@ -34,5 +34,10 @@
   "jest": {
     "preset": "react-native",
     "setupFiles": "./__mocks__/setup.js"
+  },
+  "rnpm": {
+    "assets": [
+      "./Assets/Fonts"
+    ]
   }
 }

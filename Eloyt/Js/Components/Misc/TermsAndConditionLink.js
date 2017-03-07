@@ -9,13 +9,13 @@ const styles = StyleSheet.create({
   },
   termsAndServicesText: {
     fontSize: 12,
-    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
-    fontWeight: 'bold',
+    fontFamily: 'OpenSans',
     flexDirection: 'column',
     color: '#ffffff',
   },
   termsAndServicesLink: {
-    color: 'blue',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
 });
 
@@ -38,8 +38,9 @@ export default class TermsAndConditionLink extends Component {
         <Text style={styles.termsAndServicesText}>
           By Using This App You Agreed Our
         </Text>
+        <Text>{' '}</Text>
         <TouchableOpacity onPress={this.onTermsAndServicesLink.bind(this)}>
-          <Text style={[styles.termsAndServicesText, styles.termsAndServicesLink]}> Terms Of Services</Text>
+          <Text style={[styles.termsAndServicesText, styles.termsAndServicesLink]}>Terms Of Services</Text>
         </TouchableOpacity>
       </View>
     );
