@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   rootMainContainer: {
     flex: 1,
-    backgroundColor:'rgba(69,90,100,0.8)',
+    backgroundColor: 'rgba(69,90,100,0.8)',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
   backgroundImage: {
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderRadius: 3,
     paddingTop: 4,
+    marginBottom: 10,
   },
   loginButtonLogoWrapper: {
     alignItems: 'center',
@@ -93,8 +94,16 @@ const styles = StyleSheet.create({
   logoSlogan: {
     color: '#ffffff',
     fontFamily: 'OpenSans',
+    fontWeight: 'normal',
     fontSize: 20,
     paddingTop: 10,
+  },
+  loginAndContinueWithText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    marginTop: 30,
   },
 });
 
@@ -146,19 +155,20 @@ class LoginScene extends Component {
         <Grid style={styles.rootMainContainer}>
           <Row size={70}>
             <Grid>
-              <Row size={30} style={styles.logoContainer}>
+              <Row size={40} style={styles.logoContainer}>
                 <Image source={pureLogo} style={styles.pureLogo}/>
               </Row>
               <Row size={10} style={styles.companyNameContainer}>
                 <Text style={styles.companyName}>ELOYT</Text>
               </Row>
-              <Row size={60} style={styles.logoSloganContainer}>
+              <Row size={50} style={styles.logoSloganContainer}>
                 <Text style={styles.logoSlogan}>Make Networking Great Again</Text>
               </Row>
             </Grid>
           </Row>
           <Row size={30}>
             <View style={styles.loginField}>
+              <Text style={styles.loginAndContinueWithText}>Signin & Continue With</Text>
               <TouchableOpacity onPress={this.onLoginPress.bind(this)}>
                 <View style={styles.loginButtonContainer}>
                   <Grid>
