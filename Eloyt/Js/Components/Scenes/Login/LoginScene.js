@@ -8,11 +8,12 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import * as LoginActionsConst from './LoginActionsConst';
 import { Row, Grid, Col } from 'react-native-easy-grid';
 import facebookLogo from '../../../../Assets/Images/facebook.png';
+import pureLogo from '../../../../Assets/Images/pure-logo.png';
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: '#1e89e7',
+    backgroundColor: '#455a64',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
   loginField: {
@@ -49,6 +50,22 @@ const styles = StyleSheet.create({
   loginButtonFacebookIcon: {
     width: 28,
     height: 28,
+  },
+  logoContainer: {
+    alignItems: 'center',
+  },
+  pureLogo: {
+    width: 404,
+    height: 471,
+  },
+  logoSlogan: {
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
+  },
+  text1: {
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
+  },
+  text2: {
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'HelveticaNeue-Thin',
   },
 });
 
@@ -97,10 +114,10 @@ class LoginScene extends Component {
     return (
       <View style={styles.rootContainer}>
         <Grid>
-          <Row size={70}>
-            <Text>
-              {this.props.accessToken}
-            </Text>
+          <Row size={70} style={styleslogoContainer}>
+            <Image source={pureLogo} style={styles.pureLogo}/>
+            <Text style={styles.text1}>Make Networking Great Again</Text>
+            <Text style={styles.text2}>Make Networking Great Again</Text>
           </Row>
           <Row size={30}>
             <View style={styles.loginField}>
