@@ -40,7 +40,7 @@
                     </variation>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.27046078439999999" green="0.35311180349999999" blue="0.3908163905" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
                 <constraint firstItem="XnI-qm-Iab" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="ITY-qQ-bo7"/>
                 <constraint firstItem="XnI-qm-Iab" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="iAc-DO-Jbb"/>

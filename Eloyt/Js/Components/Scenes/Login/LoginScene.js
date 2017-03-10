@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
@@ -14,18 +14,17 @@ import pureLogo from '../../../../Assets/Images/pure-logo.png';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: '#455a64',
   },
   rootMainContainer: {
     flex: 1,
-    backgroundColor: 'rgba(69,90,100,0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover', // or 'stretch'
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    resizeMode: 'cover',
+    width: Dimensions.get('window').width + 70,
+    height: Dimensions.get('window').height + 100,
     position: 'absolute',
   },
   loginField: {
@@ -151,6 +150,11 @@ class LoginScene extends Component {
   render() {
     return (
       <View style={styles.rootContainer}>
+        <StatusBar
+          backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
+          barStyle="light-content"
+          hidden={false}
+        />
         <Image source={loginFluidBackground} style={styles.backgroundImage}/>
         <Grid style={styles.rootMainContainer}>
           <Row size={70}>
