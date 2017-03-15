@@ -3,10 +3,14 @@ import { AppRegistry } from 'react-native';
 import { connect, Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { Router, Scene, Actions } from 'react-native-router-flux';
+import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import Reducers from './Reducers';
 // Import Components Scenes Here
 import ConnectedLoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene';
+import ConnectedCompleteProfileScene, {
+  CompleteProfileSceneKey,
+  CompleteProfileSceneTitle
+} from './Components/Scenes/CompleteProfile/CompleteProfileScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -16,6 +20,13 @@ const Scenes = Actions.create(
       key={LoginSceneKey}
       component={ConnectedLoginScene}
       initial
+    />
+    <Scene
+      hideNavBar={true}
+      title={CompleteProfileSceneTitle}
+      key={CompleteProfileSceneKey}
+      component={ConnectedCompleteProfileScene}
+      type={ActionConst.POP_AND_REPLACE}
     />
   </Scene>
 );

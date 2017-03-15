@@ -7,114 +7,51 @@ import TermsAndConditionLink from '../../Misc/TermsAndConditionLink';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import * as LoginActionsConst from './LoginActionsConst';
 import { Row, Grid, Col } from 'react-native-easy-grid';
-import loginFluidBackground from '../../../../Assets/Images/login-fluid-background.jpg';
+import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
 import facebookLogo from '../../../../Assets/Images/facebook.png';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-  },
-  rootMainContainer: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    paddingTop: Platform.OS === 'ios' ? 20 : 0,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    width: Dimensions.get('window').width + 70,
-    height: Dimensions.get('window').height + 100,
-    position: 'absolute',
-  },
-  loginField: {
-    flex: 1,
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  loginButtonContainer: {
-    width: 250,
-    height: 40,
-    borderWidth: 2,
-    backgroundColor: '#ffffff',
-    borderColor: '#ffffff',
-    borderStyle: 'solid',
-    borderRadius: 3,
-    paddingTop: 4,
-    marginBottom: 10,
-  },
-  loginButtonLogoWrapper: {
-    alignItems: 'center',
-  },
-  loginButtonTextWrapper: {
-    alignItems: 'center',
-  },
-  loginButtonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#4d6fa9',
-    fontFamily: 'OpenSans',
-    paddingRight: 10,
-    paddingTop: 1,
-  },
-  loginButtonFacebookIcon: {
-    width: 28,
-    height: 28,
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-  },
-  pureLogo: {
-    width: 90,
-    height: 104.93,
-    alignItems: 'center',
-  },
-  companyNameContainer: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  companyName: {
-    color: '#ffffff',
-    fontFamily: 'OpenSans',
-    fontSize: 40,
-    fontWeight: 'bold',
-  },
-  logoSloganContainer: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  logoSlogan: {
-    color: '#ffffff',
-    fontFamily: 'OpenSans',
-    fontWeight: 'normal',
-    fontSize: 20,
-    paddingTop: 10,
-  },
-  loginAndContinueWithText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    fontFamily: 'OpenSans',
-    marginTop: 30,
-  },
-});
+import { styles } from './LoginStyles';
+import { Actions, ActionConst } from 'react-native-router-flux';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class LoginScene extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      waiting: false,
+    };
+  }
+
   componentDidMount() {
     const {loginActions} = this.props;
+
+    this.setState({
+      waiting: true,
+    });
 
     AccessToken.getCurrentAccessToken().then(
       (data) => {
         if (data) {
           loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
+
+          this.setState({
+            waiting: false,
+          });
+
+          // open the profile completion
+          setTimeout(() => {
+            Actions.completeProfile({
+              type: ActionConst.REPLACE,
+            });
+          }, 0);
+
+          return;
         }
+
+        this.setState({
+          waiting: false,
+        });
       }
     );
   }
@@ -125,9 +62,24 @@ class LoginScene extends Component {
 
   onLoginPress() {
     const {loginActions} = this.props;
+
+    this.setState({
+      waiting: true,
+    });
+
     LoginManager.logOut();
 
-    LoginManager.logInWithReadPermissions(['email', 'user_friends', 'user_photos']).then(
+    LoginManager.logInWithReadPermissions([
+      'public_profile',
+      'email',
+      'user_photos',
+      'user_friends',
+      'user_website',
+      'user_about_me',
+      'user_birthday',
+      'user_likes',
+      'user_location',
+    ]).then(
       (result) => {
         if (result.isCancelled) {
           loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
@@ -138,6 +90,17 @@ class LoginScene extends Component {
         AccessToken.getCurrentAccessToken().then(
           (data) => {
             loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
+
+            this.setState({
+              waiting: false,
+            });
+
+            // open the profile completion
+            setTimeout(() => {
+              Actions.completeProfile({
+                type: ActionConst.REPLACE,
+              });
+            }, 0);
           }
         );
       },
@@ -155,7 +118,8 @@ class LoginScene extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <Image source={loginFluidBackground} style={styles.backgroundImage}/>
+        <Image source={fluidBackground} style={styles.backgroundImage}/>
+        <Spinner visible={this.state.waiting}/>
         <Grid style={styles.rootMainContainer}>
           <Row size={70}>
             <Grid>

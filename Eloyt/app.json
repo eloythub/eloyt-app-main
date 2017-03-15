@@ -1,4 +1,10 @@
 {
   "name": "Eloyt",
-  "displayName": "Eloyt"
+  "displayName": "Eloyt",
+  "apiEnv": "prod",
+  "apiBaseUrl" : {
+    "dev": "http://127.0.0.1:8090",
+    "staging": "https://staging.api.eloyt.com",
+    "prod": "https://api.eloyt.com"
+  }
 }

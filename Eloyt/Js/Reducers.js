@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 // Import Components Scenes Reducers here
 import Routes from './Routes';
 import LoginReducers from './Components/Scenes/Login/LoginReducers';
+import CompleteProfileReducers from './Components/Scenes/CompleteProfile/CompleteProfileReducers';
 
 export default combineReducers({
   Routes,
   LoginReducers,
+  CompleteProfileReducers,
 });
