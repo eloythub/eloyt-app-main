@@ -3,9 +3,11 @@ import { combineReducers } from 'redux';
 import Routes from './Routes';
 import LoginReducers from './Components/Scenes/Login/LoginReducers';
 import CompleteProfileReducers from './Components/Scenes/CompleteProfile/CompleteProfileReducers';
+import AreaOfInterestsReducers from './Components/Scenes/AreaOfInterests/AreaOfInterestsReducers';
 
 export default combineReducers({
   Routes,
   LoginReducers,
   CompleteProfileReducers,
+  AreaOfInterestsReducers,
 });

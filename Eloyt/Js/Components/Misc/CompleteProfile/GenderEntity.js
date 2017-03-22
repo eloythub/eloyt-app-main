@@ -5,7 +5,7 @@ import RadioButton from 'radio-button-react-native';
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    width: Dimensions.get('window').width - 100,
+    width: Dimensions.get('window').width - 60,
 
     alignItems: 'flex-start',
     flexDirection: 'row',
@@ -14,30 +14,30 @@ const styles = StyleSheet.create({
   caption: {
     flex: 1,
     fontFamily: 'OpenSans',
-    fontSize: Platform.OS === 'ios' ? 20 : 16,
-    fontWeight: '900',
+    fontSize: Platform.OS === 'ios' ? 18 : 16,
+    fontWeight: Platform.OS === 'ios' ? 'normal' : '100',
     color: '#7d7d7d',
     height: 50,
     paddingTop: 15,
-    paddingLeft: 3,
+    paddingLeft: Platform.OS === 'ios' ? 0 : 3,
   },
   radioButtonContainer: {
     height: 50,
     paddingTop: 15,
-    paddingLeft: 5,
+    paddingLeft: 10,
 
   },
   radioButtonText: {
     fontFamily: 'OpenSans',
-    fontSize: Platform.OS === 'ios' ? 20 : 16,
-    fontWeight: '900',
+    fontSize: Platform.OS === 'ios' ? 18 : 16,
+    fontWeight: Platform.OS === 'ios' ? 'normal' : '100',
     color: '#7d7d7d',
     marginLeft: 5,
   },
   radioButtonTextSelected: {
     fontFamily: 'OpenSans',
-    fontSize: Platform.OS === 'ios' ? 20 : 16,
-    fontWeight: '900',
+    fontSize: Platform.OS === 'ios' ? 18 : 16,
+    fontWeight: Platform.OS === 'ios' ? 'normal' : '100',
     color: '#ffffff',
     marginLeft: 5,
   },
@@ -63,7 +63,7 @@ export default class GenderEntity extends Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <Text style={styles.caption}>Gender</Text>
+        <Text style={styles.caption}>GENDER</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton
             value="male"
@@ -81,7 +81,7 @@ export default class GenderEntity extends Component {
                   (this.state.value === 'male' ? styles.radioButtonTextSelected : {}),
                 ]
               }>
-              Male
+              MALE
             </Text>
           </RadioButton>
         </View>
@@ -102,7 +102,7 @@ export default class GenderEntity extends Component {
                   (this.state.value === 'female' ? styles.radioButtonTextSelected : {}),
                 ]
               }>
-              Female
+              FEMALE
             </Text>
           </RadioButton>
         </View>

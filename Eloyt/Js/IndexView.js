@@ -9,8 +9,12 @@ import Reducers from './Reducers';
 import ConnectedLoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene';
 import ConnectedCompleteProfileScene, {
   CompleteProfileSceneKey,
-  CompleteProfileSceneTitle
+  CompleteProfileSceneTitle,
 } from './Components/Scenes/CompleteProfile/CompleteProfileScene';
+import ConnectedAreaOfInterestsScene, {
+  AreaOfInterestsSceneKey,
+  AreaOfInterestsSceneTitle,
+} from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -26,6 +30,13 @@ const Scenes = Actions.create(
       title={CompleteProfileSceneTitle}
       key={CompleteProfileSceneKey}
       component={ConnectedCompleteProfileScene}
+      type={ActionConst.POP_AND_REPLACE}
+    />
+    <Scene
+      hideNavBar={true}
+      title={AreaOfInterestsSceneTitle}
+      key={AreaOfInterestsSceneKey}
+      component={ConnectedAreaOfInterestsScene}
       type={ActionConst.POP_AND_REPLACE}
     />
   </Scene>

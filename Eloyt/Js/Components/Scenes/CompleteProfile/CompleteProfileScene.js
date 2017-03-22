@@ -6,9 +6,10 @@ import * as CompleteProfileActions from './CompleteProfileActions';
 import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
 import { styles } from './CompleteProfileStyles';
-import ImageEntity from '../../Misc/Profile/ImageEntity';
-import InputTextBox from '../../Misc/Profile/InputTextBoxEntity';
-import GenderEntity from '../../Misc/Profile/GenderEntity';
+import ImageEntity from '../../Misc/CompleteProfile/ImageEntity';
+import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
+import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
+import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 
@@ -22,9 +23,7 @@ class CompleteProfileScene extends Component {
   };
 
   onNextButtonPress() {
-    LoginManager.logOut();
-
-    Actions.login({
+    Actions.areaOfInterests({
       type: ActionConst.REPLACE,
     });
   }
@@ -55,7 +54,7 @@ class CompleteProfileScene extends Component {
                     setTextRef={
                       (textRefObj) => this.firstNameRef = textRefObj
                     }
-                    caption="First Name"
+                    caption="FIRST NAME"
                     name="firstname"
                     nextFocusObjectRef={() => this.lastNameRef.focus()}
                   />
@@ -65,7 +64,7 @@ class CompleteProfileScene extends Component {
                     setTextRef={
                       (textRefObj) => this.lastNameRef = textRefObj
                     }
-                    caption="Last Name"
+                    caption="LAST NAME"
                     name="lastname"
                   />
                 </View>
@@ -74,6 +73,10 @@ class CompleteProfileScene extends Component {
                     onPress={
                       (genderValue) => this.gender = genderValue
                     }
+                  />
+                </View>
+                <View style={styles.profileEntityContainer}>
+                  <BirthdateEntity
                   />
                 </View>
               </View>

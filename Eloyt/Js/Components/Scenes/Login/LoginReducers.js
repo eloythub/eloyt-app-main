@@ -27,7 +27,7 @@ const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
 
     default:
       LocalStorage.load(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED).then((accessTokenData) => {
-        console.log(accessTokenData);
+        //console.log(accessTokenData);
       });
 
       return state;

@@ -4,14 +4,14 @@ import { View, StyleSheet, TextInput, Dimensions, Platform } from 'react-native'
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    width: Dimensions.get('window').width - 100,
-    borderBottomWidth: 1,
+    width: Dimensions.get('window').width - 60,
+    borderBottomWidth: 0.5,
     borderBottomColor: '#7d7d7d',
   },
   inputBox: {
     fontFamily: 'OpenSans',
-    fontSize: Platform.OS === 'ios' ? 20 : 16,
-    fontWeight: '900',
+    fontSize: Platform.OS === 'ios' ? 18 : 16,
+    fontWeight: Platform.OS === 'ios' ? 'normal' : '100',
     color: '#ffffff',
     height: 50,
     paddingBottom: 0,
@@ -41,6 +41,7 @@ export default class InputTextBoxEntity extends Component {
           style={styles.inputBox}
           editable={true}
           multiline={false}
+          autoCapitalize="words"
           placeholder={this.state.caption}
           placeholderTextColor="#7d7d7d"
           underlineColorAndroid="transparent"
