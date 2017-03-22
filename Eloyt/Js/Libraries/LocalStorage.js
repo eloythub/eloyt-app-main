@@ -1,11 +1,11 @@
 import { AsyncStorage } from 'react-native';
 
-export default class Api {
-  save(key, value) {
-    return AsyncStorage.setItem(key, JSON.stringify({ value }));
+export default class LocalStorage {
+  static save(key, value) {
+    return AsyncStorage.setItem(key, JSON.stringify({value}));
   }
 
-  load(key) {
+  static load(key) {
     return new Promise(async(fulfill, reject) => {
       try {
         const valueStored = await AsyncStorage.getItem(key);
@@ -14,17 +14,16 @@ export default class Api {
           return;
         }
 
-        valueObject = JSON.parse(valueStored);
+        const valueObject = JSON.parse(valueStored);
 
         fulfill(valueObject.value);
       } catch (error) {
-        console.error(error);
         reject(error);
       }
     });
   }
 
-  unload(key) {
+  static unload(key) {
     return AsyncStorage.removeItem(key);
   }
 }

@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CompleteProfileActions from './CompleteProfileActions';
-import { Row, Grid, Col } from 'react-native-easy-grid';
 import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
 import { styles } from './CompleteProfileStyles';
+import ImageEntity from '../../Misc/Profile/ImageEntity';
+import InputTextBox from '../../Misc/Profile/InputTextBoxEntity';
+import GenderEntity from '../../Misc/Profile/GenderEntity';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 
@@ -19,6 +21,14 @@ class CompleteProfileScene extends Component {
     routes: PropTypes.object.isRequired,
   };
 
+  onNextButtonPress() {
+    LoginManager.logOut();
+
+    Actions.login({
+      type: ActionConst.REPLACE,
+    });
+  }
+
   render() {
     return (
       <View style={styles.rootContainer}>
@@ -28,38 +38,51 @@ class CompleteProfileScene extends Component {
           hidden={false}
         />
         <Image source={fluidBackground} style={styles.backgroundImage}/>
-        <Grid style={styles.rootMainContainer}>
-          <Row size={70}>
-            <Grid>
-              <Row size={40} style={styles.logoContainer}>
-                <Image source={pureLogo} style={styles.pureLogo}/>
-              </Row>
-              <Row size={10} style={styles.companyNameContainer}>
-                <Text style={styles.companyName}>ELOYT</Text>
-              </Row>
-              <Row size={50} style={styles.logoSloganContainer}>
-                <Text style={styles.logoSlogan}>Make Networking Great Again</Text>
-              </Row>
-            </Grid>
-          </Row>
-          <Row size={30}>
-            <View style={styles.loginField}>
-              <Text style={styles.loginAndContinueWithText}>Signin & Continue With</Text>
-              <TouchableOpacity onPress={this.onLoginPress.bind(this)}>
-                <View style={styles.loginButtonContainer}>
-                  <Grid>
-                    <Col size={20} style={styles.loginButtonLogoWrapper}>
-                      <Image source={facebookLogo} style={styles.loginButtonFacebookIcon}/>
-                    </Col>
-                    <Col size={80} style={styles.loginButtonTextWrapper}>
-                      <Text style={styles.loginButtonText}>Facebook</Text>
-                    </Col>
-                  </Grid>
+        <View style={styles.rootMainContainer}>
+          <View style={styles.logoContainer}>
+            <Image source={pureLogo} style={styles.pureLogo}/>
+            <Text style={styles.sceneTitle}>{'Complete Your Profile'.toUpperCase()}</Text>
+          </View>
+          <View style={styles.profileEntitiesContainer}>
+            <ScrollView>
+              <View style={styles.entitiesContainer}>
+                <View style={styles.profileEntityContainer}>
+                  <ImageEntity
+                    imageUrl={'https://content-static.upwork.com/uploads/2014/10/02123010/profile-photo_friendly.jpg'}/>
                 </View>
-              </TouchableOpacity>
-            </View>
-          </Row>
-        </Grid>
+                <View style={styles.profileEntityContainer}>
+                  <InputTextBox
+                    setTextRef={
+                      (textRefObj) => this.firstNameRef = textRefObj
+                    }
+                    caption="First Name"
+                    name="firstname"
+                    nextFocusObjectRef={() => this.lastNameRef.focus()}
+                  />
+                </View>
+                <View style={styles.profileEntityContainer}>
+                  <InputTextBox
+                    setTextRef={
+                      (textRefObj) => this.lastNameRef = textRefObj
+                    }
+                    caption="Last Name"
+                    name="lastname"
+                  />
+                </View>
+                <View style={styles.profileEntityContainer}>
+                  <GenderEntity
+                    onPress={
+                      (genderValue) => this.gender = genderValue
+                    }
+                  />
+                </View>
+              </View>
+            </ScrollView>
+            <TouchableOpacity style={styles.nextButton} onPress={this.onNextButtonPress.bind(this)}>
+              <Text style={styles.nextButtonCaption}>{'Save & Select Areas of Interest'.toUpperCase()}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }

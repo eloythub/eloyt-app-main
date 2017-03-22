@@ -315,17 +315,13 @@
 		2D02E47B1E0B4A5D006451C7 /* Eloyt-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eloyt-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Eloyt-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eloyt-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		338771DC5E054A25BE932940 /* libRNAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAnalytics.a; sourceTree = "<group>"; };
-		3461F01060394A3784B963F6 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		38DCC0E012064E969913F3E3 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		3E57B2170ED97705ECCB92D9 /* Pods-Eloyt-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		43CCBDA7C56441CA9708F8AD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EloytTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54486D4964594651A5EE02CF /* OpenSans_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_bold.ttf; path = ../Assets/Fonts/OpenSans_bold.ttf; sourceTree = "<group>"; };
 		57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61B014A6972FF904E4E41F09 /* Pods-EloytTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.release.xcconfig"; sourceTree = "<group>"; };
 		63CC70A7CB2BAF181B79A18D /* Pods-EloytTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.debug.xcconfig"; sourceTree = "<group>"; };
-		76F6A0998B0D40219D673D0F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_light_italic.ttf; path = ../Assets/Fonts/OpenSans_light_italic.ttf; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -335,13 +331,10 @@
 		A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_bold_italic.ttf; path = ../Assets/Fonts/OpenSans_bold_italic.ttf; sourceTree = "<group>"; };
 		A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		A91E1BE38A55429EB23432E5 /* OpenSans_light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_light.ttf; path = ../Assets/Fonts/OpenSans_light.ttf; sourceTree = "<group>"; };
-		A930441A87F6456297EA4816 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		AA99E235D40D49B585622A02 /* libcxxreact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libcxxreact.a; sourceTree = "<group>"; };
 		AEC8C705C58C058CE0C6BD94 /* Pods-Eloyt-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		AF14CDF401C14E14A84D8803 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		AF9CFD765242A47FC13B61BB /* Pods-Eloyt-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFEB7C71649D403FB92FD47C /* libRNCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCrashes.a; sourceTree = "<group>"; };
-		B298B1C90F564199A5BE41EC /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RNMobileCenter.framework; sourceTree = "<group>"; };
 		C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenter.framework; sourceTree = "<group>"; };
@@ -350,13 +343,10 @@
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
-		C2B57E9903574F239687248C /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Semibold.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
-		C36B9D774C964F0BBCD97459 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiboldItalic.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844C7D7547F4232BC458FA4 /* RNAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalytics.xcodeproj; path = "../node_modules/mobile-center-analytics/ios/RNAnalytics.xcodeproj"; sourceTree = "<group>"; };
-		DE7FCB8C4C75450182AC7DB7 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../Assets/Fonts/OpenSans/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../Assets/Fonts/OpenSans.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -537,16 +527,6 @@
 		389254D64E3F460699F3F335 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				76F6A0998B0D40219D673D0F /* OpenSans-Bold.ttf */,
-				DE7FCB8C4C75450182AC7DB7 /* OpenSans-BoldItalic.ttf */,
-				38DCC0E012064E969913F3E3 /* OpenSans-ExtraBold.ttf */,
-				3461F01060394A3784B963F6 /* OpenSans-ExtraBoldItalic.ttf */,
-				B298B1C90F564199A5BE41EC /* OpenSans-Italic.ttf */,
-				AF14CDF401C14E14A84D8803 /* OpenSans-Light.ttf */,
-				A930441A87F6456297EA4816 /* OpenSans-LightItalic.ttf */,
-				43CCBDA7C56441CA9708F8AD /* OpenSans-Regular.ttf */,
-				C2B57E9903574F239687248C /* OpenSans-Semibold.ttf */,
-				C36B9D774C964F0BBCD97459 /* OpenSans-SemiboldItalic.ttf */,
 				A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */,
 				54486D4964594651A5EE02CF /* OpenSans_bold.ttf */,
 				223A2D50B2714361B8196B69 /* OpenSans_italic.ttf */,
