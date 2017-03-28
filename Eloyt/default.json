@@ -1,0 +1,152 @@
+{
+  "listOfInterests": [
+    {
+      "hashtag": "accounting",
+      "title": "Accounting"
+    },
+    {
+      "hashtag": "agricultural",
+      "title": "Agricultural"
+    },
+    {
+      "hashtag": "arts",
+      "title": "Arts"
+    },
+    {
+      "hashtag": "ceremonial",
+      "title": "Ceremonial"
+    },
+    {
+      "hashtag": "cleaning_and_maintenance",
+      "title": "Cleaning And Maintenance"
+    },
+    {
+      "hashtag": "construction",
+      "title": "Construction"
+    },
+    {
+      "hashtag": "consulting",
+      "title": "Consulting"
+    },
+    {
+      "hashtag": "information_technology",
+      "title": "Information Technology"
+    },
+    {
+      "hashtag": "design",
+      "title": "Design"
+    },
+    {
+      "hashtag": "economic",
+      "title": "Economic"
+    },
+    {
+      "hashtag": "education",
+      "title": "Education"
+    },
+    {
+      "hashtag": "engineering",
+      "title": "Engineering"
+    },
+    {
+      "hashtag": "entertainment",
+      "title": "Entertainment"
+    },
+    {
+      "hashtag": "fashion",
+      "title": "Fashion"
+    },
+    {
+      "hashtag": "fitness",
+      "title": "Fitness"
+    },
+    {
+      "hashtag": "freelancing",
+      "title": "Freelancing"
+    },
+    {
+      "hashtag": "governmental",
+      "title": "Governmental"
+    },
+    {
+      "hashtag": "healthcare",
+      "title": "Healthcare"
+    },
+    {
+      "hashtag": "human_resources",
+      "title": "Human Resources"
+    },
+    {
+      "hashtag": "humanity",
+      "title": "Human Resources"
+    },
+    {
+      "hashtag": "laws_and_legals",
+      "title": "Laws and Legals"
+    },
+    {
+      "hashtag": "industry",
+      "title": "Industry"
+    },
+    {
+      "hashtag": "journalism",
+      "title": "Journalism"
+    },
+    {
+      "hashtag": "social_media",
+      "title": "Social Media"
+    },
+    {
+      "hashtag": "marketing",
+      "title": "Marketing"
+    },
+    {
+      "hashtag": "martial_art",
+      "title": "Martial Art"
+    },
+    {
+      "hashtag": "media",
+      "title": "Media"
+    },
+    {
+      "hashtag": "military",
+      "title": "Military"
+    },
+    {
+      "hashtag": "movie_making",
+      "title": "Movie Making"
+    },
+    {
+      "hashtag": "music",
+      "title": "Music"
+    },
+    {
+      "hashtag": "payment_services",
+      "title": "Payment Services"
+    },
+    {
+      "hashtag": "production",
+      "title": "Production"
+    },
+    {
+      "hashtag": "religion",
+      "title": "Religion"
+    },
+    {
+      "hashtag": "sales",
+      "title": "Sales"
+    },
+    {
+      "hashtag": "science",
+      "title": "Science"
+    },
+    {
+      "hashtag": "sport",
+      "title": "Sport"
+    },
+    {
+      "hashtag": "transportation",
+      "title": "Transportation"
+    }
+  ]
+}

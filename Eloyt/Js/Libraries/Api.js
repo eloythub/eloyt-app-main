@@ -8,15 +8,15 @@ export const RequestMethodType = {
   patch: 'PATCH',
 };
 
-class Api {
-  request(url, method, bodyData) {
+export default class Api {
+  static request(url, method, bodyData) {
     return new Promise(async(fulfill, reject) => {
       await fetch(this.url(url), {
         method: method,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authentication': '', // TODO: implement this later for security
+          //'Authentication': '', // TODO: implement this later for security
         },
         body: JSON.stringify(bodyData),
       })
@@ -26,7 +26,7 @@ class Api {
     });
   }
 
-  postWithProgress(url, opts = {}, onProgress, afterSend) {
+  static postWithProgress(url, opts = {}, onProgress, afterSend) {
     return new Promise((fulfill, reject) => {
       const xhr = new XMLHttpRequest();
 
@@ -50,13 +50,30 @@ class Api {
     });
   }
 
-  url(url) {
+  static url(url) {
     return apiBaseUrl[apiEnv] + url;
   }
 
-  resourceStreamUrl(userId, resourceType, resourceId) {
+  static resourceStreamUrl(userId, resourceType, resourceId) {
     return this.url(`/stream/${userId}/${resourceType}/${resourceId}`);
   }
-}
 
-export default new Api;
+  static requestSsoLogin(token, userId) {
+    const data = {
+      credentials: {
+        token,
+        userId,
+      },
+    };
+
+    return new Promise(async(fulfill, reject) => {
+      return this.request('/users/create-or-get', RequestMethodType.put, data)
+        .then((res) => fulfill(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  static getProfileAvatar(userId, avatarResourceId) {
+    return this.resourceStreamUrl(userId, 'avatar', avatarResourceId);
+  }
+}

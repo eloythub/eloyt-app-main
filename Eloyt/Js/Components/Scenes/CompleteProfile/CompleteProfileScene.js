@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as LoginActionsConst from '../Login/LoginActionsConst';
 import * as CompleteProfileActions from './CompleteProfileActions';
 import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
@@ -11,11 +12,41 @@ import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
 import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
 import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import { LoginManager } from 'react-native-fbsdk';
+import LocalStorage from '../../../Libraries/LocalStorage';
+import Api from '../../../Libraries/Api';
 
 class CompleteProfileScene extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fbAccessToken: null,
+      ssoUserData: null,
+    };
+  }
+
   componentDidMount() {
     const {completeProfileActions} = this.props;
+
+    LocalStorage.all([
+        LoginActionsConst.ON_FACEBOOK_ACCESS_TOKEN,
+        LoginActionsConst.ON_SSO_USER_DATA,
+    ])
+      .then((values) => {
+        const [fbAccessToken, ssoUserData] = values;
+
+        this.setState({
+          fbAccessToken,
+          ssoUserData,
+        });
+      })
+      .catch(() => {
+        LoginManager.logOut();
+
+        Actions.login({
+          type: ActionConst.REPLACE,
+        });
+      });
   }
 
   static contextTypes = {
@@ -29,6 +60,10 @@ class CompleteProfileScene extends Component {
   }
 
   render() {
+    if (!this.state.fbAccessToken) {
+      return (<View style={styles.rootContainer}></View>);
+    }
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar
@@ -47,7 +82,10 @@ class CompleteProfileScene extends Component {
               <View style={styles.entitiesContainer}>
                 <View style={styles.profileEntityContainer}>
                   <ImageEntity
-                    imageUrl={'https://content-static.upwork.com/uploads/2014/10/02123010/profile-photo_friendly.jpg'}/>
+                    imageUrl={Api.getProfileAvatar(
+                      this.state.ssoUserData._id,
+                      this.state.ssoUserData.avatar
+                    )}/>
                 </View>
                 <View style={styles.profileEntityContainer}>
                   <InputTextBox

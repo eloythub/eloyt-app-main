@@ -24,25 +24,46 @@ const fields = [
   'location',
 ];
 
-class FbGraphApi {
-  request() {
-    const infoRequest = new GraphRequest(
-      `/me?fields=${fields.join(',')}`,
-      {
-        version: 'v2.8',
-        accessToken: this.accessToken,
-      },
-      (error, result) => {
-        if (error) {
-          console.log('Error fetching data: ', error);
-        } else {
-          console.log('Success fetching data: ', result);
-        }
-      },
-    );
+export default class FbGraphApi {
+  static getProfileData(accessToken) {
+    return new Promise((fulfill, reject) => {
+      const infoRequest = new GraphRequest(
+        `/me?fields=${fields.join(',')}`,
+        {
+          version: 'v2.8',
+          accessToken: accessToken,
+        },
+        (error, result) => {
+          if (error) {
+            return reject(error);
+          }
 
-    new GraphRequestManager().addRequest(infoRequest).start();
+          fulfill(result);
+        },
+      );
+
+      new GraphRequestManager().addRequest(infoRequest).start();
+    });
+  }
+
+  static getProfileId(accessToken) {
+    return new Promise((fulfill, reject) => {
+      const infoRequest = new GraphRequest(
+        `/me?fields=id`,
+        {
+          version: 'v2.8',
+          accessToken: accessToken,
+        },
+        (error, result) => {
+          if (error) {
+            return reject(error);
+          }
+
+          fulfill(result.id);
+        },
+      );
+
+      new GraphRequestManager().addRequest(infoRequest).start();
+    });
   }
 }
-
-export default new FbGraphApi;

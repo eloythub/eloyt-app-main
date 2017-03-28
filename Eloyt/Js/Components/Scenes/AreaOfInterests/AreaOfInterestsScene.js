@@ -9,6 +9,7 @@ import { styles } from './AreaOfInterestsStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import InterestEntity from '../../Misc/AreaOfInterests/InterestEntity';
+import { listOfInterests } from '../../../../default.json';
 
 class AreaOfInterestsScene extends Component {
   constructor(props) {
@@ -16,36 +17,7 @@ class AreaOfInterestsScene extends Component {
 
     this.state = {
       selectedInterests: [],
-      listOfInterests: [
-        {
-          hashtag: 'art_and_design',
-          title: 'Art & Design',
-        },
-        {
-          hashtag: 'fashion',
-          title: 'Fashion',
-        },
-        {
-          hashtag: 'human_resources',
-          title: 'Human Resources',
-        },
-        {
-          hashtag: 'technology',
-          title: 'Technology',
-        },
-        {
-          hashtag: 'social_media',
-          title: 'Social Media',
-        },
-        {
-          hashtag: 'freelancing',
-          title: 'Freelancing',
-        },
-        {
-          hashtag: 'education',
-          title: 'Education',
-        },
-      ],
+      listOfInterests,
     };
   }
 
@@ -88,7 +60,9 @@ class AreaOfInterestsScene extends Component {
           </View>
           <View style={styles.interestsCountContainer}>
             <Text style={styles.interestsCount}>{selectedInterests.length}</Text>
-            <Text style={styles.interestsCountDescription}> Items is selected</Text>
+            <Text style={styles.interestsCountDescription}>
+              Item{selectedInterests.length > 1 ? 's' : ''} {selectedInterests.length > 1 ? 'have' : 'has'}
+              been selected</Text>
           </View>
           <View style={styles.profileEntitiesContainer}>
             <ScrollView>
@@ -125,6 +99,7 @@ class AreaOfInterestsScene extends Component {
 }
 
 AreaOfInterestsScene.propTypes = {
+  AreaOfInterestsReducers: PropTypes.object,
   areaOfInterestsActions: PropTypes.object,
   selectedInterests: PropTypes.array,
 };

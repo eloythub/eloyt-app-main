@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Image, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import tickNormal from '../../../../Assets/Images/tick-normal.png';
 import tickSelected from '../../../../Assets/Images/tick-selected.png';
 
@@ -11,29 +11,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     padding: 15,
+    paddingLeft: 15,
   },
   entityTitleNormal: {
     color: '#7d7d7d',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'normal',
     fontFamily: 'OpenSans',
+    marginTop: 2,
   },
   entityTitleSelected: {
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'normal',
     fontFamily: 'OpenSans',
+    marginTop: 2,
   },
   tickImageNormal: {
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
     marginTop: 2,
     marginRight: 5,
   },
   tickImageSelected: {
-    width: 20,
-    height: 20,
-    marginTop: 2,
+    width: 24,
+    height: 24,
+    marginTop: 3,
     marginRight: 5,
   },
 });
@@ -65,7 +68,7 @@ export default class InterestEntity extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.wrapOnPress.bind(this)}>
+      <TouchableWithoutFeedback onPress={this.wrapOnPress.bind(this)}>
         <View style={styles.rootContainer}>
           <Image
             source={this.state.selected ? tickSelected : tickNormal}
@@ -74,7 +77,7 @@ export default class InterestEntity extends Component {
             {this.state.title}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   }
 }

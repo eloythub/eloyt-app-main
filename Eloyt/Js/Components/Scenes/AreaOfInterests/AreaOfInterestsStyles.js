@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get('window').width,
     height: (Dimensions.get('window').height - logoContainerHeight) - (Platform.OS === 'ios' ? 0 : 24),
-    paddingTop: 10,
   },
   nextButton: {
     width: Dimensions.get('window').width,
@@ -64,7 +63,8 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingLeft: 15,
+    paddingLeft: 20,
+    paddingTop: 10,
   },
   interestsCount: {
     color: '#ffffff',

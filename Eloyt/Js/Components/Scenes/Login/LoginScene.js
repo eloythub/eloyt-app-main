@@ -13,6 +13,9 @@ import pureLogo from '../../../../Assets/Images/pure-logo.png';
 import { styles } from './LoginStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
+import FbGraphApi from '../../../Libraries/FbGraphApi';
+import Utils from '../../../Libraries/Utils';
+import Api from '../../../Libraries/Api';
 
 class LoginScene extends Component {
   constructor(props) {
@@ -39,12 +42,11 @@ class LoginScene extends Component {
             waiting: false,
           });
 
-          // open the profile completion
-          setTimeout(() => {
+          Utils.next().then(() => {
             Actions.completeProfile({
               type: ActionConst.REPLACE,
             });
-          }, 0);
+          });
 
           return;
         }
@@ -82,25 +84,49 @@ class LoginScene extends Component {
     ]).then(
       (result) => {
         if (result.isCancelled) {
-          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
-
-          return;
+          return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
         }
 
         AccessToken.getCurrentAccessToken().then(
           (data) => {
-            loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
+            const accessToken = data.accessToken.toString();
+
+            loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken);
 
             this.setState({
               waiting: false,
             });
 
-            // open the profile completion
-            setTimeout(() => {
-              Actions.completeProfile({
-                type: ActionConst.REPLACE,
-              });
-            }, 0);
+            FbGraphApi.getProfileId(accessToken)
+              .then((fbUserId) => {
+                Api.requestSsoLogin(accessToken, fbUserId)
+                  .then((ssoLoginResponse) => {
+                    if (ssoLoginResponse.statusCode !== 200) {
+                      return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
+                    }
+
+                    const ssoUserData = ssoLoginResponse.data;
+
+                    loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData);
+
+                    Utils.next().then(() => {
+                      if (!ssoUserData.activated) {
+                        // open the profile completion
+                        return Actions.completeProfile({
+                          type: ActionConst.REPLACE,
+                        });
+                      }
+
+                      // TODO: Open the Home Page
+                      return Actions.completeProfile({
+                        type: ActionConst.REPLACE,
+                      });
+                    });
+
+                  })
+                  .catch(error => loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error));
+              })
+              .catch(error => loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error));
           }
         );
       },

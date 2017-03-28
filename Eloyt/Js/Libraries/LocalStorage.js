@@ -23,6 +23,16 @@ export default class LocalStorage {
     });
   }
 
+  static all(keys) {
+    let promises = [];
+
+    keys.map((key) => {
+      promises.push(this.load(key));
+    });
+
+    return Promise.all(promises);
+  }
+
   static unload(key) {
     return AsyncStorage.removeItem(key);
   }
