@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import * as HomeActions from './HomeActions';
 import { styles } from './HomeStyles';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
-import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
@@ -58,7 +57,6 @@ class HomeScene extends Component {
           barStyle="light-content"
           hidden={false}
         />
-        <Image source={fluidBackground} style={styles.backgroundImage}/>
         <Spinner visible={this.props.waiting}/>
         <View style={styles.rootMainContainer}>
           {this.props.ssoUserData ? this.postRender() : null}

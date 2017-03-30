@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   rootMainContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 1)',
     paddingTop: statusBarHeight,
   },
   rootMainPostContainer: {
