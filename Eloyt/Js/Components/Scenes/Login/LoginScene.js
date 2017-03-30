@@ -14,60 +14,87 @@ import { styles } from './LoginStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 import FbGraphApi from '../../../Libraries/FbGraphApi';
+import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
 import Api from '../../../Libraries/Api';
 
 class LoginScene extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      waiting: false,
-    };
   }
 
   componentDidMount() {
     const {loginActions} = this.props;
 
-    this.setState({
-      waiting: true,
-    });
+    LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
+      .then(() => {
+        loginActions.waiting(true);
 
-    AccessToken.getCurrentAccessToken().then(
-      (data) => {
-        if (data) {
-          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, data.accessToken.toString());
-
-          this.setState({
-            waiting: false,
-          });
-
-          Utils.next().then(() => {
-            Actions.completeProfile({
-              type: ActionConst.REPLACE,
-            });
-          });
-
-          return;
-        }
-
-        this.setState({
-          waiting: false,
-        });
-      }
-    );
+        this.doLogin();
+      })
+      .catch(() => null);
   }
 
   static contextTypes = {
     routes: PropTypes.object.isRequired,
   };
 
+  doLogin() {
+    const {loginActions} = this.props;
+
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        const accessToken = data.accessToken.toString();
+
+        loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken);
+
+        FbGraphApi.getProfileId(accessToken)
+          .then((fbUserId) => {
+            Api.requestSsoLogin(accessToken, fbUserId)
+              .then((ssoLoginResponse) => {
+                loginActions.waiting(false);
+
+                if (ssoLoginResponse.statusCode !== 200) {
+
+                  return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
+                }
+
+                const ssoUserData = ssoLoginResponse.data;
+
+                loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData);
+
+                Utils.next().then(() => {
+                  if (!ssoUserData.activated) {
+                    // open the profile completion
+                    return Actions.completeProfile({
+                      type: ActionConst.REPLACE,
+                    });
+                  }
+
+                  return Actions.home({
+                    type: ActionConst.REPLACE,
+                  });
+                });
+              })
+              .catch(error => {
+                loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
+
+                loginActions.waiting(false);
+              });
+          })
+          .catch(error => {
+            loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
+
+            loginActions.waiting(false);
+          });
+      }
+    );
+  }
+
   onLoginPress() {
     const {loginActions} = this.props;
 
-    this.setState({
-      waiting: true,
-    });
+    loginActions.waiting(true);
 
     LoginManager.logOut();
 
@@ -84,54 +111,17 @@ class LoginScene extends Component {
     ]).then(
       (result) => {
         if (result.isCancelled) {
+          loginActions.waiting(false);
+
           return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
         }
 
-        AccessToken.getCurrentAccessToken().then(
-          (data) => {
-            const accessToken = data.accessToken.toString();
-
-            loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken);
-
-            this.setState({
-              waiting: false,
-            });
-
-            FbGraphApi.getProfileId(accessToken)
-              .then((fbUserId) => {
-                Api.requestSsoLogin(accessToken, fbUserId)
-                  .then((ssoLoginResponse) => {
-                    if (ssoLoginResponse.statusCode !== 200) {
-                      return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
-                    }
-
-                    const ssoUserData = ssoLoginResponse.data;
-
-                    loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData);
-
-                    Utils.next().then(() => {
-                      if (!ssoUserData.activated) {
-                        // open the profile completion
-                        return Actions.completeProfile({
-                          type: ActionConst.REPLACE,
-                        });
-                      }
-
-                      // TODO: Open the Home Page
-                      return Actions.completeProfile({
-                        type: ActionConst.REPLACE,
-                      });
-                    });
-
-                  })
-                  .catch(error => loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error));
-              })
-              .catch(error => loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error));
-          }
-        );
+        this.doLogin();
       },
       (error) => {
         loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
+
+        loginActions.waiting(false);
       }
     );
   }
@@ -145,7 +135,7 @@ class LoginScene extends Component {
           hidden={false}
         />
         <Image source={fluidBackground} style={styles.backgroundImage}/>
-        <Spinner visible={this.state.waiting}/>
+        <Spinner visible={this.props.waiting}/>
         <Grid style={styles.rootMainContainer}>
           <Row size={70}>
             <Grid>
@@ -187,6 +177,8 @@ class LoginScene extends Component {
 LoginScene.propTypes = {
   loginActions: PropTypes.object,
   accessToken: PropTypes.string,
+  ssoUserData: PropTypes.object,
+  waiting: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {

@@ -1,6 +1,4 @@
 import * as LoginActionsConst from './LoginActionsConst';
-import LocalStorage from '../../../Libraries/LocalStorage';
-import FbGraphApi from '../../../Libraries/FbGraphApi';
 
 // Facebook
 export const onFacebookLogOut = () => {
@@ -19,13 +17,37 @@ export const onFacebookLogIn = (type, response) => {
 };
 
 // Api
-export const onApiLogIn = (type, apiUser) => {
+export const onApiLogIn = (type, ssoUserData) => {
   return (dispatch) => {
-      dispatch({
-        type,
-        data: {
-          apiUser,
-        },
-      });
+    dispatch({
+      type,
+      data: {
+        ssoUserData,
+      },
+    });
+  };
+};
+
+export const setUserLogin = (data) => {
+  return (dispatch) => {
+    const {ssoUserData} = data;
+
+    dispatch({
+      type: LoginActionsConst.ON_LOGIN_USER_LOGIN_DATA,
+      data: {
+        ssoUserData,
+      },
+    });
+  };
+};
+
+export const waiting = (waiting) => {
+  return (dispatch) => {
+    dispatch({
+      type: LoginActionsConst.ON_LOGIN_SCENE_WAITING,
+      data: {
+        waiting,
+      },
+    });
   };
 };

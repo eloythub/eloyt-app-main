@@ -68,11 +68,20 @@ export default class BirthdateEntity extends Component {
           format="YYYY-MM-DD"
           confirmBtnText="Select"
           cancelBtnText="Cancel"
-          onDateChange={(date) => {this.setState({date})}}
+          onDateChange={
+            (date) => {
+              this.setState({date});
+
+              this.props.onChange(date);
+            }
+          }
         />
       </View>
     );
   }
 }
 
-BirthdateEntity.propTypes = {};
+BirthdateEntity.propTypes = {
+  date: PropTypes.string,
+  onChange: PropTypes.func,
+};

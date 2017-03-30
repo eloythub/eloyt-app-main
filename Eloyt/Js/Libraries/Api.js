@@ -76,4 +76,19 @@ export default class Api {
   static getProfileAvatar(userId, avatarResourceId) {
     return this.resourceStreamUrl(userId, 'avatar', avatarResourceId);
   }
+
+  static requestUpdateProfile(userId, attributes) {
+    const data = {
+      credentials: {
+        userId,
+        attributes,
+      },
+    };
+
+    return new Promise(async(fulfill, reject) => {
+      return this.request('/users/profile-update', RequestMethodType.post, data)
+        .then((res) => fulfill(res))
+        .catch((error) => reject(error));
+    });
+  }
 }

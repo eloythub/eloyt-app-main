@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     paddingTop: statusBarHeight,
   },
+  rootMainPostContainer: {
+    flex: 1,
+  },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',

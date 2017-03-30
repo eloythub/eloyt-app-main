@@ -113,4 +113,5 @@ export default class GenderEntity extends Component {
 
 GenderEntity.propTypes = {
   onPress: PropTypes.func.isRequired,
+  value: PropTypes.string,
 };

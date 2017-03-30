@@ -3,6 +3,8 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 
 const DEFAULT_STATE = {
   accessToken: null,
+  ssoUserData: null,
+  waiting: false,
 };
 
 const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
@@ -17,7 +19,7 @@ const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
       return {
         ...state,
         accessToken: null,
-        apiUser: null,
+        ssoUserData: null,
       };
 
     case LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED:
@@ -29,11 +31,18 @@ const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
       };
 
     case LoginActionsConst.ON_SSO_LOGIN_SUCCEED:
-      LocalStorage.save(LoginActionsConst.ON_SSO_USER_DATA, data.apiUser);
+    case LoginActionsConst.ON_LOGIN_USER_LOGIN_DATA:
+      LocalStorage.save(LoginActionsConst.ON_SSO_USER_DATA, data.ssoUserData);
 
       return {
         ...state,
-        apiUser: data.apiUser,
+        ssoUserData: data.ssoUserData,
+      };
+
+    case LoginActionsConst.ON_LOGIN_SCENE_WAITING:
+      return {
+        ...state,
+        waiting: data.waiting,
       };
 
     default:

@@ -1,11 +1,11 @@
-import * as CompleteProfileActionsConst from './CompleteProfileActionsConst';
+import * as HomeActionsConst from './HomeActionsConst';
 
 export const setUserLogin = (data) => {
   return (dispatch) => {
     const {ssoUserData} = data;
 
     dispatch({
-      type: CompleteProfileActionsConst.ON_COMPLETE_PROFILE_USER_LOGIN_DATA,
+      type: HomeActionsConst.ON_HOME_USER_LOGIN_DATA,
       data: {
         ssoUserData,
       },
@@ -16,7 +16,7 @@ export const setUserLogin = (data) => {
 export const waiting = (waiting) => {
   return (dispatch) => {
     dispatch({
-      type: CompleteProfileActionsConst.ON_COMPLETE_PROFILE_SCENE_WAITING,
+      type: HomeActionsConst.ON_HOME_SCENE_WAITING,
       data: {
         waiting,
       },

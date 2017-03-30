@@ -51,7 +51,7 @@ export default class InputTextBoxEntity extends Component {
             (text) => {
               this.setState({text});
 
-              {/*this.props.onChange(text);*/}
+              this.props.onChange(text);
             }
           }
           onSubmitEditing={
@@ -59,6 +59,7 @@ export default class InputTextBoxEntity extends Component {
           }
           returnKeyType="next"
           value={this.state.text}
+          defaultValue={this.state.default}
         />
       </View>
     );
@@ -68,6 +69,7 @@ export default class InputTextBoxEntity extends Component {
 InputTextBoxEntity.propTypes = {
   setTextRef: PropTypes.func,
   name: PropTypes.string,
+  default: PropTypes.string,
   caption: PropTypes.string,
   onChange: PropTypes.func,
   nextFocusObjectRef: PropTypes.func,

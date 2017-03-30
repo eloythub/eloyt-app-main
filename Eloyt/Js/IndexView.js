@@ -15,6 +15,10 @@ import ConnectedAreaOfInterestsScene, {
   AreaOfInterestsSceneKey,
   AreaOfInterestsSceneTitle,
 } from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene';
+import ConnectedHomeScene, {
+  HomeSceneKey,
+  HomeSceneTitle,
+} from './Components/Scenes/Home/HomeScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -37,6 +41,13 @@ const Scenes = Actions.create(
       title={AreaOfInterestsSceneTitle}
       key={AreaOfInterestsSceneKey}
       component={ConnectedAreaOfInterestsScene}
+      type={ActionConst.POP_AND_REPLACE}
+    />
+    <Scene
+      hideNavBar={true}
+      title={HomeSceneTitle}
+      key={HomeSceneKey}
+      component={ConnectedHomeScene}
       type={ActionConst.POP_AND_REPLACE}
     />
   </Scene>

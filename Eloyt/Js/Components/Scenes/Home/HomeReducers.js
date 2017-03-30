@@ -1,4 +1,4 @@
-import * as CompleteProfileActionsConst from './CompleteProfileActionsConst';
+import * as HomeActionsConst from './HomeActionsConst';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
 import LocalStorage from '../../../Libraries/LocalStorage';
 
@@ -7,9 +7,9 @@ const DEFAULT_STATE = {
   waiting: true,
 };
 
-const CompleteProfileReducers = (state = DEFAULT_STATE, {type, data}) => {
+const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
   switch (type) {
-    case CompleteProfileActionsConst.ON_COMPLETE_PROFILE_USER_LOGIN_DATA:
+    case HomeActionsConst.ON_HOME_USER_LOGIN_DATA:
       if (data.ssoUserData) {
         LocalStorage.save(LoginActionsConst.ON_SSO_USER_DATA, data.ssoUserData);
       }
@@ -19,7 +19,7 @@ const CompleteProfileReducers = (state = DEFAULT_STATE, {type, data}) => {
         ssoUserData: data.ssoUserData,
       };
 
-    case CompleteProfileActionsConst.ON_COMPLETE_PROFILE_SCENE_WAITING:
+    case HomeActionsConst.ON_HOME_SCENE_WAITING:
       return {
         ...state,
         waiting: data.waiting,
@@ -30,4 +30,4 @@ const CompleteProfileReducers = (state = DEFAULT_STATE, {type, data}) => {
   }
 };
 
-export default CompleteProfileReducers;
+export default HomeReducers;
