@@ -4,7 +4,6 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 
 const DEFAULT_STATE = {
   ssoUserData: null,
-  waiting: true,
 };
 
 const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
@@ -17,12 +16,6 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
       return {
         ...state,
         ssoUserData: data.ssoUserData,
-      };
-
-    case HomeActionsConst.ON_HOME_SCENE_WAITING:
-      return {
-        ...state,
-        waiting: data.waiting,
       };
 
     default:

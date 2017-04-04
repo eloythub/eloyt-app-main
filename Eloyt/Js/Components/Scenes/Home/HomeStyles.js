@@ -13,5 +13,12 @@ export const styles = StyleSheet.create({
   },
   rootMainPostContainer: {
     flex: 1,
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  text: {
+    color: 'white',
+    fontSize: 30,
   },
 });

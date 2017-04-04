@@ -12,14 +12,3 @@ export const setUserLogin = (data) => {
     });
   };
 };
-
-export const waiting = (waiting) => {
-  return (dispatch) => {
-    dispatch({
-      type: HomeActionsConst.ON_HOME_SCENE_WAITING,
-      data: {
-        waiting,
-      },
-    });
-  };
-};

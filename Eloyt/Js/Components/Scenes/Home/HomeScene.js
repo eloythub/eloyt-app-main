@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, Platform, TouchableOpacity, StatusBar, ScrollView, Alert } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { View, Text, Platform, StatusBar} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as HomeActions from './HomeActions';
@@ -11,6 +10,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
 import Api from '../../../Libraries/Api';
+import PlayerManager from '../../../Components/Misc/Home/PlayerManager';
 
 class HomeScene extends Component {
   constructor(props) {
@@ -25,8 +25,6 @@ class HomeScene extends Component {
         homeActions.setUserLogin({
           ssoUserData,
         });
-
-        homeActions.waiting(false);
       })
       .catch(() => {
         LoginManager.logOut();
@@ -44,7 +42,7 @@ class HomeScene extends Component {
   postRender() {
     return (
       <View style={styles.rootMainPostContainer}>
-        <Text>Home Page</Text>
+        <PlayerManager {...this.props} styles={styles}/>
       </View>
     );
   }
@@ -55,9 +53,7 @@ class HomeScene extends Component {
         <StatusBar
           backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
           barStyle="light-content"
-          hidden={false}
-        />
-        <Spinner visible={this.props.waiting}/>
+          hidden={false}/>
         <View style={styles.rootMainContainer}>
           {this.props.ssoUserData ? this.postRender() : null}
         </View>
@@ -70,18 +66,16 @@ HomeScene.propTypes = {
   HomeReducers: PropTypes.object,
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
-  waiting: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
   const {HomeReducers} = state;
 
-  const {ssoUserData, waiting} = HomeReducers;
+  const {ssoUserData} = HomeReducers;
 
   return {
     HomeReducers,
     ssoUserData,
-    waiting,
   };
 };
 
