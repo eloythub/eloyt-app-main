@@ -4,6 +4,7 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 
 const DEFAULT_STATE = {
   ssoUserData: null,
+  producedData: null,
 };
 
 const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
@@ -16,6 +17,18 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
       return {
         ...state,
         ssoUserData: data.ssoUserData,
+      };
+
+    case HomeActionsConst.ON_HOME_FETCH_PRODUCED_DATA_SUCCESS:
+      return {
+        ...state,
+        producedData: data,
+      };
+
+    case HomeActionsConst.ON_HOME_FETCH_PRODUCED_DATA_FAIL:
+      return {
+        ...state,
+        producedData: null,
       };
 
     default:

@@ -8,9 +8,7 @@ import * as LoginActionsConst from '../Login/LoginActionsConst';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
-import Utils from '../../../Libraries/Utils';
-import Api from '../../../Libraries/Api';
-import PlayerManager from '../../../Components/Misc/Home/PlayerManager';
+import VideoManager  from '../../../Components/Misc/Home/VideoManager';
 
 class HomeScene extends Component {
   constructor(props) {
@@ -40,9 +38,14 @@ class HomeScene extends Component {
   };
 
   postRender() {
+    const {producedData} = this.props;
+
     return (
       <View style={styles.rootMainPostContainer}>
-        <PlayerManager {...this.props} styles={styles}/>
+        <VideoManager
+          {...this.props}
+          {...{producedData}}
+          styles={styles}/>
       </View>
     );
   }
@@ -66,6 +69,7 @@ HomeScene.propTypes = {
   HomeReducers: PropTypes.object,
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  producedData: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

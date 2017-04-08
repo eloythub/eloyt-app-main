@@ -91,4 +91,20 @@ export default class Api {
         .catch((error) => reject(error));
     });
   }
+
+  static fetchProducedResources(userId, offset = 5) {
+    return new Promise(async(fulfill, reject) => {
+      return this.request(`/stream/produce/${userId}/${offset}`, RequestMethodType.get)
+        .then(
+          (res) => {
+            if (res.statusCode !== 200) {
+              return reject(res);
+            }
+
+            fulfill(res.data);
+          },
+          (error) => reject(error)
+        );
+    });
+  }
 }

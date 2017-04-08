@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
+import VideoQueue from './VideoQueue';
 
-export default class PlayerManager extends Component {
+export default class VideoManager extends Component {
   constructor(props) {
     super(props);
 
@@ -14,26 +15,32 @@ export default class PlayerManager extends Component {
 
 
   componentDidMount() {
-    const {homeActions} = this.props;
+    const {homeActions, ssoUserData} = this.props;
 
-    // TODO: call produced data from server and start the process of previewing the videos
-
+    homeActions.fetchProducedResources(ssoUserData._id);
   }
 
   render() {
-    const {styles} = this.props;
+    const {HomeReducers, styles} = this.props;
+
+    const {producedData} = HomeReducers;
 
     return (
       <View style={styles.rootContainer}>
-        <Text style={styles.text}>Home Page</Text>
+        {
+          producedData
+            ? <VideoQueue queue={producedData} styles={styles} />
+            : null
+        }
       </View>
     );
   }
 }
 
-PlayerManager.propTypes = {
+VideoManager.propTypes = {
   HomeReducers: PropTypes.object,
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  producedData: PropTypes.object,
   styles: PropTypes.object,
 };

@@ -18,6 +18,18 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
 import Api from '../../../Libraries/Api';
 
+const loginWithReadPermissions = [
+  'public_profile',
+  'email',
+  'user_photos',
+  'user_friends',
+  'user_website',
+  'user_about_me',
+  'user_birthday',
+  'user_likes',
+  'user_location',
+];
+
 class LoginScene extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +42,32 @@ class LoginScene extends Component {
       .then(() => {
         loginActions.waiting(true);
 
-        this.doLogin();
+        AccessToken.getCurrentAccessToken().then(
+          (data) => {
+            if (!data) {
+              return LoginManager.logInWithReadPermissions(loginWithReadPermissions)
+                .then(
+                  (result) => {
+                    if (result.isCancelled) {
+                      loginActions.waiting(false);
+
+                      return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+                    }
+
+                    this.doLogin();
+                  },
+                  (error) => {
+                    loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
+
+                    loginActions.waiting(false);
+                  }
+              );
+            }
+
+            this.doLogin();
+          }
+        );
+
       })
       .catch(() => null);
   }
@@ -98,31 +135,22 @@ class LoginScene extends Component {
 
     LoginManager.logOut();
 
-    LoginManager.logInWithReadPermissions([
-      'public_profile',
-      'email',
-      'user_photos',
-      'user_friends',
-      'user_website',
-      'user_about_me',
-      'user_birthday',
-      'user_likes',
-      'user_location',
-    ]).then(
-      (result) => {
-        if (result.isCancelled) {
+    LoginManager.logInWithReadPermissions(loginWithReadPermissions)
+      .then(
+        (result) => {
+          if (result.isCancelled) {
+            loginActions.waiting(false);
+
+            return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+          }
+
+          this.doLogin();
+        },
+        (error) => {
+          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
+
           loginActions.waiting(false);
-
-          return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
         }
-
-        this.doLogin();
-      },
-      (error) => {
-        loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
-
-        loginActions.waiting(false);
-      }
     );
   }
 
