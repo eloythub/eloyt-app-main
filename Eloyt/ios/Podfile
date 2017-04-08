@@ -13,8 +13,7 @@ target 'Eloyt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-  
-  
+    
   target 'EloytTests' do
     inherit! :search_paths
     # Pods for testing

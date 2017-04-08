@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
   },
-
   videoContainer: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
@@ -31,6 +30,38 @@ export const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     flex: 1,
     position: 'absolute',
-    opacity: 0.1,
+    opacity: 1,
+  },
+  loadingContainer: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    position: 'absolute',
+    zIndex:999,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loading: {
+    opacity: 0.5,
+  },
+  highlightTopContainer: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    position: 'absolute',
+    top: 0,
+  },
+  highlightBottomContainer: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    height: 150,
+    position: 'absolute',
+    bottom: 0,
+  },
+  highlightTop: {
+    height: 70,
+  },
+  highlightBottom: {
+    flex: 1,
+    height: 150,
   },
 });
