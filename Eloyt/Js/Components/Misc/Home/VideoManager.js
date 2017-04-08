@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
+import Utils from '../../../Libraries/Utils';
 import VideoQueue from './VideoQueue';
 
 export default class VideoManager extends Component {
@@ -21,7 +22,7 @@ export default class VideoManager extends Component {
   }
 
   render() {
-    const {HomeReducers, styles} = this.props;
+    const {HomeReducers, homeActions, ssoUserData, styles} = this.props;
 
     const {producedData} = HomeReducers;
 
@@ -29,7 +30,18 @@ export default class VideoManager extends Component {
       <View style={styles.rootContainer}>
         {
           producedData
-            ? <VideoQueue queue={producedData} styles={styles} />
+            ? <VideoQueue
+                onLike={
+                  (video) => {
+                    homeActions.likeVideo(video);
+
+                    if (producedData.length < 3) {
+                      homeActions.fetchProducedResources(ssoUserData._id);
+                    }
+                  }
+                }
+                queue={producedData}
+                styles={styles} />
             : null
         }
       </View>

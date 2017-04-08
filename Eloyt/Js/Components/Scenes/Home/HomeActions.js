@@ -29,3 +29,10 @@ export const fetchProducedResources = (args = {}) => {
       );
   };
 };
+
+export const likeVideo = (video) => {
+  return (dispatch) => dispatch({
+    type: HomeActionsConst.ON_HOME_VIDEO_LIKE_SUCCESS,
+    data: {video},
+  });
+};

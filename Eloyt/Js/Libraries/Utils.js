@@ -20,4 +20,10 @@ export default class Utils {
 
     alertObj.alert(message);
   }
+
+  static repeat(time) {
+    return new Promise(async(fulfill) => {
+      setInterval(fulfill, time);
+    });
+  }
 }
