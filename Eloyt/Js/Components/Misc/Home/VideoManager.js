@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
-import Utils from '../../../Libraries/Utils';
+import { View } from 'react-native';
 import VideoQueue from './VideoQueue';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class VideoManager extends Component {
   constructor(props) {
@@ -45,17 +43,6 @@ export default class VideoManager extends Component {
                 styles={styles} />
             : null
         }
-
-
-        <View style={styles.highlightTopContainer}>
-          <LinearGradient
-            start={{x: 0, y: 0}} end={{x: 0, y: 1}}
-            locations={[0, 1]}
-            colors={['#111', 'transparent']}
-            style={styles.highlightTop}>
-
-          </LinearGradient>
-        </View>
       </View>
     );
   }

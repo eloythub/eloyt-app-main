@@ -21,8 +21,6 @@ export default class VideoPlayer extends Component {
       uri: Api.url(video.resourceThumbnailUri),
     };
 
-    console.log(video);
-
     return (
       <View style={styles.videoContainer}>
         <TouchableWithoutFeedback onPress={this.like.bind(this, video)}>
@@ -53,8 +51,11 @@ export default class VideoPlayer extends Component {
                   </Row>
                   <Row>
                     <Grid>
-                      <Col style={{width: 70}}>
-                        <ProfileImage onClick={() => { console.log('profile image click'); }} video={video} styles={styles}/>
+                      <Col style={{width: 70, paddingLeft: 10}}>
+                        <ProfileImage
+                          avatar={video.user.avatarUri}
+                          styles={styles}
+                          onClick={() => { console.log('profile image click'); }}/>
                       </Col>
                       <Col>
                         <Text style={styles.profileUserName}>{video.user.firstName}</Text>

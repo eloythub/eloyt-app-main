@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
   videoThumbnailImage: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    resizeMode: 'cover',
   },
   loadingContainer: {
     width: Dimensions.get('window').width,
@@ -64,15 +65,24 @@ export const styles = StyleSheet.create({
   },
   highlightTop: {
     height: 70,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   highlightBottom: {
     flex: 1,
     height: 140,
   },
+  profileImageViewContainer: {
+    paddingRight: 10,
+  },
   profileImageContainer: {
     width: 55,
     height: 55,
-    paddingLeft: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileImage: {
     width: 55,
@@ -99,15 +109,15 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   recordIcon: {
-    width: 22,
+    width: 24,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
   recordButton: {
     width: 55,
     height: 55,
-    backgroundColor: '#ff433c',
-    borderColor: '#d0252b',
+    backgroundColor: '#f44336',
+    borderColor: '#c62828',
     borderWidth: 2,
     borderRadius: 55,
     flexDirection: 'row',
@@ -121,10 +131,30 @@ export const styles = StyleSheet.create({
   },
   videoTimer: {
     backgroundColor: 'transparent',
-    color: '#e2e4ed',
+    color: 'rgba(255, 255, 255, 0.4)',
     fontFamily: 'OpenSans',
     fontSize: 35,
     fontWeight: 'normal',
     paddingLeft: 10,
+  },
+  topHighlightIconContainer: {
+    width: 55,
+    height: 55,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topHighlightIcon: {
+    width: 25,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  topHighlightNewIcon: {
+    width: 8,
+    height: 8,
+    backgroundColor: '#f44336',
+    borderRadius: 8,
+    opacity: 0.9,
+    position: 'absolute',
   },
 });

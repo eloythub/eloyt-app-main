@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Platform, StatusBar} from 'react-native';
+import { View, Platform, StatusBar} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as HomeActions from './HomeActions';
@@ -8,7 +8,10 @@ import * as LoginActionsConst from '../Login/LoginActionsConst';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
-import VideoManager  from '../../../Components/Misc/Home/VideoManager';
+import VideoManager from '../../../Components/Misc/Home/VideoManager';
+import LinearGradient from 'react-native-linear-gradient';
+import TopHighlightIcon from '../../../Components/Misc/Home/TopHighlightIcon';
+import ProfileImage from '../../../Components/Misc/Home/ProfileImage';
 
 class HomeScene extends Component {
   constructor(props) {
@@ -38,7 +41,9 @@ class HomeScene extends Component {
   };
 
   postRender() {
-    const {producedData} = this.props;
+    const {producedData, ssoUserData} = this.props;
+
+    console.log(ssoUserData);
 
     return (
       <View style={styles.rootMainPostContainer}>
@@ -46,6 +51,27 @@ class HomeScene extends Component {
           {...this.props}
           {...{producedData}}
           styles={styles}/>
+
+        <View style={styles.highlightTopContainer}>
+          <LinearGradient
+            start={{x: 0, y: 0}} end={{x: 0, y: 1}}
+            locations={[0, 1]}
+            colors={['#111', 'transparent']}
+            style={styles.highlightTop}>
+            <TopHighlightIcon icon="search" styles={styles} onClick={() => console.log('search icon')} />
+            <TopHighlightIcon icon="message" styles={styles} onClick={() => console.log('message icon')} />
+            <TopHighlightIcon icon="notification" styles={styles} onClick={() => console.log('notification icon')} />
+            <View style={styles.profileImageViewContainer}>
+              <ProfileImage
+                width={45}
+                height={45}
+                userId={ssoUserData._id}
+                avatar={ssoUserData.avatar}
+                styles={styles}
+                onClick={() => console.log('avatar icon')}/>
+            </View>
+          </LinearGradient>
+        </View>
       </View>
     );
   }
