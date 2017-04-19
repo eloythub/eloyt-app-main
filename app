@@ -53,6 +53,13 @@ while [ "$1" != "" ]; do
             source ${DIR_CMD}/run.sh
             ;;
 
+        -re | --release )
+            shift
+            EL_CMD_RUN=$1
+
+            source ${DIR_CMD}/release.sh
+            ;;
+
         -t | --test )
             shift
 
