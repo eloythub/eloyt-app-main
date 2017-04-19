@@ -33,8 +33,10 @@ export default class VideoPlayer extends Component {
           </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback onPress={this.like.bind(this, video)}>
-          <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>
+        <TouchableWithoutFeedback style={{flex: 1}} onPress={this.like.bind(this, video)}>
+          <View style={styles.videoThumbnailImageContainer}>
+            <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>
+          </View>
         </TouchableWithoutFeedback>
 
         <View style={styles.highlightBottomContainer}>

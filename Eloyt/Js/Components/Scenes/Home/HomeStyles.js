@@ -25,12 +25,16 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#111111',
   },
-  videoThumbnailImage: {
+  videoThumbnailImageContainer: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     flex: 1,
     position: 'absolute',
     opacity: 1,
+  },
+  videoThumbnailImage: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   loadingContainer: {
     width: Dimensions.get('window').width,
@@ -47,7 +51,6 @@ export const styles = StyleSheet.create({
   },
   highlightTopContainer: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
     position: 'absolute',
     top: 0,
   },
