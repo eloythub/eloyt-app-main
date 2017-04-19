@@ -15,3 +15,5 @@
     -r | --run <android|ios>
         Run React Native App On requested platform android|ios
 
+    -c | --cleanup
+        Clean up the npm packages

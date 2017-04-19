@@ -10,7 +10,7 @@
     "mobile-center-analytics": "^0.4.0",
     "mobile-center-crashes": "^0.4.0",
     "radio-button-react-native": "^1.1.6",
-    "react": "~15.5.3",
+    "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
     "react-native-datepicker": "^1.4.5",
     "react-native-easy-grid": "^0.1.8",

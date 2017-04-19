@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, TouchableWithoutFeedback, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
@@ -181,7 +181,7 @@ class LoginScene extends Component {
           <Row size={30}>
             <View style={styles.loginField}>
               <Text style={styles.loginAndContinueWithText}>Signin & Continue With</Text>
-              <TouchableOpacity onPress={this.onLoginPress.bind(this)}>
+              <TouchableWithoutFeedback onPress={this.onLoginPress.bind(this)}>
                 <View style={styles.loginButtonContainer}>
                   <Grid>
                     <Col size={20} style={styles.loginButtonLogoWrapper}>
@@ -192,7 +192,7 @@ class LoginScene extends Component {
                     </Col>
                   </Grid>
                 </View>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
               <TermsAndConditionLink />
             </View>
           </Row>
