@@ -6,20 +6,72 @@ import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
+import Files from '../../../Libraries/Files';
 
 export default class VideoPlayer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videoFilePath: false,
+    };
+  }
+
+  componentDidMount() {
+    const {video} = this.props;
+
+    Files.downloadFile(video.resourceUri)
+      .then(
+        (videoFilePath) => {
+          this.setState({
+            videoFilePath,
+          });
+        },
+        () => {
+          // TODO: show a toast later to video has being failed to load
+          this.setState({
+            videoFilePath: null,
+          });
+        }
+      )
+      .catch(() => {
+        // TODO: show a toast later to video has being failed to load
+        this.setState({
+          videoFilePath: null,
+        });
+      });
+  }
+
   like(video) {
     const {onLike} = this.props;
 
     return onLike(video);
   }
 
-  render() {
+  handleVideoAndThumbnail() {
     const {video, styles} = this.props;
+
+    // Once video was downloaded and ready for preview
+    if (this.state.videoFilePath) {
+      return (
+        <View style={styles.videoThumbnailImageContainer}>
+        </View>
+      );
+    }
 
     const thumbnailSource = {
       uri: Api.url(video.resourceThumbnailUri),
     };
+
+    return (
+      <View style={styles.videoThumbnailImageContainer}>
+        <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>
+      </View>
+    );
+  }
+
+  render() {
+    const {video, styles} = this.props;
 
     return (
       <View style={styles.videoContainer}>
@@ -32,9 +84,7 @@ export default class VideoPlayer extends Component {
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback style={{flex: 1}} onPress={this.like.bind(this, video)}>
-          <View style={styles.videoThumbnailImageContainer}>
-            <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>
-          </View>
+          {this.handleVideoAndThumbnail()}
         </TouchableWithoutFeedback>
 
         <View style={styles.highlightBottomContainer}>

@@ -43,8 +43,6 @@ class HomeScene extends Component {
   postRender() {
     const {producedData, ssoUserData} = this.props;
 
-    console.log(ssoUserData);
-
     return (
       <View style={styles.rootMainPostContainer}>
         <VideoManager
