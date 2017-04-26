@@ -32,9 +32,20 @@ export default class VideoManager extends Component {
             ? <VideoQueue
                 onLike={
                   (video) => {
+                    console.log('like');
                     homeActions.likeVideo(video);
 
-                    if (producedData.length < 3) {
+                    if (producedData.length < 2) {
+                      homeActions.fetchProducedResources(ssoUserData._id);
+                    }
+                  }
+                }
+                onSkip={
+                  (video) => {
+                    console.log('skip');
+                    homeActions.skipVideo(video);
+
+                    if (producedData.length < 2) {
                       homeActions.fetchProducedResources(ssoUserData._id);
                     }
                   }

@@ -1,7 +1,7 @@
 import { apiEnv, apiBaseUrl } from '../../app.json';
 import Api from './Api';
 import sha1 from 'sha1';
-import { CachesDirectoryPath, DocumentDirectoryPath, downloadFile, exists } from 'react-native-fs';
+import { CachesDirectoryPath, DocumentDirectoryPath, TemporaryDirectoryPath, downloadFile, exists } from 'react-native-fs';
 
 export default class Files {
   static getCachesDirectoryPath() {
@@ -12,11 +12,15 @@ export default class Files {
     return DocumentDirectoryPath;
   }
 
+  static getTemporaryDirectoryPath() {
+    return TemporaryDirectoryPath;
+  }
+
   static downloadFile(url) {
     return new Promise((fulfill, reject) => {
       const fromUrl = Api.url(url);
 
-      const toFile = `${this.getCachesDirectoryPath()}/${sha1(url)}`;
+      const toFile = `${this.getDocumentDirectoryPath()}/${sha1(url)}.mp4`;
 
       exists(toFile).then((isFileExists) => {
         if (isFileExists) {

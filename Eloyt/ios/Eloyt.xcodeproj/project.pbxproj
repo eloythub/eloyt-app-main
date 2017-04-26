@@ -45,6 +45,7 @@
 		78BFCDAB9813454481AB6A12 /* OpenSans_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A91E1BE38A55429EB23432E5 /* OpenSans_light.ttf */; };
 		7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8A6079925F494347B5C6AC14 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD97D1089F4C48589F892CE9 /* libRNFS.a */; };
 		98596FCF0CFB45DFA5555A82 /* libRNCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEB7C71649D403FB92FD47C /* libRNCrashes.a */; };
 		9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */; };
 		A0292F7213814DF0AD89FC45 /* OpenSans_light_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */; };
@@ -59,7 +60,7 @@
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
 		D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */; };
 		DAE9EA8D875E4F28A76AA726 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187B30F4260A4B30B02971CA /* libjschelpers.a */; };
-		8A6079925F494347B5C6AC14 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD97D1089F4C48589F892CE9 /* libRNFS.a */; };
+		E378E668784C4E3888906BA8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F66340A5224E54B27858DE /* libRCTVideo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +281,20 @@
 			remoteGlobalIDString = 548694001D8384E600E6685A;
 			remoteInfo = RNAnalytics;
 		};
+		C07FD1CA1EAC736D00DED834 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
+		C07FD1D11EAC736D00DED834 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
 		C0CBBC301E6A948200316537 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */;
@@ -327,6 +342,7 @@
 		1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		187B30F4260A4B30B02971CA /* libjschelpers.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libjschelpers.a; sourceTree = "<group>"; };
 		223A2D50B2714361B8196B69 /* OpenSans_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_italic.ttf; path = ../Assets/Fonts/OpenSans_italic.ttf; sourceTree = "<group>"; };
+		22F66340A5224E54B27858DE /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
 		26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libyoga.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Eloyt-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eloyt-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Eloyt-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eloyt-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +355,7 @@
 		61B014A6972FF904E4E41F09 /* Pods-EloytTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.release.xcconfig"; sourceTree = "<group>"; };
 		63CC70A7CB2BAF181B79A18D /* Pods-EloytTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EloytTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EloytTests/Pods-EloytTests.debug.xcconfig"; sourceTree = "<group>"; };
 		688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
+		6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_light_italic.ttf; path = ../Assets/Fonts/OpenSans_light_italic.ttf; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -353,6 +370,7 @@
 		AF9CFD765242A47FC13B61BB /* Pods-Eloyt-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		AFEB7C71649D403FB92FD47C /* libRNCrashes.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCrashes.a; sourceTree = "<group>"; };
 		BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD97D1089F4C48589F892CE9 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
 		C031BD251E9934270083E241 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RNMobileCenter.framework; sourceTree = "<group>"; };
 		C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenter.framework; sourceTree = "<group>"; };
@@ -361,14 +379,13 @@
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
+		C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
 		C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D844C7D7547F4232BC458FA4 /* RNAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAnalytics.xcodeproj; path = "../node_modules/mobile-center-analytics/ios/RNAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../Assets/Fonts/OpenSans.ttf; sourceTree = "<group>"; };
-		C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		BD97D1089F4C48589F892CE9 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +428,7 @@
 				DAE9EA8D875E4F28A76AA726 /* libjschelpers.a in Frameworks */,
 				D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */,
 				8A6079925F494347B5C6AC14 /* libRNFS.a in Frameworks */,
+				E378E668784C4E3888906BA8 /* libRCTVideo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +630,7 @@
 				C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */,
 				170F41897E5443BDA93BC544 /* BVLinearGradient.xcodeproj */,
 				C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */,
+				6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -684,6 +703,22 @@
 			isa = PBXGroup;
 			children = (
 				C05C4DCE1E646803008F1A3D /* libRNAnalytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C07FD1A91EAC736D00DED834 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C07FD1CB1EAC736D00DED834 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C07FD1CE1EAC736D00DED834 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C07FD1D21EAC736D00DED834 /* libRCTVideo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -895,6 +930,10 @@
 					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
 				},
 				{
+					ProductGroup = C07FD1CE1EAC736D00DED834 /* Products */;
+					ProjectRef = 6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */;
+				},
+				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 				},
@@ -909,6 +948,10 @@
 				{
 					ProductGroup = C05B1C7D1E6822A700DA8ED3 /* Products */;
 					ProjectRef = 9237BD4228D640E59EB82C55 /* RNCrashes.xcodeproj */;
+				},
+				{
+					ProductGroup = C07FD1A91EAC736D00DED834 /* Products */;
+					ProjectRef = C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */;
 				},
 				{
 					ProductGroup = C0CBBD5E1E6A9ECF00316537 /* Products */;
@@ -1127,6 +1170,20 @@
 			fileType = archive.ar;
 			path = libRNAnalytics.a;
 			remoteRef = C05C4DCD1E646803008F1A3D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C07FD1CB1EAC736D00DED834 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = C07FD1CA1EAC736D00DED834 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C07FD1D21EAC736D00DED834 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = C07FD1D11EAC736D00DED834 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C0CBBC311E6A948200316537 /* libRCTFBSDK.a */ = {
@@ -1480,12 +1537,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = EloytTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1516,12 +1575,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = EloytTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1558,6 +1619,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1588,6 +1650,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1620,11 +1683,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = "Eloyt-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1665,11 +1730,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
+					"$(SRCROOT)/../node_modules/react-native-video/ios",
 				);
 				INFOPLIST_FILE = "Eloyt-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1718,6 +1785,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1748,6 +1816,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

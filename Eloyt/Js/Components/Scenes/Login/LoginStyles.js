@@ -93,4 +93,10 @@ export const styles = StyleSheet.create({
     fontFamily: 'OpenSans',
     marginTop: 30,
   },
+  toast: {
+    backgroundColor: '#ffffff',
+  },
+  toastText: {
+    color: '#000000',
+  },
 });

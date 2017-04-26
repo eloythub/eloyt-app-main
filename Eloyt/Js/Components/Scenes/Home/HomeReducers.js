@@ -43,6 +43,14 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
         producedData,
       };
 
+    case HomeActionsConst.ON_HOME_VIDEO_SKIP_SUCCESS:
+      producedData.splice(-1, 1);
+
+      return {
+        ...state,
+        producedData,
+      };
+
     default:
       return state;
   }

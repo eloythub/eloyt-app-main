@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, View, StyleSheet } from 'react-native';
 import { connect, Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -15,10 +15,7 @@ import ConnectedAreaOfInterestsScene, {
   AreaOfInterestsSceneKey,
   AreaOfInterestsSceneTitle,
 } from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene';
-import ConnectedHomeScene, {
-  HomeSceneKey,
-  HomeSceneTitle,
-} from './Components/Scenes/Home/HomeScene';
+import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -61,11 +58,19 @@ const store           = compose(
 export default class IndexView extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <ConnectedRouter scenes={Scenes}/>
-      </Provider>
+      <View style={styles.appContainer}>
+        <Provider store={store}>
+          <ConnectedRouter scenes={Scenes}/>
+        </Provider>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    flex: 1,
+  },
+});
 
 AppRegistry.registerComponent('Eloyt', () => IndexView);

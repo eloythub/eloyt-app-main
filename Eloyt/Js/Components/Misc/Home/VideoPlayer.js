@@ -7,13 +7,15 @@ import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Files from '../../../Libraries/Files';
+import Video from 'react-native-video';
 
 export default class VideoPlayer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      videoFilePath: false,
+      videoFilePath: null,
+      videoLoaded: false,
     };
   }
 
@@ -27,14 +29,16 @@ export default class VideoPlayer extends Component {
             videoFilePath,
           });
         },
-        () => {
+        (e) => {
+          console.log(e)
           // TODO: show a toast later to video has being failed to load
           this.setState({
             videoFilePath: null,
           });
         }
       )
-      .catch(() => {
+      .catch((e) => {
+      console.log(e)
         // TODO: show a toast later to video has being failed to load
         this.setState({
           videoFilePath: null,
@@ -48,26 +52,69 @@ export default class VideoPlayer extends Component {
     return onLike(video);
   }
 
-  handleVideoAndThumbnail() {
-    const {video, styles} = this.props;
+  skip(video) {
+    const {onSkip} = this.props;
+
+    return onSkip(video);
+  }
+
+  handleVideoLoad() {
+    console.log('load');
+    this.setState({
+      videoLoaded: true,
+    });
+  }
+
+  handleVideoEnd() {
+    console.log('end');
+  }
+
+  handleVideoError(e, video) {
+    console.log(e, video);
+  }
+
+  handleVideo() {
+    const {styles} = this.props;
 
     // Once video was downloaded and ready for preview
     if (this.state.videoFilePath) {
-      return (
-        <View style={styles.videoThumbnailImageContainer}>
-        </View>
-      );
+      return <Video
+        ref={(ref) => this.player = ref}
+        resizeMode='cover'
+        source={{type: 'mp4', uri: this.state.videoFilePath}}
+        style={styles.video}
+        onLoad={this.handleVideoLoad.bind(this)}
+        onEnd={this.handleVideoEnd.bind(this)}
+        onVideoError={this.handleVideoError.bind(this, this.state.videoFilePath)}
+        onError={this.handleVideoError.bind(this, this.state.videoFilePath)}
+      />;
     }
+  }
+
+  handleThumbnail() {
+    const {video, styles} = this.props;
 
     const thumbnailSource = {
       uri: Api.url(video.resourceThumbnailUri),
     };
 
-    return (
-      <View style={styles.videoThumbnailImageContainer}>
-        <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>
-      </View>
-    );
+    // Once video was downloaded and ready for preview
+    if (!this.state.videoLoaded) {
+      return <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>;
+    }
+  }
+
+  handleLoading() {
+    const {styles} = this.props;
+
+    // Once video was downloaded and ready for preview
+    if (!this.state.videoLoaded) {
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Pulse size={40} color="#ffffff"/>
+        </View>
+      </View>;
+    }
   }
 
   render() {
@@ -75,16 +122,12 @@ export default class VideoPlayer extends Component {
 
     return (
       <View style={styles.videoContainer}>
-        <TouchableWithoutFeedback onPress={this.like.bind(this, video)}>
-          <View style={styles.loadingContainer}>
-            <View style={styles.loading}>
-              <Pulse size={40} color="#ffffff"/>
-            </View>
+        <TouchableWithoutFeedback onPress={this.skip.bind(this, video)}>
+          <View style={styles.videoThumbnailImageContainer}>
+            {this.handleLoading()}
+            {this.handleThumbnail()}
+            {this.handleVideo()}
           </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback style={{flex: 1}} onPress={this.like.bind(this, video)}>
-          {this.handleVideoAndThumbnail()}
         </TouchableWithoutFeedback>
 
         <View style={styles.highlightBottomContainer}>
@@ -137,4 +180,5 @@ VideoPlayer.propTypes = {
   video: PropTypes.object,
   styles: PropTypes.object,
   onLike: PropTypes.func,
+  onSkip: PropTypes.func,
 };

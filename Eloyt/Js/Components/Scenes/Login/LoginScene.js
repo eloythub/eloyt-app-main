@@ -17,6 +17,7 @@ import FbGraphApi from '../../../Libraries/FbGraphApi';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
 import Api from '../../../Libraries/Api';
+import Toast, {DURATION} from 'react-native-easy-toast';
 
 const loginWithReadPermissions = [
   'public_profile',
@@ -85,6 +86,8 @@ class LoginScene extends Component {
 
         loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken);
 
+        loginActions.waiting(true);
+
         FbGraphApi.getProfileId(accessToken)
           .then((fbUserId) => {
             Api.requestSsoLogin(accessToken, fbUserId)
@@ -92,7 +95,6 @@ class LoginScene extends Component {
                 loginActions.waiting(false);
 
                 if (ssoLoginResponse.statusCode !== 200) {
-
                   return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
                 }
 
@@ -117,6 +119,8 @@ class LoginScene extends Component {
                 loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
 
                 loginActions.waiting(false);
+
+                this.refs.toast.show(error, DURATION.LENGTH_SHORT);
               });
           })
           .catch(error => {
@@ -197,6 +201,10 @@ class LoginScene extends Component {
             </View>
           </Row>
         </Grid>
+        <Toast ref="toast"
+               position="bottom"
+               textStyle={StyleSheet.flatten(styles.toastText)}
+               style={StyleSheet.flatten(styles.toast)}/>
       </View>
     );
   }

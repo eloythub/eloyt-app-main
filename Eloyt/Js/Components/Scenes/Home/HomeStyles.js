@@ -30,12 +30,16 @@ export const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     flex: 1,
     position: 'absolute',
-    opacity: 1,
   },
   videoThumbnailImage: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     resizeMode: 'cover',
+    backgroundColor: 'red',
+  },
+  video: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   loadingContainer: {
     width: Dimensions.get('window').width,
