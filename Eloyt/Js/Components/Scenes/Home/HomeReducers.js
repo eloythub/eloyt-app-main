@@ -51,6 +51,12 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
         producedData,
       };
 
+    case HomeActionsConst.ON_HOME_SCENE_WAITING:
+      return {
+        ...state,
+        waiting: data.waiting,
+      };
+
     default:
       return state;
   }

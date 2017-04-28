@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     resizeMode: 'cover',
-    backgroundColor: 'red',
   },
   video: {
     width: Dimensions.get('window').width,
@@ -140,6 +139,7 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'normal',
     paddingLeft: 10,
+    opacity: 0,
   },
   topHighlightIconContainer: {
     width: 55,

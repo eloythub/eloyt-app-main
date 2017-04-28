@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { View, Platform, StatusBar} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Spinner from 'react-native-loading-spinner-overlay';
+import Utils from '../../../Libraries/Utils';
 import * as HomeActions from './HomeActions';
 import { styles } from './HomeStyles';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
@@ -20,6 +22,8 @@ class HomeScene extends Component {
 
   componentDidMount() {
     const {homeActions} = this.props;
+
+    Utils.next().then(() => homeActions.waiting(false));
 
     LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
       .then((ssoUserData) => {
@@ -45,6 +49,7 @@ class HomeScene extends Component {
 
     return (
       <View style={styles.rootMainPostContainer}>
+        <Spinner visible={this.props.waiting}/>
         <VideoManager
           {...this.props}
           {...{producedData}}
@@ -94,6 +99,7 @@ HomeScene.propTypes = {
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
   producedData: PropTypes.object,
+  waiting: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {

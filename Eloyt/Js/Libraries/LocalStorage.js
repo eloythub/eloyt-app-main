@@ -11,7 +11,7 @@ export default class LocalStorage {
         const valueStored = await AsyncStorage.getItem(key);
 
         if (valueStored === null) {
-          return;
+          return fulfill(null);
         }
 
         const valueObject = JSON.parse(valueStored);

@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import Api from '../../../Libraries/Api';
 import LinearGradient from 'react-native-linear-gradient';
 import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
-import Files from '../../../Libraries/Files';
 import Video from 'react-native-video';
 
 export default class VideoPlayer extends Component {
@@ -22,28 +21,33 @@ export default class VideoPlayer extends Component {
   componentDidMount() {
     const {video} = this.props;
 
-    Files.downloadFile(video.resourceUri)
-      .then(
-        (videoFilePath) => {
-          this.setState({
-            videoFilePath,
-          });
-        },
-        (e) => {
-          console.log(e)
-          // TODO: show a toast later to video has being failed to load
-          this.setState({
-            videoFilePath: null,
-          });
-        }
-      )
-      .catch((e) => {
-      console.log(e)
-        // TODO: show a toast later to video has being failed to load
-        this.setState({
-          videoFilePath: null,
-        });
-      });
+    // TODO: temporary read from stream feed, later must be able to cache the video
+    this.setState({
+      videoFilePath: Api.url(video.resourceUri),
+    });
+
+    //Files.downloadFile(video.resourceUri)
+    //  .then(
+    //    (videoFilePath) => {
+    //      this.setState({
+    //        videoFilePath,
+    //      });
+    //    },
+    //    (e) => {
+    //      console.log(e)
+    //      // TODO: show a toast later to video has being failed to load
+    //      this.setState({
+    //        videoFilePath: null,
+    //      });
+    //    }
+    //  )
+    //  .catch((e) => {
+    //  console.log(e)
+    //    // TODO: show a toast later to video has being failed to load
+    //    this.setState({
+    //      videoFilePath: null,
+    //    });
+    //  });
   }
 
   like(video) {
@@ -58,35 +62,62 @@ export default class VideoPlayer extends Component {
     return onSkip(video);
   }
 
-  handleVideoLoad() {
-    console.log('load');
+  handleTouchAction(video, proxy) {
+    const {onSkip, onLike} = this.props;
+
+    const {nativeEvent: {pageX: touchedPositionx}} = proxy;
+    const {width: pageWidth} = Dimensions.get('window');
+
+    return touchedPositionx < pageWidth / 2.8 ? onSkip(video) : onLike(video);
+  }
+
+  handleVideoLoad(data, video) {
+    console.log('handle Video Load', data, video);
     this.setState({
       videoLoaded: true,
     });
   }
 
-  handleVideoEnd() {
-    console.log('end');
+  handleVideoLoadStart(data, video) {
+    console.log('handle Video Load Start', data, video);
   }
 
-  handleVideoError(e, video) {
-    console.log(e, video);
+  handleVideoEnd(data, video) {
+    console.log('handle Video End', data, video);
+    const {onSkip} = this.props;
+
+    // it suppose to skip the video
+    return onSkip(video);
+  }
+
+  handleVideoBuffer(data, video) {
+    console.log('handle Video Buffer', data, video);
+  }
+
+  handleVideoError(data, video) {
+    console.log('handle Video Error', data, video);
   }
 
   handleVideo() {
-    const {styles} = this.props;
+    const {styles, video} = this.props;
 
     // Once video was downloaded and ready for preview
     if (this.state.videoFilePath) {
       return <Video
         ref={(ref) => this.player = ref}
+        playWhenInactive={false}
+        playInBackground={false}
+        paused={false}
+        rate={1}
         resizeMode='cover'
         source={{type: 'mp4', uri: this.state.videoFilePath}}
         style={styles.video}
-        onLoad={this.handleVideoLoad.bind(this)}
-        onEnd={this.handleVideoEnd.bind(this)}
-        onVideoError={this.handleVideoError.bind(this, this.state.videoFilePath)}
-        onError={this.handleVideoError.bind(this, this.state.videoFilePath)}
+
+        onLoadStart={this.handleVideoLoadStart.bind(this, video)}
+        onLoad={this.handleVideoLoad.bind(this, video)}
+        onEnd={this.handleVideoEnd.bind(this, video)}
+        onBuffer={this.handleVideoBuffer.bind(this, video)}
+        onError={this.handleVideoError.bind(this, video)}
       />;
     }
   }
@@ -122,7 +153,7 @@ export default class VideoPlayer extends Component {
 
     return (
       <View style={styles.videoContainer}>
-        <TouchableWithoutFeedback onPress={this.skip.bind(this, video)}>
+        <TouchableWithoutFeedback onPress={this.handleTouchAction.bind(this, video)}>
           <View style={styles.videoThumbnailImageContainer}>
             {this.handleLoading()}
             {this.handleThumbnail()}

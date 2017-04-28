@@ -9,14 +9,11 @@ export default class VideoQueue extends Component {
   render() {
     const {queue, styles, onLike, onSkip} = this.props;
 
-    console.log(queue);
-
     return (
       <View style={styles.rootContainer}>
         {
           queue.map((video, videoIndex) => {
             if (videoIndex === queue.length - 1) {
-              console.log(video);
               return <VideoPlayer
                 key={videoIndex}
                 video={video}
