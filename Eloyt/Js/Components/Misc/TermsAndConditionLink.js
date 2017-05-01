@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, Text, Platform, TouchableOpacity, Linking, Alert } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Linking, Alert } from 'react-native';
 
 const styles = StyleSheet.create({
   rootContainer: {

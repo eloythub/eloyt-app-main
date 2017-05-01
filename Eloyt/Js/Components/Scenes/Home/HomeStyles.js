@@ -139,7 +139,6 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'normal',
     paddingLeft: 10,
-    opacity: 0,
   },
   topHighlightIconContainer: {
     width: 55,

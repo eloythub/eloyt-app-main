@@ -6,5 +6,6 @@ rm -rf yarn.lock
 rm -rf $TMPDIR/react-packager-*
 rm -rf ios/build
 npm cache clear
+#yarn
 yarn
 react-native link

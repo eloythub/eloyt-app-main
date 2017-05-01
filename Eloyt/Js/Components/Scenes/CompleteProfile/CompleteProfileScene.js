@@ -96,50 +96,50 @@ class CompleteProfileScene extends Component {
           <Text style={styles.sceneTitle}>{'Complete Your Profile'.toUpperCase()}</Text>
         </View>
         <View style={styles.profileEntitiesContainer}>
-        <ScrollView>
-          <View style={styles.entitiesContainer}>
-            <View style={styles.profileEntityContainer}>
-              <ImageEntity
-                imageUrl={Api.getProfileAvatar(
+          <ScrollView>
+            <View style={styles.entitiesContainer}>
+              <View style={styles.profileEntityContainer}>
+                <ImageEntity
+                  imageUrl={Api.getProfileAvatar(
                           this.props.ssoUserData._id,
                           this.props.ssoUserData.avatar
                         )}/>
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <InputTextBox
+                  setTextRef={(textRefObj) => this.firstNameRef = textRefObj}
+                  onChange={(text) => this.firstName = text}
+                  default={this.props.ssoUserData.firstName}
+                  caption="FIRST NAME"
+                  name="firstname"
+                  nextFocusObjectRef={() => this.lastNameRef.focus()}
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <InputTextBox
+                  setTextRef={(textRefObj) => this.lastNameRef = textRefObj}
+                  onChange={(text) => this.lastName = text}
+                  default={this.props.ssoUserData.lastName}
+                  caption="LAST NAME"
+                  name="lastname"
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <GenderEntity
+                  onPress={(genderValue) => this.gender = genderValue}
+                  value={this.props.ssoUserData.gender.toLowerCase()}
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <BirthdateEntity
+                  onChange={(birthday) => this.birthday = birthday}
+                  date={this.props.ssoUserData.birthday}/>
+              </View>
             </View>
-            <View style={styles.profileEntityContainer}>
-              <InputTextBox
-                setTextRef={(textRefObj) => this.firstNameRef = textRefObj}
-                onChange={(text) => this.firstName = text}
-                default={this.props.ssoUserData.firstName}
-                caption="FIRST NAME"
-                name="firstname"
-                nextFocusObjectRef={() => this.lastNameRef.focus()}
-              />
-            </View>
-            <View style={styles.profileEntityContainer}>
-              <InputTextBox
-                setTextRef={(textRefObj) => this.lastNameRef = textRefObj}
-                onChange={(text) => this.lastName = text}
-                default={this.props.ssoUserData.lastName}
-                caption="LAST NAME"
-                name="lastname"
-              />
-            </View>
-            <View style={styles.profileEntityContainer}>
-              <GenderEntity
-                onPress={(genderValue) => this.gender = genderValue}
-                value={this.props.ssoUserData.gender.toLowerCase()}
-              />
-            </View>
-            <View style={styles.profileEntityContainer}>
-              <BirthdateEntity
-                onChange={(birthday) => this.birthday = birthday}
-                date={this.props.ssoUserData.birthday}/>
-            </View>
-          </View>
-        </ScrollView>
-        <TouchableOpacity style={styles.nextButton} onPress={this.onNextButtonPress.bind(this)}>
-        <Text style={styles.nextButtonCaption}>{'Save & Select Areas of Interest'.toUpperCase()}</Text>
-        </TouchableOpacity>
+          </ScrollView>
+          <TouchableOpacity style={styles.nextButton} onPress={this.onNextButtonPress.bind(this)}>
+            <Text style={styles.nextButtonCaption}>{'Save & Select Areas of Interest'.toUpperCase()}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

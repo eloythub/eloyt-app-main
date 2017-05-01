@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, Platform, TouchableWithoutFeedback, Dimensions, StatusBar } from 'react-native';
+import { View, Text, Image, StyleSheet, Platform, TouchableOpacity, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LoginActions from './LoginActions';
@@ -39,16 +39,16 @@ class LoginScene extends Component {
   componentDidMount() {
     const {loginActions} = this.props;
 
-    Utils.next().then(() => loginActions.waiting(true));
+    loginActions.waiting(true);
 
-    Utils.next().then(
-      () => LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
-        .then((ssoData) => {
-          if (!ssoData) {
-            return Utils.next().then(() => loginActions.waiting(false));
-          }
+    LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
+      .then((ssoData) => {
+        if (!ssoData) {
+          return loginActions.waiting(false);
+        }
 
-          AccessToken.getCurrentAccessToken().then((data) => {
+        AccessToken.getCurrentAccessToken().then(
+          (data) => {
             if (!data) {
               return LoginManager.logInWithReadPermissions(loginWithReadPermissions)
                 .then(
@@ -56,28 +56,28 @@ class LoginScene extends Component {
                     if (result.isCancelled) {
                       loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
 
-                      Utils.next().then(() => loginActions.waiting(false));
+                      loginActions.waiting(false);
 
                       return;
                     }
 
-                    Utils.next().then(() => this.doLogin());
+                    this.doLogin();
                   },
                   (error) => {
                     loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
 
-                    Utils.next().then(() => loginActions.waiting(false));
+                    loginActions.waiting(false);
                   }
                 )
-                .catch(() => Utils.next().then(() => loginActions.waiting(false)));
+                .catch(() => loginActions.waiting(false));
             }
 
-            Utils.next().then(() => this.doLogin());
+            this.doLogin();
           })
-          .catch(() => Utils.next().then(() => loginActions.waiting(false)))
-        })
-        .catch(() => Utils.next().then(() => loginActions.waiting(false)))
-    );
+          .catch(() => loginActions.waiting(false));
+      })
+      .catch(() => loginActions.waiting(false));
+
   }
 
   static contextTypes = {
@@ -100,7 +100,7 @@ class LoginScene extends Component {
           .then((fbUserId) => {
             Api.requestSsoLogin(accessToken, fbUserId)
               .then((ssoLoginResponse) => {
-                Utils.next().then(() => loginActions.waiting(false));
+                loginActions.waiting(false);
 
                 if (ssoLoginResponse.statusCode !== 200) {
                   return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
@@ -110,28 +110,26 @@ class LoginScene extends Component {
 
                 loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData);
 
-                Utils.next().then(() => {
-                  if (!ssoUserData.activated) {
-                    // open the profile completion
+                if (!ssoUserData.activated) {
+                  // open the profile completion
 
-                    Utils.next().then(() => loginActions.waiting(false));
+                  loginActions.waiting(false);
 
-                    return Actions.completeProfile({
-                      type: ActionConst.REPLACE,
-                    });
-                  }
-
-                  Utils.next().then(() => loginActions.waiting(false));
-
-                  return Actions.home({
+                  return Actions.completeProfile({
                     type: ActionConst.REPLACE,
                   });
+                }
+
+                loginActions.waiting(false);
+
+                return Actions.home({
+                  type: ActionConst.REPLACE,
                 });
               })
               .catch(error => {
                 loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
 
-                Utils.next().then(() => loginActions.waiting(false));
+                loginActions.waiting(false);
 
                 this.refs.toast.show(error, DURATION.LENGTH_SHORT);
               });
@@ -139,7 +137,7 @@ class LoginScene extends Component {
           .catch(error => {
             loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
 
-            Utils.next().then(() => loginActions.waiting(false));
+            loginActions.waiting(false);
           });
       }
     );
@@ -148,33 +146,29 @@ class LoginScene extends Component {
   onLoginPress() {
     const {loginActions} = this.props;
 
-    Utils.next().then(() => loginActions.waiting(true));
+    loginActions.waiting(true);
 
-    Utils.next().then(() => {
-      LoginManager.logOut();
+    LoginManager.logOut();
 
-      Utils.next().then(() => {
-        LoginManager.logInWithReadPermissions(loginWithReadPermissions)
-          .then(
-            (result) => {
-              if (result.isCancelled) {
-                Utils.next().then(() => loginActions.waiting(false));
+    LoginManager.logInWithReadPermissions(loginWithReadPermissions)
+      .then(
+        (result) => {
+          if (result.isCancelled) {
+            loginActions.waiting(false);
 
-                this.refs.toast.show('Canceled', DURATION.LENGTH_SHORT);
+            this.refs.toast.show('Canceled', DURATION.LENGTH_SHORT);
 
-                return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
-              }
+            return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+          }
 
-              this.doLogin();
-            },
-            (error) => {
-              loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
+          this.doLogin();
+        },
+        (error) => {
+          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
 
-              Utils.next().then(() => loginActions.waiting(false));
-            }
-        );
-      });
-    });
+          loginActions.waiting(false);
+        }
+      );
 
   }
 
@@ -205,7 +199,7 @@ class LoginScene extends Component {
           <Row size={30}>
             <View style={styles.loginField}>
               <Text style={styles.loginAndContinueWithText}>Signin & Continue With</Text>
-              <TouchableWithoutFeedback onPress={this.onLoginPress.bind(this)}>
+              <TouchableOpacity onPress={this.onLoginPress.bind(this)}>
                 <View style={styles.loginButtonContainer}>
                   <Grid>
                     <Col size={20} style={styles.loginButtonLogoWrapper}>
@@ -216,7 +210,7 @@ class LoginScene extends Component {
                     </Col>
                   </Grid>
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
               <TermsAndConditionLink />
             </View>
           </Row>

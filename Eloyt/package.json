@@ -9,6 +9,7 @@
   "dependencies": {
     "mobile-center-analytics": "^0.4.0",
     "mobile-center-crashes": "^0.4.0",
+    "moment": "^2.18.1",
     "radio-button-react-native": "^1.1.6",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",

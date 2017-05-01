@@ -14,6 +14,19 @@ export const setUserLogin = (data) => {
   };
 };
 
+export const setTutorialWatched = (data) => {
+  return (dispatch) => {
+    const {isTutorialWatched} = data;
+
+    dispatch({
+      type: HomeActionsConst.ON_HOME_IS_TUTORIAL_WATCHED,
+      data: {
+        isTutorialWatched,
+      },
+    });
+  };
+};
+
 export const fetchProducedResources = (args = {}) => {
   return (dispatch) => {
     return Api.fetchProducedResources(args)

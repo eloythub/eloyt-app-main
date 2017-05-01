@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import Api from '../../../Libraries/Api';
+import Files from '../../../Libraries/Files';
 import LinearGradient from 'react-native-linear-gradient';
 import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Video from 'react-native-video';
+import TimeFormat from './TimeFormat';
 
 export default class VideoPlayer extends Component {
   constructor(props) {
@@ -15,6 +17,9 @@ export default class VideoPlayer extends Component {
     this.state = {
       videoFilePath: null,
       videoLoaded: false,
+      duration: null,
+      currentTime: null,
+      paused: false,
     };
   }
 
@@ -22,32 +27,34 @@ export default class VideoPlayer extends Component {
     const {video} = this.props;
 
     // TODO: temporary read from stream feed, later must be able to cache the video
-    this.setState({
-      videoFilePath: Api.url(video.resourceUri),
-    });
+    if (Platform.OS === 'ios') {
+      return this.setState({
+        videoFilePath: Api.url(video.resourceUri),
+      });
+    }
 
-    //Files.downloadFile(video.resourceUri)
-    //  .then(
-    //    (videoFilePath) => {
-    //      this.setState({
-    //        videoFilePath,
-    //      });
-    //    },
-    //    (e) => {
-    //      console.log(e)
-    //      // TODO: show a toast later to video has being failed to load
-    //      this.setState({
-    //        videoFilePath: null,
-    //      });
-    //    }
-    //  )
-    //  .catch((e) => {
-    //  console.log(e)
-    //    // TODO: show a toast later to video has being failed to load
-    //    this.setState({
-    //      videoFilePath: null,
-    //    });
-    //  });
+    Files.downloadFile(video.resourceUri)
+      .then(
+        (videoFilePath) => {
+          this.setState({
+            videoFilePath,
+          });
+        },
+        (e) => {
+          console.log(e);
+          // TODO: show a toast later to video has being failed to load
+          this.setState({
+            videoFilePath: null,
+          });
+        }
+      )
+      .catch((e) => {
+        console.log(e);
+        // TODO: show a toast later to video has being failed to load
+        this.setState({
+          videoFilePath: null,
+        });
+      });
   }
 
   like(video) {
@@ -68,78 +75,72 @@ export default class VideoPlayer extends Component {
     const {nativeEvent: {pageX: touchedPositionx}} = proxy;
     const {width: pageWidth} = Dimensions.get('window');
 
+    // if the touched area was in left side of the page means skip otherwise like
     return touchedPositionx < pageWidth / 2.8 ? onSkip(video) : onLike(video);
   }
 
-  handleVideoLoad(data, video) {
-    console.log('handle Video Load', data, video);
+  handleVideoLoad(data) {
+    console.log('handle Video Load', data);
+    const {duration} = data;
+
     this.setState({
       videoLoaded: true,
+      duration,
     });
   }
 
-  handleVideoLoadStart(data, video) {
-    console.log('handle Video Load Start', data, video);
+  handleVideoLoadStart(data) {
+    console.log('handle Video Load Start', data);
   }
 
   handleVideoEnd(data, video) {
-    console.log('handle Video End', data, video);
     const {onSkip} = this.props;
+
+    this.setState({
+      paused: true,
+    });
 
     // it suppose to skip the video
     return onSkip(video);
   }
 
-  handleVideoBuffer(data, video) {
-    console.log('handle Video Buffer', data, video);
+  handleVideoBuffer(data) {
+    console.log('handle Video Buffer', data);
   }
 
-  handleVideoError(data, video) {
-    console.log('handle Video Error', data, video);
+  handleVideoProgress(data) {
+    console.log('handle Video Progress', data);
+    const {currentTime} = data;
+
+    this.setState({
+      currentTime,
+    });
   }
 
-  handleVideo() {
-    const {styles, video} = this.props;
-
-    // Once video was downloaded and ready for preview
-    if (this.state.videoFilePath) {
-      return <Video
-        ref={(ref) => this.player = ref}
-        playWhenInactive={false}
-        playInBackground={false}
-        paused={false}
-        rate={1}
-        resizeMode='cover'
-        source={{type: 'mp4', uri: this.state.videoFilePath}}
-        style={styles.video}
-
-        onLoadStart={this.handleVideoLoadStart.bind(this, video)}
-        onLoad={this.handleVideoLoad.bind(this, video)}
-        onEnd={this.handleVideoEnd.bind(this, video)}
-        onBuffer={this.handleVideoBuffer.bind(this, video)}
-        onError={this.handleVideoError.bind(this, video)}
-      />;
-    }
+  handleVideoError(data) {
+    console.log('handle Video Error', data);
   }
 
   handleThumbnail() {
     const {video, styles} = this.props;
+    const {videoLoaded} = this.state;
 
     const thumbnailSource = {
       uri: Api.url(video.resourceThumbnailUri),
     };
 
     // Once video was downloaded and ready for preview
-    if (!this.state.videoLoaded) {
+    if (!videoLoaded) {
       return <Image style={styles.videoThumbnailImage} source={thumbnailSource}/>;
     }
   }
 
   handleLoading() {
     const {styles} = this.props;
+    const {videoLoaded} = this.state;
 
     // Once video was downloaded and ready for preview
-    if (!this.state.videoLoaded) {
+    if (!videoLoaded) {
       return <View style={styles.loadingContainer}>
         <View style={styles.loading}>
           <Pulse size={40} color="#ffffff"/>
@@ -148,8 +149,38 @@ export default class VideoPlayer extends Component {
     }
   }
 
+  handleVideo() {
+    const {styles, video} = this.props;
+    const {videoFilePath, paused} = this.state;
+
+    console.log(videoFilePath);
+    // Once video was downloaded and ready for preview
+    if (videoFilePath) {
+      return <Video
+        source={{type: 'mp4', uri: videoFilePath}}
+        style={styles.video}
+        paused={paused}
+        rate={paused ? 0 : 1}
+        resizeMode='cover'
+        onProgress={this.handleVideoProgress.bind(this)}
+        onVideoProgress={this.handleVideoProgress.bind(this)}
+        onLoadStart={this.handleVideoLoadStart.bind(this)}
+        onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
+        onLoad={this.handleVideoLoad.bind(this)}
+        onVideoLoad={this.handleVideoLoad.bind(this)}
+        onEnd={this.handleVideoEnd.bind(this, video)}
+        onVideoEnd={this.handleVideoEnd.bind(this, video)}
+        onBuffer={this.handleVideoBuffer.bind(this)}
+        onVideoBuffer={this.handleVideoBuffer.bind(this)}
+        onError={this.handleVideoError.bind(this)}
+        onVideoError={this.handleVideoError.bind(this)}
+      />;
+    }
+  }
+
   render() {
     const {video, styles} = this.props;
+    const {duration, currentTime} = this.state;
 
     return (
       <View style={styles.videoContainer}>
@@ -171,7 +202,11 @@ export default class VideoPlayer extends Component {
               <Col>
                 <Grid>
                   <Row style={{height: 50}}>
-                    <Text style={styles.videoTimer}>02:20</Text>
+                    {
+                      duration && currentTime <= duration
+                      ? <TimeFormat time={duration - currentTime} styles={styles}/>
+                      : <TimeFormat time={0} styles={styles}/>
+                    }
                   </Row>
                   <Row>
                     <Grid>

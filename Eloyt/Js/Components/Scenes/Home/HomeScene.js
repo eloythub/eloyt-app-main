@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Platform, StatusBar} from 'react-native';
+import { View, Platform, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -7,9 +7,11 @@ import Utils from '../../../Libraries/Utils';
 import * as HomeActions from './HomeActions';
 import { styles } from './HomeStyles';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
+import * as HomeActionsConst from '../Home/HomeActionsConst';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
+import LikeOrSkip from '../../../Components/Misc/Tutorials/LikeOrSkip';
 import VideoManager from '../../../Components/Misc/Home/VideoManager';
 import LinearGradient from 'react-native-linear-gradient';
 import TopHighlightIcon from '../../../Components/Misc/Home/TopHighlightIcon';
@@ -25,10 +27,15 @@ class HomeScene extends Component {
 
     Utils.next().then(() => homeActions.waiting(false));
 
-    LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
-      .then((ssoUserData) => {
+
+    LocalStorage.all([LoginActionsConst.ON_SSO_USER_DATA, HomeActionsConst.ON_HOME_IS_TUTORIAL_WATCHED])
+      .then(([ssoUserData, isTutorialWatched]) => {
         homeActions.setUserLogin({
           ssoUserData,
+        });
+
+        homeActions.setTutorialWatched({
+          isTutorialWatched,
         });
       })
       .catch(() => {
@@ -44,16 +51,29 @@ class HomeScene extends Component {
     routes: PropTypes.object.isRequired,
   };
 
+  handleTutorialActionPressed() {
+    const {homeActions} = this.props;
+
+    LocalStorage.save(HomeActionsConst.ON_HOME_IS_TUTORIAL_WATCHED, true);
+
+    homeActions.setTutorialWatched({
+      isTutorialWatched: true,
+    });
+  }
+
   postRender() {
-    const {producedData, ssoUserData} = this.props;
+    const {producedData, ssoUserData, isTutorialWatched} = this.props;
 
     return (
       <View style={styles.rootMainPostContainer}>
         <Spinner visible={this.props.waiting}/>
+
         <VideoManager
           {...this.props}
           {...{producedData}}
           styles={styles}/>
+
+        <LikeOrSkip watched={isTutorialWatched} onPress={this.handleTutorialActionPressed.bind(this)}/>
 
         <View style={styles.highlightTopContainer}>
           <LinearGradient
@@ -80,6 +100,8 @@ class HomeScene extends Component {
   }
 
   render() {
+    const {ssoUserData} = this.props;
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar
@@ -87,7 +109,7 @@ class HomeScene extends Component {
           barStyle="light-content"
           hidden={false}/>
         <View style={styles.rootMainContainer}>
-          {this.props.ssoUserData ? this.postRender() : null}
+          {ssoUserData ? this.postRender() : null}
         </View>
       </View>
     );
@@ -98,6 +120,7 @@ HomeScene.propTypes = {
   HomeReducers: PropTypes.object,
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  isTutorialWatched: PropTypes.bool,
   producedData: PropTypes.object,
   waiting: PropTypes.bool,
 };
@@ -105,11 +128,12 @@ HomeScene.propTypes = {
 const mapStateToProps = (state) => {
   const {HomeReducers} = state;
 
-  const {ssoUserData} = HomeReducers;
+  const {ssoUserData, isTutorialWatched} = HomeReducers;
 
   return {
     HomeReducers,
     ssoUserData,
+    isTutorialWatched,
   };
 };
 
