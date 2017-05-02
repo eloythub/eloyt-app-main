@@ -9,6 +9,7 @@ import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Video from 'react-native-video';
 import TimeFormat from './TimeFormat';
+import { Actions, ActionConst } from 'react-native-router-flux';
 
 export default class VideoPlayer extends Component {
   constructor(props) {
@@ -155,31 +156,37 @@ export default class VideoPlayer extends Component {
 
     console.log(videoFilePath);
     // Once video was downloaded and ready for preview
-    if (videoFilePath) {
-      return <Video
-        source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
-        style={styles.video}
-        muted={false}
-        paused={paused}
-        rate={paused ? 0 : 1}
-        repeat={false}
-        playInBackground={false}
-        playWhenInactive={false}
-        resizeMode='cover'
-        onProgress={this.handleVideoProgress.bind(this)}
-        onVideoProgress={this.handleVideoProgress.bind(this)}
-        onLoadStart={this.handleVideoLoadStart.bind(this)}
-        onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
-        onLoad={this.handleVideoLoad.bind(this)}
-        onVideoLoad={this.handleVideoLoad.bind(this)}
-        onEnd={this.handleVideoEnd.bind(this, video)}
-        onVideoEnd={this.handleVideoEnd.bind(this, video)}
-        onBuffer={this.handleVideoBuffer.bind(this)}
-        onVideoBuffer={this.handleVideoBuffer.bind(this)}
-        onError={this.handleVideoError.bind(this)}
-        onVideoError={this.handleVideoError.bind(this)}
-      />;
-    }
+    //if (videoFilePath) {
+    //  return <Video
+    //    source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
+    //    style={styles.video}
+    //    muted={false}
+    //    paused={paused}
+    //    rate={paused ? 0 : 1}
+    //    repeat={false}
+    //    playInBackground={false}
+    //    playWhenInactive={false}
+    //    resizeMode='cover'
+    //    onProgress={this.handleVideoProgress.bind(this)}
+    //    onVideoProgress={this.handleVideoProgress.bind(this)}
+    //    onLoadStart={this.handleVideoLoadStart.bind(this)}
+    //    onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
+    //    onLoad={this.handleVideoLoad.bind(this)}
+    //    onVideoLoad={this.handleVideoLoad.bind(this)}
+    //    onEnd={this.handleVideoEnd.bind(this, video)}
+    //    onVideoEnd={this.handleVideoEnd.bind(this, video)}
+    //    onBuffer={this.handleVideoBuffer.bind(this)}
+    //    onVideoBuffer={this.handleVideoBuffer.bind(this)}
+    //    onError={this.handleVideoError.bind(this)}
+    //    onVideoError={this.handleVideoError.bind(this)}
+    //  />;
+    //}
+  }
+
+  handleRecordButtonPress() {
+    Actions.record({
+      type: ActionConst.PUSH_OR_POP,
+    });
   }
 
   render() {
@@ -236,7 +243,7 @@ export default class VideoPlayer extends Component {
                   alignItems: 'center',
                 }
               }>
-                <RecordButton onClick={() => {console.log('record button click');}} styles={styles}/>
+                <RecordButton onClick={this.handleRecordButtonPress.bind(this)} styles={styles}/>
               </Col>
             </Grid>
           </LinearGradient>

@@ -9,6 +9,11 @@ export default (state = DEFAULT_STATE, {type, scene}) => {
         ...state,
         scene,
       };
+    case ActionConst.PUSH:
+      return {
+        ...state,
+        scene,
+      };
     default:
       return state;
   }

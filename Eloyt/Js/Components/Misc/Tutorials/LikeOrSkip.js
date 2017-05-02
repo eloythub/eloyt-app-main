@@ -6,7 +6,9 @@ const {width: windowWidth, height} = Dimensions.get('window');
 const skipSectionWidth             = windowWidth / 2.8;
 const likeSectionWidth             = windowWidth - skipSectionWidth;
 
-const actionButtonHeight = 80;
+const topPadding = 90;
+const bottomPadding = 10;
+const actionButtonHeight = 60;
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -22,22 +24,22 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    paddingTop: topPadding,
   },
   likeSection: {
-    //height,
     width: likeSectionWidth,
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
   },
   border: {
-    //height,
     borderColor: '#ffffff',
     borderWidth: 1,
     borderStyle: 'dashed',
+    width: 1,
+    borderRadius: 5,
   },
   skipSection: {
-    //height,
     width: skipSectionWidth - 2,
     alignItems: 'center',
     flexDirection: 'column',
@@ -50,8 +52,9 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans',
   },
   guideRow: {
-    height: height - actionButtonHeight,
+    height: height - actionButtonHeight - topPadding,
     width: windowWidth,
+    paddingBottom: bottomPadding,
   },
   actionRow: {
     height: actionButtonHeight,

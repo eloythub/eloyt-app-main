@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet } from 'react-native';
+import { AppRegistry, View, StyleSheet, Navigator } from 'react-native';
 import { connect, Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -9,13 +9,14 @@ import Reducers from './Reducers';
 import ConnectedLoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene';
 import ConnectedCompleteProfileScene, {
   CompleteProfileSceneKey,
-  CompleteProfileSceneTitle,
+  CompleteProfileSceneTitle
 } from './Components/Scenes/CompleteProfile/CompleteProfileScene';
 import ConnectedAreaOfInterestsScene, {
   AreaOfInterestsSceneKey,
   AreaOfInterestsSceneTitle,
 } from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene';
 import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene';
+import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -46,6 +47,15 @@ const Scenes = Actions.create(
       key={HomeSceneKey}
       component={ConnectedHomeScene}
       type={ActionConst.POP_AND_REPLACE}
+    />
+    <Scene
+      hideNavBar={true}
+      title={RecordSceneTitle}
+      key={RecordSceneKey}
+      component={ConnectedRecordScene}
+      type={ActionConst.PUSH}
+      direction="horizontal"
+      duration={300}
     />
   </Scene>
 );
