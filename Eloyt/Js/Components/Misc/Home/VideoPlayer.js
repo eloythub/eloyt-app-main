@@ -23,7 +23,7 @@ export default class VideoPlayer extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const {video} = this.props;
 
     // TODO: temporary read from stream feed, later must be able to cache the video
@@ -157,10 +157,14 @@ export default class VideoPlayer extends Component {
     // Once video was downloaded and ready for preview
     if (videoFilePath) {
       return <Video
-        source={{type: 'mp4', uri: videoFilePath}}
+        source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
         style={styles.video}
+        muted={false}
         paused={paused}
         rate={paused ? 0 : 1}
+        repeat={false}
+        playInBackground={false}
+        playWhenInactive={false}
         resizeMode='cover'
         onProgress={this.handleVideoProgress.bind(this)}
         onVideoProgress={this.handleVideoProgress.bind(this)}

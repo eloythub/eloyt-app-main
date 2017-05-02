@@ -1,5 +1,7 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 
+const {width, height} = Dimensions.get('window');
+
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
 export const styles = StyleSheet.create({
@@ -19,30 +21,31 @@ export const styles = StyleSheet.create({
     fontSize: 30,
   },
   videoContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width,
+    height,
     flex: 1,
     position: 'absolute',
     backgroundColor: '#111111',
   },
   videoThumbnailImageContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    flex: 1,
     position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   videoThumbnailImage: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width,
+    height,
     resizeMode: 'cover',
   },
   video: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width,
+    height,
   },
   loadingContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width,
+    height,
     position: 'absolute',
     zIndex:99,
     flexDirection: 'row',
@@ -54,14 +57,14 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   highlightTopContainer: {
-    width: Dimensions.get('window').width,
+    width,
     position: 'absolute',
     top: 0,
   },
   highlightBottomContainer: {
     flex: 1,
     zIndex: 999,
-    width: Dimensions.get('window').width,
+    width,
     height: 140,
     position: 'absolute',
     bottom: 0,
@@ -139,6 +142,7 @@ export const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'normal',
     paddingLeft: 10,
+    opacity: 0,
   },
   topHighlightIconContainer: {
     width: 55,

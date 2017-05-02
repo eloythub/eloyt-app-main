@@ -31,7 +31,6 @@ export default class Files {
           fromUrl,
           toFile,
           background: true,
-          progressDivider: 1,
         });
 
         return downloadFileResponse.promise

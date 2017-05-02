@@ -3,20 +3,24 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-nati
 import { Row, Grid, Col } from 'react-native-easy-grid';
 
 const {width: windowWidth, height} = Dimensions.get('window');
-const skipSectionWidth = windowWidth / 2.8;
-const likeSectionWidth = windowWidth - skipSectionWidth;
+const skipSectionWidth             = windowWidth / 2.8;
+const likeSectionWidth             = windowWidth - skipSectionWidth;
 
 const actionButtonHeight = 80;
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+  },
+  rootMainContainer: {
+    flex: 1,
     position: 'absolute',
+    width: windowWidth,
+    height,
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 999,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   likeSection: {
@@ -54,7 +58,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
   },
   actionButton: {
-    width: Dimensions.get('window').width,
+    width: windowWidth,
     backgroundColor: '#00b651',
     alignItems: 'center',
     flexDirection: 'column',
@@ -71,23 +75,7 @@ const styles = StyleSheet.create({
 });
 
 export default class LikeOrSkip extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = props;
-  }
-
-  componentWillReceiveProps(props) {
-    this.setState(props);
-  }
-
   render() {
-    const {watched} = this.props;
-
-    if (watched) {
-      return null;
-    }
-
     return <View style={styles.rootContainer}>
       <Grid style={styles.rootMainContainer}>
         <Row style={StyleSheet.flatten(styles.guideRow)}>
@@ -101,7 +89,7 @@ export default class LikeOrSkip extends Component {
           </Col>
         </Row>
         <Row style={StyleSheet.flatten(styles.actionRow)}>
-          <TouchableOpacity style={styles.actionButton} onPress={this.props.onPress.bind(this)}>
+          <TouchableOpacity style={styles.actionButton} onPress={() => this.props.onPress()}>
             <Text style={styles.actionButtonCaption}>{'Got it Lets Rock it'.toUpperCase()}</Text>
           </TouchableOpacity>
         </Row>
@@ -112,5 +100,4 @@ export default class LikeOrSkip extends Component {
 
 LikeOrSkip.propTypes = {
   onPress: PropTypes.func,
-  watched: PropTypes.bool,
 };

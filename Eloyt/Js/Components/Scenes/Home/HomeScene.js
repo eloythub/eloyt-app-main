@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Platform, StatusBar } from 'react-native';
+import { View, Platform, StatusBar, Modal } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -73,7 +73,13 @@ class HomeScene extends Component {
           {...{producedData}}
           styles={styles}/>
 
-        <LikeOrSkip watched={isTutorialWatched} onPress={this.handleTutorialActionPressed.bind(this)}/>
+        <Modal
+          visible={!isTutorialWatched}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => this.setState({isTutorialWatched: true})}>
+          <LikeOrSkip onPress={this.handleTutorialActionPressed.bind(this)}/>
+        </Modal>
 
         <View style={styles.highlightTopContainer}>
           <LinearGradient
