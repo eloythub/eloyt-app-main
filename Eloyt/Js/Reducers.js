@@ -6,6 +6,7 @@ import CompleteProfileReducers from './Components/Scenes/CompleteProfile/Complet
 import AreaOfInterestsReducers from './Components/Scenes/AreaOfInterests/AreaOfInterestsReducers';
 import HomeReducers from './Components/Scenes/Home/HomeReducers';
 import RecordReducers from './Components/Scenes/Record/RecordReducers';
+import PostingReducers from './Components/Scenes/Posting/PostingReducers';
 
 export default combineReducers({
   Routes,
@@ -14,4 +15,5 @@ export default combineReducers({
   AreaOfInterestsReducers,
   HomeReducers,
   RecordReducers,
+  PostingReducers,
 });

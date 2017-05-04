@@ -11,24 +11,22 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 import BackButton from '../../Misc/Record/BackButton';
 import RecordButton from '../../Misc/Home/RecordButton';
 import StopButton from '../../Misc/Record/StopButton';
-import FlashButton, { FlashButtonMode } from '../../Misc/Record/FlashButton';
+import TorchButton, { TorchButtonMode } from '../../Misc/Record/TorchButton';
 import CameraSwitchButton from '../../Misc/Record/CameraSwitchButton';
 import Utils from '../../../Libraries/Utils';
-import { Bubbles } from 'react-native-loader';
 import Camera from 'react-native-camera';
 
 class RecordScene extends Component {
   constructor(props) {
-    const {Type, FlashMode} = Camera.constants;
+    const {Type, TorchMode} = Camera.constants;
 
     super(props);
 
     this.state = {
       isRecording: false,
-      waiting: true,
       camera: {
         type: Type.front,
-        flashMode: FlashMode.off,
+        torchMode: TorchMode.off,
       },
     };
   }
@@ -40,10 +38,6 @@ class RecordScene extends Component {
       .then((ssoUserData) => {
         recordActions.setUserLogin({
           ssoUserData,
-        });
-
-        this.setState({
-          waiting: false,
         });
       })
       .catch(() => {
@@ -60,25 +54,21 @@ class RecordScene extends Component {
   };
 
   handleBackButtonPress() {
-    this.setState({
-      waiting: false,
-    });
-
-    Utils.next().then(() => Actions.pop());
+    Actions.pop();
   }
 
   handleFlashButtonPress() {
     const {camera} = this.state;
 
-    switch (camera.flashMode) {
-      case FlashButtonMode.off:
-        camera.flashMode = FlashButtonMode.on;
+    switch (camera.torchMode) {
+      case TorchButtonMode.off:
+        camera.torchMode = TorchButtonMode.on;
         break;
-      case FlashButtonMode.on:
-        camera.flashMode = FlashButtonMode.auto;
+      case TorchButtonMode.on:
+        camera.torchMode = TorchButtonMode.auto;
         break;
-      case FlashButtonMode.auto:
-        camera.flashMode = FlashButtonMode.off;
+      case TorchButtonMode.auto:
+        camera.torchMode = TorchButtonMode.off;
         break;
     }
 
@@ -96,30 +86,22 @@ class RecordScene extends Component {
     this.setState({camera});
   }
 
-  handleLoading() {
-    const {waiting} = this.state;
-
-    if (waiting) {
-      return <View style={styles.loadingContainer}>
-        <View style={styles.loading}>
-          <Bubbles size={40} color="#ffffff"/>
-        </View>
-      </View>;
-    }
-  }
-
   handleRecordButtonPress() {
     const {camera}      = this.refs;
     const {CaptureMode} = Camera.constants;
 
     const options = {
+      title: 'Eloyt',
       mode: CaptureMode.video,
       metadata: {},
     };
 
     camera.capture(options)
-      .then((data) => {
-        console.log(data);
+      .then((recordedVideo) => {
+        Actions.posting({
+          type: ActionConst.PUSH_OR_POP,
+          recordedVideo,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -137,9 +119,7 @@ class RecordScene extends Component {
   handleStopButtonPress() {
     const {camera} = this.refs;
 
-    camera.stopCapture((data) => {
-      console.log(data);
-    });
+    camera.stopCapture();
 
     this.setState({
       isRecording: false,
@@ -147,8 +127,8 @@ class RecordScene extends Component {
   }
 
   render() {
-    const {isRecording, camera}                                             = this.state;
-    const {Orientation, Aspect, CaptureTarget, CaptureMode, CaptureQuality} = Camera.constants;
+    const {isRecording, camera}                                                   = this.state;
+    const {Orientation, Aspect, CaptureTarget, CaptureMode, CaptureQuality, Type} = Camera.constants;
 
     return (
       <View style={styles.rootContainer}>
@@ -162,22 +142,21 @@ class RecordScene extends Component {
                   playSoundOnCapture={false}
                   captureAudio={true}
                   type={camera.type}
-                  flashMode={camera.flashMode}
-                  captureQuality={CaptureQuality.medium}
+                  torchMode={camera.torchMode}
+                  captureQuality={CaptureQuality.high}
                   captureTarget={CaptureTarget.cameraRoll}
                   captureMode={CaptureMode.video}
                   orientation={Orientation.portrait}
                   aspect={Aspect.fill}>
             <View style={styles.recordController}>
-              {this.handleLoading()}
               <View style={styles.topSection}>
                 <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles} hidden={isRecording}/>
               </View>
               <View style={styles.bottomSection}>
-                <FlashButton onClick={this.handleFlashButtonPress.bind(this)}
-                             mode={camera.flashMode}
+                <TorchButton onClick={this.handleFlashButtonPress.bind(this)}
+                             mode={camera.torchMode}
                              styles={styles}
-                             hidden={isRecording}/>
+                             hidden={isRecording || camera.type === Type.front}/>
                 {
                   isRecording
                     ? <StopButton onClick={this.handleStopButtonPress.bind(this)} styles={styles}/>

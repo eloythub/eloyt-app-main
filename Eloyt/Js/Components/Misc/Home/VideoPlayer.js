@@ -9,6 +9,7 @@ import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Camera from 'react-native-camera';
+//import Video from 'react-native-video';
 import TimeFormat from './TimeFormat';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -30,34 +31,34 @@ export default class VideoPlayer extends Component {
     const {video} = this.props;
 
     // TODO: temporary read from stream feed, later must be able to cache the video
-    if (Platform.OS === 'ios') {
+    //if (Platform.OS === 'ios') {
       return this.setState({
         videoFilePath: Api.url(video.resourceUri),
       });
-    }
-
-    Files.downloadFile(video.resourceUri)
-      .then(
-        (videoFilePath) => {
-          this.setState({
-            videoFilePath,
-          });
-        },
-        (e) => {
-          console.log(e);
-          // TODO: show a toast later to video has being failed to load
-          this.setState({
-            videoFilePath: null,
-          });
-        }
-      )
-      .catch((e) => {
-        console.log(e);
-        // TODO: show a toast later to video has being failed to load
-        this.setState({
-          videoFilePath: null,
-        });
-      });
+    //}
+    //
+    //Files.downloadFile(video.resourceUri)
+    //  .then(
+    //    (videoFilePath) => {
+    //      this.setState({
+    //        videoFilePath,
+    //      });
+    //    },
+    //    (e) => {
+    //      console.log(e);
+    //      // TODO: show a toast later to video has being failed to load
+    //      this.setState({
+    //        videoFilePath: null,
+    //      });
+    //    }
+    //  )
+    //  .catch((e) => {
+    //    console.log(e);
+    //    // TODO: show a toast later to video has being failed to load
+    //    this.setState({
+    //      videoFilePath: null,
+    //    });
+    //  });
   }
 
   like(video) {

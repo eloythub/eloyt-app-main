@@ -5,13 +5,13 @@ import torchOnIcon from '../../../../Assets/Images/torch-on-icon.png';
 import torchOffIcon from '../../../../Assets/Images/torch-off-icon.png';
 import torchAutoIcon from '../../../../Assets/Images/torch-auto-icon.png';
 
-export const FlashButtonMode = {
-  on: Camera.constants.FlashMode.on,
-  off: Camera.constants.FlashMode.off,
-  auto: Camera.constants.FlashMode.auto,
+export const TorchButtonMode = {
+  on: Camera.constants.TorchMode.on,
+  off: Camera.constants.TorchMode.off,
+  auto: Camera.constants.TorchMode.auto,
 };
 
-export default class FlashButton extends Component {
+export default class TorchButton extends Component {
   click() {
     const {onClick} = this.props;
 
@@ -28,15 +28,15 @@ export default class FlashButton extends Component {
     let imageSource = null;
 
     switch (mode) {
-      case FlashButtonMode.off:
+      case TorchButtonMode.off:
         imageSource = torchOffIcon;
         break;
 
-      case FlashButtonMode.on:
+      case TorchButtonMode.on:
         imageSource = torchOnIcon;
         break;
 
-      case FlashButtonMode.auto:
+      case TorchButtonMode.auto:
         imageSource = torchAutoIcon;
         break;
     }
@@ -53,7 +53,7 @@ export default class FlashButton extends Component {
   }
 }
 
-FlashButton.propTypes = {
+TorchButton.propTypes = {
   styles: PropTypes.object,
   mode: PropTypes.number,
   hidden: PropTypes.bool,

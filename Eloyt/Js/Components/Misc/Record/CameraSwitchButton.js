@@ -16,15 +16,13 @@ export default class CameraSwitchButton extends Component {
       return <View style={styles.cameraSwitchContainer}/>;
     }
 
-    return (
-      <View style={styles.cameraSwitchContainer}>
-        <TouchableOpacity onPress={this.click.bind(this)}>
-          <View style={styles.cameraSwitchButton}>
-            <Image source={cameraSwitchIcon} style={styles.cameraSwitchIcon}/>
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
+    return <View style={styles.cameraSwitchContainer}>
+      <TouchableOpacity onPress={this.click.bind(this)}>
+        <View style={styles.cameraSwitchButton}>
+          <Image source={cameraSwitchIcon} style={styles.cameraSwitchIcon}/>
+        </View>
+      </TouchableOpacity>
+    </View>;
   }
 }
 

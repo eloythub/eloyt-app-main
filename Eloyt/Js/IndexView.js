@@ -9,7 +9,7 @@ import Reducers from './Reducers';
 import ConnectedLoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene';
 import ConnectedCompleteProfileScene, {
   CompleteProfileSceneKey,
-  CompleteProfileSceneTitle
+  CompleteProfileSceneTitle,
 } from './Components/Scenes/CompleteProfile/CompleteProfileScene';
 import ConnectedAreaOfInterestsScene, {
   AreaOfInterestsSceneKey,
@@ -17,6 +17,7 @@ import ConnectedAreaOfInterestsScene, {
 } from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene';
 import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene';
 import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene';
+import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -53,7 +54,16 @@ const Scenes = Actions.create(
       title={RecordSceneTitle}
       key={RecordSceneKey}
       component={ConnectedRecordScene}
-      type={ActionConst.PUSH}
+      type={ActionConst.PUSH_OR_POP}
+      direction="horizontal"
+      duration={300}
+    />
+    <Scene
+      hideNavBar={true}
+      title={PostingSceneTitle}
+      key={PostingSceneKey}
+      component={ConnectedPostingScene}
+      type={ActionConst.PUSH_OR_POP}
       direction="horizontal"
       duration={300}
     />
