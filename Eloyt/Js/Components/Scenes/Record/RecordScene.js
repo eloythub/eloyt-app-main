@@ -8,14 +8,14 @@ import { styles } from './RecordStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
-import { Grid, Row } from 'react-native-easy-grid';
 import BackButton from '../../Misc/Record/BackButton';
 import RecordButton from '../../Misc/Home/RecordButton';
 import StopButton from '../../Misc/Record/StopButton';
-import TorchButton from '../../Misc/Record/TorchButton';
+import FlashButton, {FlashButtonMode} from '../../Misc/Record/FlashButton';
 import CameraSwitchButton from '../../Misc/Record/CameraSwitchButton';
 import Utils from '../../../Libraries/Utils';
 import { Bubbles } from 'react-native-loader';
+import Camera from 'react-native-camera';
 
 class RecordScene extends Component {
   constructor(props) {
@@ -24,6 +24,10 @@ class RecordScene extends Component {
     this.state = {
       isRecording: false,
       waiting: true,
+      camera: {
+        type: Camera.constants.Type.front,
+        flashMode: Camera.constants.FlashMode.off,
+      },
     };
   }
 
@@ -34,6 +38,10 @@ class RecordScene extends Component {
       .then((ssoUserData) => {
         recordActions.setUserLogin({
           ssoUserData,
+        });
+
+        this.setState({
+          waiting: false,
         });
       })
       .catch(() => {
@@ -69,34 +77,50 @@ class RecordScene extends Component {
     });
   }
 
-  handleTorchButtonPress() {
+  handleFlashButtonPress() {
+    const {camera} = this.state;
+
+    switch (camera.flashMode) {
+      case FlashButtonMode.off:
+        camera.flashMode = FlashButtonMode.on;
+        break;
+      case FlashButtonMode.on:
+        camera.flashMode = FlashButtonMode.auto;
+        break;
+      case FlashButtonMode.auto:
+        camera.flashMode = FlashButtonMode.off;
+        break;
+    }
+
+    this.setState({
+      camera,
+    });
   }
 
   handleCameraSwitchButtonPress() {
-  }
+    const {camera} = this.state;
 
-  postRender() {
-    const {recordActions} = this.props;
+    camera.type = camera.type === Camera.constants.Type.back ? Camera.constants.Type.front : Camera.constants.Type.back;
 
-    return (
-      <View style={styles.rootMainPostContainer}>
-
-      </View>
-    );
+    this.setState({
+      camera,
+    });
   }
 
   handleLoading() {
     const {waiting} = this.state;
 
     if (waiting) {
-      return <View style={styles.loading}>
-        <Bubbles size={40} color="#ffffff"/>
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Bubbles size={40} color="#ffffff"/>
+        </View>
       </View>;
     }
   }
 
   render() {
-    const {isRecording} = this.state;
+    const {isRecording, camera} = this.state;
 
     return (
       <View style={styles.rootContainer}>
@@ -104,29 +128,36 @@ class RecordScene extends Component {
           hidden={true}
         />
         <View style={styles.rootMainContainer}>
-          <Grid style={styles.recordCamera}>
-            <Row style={StyleSheet.flatten(styles.camera)}>
-
-            </Row>
-          </Grid>
-          <Grid style={styles.recordController}>
-            <Row style={StyleSheet.flatten(styles.topSection)}>
-              <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles} hidden={isRecording}/>
-            </Row>
-            <Row style={StyleSheet.flatten(styles.midSection)}>
+          <Camera
+            ref="camera"
+            style={styles.camera}
+            keepAwake={true}
+            playSoundOnCapture={false}
+            captureAudio={true}
+            type={camera.type}
+            flashMode={camera.flashMode}
+            orientation={Camera.constants.Orientation.portrait}
+            aspect={Camera.constants.Aspect.fill}>
+            <View style={styles.recordController}>
               {this.handleLoading()}
-            </Row>
-            <Row style={StyleSheet.flatten(styles.bottomSection)}>
-              <TorchButton onClick={this.handleTorchButtonPress.bind(this)} isOn={true} styles={styles} hidden={isRecording}/>
-              {
-                isRecording
-                  ? <StopButton onClick={this.handleStopButtonPress.bind(this)} styles={styles}/>
-                  : <RecordButton onClick={this.handleRecordButtonPress.bind(this)} styles={styles}/>
-              }
-              <CameraSwitchButton onClick={this.handleCameraSwitchButtonPress.bind(this)} styles={styles} hidden={isRecording}/>
-            </Row>
-          </Grid>
-          {this.props.ssoUserData ? this.postRender() : null}
+              <View style={styles.topSection}>
+                <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles} hidden={isRecording}/>
+              </View>
+              <View style={styles.bottomSection}>
+                <FlashButton onClick={this.handleFlashButtonPress.bind(this)}
+                             mode={camera.flashMode}
+                             styles={styles}
+                             hidden={isRecording}/>
+                {
+                  isRecording
+                    ? <StopButton onClick={this.handleStopButtonPress.bind(this)} styles={styles}/>
+                    : <RecordButton onClick={this.handleRecordButtonPress.bind(this)} styles={styles}/>
+                }
+                <CameraSwitchButton onClick={this.handleCameraSwitchButtonPress.bind(this)} styles={styles}
+                                    hidden={isRecording}/>
+              </View>
+            </View>
+          </Camera>
         </View>
       </View>
     );

@@ -78,7 +78,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   torchIcon: {
-    width: 16,
+    width: 28,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
@@ -114,6 +114,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
   },
   topSection: {
+    width,
     height: topSectionHeight,
     backgroundColor: 'transparent',
     flexDirection: 'row',
@@ -121,6 +122,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
     paddingRight: 10,
+    position: 'absolute',
+    top: 0,
   },
   midSection: {
     height: height - topSectionHeight - bottomSectionHeight,
@@ -130,6 +133,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomSection: {
+    width,
+    position: 'absolute',
     height: bottomSectionHeight,
     backgroundColor: 'transparent',
     flexDirection: 'row',
@@ -137,17 +142,19 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
     paddingRight: 10,
+    bottom: 0,
+  },
+  loadingContainer: {
+    width,
+    height,
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loading: {
     opacity: 0.5,
     backgroundColor: 'transparent',
-  },
-  recordCamera: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    left: 0,
-    bottom: 0,
   },
   camera: {
     position: 'absolute',
