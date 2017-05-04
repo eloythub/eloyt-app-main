@@ -20,4 +20,14 @@ export default class Utils {
 
     alertObj.alert(message);
   }
+
+  static all(keys) {
+    let promises = [];
+
+    keys.map((key) => {
+      promises.push(key);
+    });
+
+    return Promise.all(promises);
+  }
 }

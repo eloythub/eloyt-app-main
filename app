@@ -49,6 +49,14 @@ while [ "$1" != "" ]; do
         -r | --run )
             shift
             EL_CMD_RUN=$1
+            EL_CMD_RUN_ARG=$2
+
+            source ${DIR_CMD}/run.sh
+            ;;
+        -rd | --run-device )
+            shift
+            EL_CMD_RUN=$1
+            EL_CMD_RUN_ARG="--device"
 
             source ${DIR_CMD}/run.sh
             ;;
@@ -56,6 +64,14 @@ while [ "$1" != "" ]; do
         -re | --release )
             shift
             EL_CMD_RUN=$1
+
+            source ${DIR_CMD}/release.sh
+            ;;
+
+        -red | --release-device )
+            shift
+            EL_CMD_RUN=$1
+            EL_CMD_RUN_ARG="--device"
 
             source ${DIR_CMD}/release.sh
             ;;

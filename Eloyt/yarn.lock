@@ -3532,9 +3532,9 @@ react-native-loader@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.1.0.tgz#9e87e88d5b0a03a26b28591b23da73408a189e47"
 
-react-native-loading-spinner-overlay@^0.4.2:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.4.4.tgz#a19daea11787b1b539a2fa15945ab6f8bb97cd8c"
+react-native-loading-spinner-overlay@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.5.0.tgz#2f06c14da24139303ff95364f4b9de8ab1cacc97"
 
 react-native-router-flux@3.38.0:
   version "3.38.0"

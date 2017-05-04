@@ -164,4 +164,10 @@ export const styles = StyleSheet.create({
     opacity: 0.9,
     position: 'absolute',
   },
+  toast: {
+    backgroundColor: '#ffffff',
+  },
+  toastText: {
+    color: '#000000',
+  },
 });

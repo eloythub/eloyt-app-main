@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import Api from '../../../Libraries/Api';
+import Utils from '../../../Libraries/Utils';
 import Files from '../../../Libraries/Files';
 import LinearGradient from 'react-native-linear-gradient';
 import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
-import Video from 'react-native-video';
+import Camera from 'react-native-camera';
 import TimeFormat from './TimeFormat';
 import { Actions, ActionConst } from 'react-native-router-flux';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 export default class VideoPlayer extends Component {
   constructor(props) {
@@ -184,8 +186,23 @@ export default class VideoPlayer extends Component {
   }
 
   handleRecordButtonPress() {
-    Actions.record({
-      type: ActionConst.PUSH_OR_POP,
+    Utils.all([
+      Camera.checkDeviceAuthorizationStatus(),
+      Camera.checkVideoAuthorizationStatus(),
+      Camera.checkAudioAuthorizationStatus(),
+    ]).then((isAuths) => {
+      for (let isAuth of isAuths) {
+        if (!isAuth) {
+          return this.refs.toast.show(
+            'We need your permission on Camera and Microphone in order to proceed',
+            DURATION.LENGTH_LONG
+          );
+        }
+      }
+
+      return Actions.record({
+        type: ActionConst.PUSH_OR_POP,
+      });
     });
   }
 
@@ -248,6 +265,10 @@ export default class VideoPlayer extends Component {
             </Grid>
           </LinearGradient>
         </View>
+        <Toast ref="toast"
+               position="top"
+               textStyle={StyleSheet.flatten(styles.toastText)}
+               style={StyleSheet.flatten(styles.toast)}/>
       </View>
     );
   }

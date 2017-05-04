@@ -15,7 +15,13 @@
     -r | --run <android|ios>
         Run React Native App On requested platform android|ios
 
+    -rd | --run-device <android|ios>
+        Run React Native App On requested platform android|ios
+
     -re | --release <android|ios>
+        Release React Native App On requested platform android|ios
+
+    -red | --release-device <android|ios>
         Release React Native App On requested platform android|ios
 
     -c | --cleanup

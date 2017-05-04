@@ -11,7 +11,7 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 import BackButton from '../../Misc/Record/BackButton';
 import RecordButton from '../../Misc/Home/RecordButton';
 import StopButton from '../../Misc/Record/StopButton';
-import FlashButton, {FlashButtonMode} from '../../Misc/Record/FlashButton';
+import FlashButton, { FlashButtonMode } from '../../Misc/Record/FlashButton';
 import CameraSwitchButton from '../../Misc/Record/CameraSwitchButton';
 import Utils from '../../../Libraries/Utils';
 import { Bubbles } from 'react-native-loader';
@@ -19,14 +19,16 @@ import Camera from 'react-native-camera';
 
 class RecordScene extends Component {
   constructor(props) {
+    const {Type, FlashMode} = Camera.constants;
+
     super(props);
 
     this.state = {
       isRecording: false,
       waiting: true,
       camera: {
-        type: Camera.constants.Type.front,
-        flashMode: Camera.constants.FlashMode.off,
+        type: Type.front,
+        flashMode: FlashMode.off,
       },
     };
   }
@@ -62,19 +64,7 @@ class RecordScene extends Component {
       waiting: false,
     });
 
-    Utils.next().then(() => {Actions.pop()});
-  }
-
-  handleRecordButtonPress() {
-    this.setState({
-      isRecording: true,
-    });
-  }
-
-  handleStopButtonPress() {
-    this.setState({
-      isRecording: false,
-    });
+    Utils.next().then(() => Actions.pop());
   }
 
   handleFlashButtonPress() {
@@ -92,19 +82,18 @@ class RecordScene extends Component {
         break;
     }
 
-    this.setState({
-      camera,
-    });
+    this.setState({camera});
   }
 
   handleCameraSwitchButtonPress() {
     const {camera} = this.state;
+    const {Type}   = Camera.constants;
 
-    camera.type = camera.type === Camera.constants.Type.back ? Camera.constants.Type.front : Camera.constants.Type.back;
+    camera.type = camera.type === Type.back
+      ? Type.front
+      : Type.back;
 
-    this.setState({
-      camera,
-    });
+    this.setState({camera});
   }
 
   handleLoading() {
@@ -119,8 +108,47 @@ class RecordScene extends Component {
     }
   }
 
+  handleRecordButtonPress() {
+    const {camera}      = this.refs;
+    const {CaptureMode} = Camera.constants;
+
+    const options = {
+      mode: CaptureMode.video,
+      metadata: {},
+    };
+
+    camera.capture(options)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        this.setState({
+          isRecording: false,
+        });
+      });
+
+    this.setState({
+      isRecording: true,
+    });
+  }
+
+  handleStopButtonPress() {
+    const {camera} = this.refs;
+
+    camera.stopCapture((data) => {
+      console.log(data);
+    });
+
+    this.setState({
+      isRecording: false,
+    });
+  }
+
   render() {
-    const {isRecording, camera} = this.state;
+    const {isRecording, camera}                                             = this.state;
+    const {Orientation, Aspect, CaptureTarget, CaptureMode, CaptureQuality} = Camera.constants;
 
     return (
       <View style={styles.rootContainer}>
@@ -128,16 +156,18 @@ class RecordScene extends Component {
           hidden={true}
         />
         <View style={styles.rootMainContainer}>
-          <Camera
-            ref="camera"
-            style={styles.camera}
-            keepAwake={true}
-            playSoundOnCapture={false}
-            captureAudio={true}
-            type={camera.type}
-            flashMode={camera.flashMode}
-            orientation={Camera.constants.Orientation.portrait}
-            aspect={Camera.constants.Aspect.fill}>
+          <Camera ref="camera"
+                  style={styles.camera}
+                  keepAwake={true}
+                  playSoundOnCapture={false}
+                  captureAudio={true}
+                  type={camera.type}
+                  flashMode={camera.flashMode}
+                  captureQuality={CaptureQuality.medium}
+                  captureTarget={CaptureTarget.cameraRoll}
+                  captureMode={CaptureMode.video}
+                  orientation={Orientation.portrait}
+                  aspect={Aspect.fill}>
             <View style={styles.recordController}>
               {this.handleLoading()}
               <View style={styles.topSection}>
