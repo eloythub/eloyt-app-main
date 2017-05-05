@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, Platform, TouchableOpacity, StatusBar, ScrollView, Alert } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { Bars } from 'react-native-loader';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as AreaOfInterestsActions from './AreaOfInterestsActions';
@@ -129,7 +129,19 @@ class AreaOfInterestsScene extends Component {
     );
   }
 
+  handleLoading(show) {
+    if (show) {
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Bars size={40} color="#ffffff"/>
+        </View>
+      </View>;
+    }
+  }
+
   render() {
+    const {waiting} = this.props;
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar
@@ -138,7 +150,7 @@ class AreaOfInterestsScene extends Component {
           hidden={false}
         />
         <Image source={fluidBackground} style={styles.backgroundImage}/>
-        <Spinner visible={this.props.waiting}/>
+        {this.handleLoading(waiting)}
         <View style={styles.rootMainContainer}>
           {this.props.ssoUserData ? this.postRender() : null}
         </View>

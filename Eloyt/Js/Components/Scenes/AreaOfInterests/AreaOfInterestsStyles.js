@@ -1,7 +1,8 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 
+const {width, height}     = Dimensions.get('window');
 const logoContainerHeight = 80;
-const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const statusBarHeight     = Platform.OS === 'ios' ? 20 : 0;
 
 export const styles = StyleSheet.create({
   rootContainer: {
@@ -18,9 +19,11 @@ export const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    width: Dimensions.get('window').width + 70,
-    height: Dimensions.get('window').height + 100,
     position: 'absolute',
+    left: -310,
+    top: 0,
+    width: width + 310,
+    height: height,
   },
   logoContainer: {
     paddingTop: 10,
@@ -83,5 +86,18 @@ export const styles = StyleSheet.create({
   },
   entity: {
     color: '#ffffff',
+  },
+  loadingContainer: {
+    width,
+    height,
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 99,
+  },
+  loading: {
+    opacity: 0.5,
+    backgroundColor: 'transparent',
   },
 });

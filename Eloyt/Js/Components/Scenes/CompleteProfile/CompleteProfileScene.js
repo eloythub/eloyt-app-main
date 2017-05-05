@@ -12,7 +12,7 @@ import ImageEntity from '../../Misc/CompleteProfile/ImageEntity';
 import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
 import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
 import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { Bars } from 'react-native-loader';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
@@ -145,7 +145,19 @@ class CompleteProfileScene extends Component {
     );
   }
 
+  handleLoading(show) {
+    if (show) {
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Bars size={40} color="#ffffff"/>
+        </View>
+      </View>;
+    }
+  }
+
   render() {
+    const {waiting} = this.props;
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar
@@ -154,7 +166,7 @@ class CompleteProfileScene extends Component {
           hidden={false}
         />
         <Image source={fluidBackground} style={styles.backgroundImage}/>
-        <Spinner visible={this.props.waiting}/>
+        {this.handleLoading(waiting)}
         <View style={styles.rootMainContainer}>
           {this.props.ssoUserData ? this.postRender() : null}
         </View>

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Image, TouchableOpacity, Animated, Easing } from 'react-native';
+import { View, Image, TouchableHighlight, Animated, Easing } from 'react-native';
 import stopIcon from '../../../../Assets/Images/stop-icon.png';
 import Utils from '../../../Libraries/Utils';
 
@@ -42,14 +42,14 @@ export default class StopButton extends Component {
     });
 
     return <View style={styles.stopContainer}>
-      <TouchableOpacity onPress={this.click.bind(this)}>
+      <TouchableHighlight underlayColor="transparent" onPress={this.click.bind(this)}>
         <View style={styles.stopButton}>
           <Animated.Image source={stopIcon}
                           style={[styles.stopIcon, {
                             opacity,
                           }]}/>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>;
   }
 }

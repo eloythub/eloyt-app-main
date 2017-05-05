@@ -5,6 +5,7 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 const DEFAULT_STATE = {
   ssoUserData: null,
   isTutorialWatched: null,
+  waiting: true,
   producedData: [],
 };
 

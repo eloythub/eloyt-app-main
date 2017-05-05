@@ -12,7 +12,7 @@ import facebookLogo from '../../../../Assets/Images/facebook.png';
 import pureLogo from '../../../../Assets/Images/pure-logo.png';
 import { styles } from './LoginStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { Bars } from 'react-native-loader';
 import FbGraphApi from '../../../Libraries/FbGraphApi';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import Utils from '../../../Libraries/Utils';
@@ -34,17 +34,19 @@ const loginWithReadPermissions = [
 class LoginScene extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      waiting: true,
+    };
   }
 
   componentDidMount() {
     const {loginActions} = this.props;
 
-    loginActions.waiting(true);
-
     LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
       .then((ssoData) => {
         if (!ssoData) {
-          return loginActions.waiting(false);
+          return this.setState({waiting: false});
         }
 
         AccessToken.getCurrentAccessToken().then(
@@ -56,9 +58,7 @@ class LoginScene extends Component {
                     if (result.isCancelled) {
                       loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
 
-                      loginActions.waiting(false);
-
-                      return;
+                      return this.setState({waiting: false});
                     }
 
                     this.doLogin();
@@ -66,18 +66,17 @@ class LoginScene extends Component {
                   (error) => {
                     loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
 
-                    loginActions.waiting(false);
+                    this.setState({waiting: false});
                   }
                 )
-                .catch(() => loginActions.waiting(false));
+                .catch(() => this.setState({waiting: false}));
             }
 
             this.doLogin();
           })
-          .catch(() => loginActions.waiting(false));
+          .catch(() => this.setState({waiting: false}));
       })
-      .catch(() => loginActions.waiting(false));
-
+      .catch(() => this.setState({waiting: false}));
   }
 
   static contextTypes = {
@@ -87,7 +86,7 @@ class LoginScene extends Component {
   doLogin() {
     const {loginActions} = this.props;
 
-    loginActions.waiting(true);
+    this.setState({waiting: true});
 
     AccessToken.getCurrentAccessToken().then(
       (data) => {
@@ -95,14 +94,13 @@ class LoginScene extends Component {
 
         loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken);
 
-
         FbGraphApi.getProfileId(accessToken)
           .then((fbUserId) => {
             Api.requestSsoLogin(accessToken, fbUserId)
               .then((ssoLoginResponse) => {
-                loginActions.waiting(false);
-
                 if (ssoLoginResponse.statusCode !== 200) {
+                  this.setState({waiting: false});
+
                   return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED);
                 }
 
@@ -112,24 +110,21 @@ class LoginScene extends Component {
 
                 if (!ssoUserData.activated) {
                   // open the profile completion
-
-                  loginActions.waiting(false);
-
-                  return Actions.completeProfile({
+                  Actions.completeProfile({
                     type: ActionConst.REPLACE,
                   });
+
+                  return;
                 }
 
-                loginActions.waiting(false);
-
-                return Actions.home({
+                Actions.home({
                   type: ActionConst.REPLACE,
                 });
               })
               .catch(error => {
                 loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
 
-                loginActions.waiting(false);
+                this.setState({waiting: false});
 
                 this.refs.toast.show(error, DURATION.LENGTH_SHORT);
               });
@@ -137,7 +132,7 @@ class LoginScene extends Component {
           .catch(error => {
             loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error);
 
-            loginActions.waiting(false);
+            this.setState({waiting: false});
           });
       }
     );
@@ -146,33 +141,48 @@ class LoginScene extends Component {
   onLoginPress() {
     const {loginActions} = this.props;
 
-    loginActions.waiting(true);
+    this.setState({waiting: true});
 
-    LoginManager.logOut();
+    Utils.next().then(() => {
+      LoginManager.logOut();
 
-    LoginManager.logInWithReadPermissions(loginWithReadPermissions)
-      .then(
-        (result) => {
-          if (result.isCancelled) {
-            loginActions.waiting(false);
+      LoginManager.logInWithReadPermissions(loginWithReadPermissions)
+        .then(
+          (result) => {
+            if (result.isCancelled) {
+              this.setState({waiting: false});
 
-            this.refs.toast.show('Canceled', DURATION.LENGTH_SHORT);
+              this.refs.toast.show('Canceled', DURATION.LENGTH_SHORT);
 
-            return loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+              loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED);
+
+              return;
+            }
+
+            this.doLogin();
+          },
+          (error) => {
+            loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
+
+            this.setState({waiting: false});
           }
+        );
+      });
+  }
 
-          this.doLogin();
-        },
-        (error) => {
-          loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error);
-
-          loginActions.waiting(false);
-        }
-      );
-
+  handleLoading(show) {
+    if (show) {
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Bars size={40} color="#ffffff"/>
+        </View>
+      </View>;
+    }
   }
 
   render() {
+    const {waiting} = this.state;
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar
@@ -181,7 +191,6 @@ class LoginScene extends Component {
           hidden={false}
         />
         <Image source={fluidBackground} style={styles.backgroundImage}/>
-        <Spinner visible={this.props.waiting}/>
         <Grid style={styles.rootMainContainer}>
           <Row size={70}>
             <Grid>
@@ -215,6 +224,7 @@ class LoginScene extends Component {
             </View>
           </Row>
         </Grid>
+        {this.handleLoading(waiting)}
         <Toast ref="toast"
                position="bottom"
                textStyle={StyleSheet.flatten(styles.toastText)}
@@ -228,7 +238,6 @@ LoginScene.propTypes = {
   loginActions: PropTypes.object,
   accessToken: PropTypes.string,
   ssoUserData: PropTypes.object,
-  waiting: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {

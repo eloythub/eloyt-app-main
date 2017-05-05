@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import Api from '../../../Libraries/Api';
 
 export default class ProfileImage extends Component {
@@ -20,9 +20,9 @@ export default class ProfileImage extends Component {
 
     return (
       <View style={[styles.profileImageContainer, {width, height, borderRadius}]}>
-        <TouchableOpacity onPress={this.click.bind(this, avatar)}>
+        <TouchableWithoutFeedback onPress={this.click.bind(this, avatar)}>
           <Image style={[styles.profileImage, {width, height, borderRadius}]} source={thumbnailSource}/>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       </View>
     );
   }

@@ -40,14 +40,3 @@ export const setUserLogin = (data) => {
     });
   };
 };
-
-export const waiting = (waiting) => {
-  return (dispatch) => {
-    dispatch({
-      type: LoginActionsConst.ON_LOGIN_SCENE_WAITING,
-      data: {
-        waiting,
-      },
-    });
-  };
-};

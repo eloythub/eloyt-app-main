@@ -1,7 +1,6 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
-
 const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 
 export const styles = StyleSheet.create({
@@ -47,10 +46,10 @@ export const styles = StyleSheet.create({
     width,
     height,
     position: 'absolute',
-    zIndex:99,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 99,
   },
   loading: {
     opacity: 0.5,
@@ -89,6 +88,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   profileImage: {
     width: 55,
@@ -113,6 +113,13 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
+    shadowColor: '#c62828',
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   recordIcon: {
     width: 24,
@@ -150,6 +157,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    shadowColor: '#d3d3d3',
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   topHighlightIcon: {
     width: 25,

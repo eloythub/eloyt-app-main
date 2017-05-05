@@ -4,7 +4,6 @@ import LocalStorage from '../../../Libraries/LocalStorage';
 const DEFAULT_STATE = {
   accessToken: null,
   ssoUserData: null,
-  waiting: false,
 };
 
 const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
@@ -37,12 +36,6 @@ const LoginReducers = (state = DEFAULT_STATE, {type, data}) => {
       return {
         ...state,
         ssoUserData: data.ssoUserData,
-      };
-
-    case LoginActionsConst.ON_LOGIN_SCENE_WAITING:
-      return {
-        ...state,
-        waiting: data.waiting,
       };
 
     default:

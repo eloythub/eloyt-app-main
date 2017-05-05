@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Platform, StatusBar, Modal } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { Bars } from 'react-native-loader';
 import Utils from '../../../Libraries/Utils';
 import * as HomeActions from './HomeActions';
 import { styles } from './HomeStyles';
@@ -24,9 +24,6 @@ class HomeScene extends Component {
 
   componentDidMount() {
     const {homeActions} = this.props;
-
-    Utils.next().then(() => homeActions.waiting(false));
-
 
     LocalStorage.all([LoginActionsConst.ON_SSO_USER_DATA, HomeActionsConst.ON_HOME_IS_TUTORIAL_WATCHED])
       .then(([ssoUserData, isTutorialWatched]) => {
@@ -66,8 +63,6 @@ class HomeScene extends Component {
 
     return (
       <View style={styles.rootMainPostContainer}>
-        <Spinner visible={this.props.waiting}/>
-
         <VideoManager
           {...this.props}
           {...{producedData}}
@@ -105,6 +100,16 @@ class HomeScene extends Component {
     );
   }
 
+  handleLoading(show) {
+    if (show) {
+      return <View style={styles.loadingContainer}>
+        <View style={styles.loading}>
+          <Bars size={40} color="#ffffff"/>
+        </View>
+      </View>;
+    }
+  }
+
   render() {
     const {ssoUserData} = this.props;
 
@@ -114,6 +119,7 @@ class HomeScene extends Component {
           backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
           barStyle="light-content"
           hidden={false}/>
+        {this.handleLoading(false)}
         <View style={styles.rootMainContainer}>
           {ssoUserData ? this.postRender() : null}
         </View>
@@ -134,12 +140,13 @@ HomeScene.propTypes = {
 const mapStateToProps = (state) => {
   const {HomeReducers} = state;
 
-  const {ssoUserData, isTutorialWatched} = HomeReducers;
+  const {ssoUserData, isTutorialWatched, waiting} = HomeReducers;
 
   return {
     HomeReducers,
     ssoUserData,
     isTutorialWatched,
+    waiting,
   };
 };
 

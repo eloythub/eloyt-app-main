@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
+const {width, height}  = Dimensions.get('window');
 const topSectionHeight = 70;
 
 export const styles = StyleSheet.create({
@@ -35,6 +34,13 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
+    shadowColor: '#d3d3d3',
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   backIcon: {
     width: 18,
@@ -47,5 +53,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loadingContainer: {
+    width,
+    height,
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 99,
+  },
+  loading: {
+    opacity: 0.5,
+    backgroundColor: 'transparent',
   },
 });

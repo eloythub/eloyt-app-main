@@ -9,8 +9,6 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.rnfs.RNFSPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
-import com.microsoft.azure.mobile.react.crashes.RNCrashesPackage;
-import com.microsoft.azure.mobile.react.analytics.RNAnalyticsPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

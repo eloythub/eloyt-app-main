@@ -1,5 +1,7 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native';
 
+const {width, height} = Dimensions.get('window');
+
 export const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -12,9 +14,11 @@ export const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    width: Dimensions.get('window').width + 70,
-    height: Dimensions.get('window').height + 100,
     position: 'absolute',
+    left: -310,
+    top: 0,
+    width: width + 310,
+    height: height,
   },
   loginField: {
     flex: 1,
@@ -98,5 +102,18 @@ export const styles = StyleSheet.create({
   },
   toastText: {
     color: '#000000',
+  },
+  loadingContainer: {
+    width,
+    height,
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 99,
+  },
+  loading: {
+    opacity: 0.5,
+    backgroundColor: 'transparent',
   },
 });
