@@ -3,7 +3,6 @@ import { View, Platform, StatusBar, Modal } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Bars } from 'react-native-loader';
-import Utils from '../../../Libraries/Utils';
 import * as HomeActions from './HomeActions';
 import { styles } from './HomeStyles';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
@@ -20,6 +19,10 @@ import ProfileImage from '../../../Components/Misc/Home/ProfileImage';
 class HomeScene extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      refresh: null,
+    };
   }
 
   componentDidMount() {
@@ -61,43 +64,42 @@ class HomeScene extends Component {
   postRender() {
     const {producedData, ssoUserData, isTutorialWatched} = this.props;
 
-    return (
-      <View style={styles.rootMainPostContainer}>
-        <VideoManager
-          {...this.props}
-          {...{producedData}}
-          styles={styles}/>
+    return <View style={styles.rootMainPostContainer}>
+      <VideoManager
+        {...this.props}
+        {...{producedData}}
+        refreshProps={this.props.refreshProps || {}}
+        styles={styles}/>
 
-        <Modal
-          visible={!isTutorialWatched}
-          transparent={true}
-          animationType="fade"
-          onRequestClose={() => this.setState({isTutorialWatched: true})}>
-          <LikeOrSkip onPress={this.handleTutorialActionPressed.bind(this)}/>
-        </Modal>
+      <Modal
+        visible={!isTutorialWatched}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => this.setState({isTutorialWatched: true})}>
+        <LikeOrSkip onPress={this.handleTutorialActionPressed.bind(this)}/>
+      </Modal>
 
-        <View style={styles.highlightTopContainer}>
-          <LinearGradient
-            start={{x: 0, y: 0}} end={{x: 0, y: 1}}
-            locations={[0, 1]}
-            colors={['#111', 'transparent']}
-            style={styles.highlightTop}>
-            <TopHighlightIcon icon="search" styles={styles} onClick={() => console.log('search icon')} />
-            <TopHighlightIcon icon="message" styles={styles} onClick={() => console.log('message icon')} />
-            <TopHighlightIcon icon="notification" styles={styles} onClick={() => console.log('notification icon')} />
-            <View style={styles.profileImageViewContainer}>
-              <ProfileImage
-                width={45}
-                height={45}
-                userId={ssoUserData._id}
-                avatar={ssoUserData.avatar}
-                styles={styles}
-                onClick={() => console.log('avatar icon')}/>
-            </View>
-          </LinearGradient>
-        </View>
+      <View style={styles.highlightTopContainer}>
+        <LinearGradient
+          start={{x: 0, y: 0}} end={{x: 0, y: 1}}
+          locations={[0, 1]}
+          colors={['#111', 'transparent']}
+          style={styles.highlightTop}>
+          <TopHighlightIcon icon="search" styles={styles} onClick={() => console.log('search icon')}/>
+          <TopHighlightIcon icon="message" styles={styles} onClick={() => console.log('message icon')}/>
+          <TopHighlightIcon icon="notification" styles={styles} onClick={() => console.log('notification icon')}/>
+          <View style={styles.profileImageViewContainer}>
+            <ProfileImage
+              width={45}
+              height={45}
+              userId={ssoUserData._id}
+              avatar={ssoUserData.avatar}
+              styles={styles}
+              onClick={() => console.log('avatar icon')}/>
+          </View>
+        </LinearGradient>
       </View>
-    );
+    </View>;
   }
 
   handleLoading(show) {
@@ -113,18 +115,16 @@ class HomeScene extends Component {
   render() {
     const {ssoUserData} = this.props;
 
-    return (
-      <View style={styles.rootContainer}>
-        <StatusBar
-          backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
-          barStyle="light-content"
-          hidden={false}/>
-        {this.handleLoading(false)}
-        <View style={styles.rootMainContainer}>
-          {ssoUserData ? this.postRender() : null}
-        </View>
+    return <View style={styles.rootContainer}>
+      <StatusBar
+        backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
+        barStyle="light-content"
+        hidden={false}/>
+      {this.handleLoading(false)}
+      <View style={styles.rootMainContainer}>
+        {ssoUserData ? this.postRender() : null}
       </View>
-    );
+    </View>;
   }
 }
 
@@ -132,6 +132,7 @@ HomeScene.propTypes = {
   HomeReducers: PropTypes.object,
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  refreshProps: PropTypes.object,
   isTutorialWatched: PropTypes.bool,
   producedData: PropTypes.object,
   waiting: PropTypes.bool,

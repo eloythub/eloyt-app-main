@@ -13,7 +13,6 @@ import RecordButton from '../../Misc/Home/RecordButton';
 import StopButton from '../../Misc/Record/StopButton';
 import TorchButton, { TorchButtonMode } from '../../Misc/Record/TorchButton';
 import CameraSwitchButton from '../../Misc/Record/CameraSwitchButton';
-import Utils from '../../../Libraries/Utils';
 import Camera from 'react-native-camera';
 
 class RecordScene extends Component {
@@ -54,7 +53,11 @@ class RecordScene extends Component {
   };
 
   handleBackButtonPress() {
-    Actions.pop();
+    Actions.pop({
+      refresh: {
+        refreshProps: {startVideoAgain: true},
+      },
+    });
   }
 
   handleFlashButtonPress() {

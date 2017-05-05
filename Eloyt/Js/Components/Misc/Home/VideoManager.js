@@ -21,7 +21,7 @@ export default class VideoManager extends Component {
   }
 
   render() {
-    const {HomeReducers, homeActions, ssoUserData, styles} = this.props;
+    const {HomeReducers, homeActions, ssoUserData, refreshProps, styles} = this.props;
 
     const {producedData} = HomeReducers;
 
@@ -30,6 +30,7 @@ export default class VideoManager extends Component {
         {
           producedData
             ? <VideoQueue
+                refreshProps={refreshProps}
                 onLike={
                   (video) => {
                     console.log('like');
@@ -64,5 +65,6 @@ VideoManager.propTypes = {
   homeActions: PropTypes.object,
   ssoUserData: PropTypes.object,
   producedData: PropTypes.object,
+  refreshProps: PropTypes.object,
   styles: PropTypes.object,
 };

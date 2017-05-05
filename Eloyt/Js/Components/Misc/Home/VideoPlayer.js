@@ -2,14 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
-import Files from '../../../Libraries/Files';
 import LinearGradient from 'react-native-linear-gradient';
 import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Camera from 'react-native-camera';
-//import Video from 'react-native-video';
+import Video from 'react-native-video';
 import TimeFormat from './TimeFormat';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -27,13 +26,14 @@ export default class VideoPlayer extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {video} = this.props;
 
     // TODO: temporary read from stream feed, later must be able to cache the video
     //if (Platform.OS === 'ios') {
       return this.setState({
         videoFilePath: Api.url(video.resourceUri),
+        paused: false,
       });
     //}
     //
@@ -42,6 +42,7 @@ export default class VideoPlayer extends Component {
     //    (videoFilePath) => {
     //      this.setState({
     //        videoFilePath,
+    //        paused: false,
     //      });
     //    },
     //    (e) => {
@@ -59,6 +60,16 @@ export default class VideoPlayer extends Component {
     //      videoFilePath: null,
     //    });
     //  });
+  }
+
+  componentWillReceiveProps(props) {
+    const {refreshProps} = props;
+
+    if ('startVideoAgain' in refreshProps) {
+      Utils.wait(500).then(() => this.setState({
+        paused: false,
+      }));
+    }
   }
 
   like(video) {
@@ -157,36 +168,39 @@ export default class VideoPlayer extends Component {
     const {styles, video} = this.props;
     const {videoFilePath, paused} = this.state;
 
-    console.log(videoFilePath);
     // Once video was downloaded and ready for preview
-    //if (videoFilePath) {
-    //  return <Video
-    //    source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
-    //    style={styles.video}
-    //    muted={false}
-    //    paused={paused}
-    //    rate={paused ? 0 : 1}
-    //    repeat={false}
-    //    playInBackground={false}
-    //    playWhenInactive={false}
-    //    resizeMode='cover'
-    //    onProgress={this.handleVideoProgress.bind(this)}
-    //    onVideoProgress={this.handleVideoProgress.bind(this)}
-    //    onLoadStart={this.handleVideoLoadStart.bind(this)}
-    //    onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
-    //    onLoad={this.handleVideoLoad.bind(this)}
-    //    onVideoLoad={this.handleVideoLoad.bind(this)}
-    //    onEnd={this.handleVideoEnd.bind(this, video)}
-    //    onVideoEnd={this.handleVideoEnd.bind(this, video)}
-    //    onBuffer={this.handleVideoBuffer.bind(this)}
-    //    onVideoBuffer={this.handleVideoBuffer.bind(this)}
-    //    onError={this.handleVideoError.bind(this)}
-    //    onVideoError={this.handleVideoError.bind(this)}
-    //  />;
-    //}
+    if (videoFilePath) {
+      return <Video
+        source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
+        style={styles.video}
+        muted={false}
+        paused={paused}
+        rate={paused ? 0 : 1}
+        repeat={false}
+        playInBackground={false}
+        playWhenInactive={false}
+        resizeMode='cover'
+        onProgress={this.handleVideoProgress.bind(this)}
+        onVideoProgress={this.handleVideoProgress.bind(this)}
+        onLoadStart={this.handleVideoLoadStart.bind(this)}
+        onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
+        onLoad={this.handleVideoLoad.bind(this)}
+        onVideoLoad={this.handleVideoLoad.bind(this)}
+        onEnd={this.handleVideoEnd.bind(this, video)}
+        onVideoEnd={this.handleVideoEnd.bind(this, video)}
+        onBuffer={this.handleVideoBuffer.bind(this)}
+        onVideoBuffer={this.handleVideoBuffer.bind(this)}
+        onError={this.handleVideoError.bind(this)}
+        onVideoError={this.handleVideoError.bind(this)}
+      />;
+    }
   }
 
   handleRecordButtonPress() {
+    this.setState({
+      paused: true,
+    });
+
     Utils.all([
       Camera.checkDeviceAuthorizationStatus(),
       Camera.checkVideoAuthorizationStatus(),
@@ -278,6 +292,7 @@ export default class VideoPlayer extends Component {
 VideoPlayer.propTypes = {
   video: PropTypes.object,
   styles: PropTypes.object,
+  refreshProps: PropTypes.object,
   onLike: PropTypes.func,
   onSkip: PropTypes.func,
 };
