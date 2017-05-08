@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, Text, StatusBar, ScrollView } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PostingActions from './PostingActions';
@@ -9,6 +9,9 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import BackButton from '../../Misc/Record/BackButton';
+import PostingButton from '../../Misc/Posting/PostingButton';
+import InputTextBox from '../../Misc/Posting/InputTextBoxEntity';
+import InterestsEntity from '../../Misc/Posting/InterestsEntity';
 
 class PostingScene extends Component {
   constructor(props) {
@@ -31,12 +34,13 @@ class PostingScene extends Component {
           type: ActionConst.REPLACE,
         });
       });
-
-    console.log(this.props);
   }
 
   handleBackButtonPress() {
     Actions.pop();
+  }
+
+  handlePostButtonPress() {
   }
 
   static contextTypes = {
@@ -46,13 +50,29 @@ class PostingScene extends Component {
   render() {
     return (
       <View style={styles.rootContainer}>
-        <StatusBar
-          hidden={true}
-        />
+        <StatusBar hidden={true}/>
         <View style={styles.rootMainContainer}>
-          <View style={styles.recordController}>
-            <View style={styles.topSection}>
-              <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles}/>
+          <View style={styles.topSection}>
+            <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles}/>
+            <Text style={styles.sceneTitle}>{PostingSceneTitle}</Text>
+            <PostingButton onClick={this.handlePostButtonPress.bind(this)} styles={styles}/>
+          </View>
+
+          <View style={styles.postingEntitiesContainer}>
+            <View style={styles.entitiesContainer}>
+              <View style={styles.postingEntityContainer}>
+                <InputTextBox
+                  setTextRef={(textRefObj) => this.descriptionRef = textRefObj}
+                  onChange={(text) => this.description = text}
+                  caption="DESCRIPTION"
+                  name="description"
+                />
+                <ScrollView>
+                  <InterestsEntity onChange={
+                    (text) => this.description = text
+                  }/>
+                </ScrollView>
+              </View>
             </View>
           </View>
         </View>

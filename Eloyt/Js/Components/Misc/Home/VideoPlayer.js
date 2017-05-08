@@ -173,7 +173,7 @@ export default class VideoPlayer extends Component {
       return <Video
         source={{uri: videoFilePath, mainVer: 1, patchVer: 0}}
         style={styles.video}
-        muted={false}
+        muted={true}
         paused={paused}
         rate={paused ? 0 : 1}
         repeat={false}

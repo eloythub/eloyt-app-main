@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     fontSize: Platform.OS === 'ios' ? 18 : 16,
     fontWeight: Platform.OS === 'ios' ? 'normal' : '100',
     color: '#ffffff',
-    height: 50,
+    height: 90,
     paddingBottom: 0,
   },
 });
@@ -39,13 +39,15 @@ export default class InputTextBoxEntity extends Component {
           ref='textRefObj'
           style={styles.inputBox}
           editable={true}
-          multiline={false}
+          multiline={true}
           autoCapitalize="words"
           placeholder={this.state.caption}
           placeholderTextColor="#7d7d7d"
           underlineColorAndroid="transparent"
           enablesReturnKeyAutomatically={true}
           keyboardAppearance="dark"
+          numberOfLines={3}
+          maxLength={140}
           onChangeText={
             (text) => {
               this.setState({text});
@@ -53,10 +55,7 @@ export default class InputTextBoxEntity extends Component {
               this.props.onChange(text);
             }
           }
-          onSubmitEditing={
-            () => this.props.nextFocusObjectRef ? this.props.nextFocusObjectRef() : null
-          }
-          returnKeyType="next"
+          onSubmitEditing={() => this.props.nextFocusObjectRef ? this.props.nextFocusObjectRef() : null}
           value={this.state.text}
           defaultValue={this.state.default}
         />
