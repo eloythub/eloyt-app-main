@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StatusBar, ScrollView } from 'react-native';
+import { View, Text, StatusBar, ScrollView, Modal } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PostingActions from './PostingActions';
@@ -9,6 +9,7 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import BackButton from '../../Misc/Record/BackButton';
+import CancelButton from '../../Misc/Posting/CancelButton';
 import PostingButton from '../../Misc/Posting/PostingButton';
 import InputTextBox from '../../Misc/Posting/InputTextBoxEntity';
 import InterestsEntity from '../../Misc/Posting/InterestsEntity';
@@ -16,6 +17,10 @@ import InterestsEntity from '../../Misc/Posting/InterestsEntity';
 class PostingScene extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      postingModalVisible: false,
+    };
   }
 
   componentDidMount() {
@@ -36,11 +41,18 @@ class PostingScene extends Component {
       });
   }
 
+  handleStopPosting() {
+    // TODO: stop uploading and then close the modal
+
+    this.setState({postingModalVisible: false});
+  }
+
   handleBackButtonPress() {
     Actions.pop();
   }
 
   handlePostButtonPress() {
+    this.setState({postingModalVisible: true});
   }
 
   static contextTypes = {
@@ -48,9 +60,28 @@ class PostingScene extends Component {
   };
 
   render() {
+    const {postingModalVisible} = this.state;
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar hidden={true}/>
+
+        <Modal
+          visible={postingModalVisible}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => this.setState({postingModalVisible: false})}>
+          <View style={styles.rootMainContainer}>
+            <View style={styles.topSection}>
+              <CancelButton onClick={this.handleStopPosting.bind(this)} styles={styles}/>
+            </View>
+
+            <View style={styles.postingProgressContainer}>
+
+            </View>
+          </View>
+        </Modal>
+
         <View style={styles.rootMainContainer}>
           <View style={styles.topSection}>
             <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles}/>

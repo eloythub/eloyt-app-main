@@ -54,6 +54,30 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  cancelContainer: {
+    width: 55,
+    height: 55,
+    backgroundColor: 'transparent',
+    shadowColor: '#d3d3d3',
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  },
+  cancelIcon: {
+    width: 18,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  cancelButton: {
+    width: 55,
+    height: 55,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   postingContainer: {
     width: 55,
     height: 55,
@@ -109,5 +133,12 @@ export const styles = StyleSheet.create({
   postingEntityContainer: {
     flex: 1,
     alignItems: 'center',
+  },
+  postingProgressContainer: {
+    flex: 1,
+    position: 'absolute',
+    top: topSectionHeight,
+    width,
+    height: height - topSectionHeight,
   },
 });
