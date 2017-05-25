@@ -140,5 +140,11 @@ export const styles = StyleSheet.create({
     top: topSectionHeight,
     width,
     height: height - topSectionHeight,
+    alignItems: 'center',
+  },
+  progressBar: {
+    fontSize: 24,
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
   },
 });

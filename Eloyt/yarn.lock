@@ -3441,6 +3441,10 @@ react-native-loader@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.1.0.tgz#9e87e88d5b0a03a26b28591b23da73408a189e47"
 
+react-native-percentage-circle@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-percentage-circle/-/react-native-percentage-circle-1.0.6.tgz#773fb65043faf269ce6b59c9faa8c11a33e1e8dd"
+
 react-native-router-flux@3.38.0:
   version "3.38.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.38.0.tgz#f5f8ec2875b46f96f61006ff502d0d80268e6ce2"

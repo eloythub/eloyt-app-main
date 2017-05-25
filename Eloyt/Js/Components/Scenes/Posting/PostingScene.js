@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StatusBar, ScrollView, Modal } from 'react-native';
+import { View, Text, StatusBar, ScrollView, Modal, Dimensions } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PostingActions from './PostingActions';
@@ -8,11 +8,14 @@ import { styles } from './PostingStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
 import LocalStorage from '../../../Libraries/LocalStorage';
+import PercentageCircle from 'react-native-percentage-circle';
 import BackButton from '../../Misc/Record/BackButton';
 import CancelButton from '../../Misc/Posting/CancelButton';
 import PostingButton from '../../Misc/Posting/PostingButton';
 import InputTextBox from '../../Misc/Posting/InputTextBoxEntity';
 import InterestsEntity from '../../Misc/Posting/InterestsEntity';
+
+const {width} = Dimensions.get('window');
 
 class PostingScene extends Component {
   constructor(props) {
@@ -53,6 +56,8 @@ class PostingScene extends Component {
 
   handlePostButtonPress() {
     this.setState({postingModalVisible: true});
+
+    alert(this.interests[0], this.interests[1]);
   }
 
   static contextTypes = {
@@ -77,7 +82,13 @@ class PostingScene extends Component {
             </View>
 
             <View style={styles.postingProgressContainer}>
-
+              <PercentageCircle radius={width - 220}
+                                percent={50}
+                                borderWidth={10}
+                                textStyle={styles.progressBar}
+                                color="#00cb76"
+                                innerColor="#000000"
+                                bgcolor="transparent"/>
             </View>
           </View>
         </Modal>
@@ -100,7 +111,7 @@ class PostingScene extends Component {
                 />
                 <ScrollView>
                   <InterestsEntity onChange={
-                    (text) => this.description = text
+                    (interests) => this.interests = interests
                   }/>
                 </ScrollView>
               </View>

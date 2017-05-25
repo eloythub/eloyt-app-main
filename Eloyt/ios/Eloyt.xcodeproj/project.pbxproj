@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -50,6 +51,7 @@
 		A0292F7213814DF0AD89FC45 /* OpenSans_light_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */; };
 		A9F45498136543BC966F7A8B /* OpenSans_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223A2D50B2714361B8196B69 /* OpenSans_italic.ttf */; };
 		B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */; };
+		B9871CA6E4564B519E783F03 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */; };
 		C031BD491E9934390083E241 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C031BD2A1E9934270083E241 /* libART.a */; };
 		C05C4DD81E6469A5008F1A3D /* RNMobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */; };
 		C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */; };
@@ -273,6 +275,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = BVLinearGradient;
 		};
+		C06AE1DE1ED690A400C795DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 475EDE8C16984E19BC32A7A9 /* rnpc_demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 13B07F961A680F5B00A75B9A;
+			remoteInfo = rnpc_demo;
+		};
+		C06AE1E01ED690A400C795DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 475EDE8C16984E19BC32A7A9 /* rnpc_demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00E356EE1AD99517003FC87E;
+			remoteInfo = rnpc_demoTests;
+		};
 		C07FD1CA1EAC736D00DED834 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */;
@@ -339,6 +355,7 @@
 		2D02E47B1E0B4A5D006451C7 /* Eloyt-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eloyt-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Eloyt-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eloyt-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E57B2170ED97705ECCB92D9 /* Pods-Eloyt-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		475EDE8C16984E19BC32A7A9 /* rnpc_demo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = rnpc_demo.xcodeproj; path = "../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo.xcodeproj"; sourceTree = "<group>"; };
 		52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EloytTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54486D4964594651A5EE02CF /* OpenSans_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_bold.ttf; path = ../Assets/Fonts/OpenSans_bold.ttf; sourceTree = "<group>"; };
 		57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
@@ -375,6 +392,7 @@
 		C6C3A008BD414876990F87D6 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTActionSheet.a; sourceTree = "<group>"; };
 		EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../Assets/Fonts/OpenSans.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -418,6 +436,7 @@
 				8A6079925F494347B5C6AC14 /* libRNFS.a in Frameworks */,
 				E378E668784C4E3888906BA8 /* libRCTVideo.a in Frameworks */,
 				7EC690378C2449B4BFC41B32 /* libRCTCamera.a in Frameworks */,
+				B9871CA6E4564B519E783F03 /* libRCTActionSheet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +638,7 @@
 				C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */,
 				6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */,
 				C6C3A008BD414876990F87D6 /* RCTCamera.xcodeproj */,
+				475EDE8C16984E19BC32A7A9 /* rnpc_demo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -683,6 +703,15 @@
 			isa = PBXGroup;
 			children = (
 				C031BD711E99409F0083E241 /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C06AE1B91ED690A400C795DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C06AE1DF1ED690A400C795DD /* rnpc_demo.app */,
+				C06AE1E11ED690A400C795DD /* rnpc_demoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -933,6 +962,10 @@
 					ProductGroup = C0CBBD5E1E6A9ECF00316537 /* Products */;
 					ProjectRef = C5B49B55965C42F9BFE0A820 /* RNI18n.xcodeproj */;
 				},
+				{
+					ProductGroup = C06AE1B91ED690A400C795DD /* Products */;
+					ProjectRef = 475EDE8C16984E19BC32A7A9 /* rnpc_demo.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1139,6 +1172,20 @@
 			fileType = archive.ar;
 			path = libBVLinearGradient.a;
 			remoteRef = C031BD701E99409F0083E241 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C06AE1DF1ED690A400C795DD /* rnpc_demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = rnpc_demo.app;
+			remoteRef = C06AE1DE1ED690A400C795DD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C06AE1E11ED690A400C795DD /* rnpc_demoTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = rnpc_demoTests.xctest;
+			remoteRef = C06AE1E01ED690A400C795DD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C07FD1CB1EAC736D00DED834 /* libRNFS.a */ = {
@@ -1508,12 +1555,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = EloytTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1538,12 +1587,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = EloytTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1574,6 +1625,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1606,6 +1658,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1641,11 +1694,13 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = "Eloyt-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1680,11 +1735,13 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
 				);
 				INFOPLIST_FILE = "Eloyt-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1715,6 +1772,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1745,6 +1803,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

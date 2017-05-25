@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, Dimensions, Platform, TouchableWithoutFeedback } from 'react-native';
+import Utils from '../../../Libraries/Utils';
 import defaultFile from '../../../../default.json';
 
 const styles = StyleSheet.create({
@@ -62,11 +63,24 @@ export default class InterestsEntity extends Component {
 
   toggleSelectedInterest(index) {
     const {listOfInterests} = this.state;
+    const {onChange} = this.props;
 
     listOfInterests[index].selected = !listOfInterests[index].selected;
 
     this.setState({
       listOfInterests,
+    });
+
+    Utils.next().then(() => {
+      let selectedInterests = [];
+
+      listOfInterests.map((interest) => {
+        if (interest.selected) {
+          selectedInterests.push(interest.hashtag);
+        }
+      });
+
+      onChange(selectedInterests);
     });
   }
 
