@@ -4,11 +4,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PostingActions from './PostingActions';
 import * as LoginActionsConst from '../Login/LoginActionsConst';
+import * as PostingActionsConst from '../Posting/PostingActionsConst';
 import { styles } from './PostingStyles';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
+import Api from '../../../Libraries/Api';
+import Utils from '../../../Libraries/Utils';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import PercentageCircle from 'react-native-percentage-circle';
+import CheckButton from '../../Misc/Posting/CheckButton';
+import ReTryButton from '../../Misc/Posting/ReTryButton';
 import BackButton from '../../Misc/Record/BackButton';
 import CancelButton from '../../Misc/Posting/CancelButton';
 import PostingButton from '../../Misc/Posting/PostingButton';
@@ -23,7 +28,12 @@ class PostingScene extends Component {
 
     this.state = {
       postingModalVisible: false,
+      uploadProgress: 0,
+      uploadStatus: PostingActionsConst.UPLOAD_IN_PROGRESS,
     };
+
+    this.description = '';
+    this.interests = [];
   }
 
   componentDidMount() {
@@ -44,7 +54,7 @@ class PostingScene extends Component {
       });
   }
 
-  handleStopPosting() {
+  handleDiscardPosting() {
     // TODO: stop uploading and then close the modal
 
     this.setState({postingModalVisible: false});
@@ -54,10 +64,97 @@ class PostingScene extends Component {
     Actions.pop();
   }
 
-  handlePostButtonPress() {
-    this.setState({postingModalVisible: true});
+  startUploading() {
+    const {recordedVideo, PostingReducers: {ssoUserData}} = this.props;
 
-    alert(this.interests[0], this.interests[1]);
+    const data = new FormData();
+
+    data.append('userId', ssoUserData._id);
+    //data.append('duration', recordedVideo.duration);
+    //data.append('interests', this.interests.join(','));
+    data.append('geoLocationLatitude', 13.7191658); // latitude
+    data.append('geoLocationLongitude', 100.5387086); // longitude
+    data.append('file', {
+      uri: recordedVideo.path,
+      type: 'image/mov',
+      name: 'file',
+    });
+
+    Api.postWithProgress(
+      '/stream/upload/video',
+      {
+        method: 'post',
+        body: data,
+      },
+      this.uploadProgress.bind(this),
+      (xhr) => this.xhr = xhr
+    ).then((res) => {
+      if (res.status !== 200) {
+        return this.setState({
+          uploadStatus: PostingActionsConst.UPLOAD_FAIL,
+          uploadProgress: 1,
+        });
+      }
+
+      this.setState({
+        uploadStatus: PostingActionsConst.UPLOAD_SUCCESSFUL,
+        uploadProgress: 1,
+      });
+    }, () => {
+      this.setState({
+        uploadStatus: PostingActionsConst.UPLOAD_FAIL,
+        uploadProgress: 1,
+      });
+    });
+  }
+
+  uploadProgress(progressEvent) {
+    this.setState({
+      uploadProgress: progressEvent.loaded / progressEvent.total,
+    });
+  }
+
+  handlePostButtonPress() {
+    if (this.description && this.interests.length >= 3 && this.interests.length <= 5) {
+      this.setState({
+        postingModalVisible: true,
+        uploadStatus: PostingActionsConst.UPLOAD_IN_PROGRESS,
+        uploadProgress: 0,
+      });
+
+      return Utils.wait(500).then(() => this.startUploading());
+    }
+
+    let validationMessage = [];
+
+    if (!this.description) {
+      validationMessage.push('description');
+    }
+
+    if (!(this.interests.length >= 3 && this.interests.length <= 5)) {
+      validationMessage.push('3 up to 5 categories');
+    }
+
+    Utils.alert(`Don't forget to add ${validationMessage.join(', \n')}.`);
+  }
+
+  handleReTryButtonPress() {
+    this.setState({
+      postingModalVisible: true,
+      uploadStatus: PostingActionsConst.UPLOAD_IN_PROGRESS,
+      uploadProgress: 0,
+    });
+
+    return Utils.wait(500).then(() => this.startUploading());
+  }
+
+  handleUploadIsDoneButtonPress() {
+    Actions.home({
+      type: ActionConst.PUSH_OR_POP,
+      refresh: {
+        refreshProps: {startVideoAgain: true},
+      },
+    });
   }
 
   static contextTypes = {
@@ -65,7 +162,27 @@ class PostingScene extends Component {
   };
 
   render() {
-    const {postingModalVisible} = this.state;
+    const {postingModalVisible, uploadProgress, uploadStatus} = this.state;
+
+    let uploadProgressValue = uploadProgress;
+
+    if (uploadProgressValue < 0) {
+      uploadProgressValue  = 0;
+    }
+
+    let progressColor = '#FF9800';
+
+    switch (uploadStatus) {
+      case PostingActionsConst.UPLOAD_SUCCESSFUL:
+        progressColor = '#00cb76';
+        break;
+      case PostingActionsConst.UPLOAD_FAIL:
+        progressColor = '#f44336';
+        break;
+      case PostingActionsConst.UPLOAD_IN_PROGRESS:
+        progressColor = '#FF9800';
+        break;
+    }
 
     return (
       <View style={styles.rootContainer}>
@@ -76,19 +193,35 @@ class PostingScene extends Component {
           transparent={true}
           animationType="fade"
           onRequestClose={() => this.setState({postingModalVisible: false})}>
-          <View style={styles.rootMainContainer}>
+          <View style={styles.rootPopUpContainer}>
             <View style={styles.topSection}>
-              <CancelButton onClick={this.handleStopPosting.bind(this)} styles={styles}/>
+              {
+                uploadStatus === PostingActionsConst.UPLOAD_FAIL ||
+                uploadStatus === PostingActionsConst.UPLOAD_IN_PROGRESS
+                  ? <CancelButton onClick={this.handleDiscardPosting.bind(this)} styles={styles}/>
+                  : <View style={{flex: 1}}/>
+              }
+              {
+                uploadStatus === PostingActionsConst.UPLOAD_FAIL
+                  ? <ReTryButton onClick={this.handleReTryButtonPress.bind(this)} styles={styles}/>
+                  : null
+              }
+              {
+                uploadStatus === PostingActionsConst.UPLOAD_SUCCESSFUL
+                  ? <CheckButton onClick={this.handleUploadIsDoneButtonPress.bind(this)} styles={styles}/>
+                  : null
+              }
             </View>
 
             <View style={styles.postingProgressContainer}>
               <PercentageCircle radius={width - 220}
-                                percent={50}
+                                percent={parseInt(uploadProgressValue * 100)}
                                 borderWidth={10}
                                 textStyle={styles.progressBar}
-                                color="#00cb76"
+                                color={progressColor}
                                 innerColor="#000000"
                                 bgcolor="transparent"/>
+
             </View>
           </View>
         </Modal>
@@ -127,6 +260,7 @@ PostingScene.propTypes = {
   PostingReducers: PropTypes.object,
   postingActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  recordedVideo: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

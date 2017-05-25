@@ -6,10 +6,6 @@ target 'Eloyt' do
   # use_frameworks!
   pod 'Bolts'
   
-  # Pods for Eloyt
-  pod 'RNMobileCenter'
-  pod 'MobileCenter'
-  
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'

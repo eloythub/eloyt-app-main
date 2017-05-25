@@ -1,1 +1,5 @@
 export const ON_POSTING_USER_LOGIN_DATA = 'ON_POSTING_USER_LOGIN_DATA';
+
+export const UPLOAD_IN_PROGRESS = 0;
+export const UPLOAD_FAIL = 1;
+export const UPLOAD_SUCCESSFUL = 2;

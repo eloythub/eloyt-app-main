@@ -147,7 +147,7 @@ class RecordScene extends Component {
                   type={camera.type}
                   torchMode={camera.torchMode}
                   captureQuality={CaptureQuality.high}
-                  captureTarget={CaptureTarget.cameraRoll}
+                  captureTarget={CaptureTarget.temp}
                   captureMode={CaptureMode.video}
                   orientation={Orientation.portrait}
                   aspect={Aspect.fill}>
