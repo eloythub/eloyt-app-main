@@ -3332,6 +3332,12 @@ react-native-camera@0.9:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.9.0.tgz#5d89b6e5769d94d59f9b7248096b3fb930fc4bfb"
 
+react-native-circular-progress@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-circular-progress/-/react-native-circular-progress-0.0.8.tgz#53ccdbe57357ce2459f8ab1b67119a3e2a5014b4"
+  dependencies:
+    art "^0.10.0"
+
 react-native-datepicker@^1.4.5:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.5.1.tgz#c9ba7c92da9552ad5deac18a7fc742673996e57c"
@@ -3380,10 +3386,6 @@ react-native-linear-gradient@^2.0.0:
 react-native-loader@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.1.0.tgz#9e87e88d5b0a03a26b28591b23da73408a189e47"
-
-react-native-percentage-circle@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/react-native-percentage-circle/-/react-native-percentage-circle-1.0.6.tgz#773fb65043faf269ce6b59c9faa8c11a33e1e8dd"
 
 react-native-router-flux@3.39.2:
   version "3.39.2"

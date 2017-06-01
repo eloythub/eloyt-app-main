@@ -199,7 +199,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  progressBarObject: {
+    flex: 1,
+    position: 'absolute',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   progressBar: {
+    position: 'absolute',
     fontSize: 24,
     color: '#ffffff',
     fontFamily: 'OpenSans',

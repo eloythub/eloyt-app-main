@@ -11,7 +11,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
 import LocalStorage from '../../../Libraries/LocalStorage';
-import PercentageCircle from 'react-native-percentage-circle';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import CheckButton from '../../Misc/Posting/CheckButton';
 import ReTryButton from '../../Misc/Posting/ReTryButton';
 import BackButton from '../../Misc/Record/BackButton';
@@ -70,8 +70,7 @@ class PostingScene extends Component {
     const data = new FormData();
 
     data.append('userId', ssoUserData._id);
-    //data.append('duration', recordedVideo.duration);
-    //data.append('interests', this.interests.join(','));
+    data.append('interests', this.interests.join(','));
     data.append('geoLocationLatitude', 13.7191658); // latitude
     data.append('geoLocationLongitude', 100.5387086); // longitude
     data.append('file', {
@@ -184,6 +183,8 @@ class PostingScene extends Component {
         break;
     }
 
+    const progressValue = parseInt(uploadProgressValue * 100);
+
     return (
       <View style={styles.rootContainer}>
         <StatusBar hidden={true}/>
@@ -214,13 +215,22 @@ class PostingScene extends Component {
             </View>
 
             <View style={styles.postingProgressContainer}>
-              <PercentageCircle radius={width - 220}
-                                percent={parseInt(uploadProgressValue * 100)}
-                                borderWidth={10}
-                                textStyle={styles.progressBar}
-                                color={progressColor}
-                                innerColor="#000000"
-                                bgcolor="transparent"/>
+              <AnimatedCircularProgress
+                size={width - 50}
+                rotation={0}
+                width={10}
+                fill={progressValue}
+                backgroundColor="#000000"
+                tintColor={progressColor}
+                style={styles.progressBarObject}>
+                {
+                  (fill) => (
+                    <Text style={styles.progressBar}>
+                      { parseInt(fill) }
+                    </Text>
+                  )
+                }
+              </AnimatedCircularProgress>
 
             </View>
           </View>
