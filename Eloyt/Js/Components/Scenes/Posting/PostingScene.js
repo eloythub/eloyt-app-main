@@ -70,7 +70,8 @@ class PostingScene extends Component {
     const data = new FormData();
 
     data.append('userId', ssoUserData._id);
-    data.append('interests', this.interests.join(','));
+    data.append('description', this.description);
+    data.append('hashtags', this.interests.join(','));
     data.append('geoLocationLatitude', 13.7191658); // latitude
     data.append('geoLocationLongitude', 100.5387086); // longitude
     data.append('file', {
@@ -231,7 +232,6 @@ class PostingScene extends Component {
                   )
                 }
               </AnimatedCircularProgress>
-
             </View>
           </View>
         </Modal>
