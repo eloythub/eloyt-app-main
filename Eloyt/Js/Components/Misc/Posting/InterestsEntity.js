@@ -90,7 +90,7 @@ export default class InterestsEntity extends Component {
     return (
       <View style={styles.rootContainer}>
         {listOfInterests.map((value, index) => {
-            return <TouchableWithoutFeedback key={index} onPress={this.toggleSelectedInterest.bind(this, index)}>
+            return <TouchableWithoutFeedback key={index} onPressIn={this.toggleSelectedInterest.bind(this, index)}>
               <View style={[styles.container, (listOfInterests[index].selected ? styles.containerSelected : {})]}>
                 <Text style={[styles.title, (listOfInterests[index].selected ? styles.titleSelected : {})]}>{value.title}</Text>
               </View>

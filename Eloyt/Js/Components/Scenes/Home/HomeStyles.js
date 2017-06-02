@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     zIndex: 999,
     width,
-    height: 140,
+    height: 170,
     position: 'absolute',
     bottom: 0,
   },
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
   },
   highlightBottom: {
     flex: 1,
-    height: 140,
+    height: 170,
   },
   profileImageViewContainer: {
     paddingRight: 10,
@@ -101,13 +101,20 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     backgroundColor: 'transparent',
+    marginBottom: -5,
   },
-  profileInfo: {
-    color: '#acacac',
+  videoDescription: {
+    color: '#ffffff',
     fontFamily: 'OpenSans',
     fontSize: 14,
-    fontWeight: 'normal',
+    fontWeight: 'bold',
     backgroundColor: 'transparent',
+    width,
+    paddingLeft: 10,
+    textAlign: 'justify',
+    paddingTop: 5,
+    paddingBottom: 5,
+    lineHeight: 16,
   },
   recordContainer: {
     width: 55,

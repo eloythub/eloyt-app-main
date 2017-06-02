@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, ScrollView } from 'react-native';
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,8 +10,10 @@ import { Grid, Col, Row } from 'react-native-easy-grid';
 import Camera from 'react-native-camera';
 import Video from 'react-native-video';
 import TimeFormat from './TimeFormat';
+import HashtagsView from './HashtagsView';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
+const {width} = Dimensions.get('window');
 
 export default class VideoPlayer extends Component {
   constructor(props) {
@@ -116,7 +118,7 @@ export default class VideoPlayer extends Component {
     });
 
     // it suppose to skip the video
-    return onSkip(video);
+    return Utils.wait(2000).then(() => onSkip(video));
   }
 
   handleVideoBuffer(data) {
@@ -244,12 +246,15 @@ export default class VideoPlayer extends Component {
             <Grid>
               <Col>
                 <Grid>
-                  <Row style={{height: 50}}>
-                    {
-                      duration && currentTime <= duration
-                      ? <TimeFormat time={duration - currentTime} styles={styles}/>
-                      : <TimeFormat time={0} styles={styles}/>
-                    }
+                  {/*<Row style={{height: 10}}>*/}
+                    {/*{*/}
+                      {/*duration && currentTime <= duration*/}
+                      {/*? <TimeFormat time={duration - currentTime} styles={styles}/>*/}
+                      {/*: <TimeFormat time={0} styles={styles}/>*/}
+                    {/*}*/}
+                  {/*</Row>*/}
+                  <Row style={{height: 70, width, flexDirection: 'column', justifyContent: 'flex-end'}}>
+                    <Text style={styles.videoDescription}>{video.description}</Text>
                   </Row>
                   <Row>
                     <Grid>
@@ -261,7 +266,12 @@ export default class VideoPlayer extends Component {
                       </Col>
                       <Col>
                         <Text style={styles.profileUserName}>{video.user.firstName}</Text>
-                        <Text style={styles.profileInfo}>{video.user.firstName}</Text>
+                        <ScrollView>
+                          <View>
+                            <HashtagsView tags={video.hashtags}/>
+                          </View>
+                        </ScrollView>
+
                       </Col>
                     </Grid>
                   </Row>
@@ -270,6 +280,7 @@ export default class VideoPlayer extends Component {
               <Col style={
                 {
                   width: 80,
+                  marginTop: 30,
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
