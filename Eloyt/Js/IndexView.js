@@ -18,6 +18,7 @@ import ConnectedAreaOfInterestsScene, {
 import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene';
 import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene';
 import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene';
+import ConnectedUserProfileScene, { UserProfileSceneKey, UserProfileSceneTitle } from './Components/Scenes/UserProfile/UserProfileScene';
 
 const Scenes = Actions.create(
   <Scene key="root">
@@ -63,6 +64,15 @@ const Scenes = Actions.create(
       title={PostingSceneTitle}
       key={PostingSceneKey}
       component={ConnectedPostingScene}
+      type={ActionConst.PUSH_OR_POP}
+      direction="horizontal"
+      duration={300}
+    />
+    <Scene
+      hideNavBar={true}
+      title={UserProfileSceneTitle}
+      key={UserProfileSceneKey}
+      component={ConnectedUserProfileScene}
       type={ActionConst.PUSH_OR_POP}
       direction="horizontal"
       duration={300}

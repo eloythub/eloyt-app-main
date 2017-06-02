@@ -111,6 +111,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width,
     paddingLeft: 10,
+    paddingRight: 10,
     textAlign: 'justify',
     paddingTop: 5,
     paddingBottom: 5,
@@ -165,13 +166,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   topHighlightIcon: {
     width: 25,

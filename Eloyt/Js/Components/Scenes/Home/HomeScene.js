@@ -61,6 +61,12 @@ class HomeScene extends Component {
     });
   }
 
+  handleUserProfilePress() {
+    Actions.userProfile({
+      type: ActionConst.PUSH_OR_POP,
+    });
+  }
+
   postRender() {
     const {producedData, ssoUserData, isTutorialWatched} = this.props;
 
@@ -95,7 +101,7 @@ class HomeScene extends Component {
               userId={ssoUserData._id}
               avatar={ssoUserData.avatar}
               styles={styles}
-              onClick={() => console.log('avatar icon')}/>
+              onClick={this.handleUserProfilePress.bind()}/>
           </View>
         </LinearGradient>
       </View>
