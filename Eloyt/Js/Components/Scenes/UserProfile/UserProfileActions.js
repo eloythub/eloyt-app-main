@@ -1,5 +1,5 @@
 import * as UserProfileActionsConst from './UserProfileActionsConst';
-import Api from '../../../Libraries/Api';
+import * as LoginActionsConst from '../Login/LoginActionsConst';
 
 export const setUserLogin = (data) => {
   return (dispatch) => {
@@ -13,3 +13,10 @@ export const setUserLogin = (data) => {
     });
   };
 };
+
+export const onFacebookLogOut = () => {
+  return dispatch => dispatch({
+    type: LoginActionsConst.ON_FACEBOOK_LOGOUT_ACTION,
+  });
+};
+

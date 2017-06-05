@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   },
   profileUserImage: {
     flex:1,
-    borderWidth: 3,
-    borderColor: '#b7b7b7',
+    //borderWidth: 3,
+    //borderColor: '#b7b7b7',
     borderRadius: 60,
     width: 120,
     height: 120,
