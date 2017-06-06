@@ -92,7 +92,15 @@ export default class Api {
     });
   }
 
-  static fetchProducedResources(userId, offset = 5) {
+  static requestGetProfile(userId) {
+    return new Promise(async(fulfill, reject) => {
+      return this.request(`/users/${userId}`, RequestMethodType.get)
+        .then((res) => fulfill(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  static fetchProducedResources(userId, offset = 50) {
     return new Promise(async(fulfill, reject) => {
       return this.request(`/stream/produce/${userId}/${offset}`, RequestMethodType.get)
         .then(

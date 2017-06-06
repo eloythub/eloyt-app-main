@@ -223,6 +223,17 @@ export default class VideoPlayer extends Component {
     });
   }
 
+  handleUserProfilePress(userId) {
+    this.setState({
+      paused: true,
+    });
+
+    Actions.userProfile({
+      type: ActionConst.PUSH_OR_POP,
+      userId,
+    });
+  }
+
   render() {
     const {video, styles} = this.props;
     const {duration, currentTime} = this.state;
@@ -262,7 +273,7 @@ export default class VideoPlayer extends Component {
                         <ProfileImage
                           avatar={video.user.avatarUri}
                           styles={styles}
-                          onClick={() => { console.log('profile image click'); }}/>
+                          onClick={this.handleUserProfilePress.bind(this, video.user.id)}/>
                       </Col>
                       <Col>
                         <Text style={styles.profileUserName}>{video.user.firstName}</Text>

@@ -32,19 +32,34 @@ class UserProfileScene extends Component {
   }
 
   componentDidMount() {
-    const {userProfileActions} = this.props;
+    const {userProfileActions, userId: userIdProp} = this.props;
+
+    let userId = userIdProp;
 
     LocalStorage.all([LoginActionsConst.ON_SSO_USER_DATA, UserProfileActionsConst.ON_USER_PROFILE_USER_LOGIN_DATA])
-      .then(([ssoUserData]) => {
+      .then(async([ssoUserData]) => {
         userProfileActions.setUserLogin({
           ssoUserData,
         });
 
-        this.setState({
-          ssoUserData,
-          loggedInUserProfile: true,
-          userProfile: ssoUserData,
-        });
+
+        if (!userId) {
+          userId = ssoUserData._id;
+        }
+
+        const requestGetProfile          = await Api.requestGetProfile(ssoUserData._id);
+        const requestGetProfileRequested = await Api.requestGetProfile(userId);
+
+        if (requestGetProfile.statusCode && requestGetProfileRequested.statusCode ) {
+          const {data: userProfile} = requestGetProfile;
+          const {data: userProfileRequested} = requestGetProfileRequested;
+
+          this.setState({
+            ssoUserData,
+            loggedInUserProfile: userProfile._id === userProfileRequested._id,
+            userProfile: userProfileRequested,
+          });
+        }
       })
       .catch(() => {
         LoginManager.logOut();
@@ -86,9 +101,10 @@ class UserProfileScene extends Component {
   }
 
   postRender() {
-    const {userProfile} = this.state;
+    const {userProfile, loggedInUserProfile} = this.state;
 
     var birthday = moment(userProfile.birthday);
+    console.log(userProfile.birthday);
 
     return <View style={styles.rootMainPostContainer}>
       <View style={styles.profileEntitiesContainer}>
@@ -104,25 +120,37 @@ class UserProfileScene extends Component {
               <Image source={emailImage} style={styles.emailImage}/>
               <Text style={styles.descriptiveText}>{userProfile.email}</Text>
             </View>
-            <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
-              <Image source={birthdateImage} style={styles.birthdateImage}/>
-              <Text style={styles.descriptiveText}>{birthday.format('Y-MMM-DD')}</Text>
+            {
+              userProfile.birthday
+                ? <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
+                  <Image source={birthdateImage} style={styles.birthdateImage}/>
+                  <Text style={styles.descriptiveText}>{birthday.format('Y-MMM-DD')}</Text>
+                </View>
+                : null
+            }
+            <View style={styles.profileEntityContainer}>
+              <Text style={styles.descriptiveText}>{userProfile.aboutMe}</Text>
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.logoutButton} onPress={this.onSignoutButtonPress.bind(this)}>
-          <Text style={styles.logoutButtonCaption}>{'Signout'.toUpperCase()}</Text>
-        </TouchableOpacity>
+        {
+          loggedInUserProfile
+            ? <TouchableOpacity style={styles.logoutButton} onPress={this.onSignoutButtonPress.bind(this)}>
+              <Text style={styles.logoutButtonCaption}>{'Signout'.toUpperCase()}</Text>
+            </TouchableOpacity>
+            : null
+        }
       </View>
-      {this.handleLoading(!userProfile)}
     </View>;
   }
 
-  handleLoading(show) {
+  postRenderLoading(show) {
     if (show) {
-      return <View style={styles.loadingContainer}>
-        <View style={styles.loading}>
-          <Bars size={40} color="#ffffff"/>
+      return <View style={styles.rootMainPostContainer}>
+        <View style={styles.loadingContainer}>
+          <View style={styles.loading}>
+            <Bars size={40} color="#ffffff"/>
+          </View>
         </View>
       </View>;
     }
@@ -145,7 +173,7 @@ class UserProfileScene extends Component {
                           styles={styles}
                           hidden={!loggedInUserProfile}/>
         </View>
-        {ssoUserData && userProfile ? this.postRender() : null}
+        {ssoUserData && userProfile ? this.postRender() : this.postRenderLoading(!userProfile)}
       </View>
     </View>;
   }
@@ -155,6 +183,7 @@ UserProfileScene.propTypes = {
   UserProfileReducers: PropTypes.object,
   userProfileActions: PropTypes.object,
   ssoUserData: PropTypes.object,
+  userId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
