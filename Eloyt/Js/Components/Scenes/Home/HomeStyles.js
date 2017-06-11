@@ -121,13 +121,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#c62828',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   recordIcon: {
     width: 24,

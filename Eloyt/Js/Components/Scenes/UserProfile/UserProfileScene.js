@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Image, Platform, StatusBar, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Platform, StatusBar, ScrollView, Text, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Bars } from 'react-native-loader';
@@ -9,16 +9,25 @@ import * as LoginActionsConst from '../Login/LoginActionsConst';
 import * as UserProfileActionsConst from './UserProfileActionsConst';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
+import moment from 'moment';
 import LocalStorage from '../../../Libraries/LocalStorage';
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
 import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
+import emailImage from '../../../../Assets/Images/email-icon.png';
+import birthdateImage from '../../../../Assets/Images/birthdate-icon.png';
 import SettingsButton from '../../Misc/UserProfile/SettingsButton';
 import BackButton from '../../Misc/Record/BackButton';
 import ImageEntity from '../../Misc/CompleteProfile/ImageEntity';
-import moment from 'moment';
-import emailImage from '../../../../Assets/Images/email-icon.png';
-import birthdateImage from '../../../../Assets/Images/birthdate-icon.png';
+import HashtagsView from '../../Misc/Home/HashtagsView';
+import CheckButton from '../../Misc/Posting/CheckButton';
+import CancelButton from '../../Misc/Posting/CancelButton';
+import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
+import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
+import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
+import InterestsEntity from '../../Misc/Posting/InterestsEntity';
+
+const {width}  = Dimensions.get('window');
 
 class UserProfileScene extends Component {
   constructor(props) {
@@ -28,6 +37,8 @@ class UserProfileScene extends Component {
       loggedInUserProfile: false,
       ssoUserData: null,
       userProfile: null,
+      isEditMode: false,
+      editWaiting: false,
     };
   }
 
@@ -59,6 +70,12 @@ class UserProfileScene extends Component {
             loggedInUserProfile: userProfile._id === userProfileRequested._id,
             userProfile: userProfileRequested,
           });
+
+          this.editFirstName = userProfileRequested.firstName;
+          this.editLastName = userProfileRequested.lastName;
+          this.editGender = userProfileRequested.gender;
+          this.editBirthday = userProfileRequested.birthday;
+          this.editHashtags = userProfileRequested.hashtags;
         }
       })
       .catch(() => {
@@ -83,7 +100,7 @@ class UserProfileScene extends Component {
   }
 
   handleSettingsButtonPress() {
-    // TODO: open the scene for edit profile
+    this.setState({isEditMode: true});
   }
 
   onSignoutButtonPress() {
@@ -100,47 +117,103 @@ class UserProfileScene extends Component {
     });
   }
 
+  handleSaveButtonPress() {
+    const {userProfileActions} = this.props;
+    const {userProfile} = this.state;
+
+    if (
+      !this.editFirstName ||
+      !this.editLastName ||
+      !this.editGender ||
+      !this.editBirthday ||
+      this.editHashtags.length < 3
+    ) {
+      Utils.alert('Something is Missing.\nPlease Make Every Section\'s being filled and chosen Minimum 3 tags');
+
+      return;
+    }
+
+    this.setState({
+      editWaiting: true,
+    });
+
+    Api.requestUpdateProfile(userProfile._id, {
+        firstName: this.editFirstName,
+        lastName: this.editLastName,
+        gender: this.editGender,
+        birthday: this.editBirthday,
+        hashtags: this.editHashtags,
+      })
+      .then((updatedUserRes) => {
+        userProfileActions.setUserLogin({ssoUserData: updatedUserRes.data});
+
+        this.setState({
+          userProfile: updatedUserRes.data,
+          isEditMode: false,
+          editWaiting: false,
+        });
+      })
+      .catch(() => {
+        this.setState({
+          editWaiting: false,
+        });
+      });
+  }
+
+  handleDiscardButtonPress() {
+    this.setState({isEditMode: false});
+  }
+
   postRender() {
-    const {userProfile, loggedInUserProfile} = this.state;
+    const {userProfile, loggedInUserProfile, isEditMode} = this.state;
 
     var birthday = moment(userProfile.birthday);
-    console.log(userProfile.birthday);
 
     return <View style={styles.rootMainPostContainer}>
-      <View style={styles.profileEntitiesContainer}>
-        <ScrollView>
-          <View style={styles.entitiesContainer}>
-            <View style={styles.profileEntityContainer}>
-              <ImageEntity imageUrl={Api.getProfileAvatar(userProfile._id, userProfile.avatar)}/>
-            </View>
-            <View style={styles.profileEntityContainer}>
-              <Text style={styles.fullNameText}>{userProfile.firstName} {userProfile.lastName}</Text>
-            </View>
-            <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
-              <Image source={emailImage} style={styles.emailImage}/>
-              <Text style={styles.descriptiveText}>{userProfile.email}</Text>
-            </View>
-            {
-              userProfile.birthday
-                ? <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
-                  <Image source={birthdateImage} style={styles.birthdateImage}/>
-                  <Text style={styles.descriptiveText}>{birthday.format('Y-MMM-DD')}</Text>
+      {
+        !isEditMode
+          ? <View style={styles.profileEntitiesContainer}>
+            <ScrollView>
+              <View style={styles.entitiesContainer}>
+                <View style={styles.profileEntityContainer}>
+                  <ImageEntity imageUrl={Api.getProfileAvatar(userProfile._id, userProfile.avatar)}/>
                 </View>
+                <View style={styles.profileEntityContainer}>
+                  <Text style={styles.fullNameText}>{userProfile.firstName} {userProfile.lastName}</Text>
+                </View>
+                <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
+                  <Image source={emailImage} style={styles.emailImage}/>
+                  <Text style={styles.descriptiveText}>{userProfile.email}</Text>
+                </View>
+                {
+                  userProfile.birthday
+                    ? <View style={[styles.profileEntityContainer, styles.discriptiveContainer]}>
+                      <Image source={birthdateImage} style={styles.birthdateImage}/>
+                      <Text style={styles.descriptiveText}>{birthday.format('Y/MMM/DD')}</Text>
+                    </View>
+                    : null
+                }
+                <View style={[styles.profileEntityContainer, styles.discriptiveContainer, styles.aboutMe]}>
+                  <Text style={styles.descriptiveText}>{userProfile.aboutMe}</Text>
+                </View>
+                <View style={[styles.profileEntityContainer, styles.discriptiveContainer, styles.hashtags]}>
+                  <View>
+                    <HashtagsView tags={userProfile.hashtags} width={width - 50} opacity={1}/>
+                  </View>
+                </View>
+              </View>
+            </ScrollView>
+            {
+              loggedInUserProfile
+                ? <TouchableOpacity style={styles.logoutButton} onPress={this.onSignoutButtonPress.bind(this)}>
+                  <Text style={styles.logoutButtonCaption}>{'Signout'.toUpperCase()}</Text>
+                </TouchableOpacity>
                 : null
             }
-            <View style={styles.profileEntityContainer}>
-              <Text style={styles.descriptiveText}>{userProfile.aboutMe}</Text>
-            </View>
           </View>
-        </ScrollView>
-        {
-          loggedInUserProfile
-            ? <TouchableOpacity style={styles.logoutButton} onPress={this.onSignoutButtonPress.bind(this)}>
-              <Text style={styles.logoutButtonCaption}>{'Signout'.toUpperCase()}</Text>
-            </TouchableOpacity>
-            : null
-        }
-      </View>
+          : null
+      }
+      {this.postRenderEdit()}
     </View>;
   }
 
@@ -156,9 +229,72 @@ class UserProfileScene extends Component {
     }
   }
 
+  postRenderEditLoading(show) {
+    if (show) {
+      return <Bars size={14} color="#ffffff"/>;
+    }
+  }
+
+  postRenderEdit() {
+    const {isEditMode, editWaiting, userProfile} = this.state;
+
+    return <Modal
+      visible={isEditMode}
+      transparent={true}
+      animationType="slide"
+      onRequestClose={() => this.setState({isEditMode: false})}>
+      <View style={styles.rootMainModalContainer}>
+        <View style={styles.topSection}>
+          <CancelButton onClick={this.handleDiscardButtonPress.bind(this)} hidden={editWaiting} styles={styles}/>
+          {this.postRenderEditLoading(editWaiting)}
+          <CheckButton onClick={this.handleSaveButtonPress.bind(this)} hidden={editWaiting} styles={styles}/>
+        </View>
+        <View style={styles.rootMainPostContainer}>
+          <View style={styles.profileEntitiesContainer}>
+            <ScrollView>
+              <View style={styles.profileEntityContainer}>
+                <InputTextBox
+                  setTextRef={(textRefObj) => this.editFirstNameRef = textRefObj}
+                  onChange={(text) => this.editFirstName = text}
+                  default={userProfile.firstName}
+                  caption="FIRST NAME"
+                  name="firstname"
+                  nextFocusObjectRef={() => this.lastNameRef.focus()}
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <InputTextBox
+                  setTextRef={(textRefObj) => this.editLastNameRef = textRefObj}
+                  onChange={(text) => this.editLastName = text}
+                  default={userProfile.lastName}
+                  caption="FIRST NAME"
+                  name="firstname"
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <GenderEntity
+                  onPress={(genderValue) => this.editGender = genderValue}
+                  value={userProfile.gender.toLowerCase()}
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <BirthdateEntity
+                  onChange={(birthday) => this.editBirthday = birthday}
+                  date={userProfile.birthday}/>
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <InterestsEntity onChange={(hashtags) => this.editHashtags = hashtags} defaultSelected={userProfile.hashtags}/>
+              </View>
+            </ScrollView>
+          </View>
+        </View>
+      </View>
+    </Modal>;
+  }
+
   render() {
     const {ssoUserData} = this.props;
-    const {loggedInUserProfile, userProfile} = this.state;
+    const {loggedInUserProfile, userProfile, isEditMode} = this.state;
 
     return <View style={styles.rootContainer}>
       <StatusBar
@@ -168,12 +304,16 @@ class UserProfileScene extends Component {
       <Image source={fluidBackground} style={styles.backgroundImage}/>
       <View style={styles.rootMainContainer}>
         <View style={styles.topSection}>
-          <BackButton onClick={this.handleBackButtonPress.bind(this)} styles={styles}/>
+          <BackButton hidden={isEditMode} onClick={this.handleBackButtonPress.bind(this)} styles={styles}/>
           <SettingsButton onClick={this.handleSettingsButtonPress.bind(this)}
                           styles={styles}
-                          hidden={!loggedInUserProfile}/>
+                          hidden={!loggedInUserProfile || isEditMode}/>
         </View>
-        {ssoUserData && userProfile ? this.postRender() : this.postRenderLoading(!userProfile)}
+        {
+          ssoUserData && userProfile
+          ? this.postRender()
+          : this.postRenderLoading(!userProfile)
+        }
       </View>
     </View>;
   }

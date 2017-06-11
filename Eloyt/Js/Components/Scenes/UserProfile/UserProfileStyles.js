@@ -16,8 +16,18 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     paddingTop: statusBarHeight,
   },
+  rootMainModalContainer: {
+    flex: 1,
+    paddingTop: statusBarHeight,
+  },
   rootMainPostContainer: {
     flex: 1,
+  },
+  loadingMainContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 1)',
+    //flex: 1,
+    position: 'absolute',
+    zIndex: 999,
   },
   loadingContainer: {
     width,
@@ -55,13 +65,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   backIcon: {
     width: 18,
@@ -79,13 +82,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   settingsIcon: {
     width: 18,
@@ -115,11 +111,16 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
   },
   discriptiveContainer: {
-    alignItems: 'flex-start',
     paddingLeft: 30,
     flexDirection:'row',
     flexWrap:'wrap',
     alignItems: 'center',
+  },
+  hashtags: {
+    paddingLeft: 30,
+  },
+  aboutMe: {
+    paddingLeft: 20,
   },
   fullNameText: {
     fontSize: 24,
@@ -162,5 +163,39 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'OpenSans',
+  },
+  checkContainer: {
+    width: 55,
+    height: 55,
+    backgroundColor: 'transparent',
+  },
+  checkIcon: {
+    width: 18,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  checkButton: {
+    width: 55,
+    height: 55,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cancelContainer: {
+    width: 55,
+    height: 55,
+    backgroundColor: 'transparent',
+  },
+  cancelIcon: {
+    width: 18,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  cancelButton: {
+    width: 55,
+    height: 55,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

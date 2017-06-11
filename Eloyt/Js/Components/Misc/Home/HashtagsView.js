@@ -2,10 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import {listOfInterests} from '../../../../default.json';
 
+const defaultWidth = 230;
+const defaultOpacity = 0.7;
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    width: 230,
+    width: defaultWidth,
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     flexDirection:'row',
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginBottom: 5,
     backgroundColor: '#ffffff',
-    opacity: 0.7,
+    opacity: defaultOpacity,
   },
   title: {
     fontFamily: 'OpenSans',
@@ -50,14 +53,12 @@ export default class HashtagsView extends Component {
   }
 
   render() {
-    const {tags} = this.props;
+    const {tags, width, opacity} = this.props;
 
     return (
-      <View style={styles.rootContainer}>
+      <View style={[styles.rootContainer, {width: width ? width : defaultWidth}]}>
         {tags.map((hashtag, index) => {
-
-
-          return <View key={index} style={styles.container}>
+          return <View key={index} style={[styles.container, {opacity : opacity ? opacity : defaultOpacity}]}>
             <Text style={styles.title}>{this.getHashtagTitleBySlug(hashtag)}</Text>
           </View>;
         })}
@@ -68,4 +69,6 @@ export default class HashtagsView extends Component {
 
 HashtagsView.propTypes = {
   tags: PropTypes.array,
+  width: PropTypes.number,
+  opacity: PropTypes.number,
 };

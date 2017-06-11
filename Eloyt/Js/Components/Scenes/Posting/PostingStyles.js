@@ -41,13 +41,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   backIcon: {
     width: 18,
@@ -65,13 +58,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   cancelIcon: {
     width: 18,
@@ -89,13 +75,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   retryIcon: {
     width: 18,
@@ -113,13 +92,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   checkIcon: {
     width: 18,
@@ -137,13 +109,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   postingIcon: {
     width: 26,

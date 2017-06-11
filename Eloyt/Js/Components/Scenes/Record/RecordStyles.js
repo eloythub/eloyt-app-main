@@ -16,13 +16,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   backIcon: {
     width: 18,
@@ -40,13 +33,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#c62828',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   recordIcon: {
     width: 24,
@@ -68,13 +54,6 @@ export const styles = StyleSheet.create({
     width: 55,
     height: 55,
     backgroundColor: 'transparent',
-    shadowColor: '#c62828',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   stopIcon: {
     width: 16,
@@ -101,13 +80,6 @@ export const styles = StyleSheet.create({
     width: 28,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   torchButton: {
     width: 55,
@@ -125,13 +97,6 @@ export const styles = StyleSheet.create({
     width: 35,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
-    shadowColor: '#d3d3d3',
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
   },
   cameraSwitchButton: {
     width: 55,
