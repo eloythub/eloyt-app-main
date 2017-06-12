@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, Sc
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
 import LinearGradient from 'react-native-linear-gradient';
-import { Pulse } from 'react-native-loader';
+import { Bars } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
 import ActionButton from './ActionButton';
@@ -29,7 +29,7 @@ export default class VideoPlayer extends Component {
       currentTime: null,
       paused: false,
       isActionModalAppears: false,
-      currentStatusBarHeight: StatusBarSizeIOS.currentHeight,
+      currentStatusBarHeight: 20 + StatusBarSizeIOS.currentHeight,
     };
   }
 
@@ -192,7 +192,7 @@ export default class VideoPlayer extends Component {
     if (!videoLoaded) {
       return <View style={styles.loadingContainer}>
         <View style={styles.loading}>
-          <Pulse size={40} color="#ffffff"/>
+          <Bars size={40} color="#ffffff"/>
         </View>
       </View>;
     }
