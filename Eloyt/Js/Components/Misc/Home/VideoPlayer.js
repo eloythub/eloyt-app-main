@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, Dimensions, ScrollView, Modal } from 'react-native';
 import Api from '../../../Libraries/Api';
 import Utils from '../../../Libraries/Utils';
 import LinearGradient from 'react-native-linear-gradient';
@@ -25,6 +25,7 @@ export default class VideoPlayer extends Component {
       duration: null,
       currentTime: null,
       paused: false,
+      isActionModalAppears: false
     };
   }
 
@@ -89,11 +90,12 @@ export default class VideoPlayer extends Component {
   handleTouchAction(video, proxy) {
     const {onSkip, onLike} = this.props;
 
-    const {nativeEvent: {pageX: touchedPositionx}} = proxy;
-    const {width: pageWidth} = Dimensions.get('window');
+    this.setState({
+      paused: true,
+      isActionModalAppears: true,
+    });
 
-    // if the touched area was in left side of the page means skip otherwise like
-    return touchedPositionx < pageWidth / 2.8 ? onSkip(video) : onLike(video);
+    //return onSkip(video) : onLike(video);
   }
 
   handleVideoLoad(data) {
@@ -236,11 +238,20 @@ export default class VideoPlayer extends Component {
 
   render() {
     const {video, styles} = this.props;
-    const {duration, currentTime} = this.state;
+    const {duration, currentTime, isActionModalAppears} = this.state;
 
     return (
       <View style={styles.videoContainer}>
-        <TouchableWithoutFeedback onPress={this.handleTouchAction.bind(this, video)}>
+        <Modal
+          visible={isActionModalAppears}
+          transparent={false}
+          animationType="fade"
+          onRequestClose={() => this.setState({isActionModalAppears: false})}>
+          <View style={styles.actionModalContainer}>
+
+          </View>
+        </Modal>
+        <TouchableWithoutFeedback onPressIn={this.handleTouchAction.bind(this, video)}>
           <View style={styles.videoThumbnailImageContainer}>
             {this.handleLoading()}
             {this.handleThumbnail()}

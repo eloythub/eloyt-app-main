@@ -26,6 +26,15 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#111111',
   },
+  actionModalContainer: {
+    width,
+    height,
+    flex: 1,
+    backgroundColor: 'red',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   videoThumbnailImageContainer: {
     position: 'absolute',
     top: 0,
