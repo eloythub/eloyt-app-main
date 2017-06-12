@@ -14,6 +14,7 @@ import HashtagsView from './HashtagsView';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { BlurView } from 'react-native-blur';
+import StatusBarSizeIOS from 'react-native-status-bar-size';
 
 const {width} = Dimensions.get('window');
 
@@ -28,11 +29,14 @@ export default class VideoPlayer extends Component {
       currentTime: null,
       paused: false,
       isActionModalAppears: false,
+      currentStatusBarHeight: StatusBarSizeIOS.currentHeight,
     };
   }
 
   componentDidMount() {
     const {video} = this.props;
+
+    StatusBarSizeIOS.addEventListener('didChange', this.handleStatusBarSizeDidChange.bind(this));
 
     // TODO: temporary read from stream feed, later must be able to cache the video
     //if (Platform.OS === 'ios') {
@@ -66,6 +70,9 @@ export default class VideoPlayer extends Component {
     //    });
     //  });
   }
+  componentWillUnmount() {
+    StatusBarSizeIOS.removeEventListener('didChange', this.handleStatusBarSizeDidChange.bind(this));
+  }
 
   componentWillReceiveProps(props) {
     const {refreshProps} = props;
@@ -75,6 +82,10 @@ export default class VideoPlayer extends Component {
         paused: false,
       }));
     }
+  }
+
+  handleStatusBarSizeDidChange(currentStatusBarHeight) {
+    this.setState({ currentStatusBarHeight });
   }
 
   like(video) {
@@ -257,7 +268,7 @@ export default class VideoPlayer extends Component {
 
   render() {
     const {video, styles} = this.props;
-    const {duration, currentTime, isActionModalAppears} = this.state;
+    const {duration, currentTime, isActionModalAppears, currentStatusBarHeight} = this.state;
 
     return (
       <View style={styles.videoContainer}>
@@ -288,7 +299,7 @@ export default class VideoPlayer extends Component {
           </View>
         </TouchableWithoutFeedback>
 
-        <View style={styles.highlightBottomContainer}>
+        <View style={[styles.highlightBottomContainer, {bottom: 60 - currentStatusBarHeight}]}>
           <LinearGradient
             start={{x: 0, y: 1}} end={{x: 0, y: 0}}
             locations={[0, 0.2, 1]}

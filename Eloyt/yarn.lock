@@ -3414,6 +3414,10 @@ react-native-router-flux@3.39.2:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
+react-native-status-bar-size@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-status-bar-size/-/react-native-status-bar-size-0.3.2.tgz#e3ffd906f021220c256857a8de6b945f8ea3fabc"
+
 react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
