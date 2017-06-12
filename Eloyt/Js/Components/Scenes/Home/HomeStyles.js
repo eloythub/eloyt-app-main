@@ -29,10 +29,16 @@ export const styles = StyleSheet.create({
   actionModalContainer: {
     width,
     height,
-    flex: 1,
-    backgroundColor: 'red',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  blurView: {
+    width: 300,
+    height: 120,
+    borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   videoThumbnailImageContainer: {

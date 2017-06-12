@@ -6,13 +6,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Pulse } from 'react-native-loader';
 import ProfileImage from './ProfileImage';
 import RecordButton from './RecordButton';
+import ActionButton from './ActionButton';
 import { Grid, Col, Row } from 'react-native-easy-grid';
 import Camera from 'react-native-camera';
 import Video from 'react-native-video';
-import TimeFormat from './TimeFormat';
 import HashtagsView from './HashtagsView';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { BlurView } from 'react-native-blur';
+
 const {width} = Dimensions.get('window');
 
 export default class VideoPlayer extends Component {
@@ -25,7 +27,7 @@ export default class VideoPlayer extends Component {
       duration: null,
       currentTime: null,
       paused: false,
-      isActionModalAppears: false
+      isActionModalAppears: false,
     };
   }
 
@@ -78,24 +80,41 @@ export default class VideoPlayer extends Component {
   like(video) {
     const {onLike} = this.props;
 
+    this.setState({
+      paused: false,
+      isActionModalAppears: false,
+    });
+
     return onLike(video);
+  }
+
+  dislike(video) {
+    const {onDislike} = this.props;
+
+    this.setState({
+      paused: false,
+      isActionModalAppears: false,
+    });
+
+    return onDislike(video);
   }
 
   skip(video) {
     const {onSkip} = this.props;
 
+    this.setState({
+      paused: false,
+      isActionModalAppears: false,
+    });
+
     return onSkip(video);
   }
 
-  handleTouchAction(video, proxy) {
-    const {onSkip, onLike} = this.props;
-
+  handleTouchAction(video) {
     this.setState({
       paused: true,
       isActionModalAppears: true,
     });
-
-    //return onSkip(video) : onLike(video);
   }
 
   handleVideoLoad(data) {
@@ -200,28 +219,28 @@ export default class VideoPlayer extends Component {
     }
   }
 
-  handleRecordButtonPress() {
+  async handleRecordButtonPress() {
     this.setState({
       paused: true,
     });
 
-    Utils.all([
+    const isAuths = await Utils.all([
       Camera.checkDeviceAuthorizationStatus(),
       Camera.checkVideoAuthorizationStatus(),
       Camera.checkAudioAuthorizationStatus(),
-    ]).then((isAuths) => {
-      for (let isAuth of isAuths) {
-        if (!isAuth) {
-          return this.refs.toast.show(
-            'We need your permission on Camera and Microphone in order to proceed',
-            DURATION.LENGTH_LONG
-          );
-        }
-      }
+    ]);
 
-      return Actions.record({
-        type: ActionConst.PUSH_OR_POP,
-      });
+    for (let isAuth of isAuths) {
+      if (!isAuth) {
+        return this.refs.toast.show(
+          'We need your permission on Camera and Microphone in order to proceed',
+          DURATION.LENGTH_LONG
+        );
+      }
+    }
+
+    return Actions.record({
+      type: ActionConst.PUSH_OR_POP,
     });
   }
 
@@ -244,11 +263,21 @@ export default class VideoPlayer extends Component {
       <View style={styles.videoContainer}>
         <Modal
           visible={isActionModalAppears}
-          transparent={false}
-          animationType="fade"
+          transparent={true}
+          animationType="slide"
           onRequestClose={() => this.setState({isActionModalAppears: false})}>
-          <View style={styles.actionModalContainer}>
-
+          <View>
+            <TouchableWithoutFeedback onPress={() => this.setState({isActionModalAppears: false})}>
+              <View style={styles.actionModalContainer}>
+                <TouchableWithoutFeedback>
+                  <BlurView blurType="light" overlayColor="#ffffff" blurAmount={10} style={styles.blurView}>
+                    <ActionButton caption="Dislike" icon="dislike" onClick={() => this.dislike(video)}/>
+                    <ActionButton caption="Skip" icon="skip" onClick={() => this.skip(video)}/>
+                    <ActionButton caption="Like" icon="like" onClick={() => this.like(video)}/>
+                  </BlurView>
+                </TouchableWithoutFeedback>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </Modal>
         <TouchableWithoutFeedback onPressIn={this.handleTouchAction.bind(this, video)}>
@@ -293,7 +322,6 @@ export default class VideoPlayer extends Component {
                             <HashtagsView tags={video.hashtags}/>
                           </View>
                         </ScrollView>
-
                       </Col>
                     </Grid>
                   </Row>
@@ -327,5 +355,6 @@ VideoPlayer.propTypes = {
   styles: PropTypes.object,
   refreshProps: PropTypes.object,
   onLike: PropTypes.func,
+  onDislike: PropTypes.func,
   onSkip: PropTypes.func,
 };

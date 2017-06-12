@@ -52,6 +52,15 @@ export const likeVideo = (video) => {
   });
 };
 
+export const dislikeVideo = (video) => {
+  // TODO: Send request to the api for like
+
+  return (dispatch) => dispatch({
+    type: HomeActionsConst.ON_HOME_VIDEO_DISLIKE_SUCCESS,
+    data: {video},
+  });
+};
+
 export const skipVideo = (video) => {
   // TODO: Send request to the api for skip
 

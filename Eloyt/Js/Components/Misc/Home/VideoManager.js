@@ -41,6 +41,16 @@ export default class VideoManager extends Component {
                     }
                   }
                 }
+                onDislike={
+                  (video) => {
+                    console.log('dislike');
+                    homeActions.dislikeVideo(video);
+
+                    if (producedData.length < 2) {
+                      homeActions.fetchProducedResources(ssoUserData._id);
+                    }
+                  }
+                }
                 onSkip={
                   (video) => {
                     console.log('skip');
