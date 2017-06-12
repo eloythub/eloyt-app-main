@@ -23,6 +23,7 @@ import HashtagsView from '../../Misc/Home/HashtagsView';
 import CheckButton from '../../Misc/Posting/CheckButton';
 import CancelButton from '../../Misc/Posting/CancelButton';
 import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
+import AboutMeInputTextBox from '../../Misc/Posting/InputTextBoxEntity';
 import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
 import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
 import InterestsEntity from '../../Misc/Posting/InterestsEntity';
@@ -73,6 +74,7 @@ class UserProfileScene extends Component {
 
           this.editFirstName = userProfileRequested.firstName;
           this.editLastName = userProfileRequested.lastName;
+          this.editAboutMe = userProfileRequested.aboutMe;
           this.editGender = userProfileRequested.gender;
           this.editBirthday = userProfileRequested.birthday;
           this.editHashtags = userProfileRequested.hashtags;
@@ -124,6 +126,7 @@ class UserProfileScene extends Component {
     if (
       !this.editFirstName ||
       !this.editLastName ||
+      !this.editAboutMe ||
       !this.editGender ||
       !this.editBirthday ||
       this.editHashtags.length < 3
@@ -140,6 +143,7 @@ class UserProfileScene extends Component {
     Api.requestUpdateProfile(userProfile._id, {
         firstName: this.editFirstName,
         lastName: this.editLastName,
+        aboutMe: this.editAboutMe,
         gender: this.editGender,
         birthday: this.editBirthday,
         hashtags: this.editHashtags,
@@ -269,6 +273,16 @@ class UserProfileScene extends Component {
                   default={userProfile.lastName}
                   caption="FIRST NAME"
                   name="firstname"
+                  nextFocusObjectRef={() => this.editAboutMeRef.focus()}
+                />
+              </View>
+              <View style={styles.profileEntityContainer}>
+                <AboutMeInputTextBox
+                  setTextRef={(textRefObj) => this.editAboutMeRef = textRefObj}
+                  onChange={(text) => this.editAboutMe = text}
+                  default={userProfile.aboutMe}
+                  caption="ABOUT ME"
+                  name="aboutme"
                 />
               </View>
               <View style={styles.profileEntityContainer}>

@@ -121,6 +121,8 @@ export const styles = StyleSheet.create({
   },
   aboutMe: {
     paddingLeft: 20,
+    marginTop: 10,
+    marginBottom: 10,
   },
   fullNameText: {
     fontSize: 24,

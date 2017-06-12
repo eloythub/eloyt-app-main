@@ -77,13 +77,13 @@ class HomeScene extends Component {
         refreshProps={this.props.refreshProps || {}}
         styles={styles}/>
 
-      <Modal
-        visible={!isTutorialWatched}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => this.setState({isTutorialWatched: true})}>
-        <LikeOrSkip onPress={this.handleTutorialActionPressed.bind(this)}/>
-      </Modal>
+      {/*<Modal*/}
+        {/*visible={!isTutorialWatched}*/}
+        {/*transparent={true}*/}
+        {/*animationType="fade"*/}
+        {/*onRequestClose={() => this.setState({isTutorialWatched: true})}>*/}
+        {/*<LikeOrSkip onPress={this.handleTutorialActionPressed.bind(this)}/>*/}
+      {/*</Modal>*/}
 
       <View style={styles.highlightTopContainer}>
         <LinearGradient
