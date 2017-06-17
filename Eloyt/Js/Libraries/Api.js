@@ -100,6 +100,16 @@ export default class Api {
     });
   }
 
+  static requestReactToVideo(userId, video, reactType) {
+    const {id: resourceId, user: {id: resourceOwnerUserId}} = video;
+
+    return new Promise((fulfill, reject) => {
+      return this.request(`/stream/${userId}/${resourceId}/${resourceOwnerUserId}/${reactType}`, RequestMethodType.post)
+        .then((res) => fulfill(res))
+        .catch((error) => reject(error));
+    });
+  }
+
   static fetchProducedResources(userId, offset = 50) {
     return new Promise(async(fulfill, reject) => {
       return this.request(`/stream/produce/${userId}/${offset}`, RequestMethodType.get)

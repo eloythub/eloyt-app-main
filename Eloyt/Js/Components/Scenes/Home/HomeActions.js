@@ -43,27 +43,21 @@ export const fetchProducedResources = (args = {}) => {
   };
 };
 
-export const likeVideo = (video) => {
-  // TODO: Send request to the api for like
-
+export const likeVideo = (userId, video) => {
   return (dispatch) => dispatch({
     type: HomeActionsConst.ON_HOME_VIDEO_LIKE_SUCCESS,
     data: {video},
   });
 };
 
-export const dislikeVideo = (video) => {
-  // TODO: Send request to the api for like
-
+export const dislikeVideo = (userId, video) => {
   return (dispatch) => dispatch({
     type: HomeActionsConst.ON_HOME_VIDEO_DISLIKE_SUCCESS,
     data: {video},
   });
 };
 
-export const skipVideo = (video) => {
-  // TODO: Send request to the api for skip
-
+export const skipVideo = (userId, video) => {
   return (dispatch) => dispatch({
     type: HomeActionsConst.ON_HOME_VIDEO_SKIP_SUCCESS,
     data: {video},

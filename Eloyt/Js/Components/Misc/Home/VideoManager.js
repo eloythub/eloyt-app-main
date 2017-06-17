@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import VideoQueue from './VideoQueue';
+import Api from '../../../Libraries/Api';
+import Utils from '../../../Libraries/Utils';
 
 export default class VideoManager extends Component {
   constructor(props) {
@@ -32,9 +34,14 @@ export default class VideoManager extends Component {
             ? <VideoQueue
                 refreshProps={refreshProps}
                 onLike={
-                  (video) => {
-                    console.log('like');
-                    homeActions.likeVideo(video);
+                  async (video) => {
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'like');
+
+                    if (likeVideoResponse.statusCode !== 200) {
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                    }
+
+                    homeActions.likeVideo(ssoUserData._id, video);
 
                     if (producedData.length < 2) {
                       homeActions.fetchProducedResources(ssoUserData._id);
@@ -42,9 +49,14 @@ export default class VideoManager extends Component {
                   }
                 }
                 onDislike={
-                  (video) => {
-                    console.log('dislike');
-                    homeActions.dislikeVideo(video);
+                  async (video) => {
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'dislike');
+
+                    if (likeVideoResponse.statusCode !== 200) {
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                    }
+
+                    homeActions.dislikeVideo(ssoUserData._id, video);
 
                     if (producedData.length < 2) {
                       homeActions.fetchProducedResources(ssoUserData._id);
@@ -52,9 +64,14 @@ export default class VideoManager extends Component {
                   }
                 }
                 onSkip={
-                  (video) => {
-                    console.log('skip');
-                    homeActions.skipVideo(video);
+                  async (video) => {
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'skip');
+
+                    if (likeVideoResponse.statusCode !== 200) {
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                    }
+
+                    homeActions.skipVideo(ssoUserData._id, video);
 
                     if (producedData.length < 2) {
                       homeActions.fetchProducedResources(ssoUserData._id);
