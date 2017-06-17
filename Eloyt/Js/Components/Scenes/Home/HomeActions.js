@@ -43,6 +43,13 @@ export const fetchProducedResources = (args = {}) => {
   };
 };
 
+export const newVideoUploaded = (uploadedVideoData) => {
+  return (dispatch) => dispatch({
+    type: HomeActionsConst.ON_HOME_NEW_VIDEO_UPLOADED_SUCCESS,
+    data: {uploadedVideoData},
+  });
+};
+
 export const likeVideo = (userId, video) => {
   return (dispatch) => dispatch({
     type: HomeActionsConst.ON_HOME_VIDEO_LIKE_SUCCESS,

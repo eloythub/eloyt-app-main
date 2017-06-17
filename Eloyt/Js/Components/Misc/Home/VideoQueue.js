@@ -7,7 +7,7 @@ export default class VideoQueue extends Component {
   }
 
   render() {
-    const {queue, styles, refreshProps, onLike, onDislike, onSkip} = this.props;
+    const {queue, styles, refreshProps, onNewVideoUploaded, onLike, onDislike, onSkip} = this.props;
 
     return (
       <View style={styles.rootContainer}>
@@ -18,6 +18,7 @@ export default class VideoQueue extends Component {
                 key={videoIndex}
                 refreshProps={refreshProps}
                 video={video}
+                onNewVideoUploaded={onNewVideoUploaded}
                 onLike={onLike}
                 onDislike={onDislike}
                 onSkip={onSkip}
@@ -36,6 +37,7 @@ VideoQueue.propTypes = {
   queue: PropTypes.array,
   refreshProps: PropTypes.object,
   styles: PropTypes.object,
+  onNewVideoUploaded: PropTypes.func,
   onLike: PropTypes.func,
   onDislike: PropTypes.func,
   onSkip: PropTypes.func,

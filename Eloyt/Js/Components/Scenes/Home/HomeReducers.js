@@ -71,6 +71,14 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
         producedData,
       };
 
+    case HomeActionsConst.ON_HOME_NEW_VIDEO_UPLOADED_SUCCESS:
+      producedData.splice(-1, 0, data.uploadedVideoData);
+
+      return {
+        ...state,
+        producedData,
+      };
+
     case HomeActionsConst.ON_HOME_SCENE_WAITING:
       return {
         ...state,

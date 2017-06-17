@@ -38,7 +38,9 @@ class HomeScene extends Component {
           isTutorialWatched,
         });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
+
         LoginManager.logOut();
 
         Actions.login({

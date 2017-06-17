@@ -15,7 +15,6 @@ export default class VideoManager extends Component {
     this.setState(props);
   }
 
-
   componentDidMount() {
     const {homeActions, ssoUserData} = this.props;
 
@@ -33,12 +32,23 @@ export default class VideoManager extends Component {
           producedData
             ? <VideoQueue
                 refreshProps={refreshProps}
+                onNewVideoUploaded={
+                  async (video) => {
+                    const uploadedVideoData = await Api.fetchProducedResourcesById(video._id);
+
+                    if (!uploadedVideoData) {
+                      return;
+                    }
+
+                    homeActions.newVideoUploaded(uploadedVideoData);
+                  }
+                }
                 onLike={
                   async (video) => {
                     const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'like');
 
                     if (likeVideoResponse.statusCode !== 200) {
-                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
                     homeActions.likeVideo(ssoUserData._id, video);
@@ -53,7 +63,7 @@ export default class VideoManager extends Component {
                     const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'dislike');
 
                     if (likeVideoResponse.statusCode !== 200) {
-                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
                     homeActions.dislikeVideo(ssoUserData._id, video);
@@ -68,7 +78,7 @@ export default class VideoManager extends Component {
                     const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'skip');
 
                     if (likeVideoResponse.statusCode !== 200) {
-                      return Utils.alert('There was a problem on performing this action, please try again few moment later')
+                      return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
                     homeActions.skipVideo(ssoUserData._id, video);

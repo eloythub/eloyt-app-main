@@ -125,4 +125,20 @@ export default class Api {
         );
     });
   }
+
+  static fetchProducedResourcesById(resourceId) {
+    return new Promise(async(fulfill, reject) => {
+      return this.request(`/stream/produce/${resourceId}`, RequestMethodType.get)
+        .then(
+          (res) => {
+            if (res.statusCode !== 200) {
+              return reject(res);
+            }
+
+            return fulfill(res.data);
+          },
+          (error) => reject(error)
+        );
+    });
+  }
 }

@@ -75,7 +75,11 @@ export default class VideoPlayer extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const {refreshProps} = props;
+    const {refreshProps, onNewVideoUploaded} = props;
+
+    if ('uploadedVideoData' in refreshProps) {
+      return onNewVideoUploaded(refreshProps.uploadedVideoData);
+    }
 
     if ('startVideoAgain' in refreshProps) {
       Utils.wait(500).then(() => this.setState({
@@ -88,8 +92,8 @@ export default class VideoPlayer extends Component {
     this.setState({ currentStatusBarHeight });
   }
 
-  like(video) {
-    const {onLike} = this.props;
+  like() {
+    const {onLike, video} = this.props;
 
     this.setState({
       paused: false,
@@ -99,8 +103,8 @@ export default class VideoPlayer extends Component {
     return onLike(video);
   }
 
-  dislike(video) {
-    const {onDislike} = this.props;
+  dislike() {
+    const {onDislike, video} = this.props;
 
     this.setState({
       paused: false,
@@ -110,8 +114,8 @@ export default class VideoPlayer extends Component {
     return onDislike(video);
   }
 
-  skip(video) {
-    const {onSkip} = this.props;
+  skip() {
+    const {onSkip, video} = this.props;
 
     this.setState({
       paused: false,
@@ -142,8 +146,8 @@ export default class VideoPlayer extends Component {
     console.log('handle Video Load Start', data);
   }
 
-  handleVideoEnd(data, video) {
-    const {onSkip} = this.props;
+  handleVideoEnd(data) {
+    const {onSkip, video} = this.props;
 
     this.setState({
       paused: true,
@@ -199,7 +203,7 @@ export default class VideoPlayer extends Component {
   }
 
   handleVideo() {
-    const {styles, video} = this.props;
+    const {styles} = this.props;
     const {videoFilePath, paused} = this.state;
 
     // Once video was downloaded and ready for preview
@@ -220,8 +224,8 @@ export default class VideoPlayer extends Component {
         onVideoLoadStart={this.handleVideoLoadStart.bind(this)}
         onLoad={this.handleVideoLoad.bind(this)}
         onVideoLoad={this.handleVideoLoad.bind(this)}
-        onEnd={this.handleVideoEnd.bind(this, video)}
-        onVideoEnd={this.handleVideoEnd.bind(this, video)}
+        onEnd={this.handleVideoEnd.bind(this)}
+        onVideoEnd={this.handleVideoEnd.bind(this)}
         onBuffer={this.handleVideoBuffer.bind(this)}
         onVideoBuffer={this.handleVideoBuffer.bind(this)}
         onError={this.handleVideoError.bind(this)}
@@ -282,9 +286,9 @@ export default class VideoPlayer extends Component {
               <View style={styles.actionModalContainer}>
                 <TouchableWithoutFeedback>
                   <BlurView blurType="light" overlayColor="#ffffff" blurAmount={10} style={styles.blurView}>
-                    <ActionButton caption="Dislike" icon="dislike" onClick={() => this.dislike(video)}/>
-                    <ActionButton caption="Skip" icon="skip" onClick={() => this.skip(video)}/>
-                    <ActionButton caption="Like" icon="like" onClick={() => this.like(video)}/>
+                    <ActionButton caption="Dislike" icon="dislike" onClick={() => this.dislike.bind(this)}/>
+                    <ActionButton caption="Skip" icon="skip" onClick={this.skip.bind(this)}/>
+                    <ActionButton caption="Like" icon="like" onClick={this.like.bind(this)}/>
                   </BlurView>
                 </TouchableWithoutFeedback>
               </View>
@@ -365,6 +369,7 @@ VideoPlayer.propTypes = {
   video: PropTypes.object,
   styles: PropTypes.object,
   refreshProps: PropTypes.object,
+  onNewVideoUploaded: PropTypes.func,
   onLike: PropTypes.func,
   onDislike: PropTypes.func,
   onSkip: PropTypes.func,

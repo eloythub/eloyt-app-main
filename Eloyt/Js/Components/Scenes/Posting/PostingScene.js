@@ -28,6 +28,7 @@ class PostingScene extends Component {
 
     this.state = {
       postingModalVisible: false,
+      uploadedVideoData: null,
       uploadProgress: 0,
       uploadStatus: PostingActionsConst.UPLOAD_IN_PROGRESS,
     };
@@ -88,7 +89,7 @@ class PostingScene extends Component {
       },
       this.uploadProgress.bind(this),
       (xhr) => this.xhr = xhr
-    ).then((res) => {
+    ).then(async (res) => {
       if (res.status !== 200) {
         return this.setState({
           uploadStatus: PostingActionsConst.UPLOAD_FAIL,
@@ -96,9 +97,12 @@ class PostingScene extends Component {
         });
       }
 
+      const video = JSON.parse(res.responseText);
+
       this.setState({
         uploadStatus: PostingActionsConst.UPLOAD_SUCCESSFUL,
         uploadProgress: 1,
+        uploadedVideoData: video,
       });
     }, () => {
       this.setState({
@@ -149,10 +153,12 @@ class PostingScene extends Component {
   }
 
   handleUploadIsDoneButtonPress() {
+    const { uploadedVideoData } = this.state;
+
     Actions.home({
       type: ActionConst.PUSH_OR_POP,
       refresh: {
-        refreshProps: {startVideoAgain: true},
+        refreshProps: {startVideoAgain: true, uploadedVideoData},
       },
     });
   }
