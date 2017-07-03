@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
   },
+  onlyTextTitle: {
+    fontFamily: 'OpenSans',
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#afafaf',
+    backgroundColor: 'transparent',
+  },
 });
 
 export default class HashtagsView extends Component {
@@ -53,15 +60,21 @@ export default class HashtagsView extends Component {
   }
 
   render() {
-    const {tags, width, opacity} = this.props;
+    const {tags, width, opacity, showOnlyText = false} = this.props;
+
+    const showOnlyTags = tags.map((hashtag, index) => this.getHashtagTitleBySlug(hashtag));
 
     return (
       <View style={[styles.rootContainer, {width: width ? width : defaultWidth}]}>
-        {tags.map((hashtag, index) => {
-          return <View key={index} style={[styles.container, {opacity : opacity ? opacity : defaultOpacity}]}>
-            <Text style={styles.title}>{this.getHashtagTitleBySlug(hashtag)}</Text>
-          </View>;
-        })}
+        {
+          showOnlyText
+          ? <Text style={styles.onlyTextTitle}>{showOnlyTags.join(' - ')}</Text>
+          : tags.map((hashtag, index) => {
+              return <View key={index} style={[styles.container, {opacity : opacity ? opacity : defaultOpacity}]}>
+                <Text style={styles.title}>{this.getHashtagTitleBySlug(hashtag)}</Text>
+              </View>;
+            })
+        }
       </View>
     );
   }
@@ -71,4 +84,5 @@ HashtagsView.propTypes = {
   tags: PropTypes.array,
   width: PropTypes.number,
   opacity: PropTypes.number,
+  showOnlyText: PropTypes.bool,
 };

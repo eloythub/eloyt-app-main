@@ -303,7 +303,10 @@ export default class VideoPlayer extends Component {
           </View>
         </TouchableWithoutFeedback>
 
-        <View style={[styles.highlightBottomContainer, {bottom: 60 - currentStatusBarHeight}]}>
+        <View style={[
+          styles.highlightBottomContainer,
+          //{bottom: 60 - currentStatusBarHeight}
+        ]}>
           <LinearGradient
             start={{x: 0, y: 1}} end={{x: 0, y: 0}}
             locations={[0, 0.2, 1]}
@@ -334,7 +337,7 @@ export default class VideoPlayer extends Component {
                         <Text style={styles.profileUserName}>{video.user.firstName}</Text>
                         <ScrollView>
                           <View>
-                            <HashtagsView tags={video.hashtags}/>
+                            <HashtagsView tags={video.hashtags} showOnlyText={true}/>
                           </View>
                         </ScrollView>
                       </Col>
