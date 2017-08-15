@@ -24,5 +24,11 @@
     -red | --release-device <android|ios>
         Release React Native App On requested platform android|ios
 
+    -st | --standard
+        Lunch js Standard
+
+    -stf | --standard-fix
+        Lunch js Standard fixer
+
     -c | --cleanup
         Clean up the npm packages

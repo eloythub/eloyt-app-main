@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "standard": "standard ./**/*.js --verbose",
+    "standard-fix": "standard ./**/*.js --fix --verbose"
   },
   "dependencies": {
     "moment": "^2.18.1",
@@ -40,7 +42,8 @@
     "eslint-plugin-class-property": "^1.0.6",
     "eslint-plugin-react": "^7.2.1",
     "jest": "20.0.4",
-    "react-test-renderer": "~15.6.1"
+    "react-test-renderer": "~15.6.1",
+    "standard": "^10.0.3"
   },
   "jest": {
     "preset": "react-native",
@@ -49,6 +52,20 @@
   "rnpm": {
     "assets": [
       "./Assets/Fonts"
+    ]
+  },
+  "engines": {
+    "node": ">=7.6"
+  },
+  "standard": {
+    "ignore": [
+      "/__mocks__/",
+      "/__tests__/",
+      "/android/",
+      "/Assets/",
+      "/ios/",
+      "/Locales/",
+      "/node_modules/"
     ]
   }
 }

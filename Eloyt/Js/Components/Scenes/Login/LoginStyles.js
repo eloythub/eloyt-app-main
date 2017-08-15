@@ -82,13 +82,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    marginTop: 40,
   },
   logoSlogan: {
     color: '#ffffff',
     fontFamily: 'OpenSans',
     fontWeight: 'normal',
     fontSize: 20,
-    paddingTop: 10,
+    paddingTop: 0,
   },
   loginAndContinueWithText: {
     fontSize: 14,

@@ -82,6 +82,18 @@ while [ "$1" != "" ]; do
             source ${DIR_CMD}/test.sh
             ;;
 
+        -st | --standard )
+            shift
+
+            source ${DIR_CMD}/standard.sh
+            ;;
+
+        -stf | --standard-fix )
+            shift
+
+            source ${DIR_CMD}/standard-fix.sh
+            ;;
+
         -c | --cleanup )
             shift
 
