@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { Image, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -20,6 +20,7 @@ import Utils from '../../../Libraries/Utils'
 import Api from '../../../Libraries/Api'
 import Toast, { DURATION } from 'react-native-easy-toast'
 
+const { log, error } = console
 const loginWithReadPermissions = [
   'public_profile',
   'email',
@@ -33,140 +34,139 @@ const loginWithReadPermissions = [
 ]
 
 class LoginScene extends Component {
-  static contextTypes = {}
-
   constructor (props) {
+    log(`LoginScene:constructor`)
+
     super(props)
 
     this.state = {
       waiting: true,
     }
+
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    log(`LoginScene:componentDidMount`)
+
     const {loginActions} = this.props
+    let ssoData
 
-    LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
-      .then((ssoData) => {
-        if (!ssoData) {
-          return this.setState({waiting: false})
-        }
+    try {
+      ssoData = await LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
+    } catch (err) {
+      error(err)
 
-        AccessToken.getCurrentAccessToken().then(
-          (data) => {
-            if (!data) {
-              return LoginManager.logInWithReadPermissions(loginWithReadPermissions)
-                .then(
-                  (result) => {
-                    if (result.isCancelled) {
-                      loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED)
+      return await this.setState({waiting: false})
+    }
 
-                      return this.setState({waiting: false})
-                    }
+    if (!ssoData) {
+      return await this.setState({waiting: false})
+    }
 
-                    this.doLogin()
-                  },
-                  (error) => {
-                    loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error)
+    const accessTokenData = await AccessToken.getCurrentAccessToken()
 
-                    this.setState({waiting: false})
-                  }
-                )
-                .catch(() => this.setState({waiting: false}))
-            }
+    if (accessTokenData) {
+      return await this.doLogin()
+    }
 
-            this.doLogin()
-          })
-          .catch(() => this.setState({waiting: false}))
-      })
-      .catch(() => this.setState({waiting: false}))
-  }
+    try {
+      const loginResult = await LoginManager.logInWithReadPermissions(loginWithReadPermissions)
 
-  doLogin () {
-    const {loginActions} = this.props
+      if (loginResult.isCancelled) {
+        await loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED)
 
-    this.setState({waiting: true})
-
-    AccessToken.getCurrentAccessToken().then(
-      (data) => {
-        const accessToken = data.accessToken.toString()
-
-        loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken)
-
-        FbGraphApi.getProfileId(accessToken)
-          .then((fbUserId) => {
-            Api.requestSsoLogin(accessToken, fbUserId)
-              .then((ssoLoginResponse) => {
-                if (ssoLoginResponse.statusCode !== 200) {
-                  this.setState({waiting: false})
-
-                  return loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED)
-                }
-
-                const ssoUserData = ssoLoginResponse.data
-
-                loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData)
-
-                if (!ssoUserData.activated) {
-                  // open the profile completion
-                  Actions.completeProfile({
-                    type: ActionConst.REPLACE,
-                  })
-
-                  return
-                }
-
-                Actions.home({
-                  type: ActionConst.REPLACE,
-                })
-              })
-              .catch(error => {
-                loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error)
-
-                this.setState({waiting: false})
-
-                this.refs.toast.show(error, DURATION.LENGTH_SHORT)
-              })
-          })
-          .catch(error => {
-            loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, error)
-
-            this.setState({waiting: false})
-          })
+        return await this.setState({waiting: false})
       }
-    )
+
+      await this.doLogin()
+    } catch (err) {
+      loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, err)
+
+      return await this.setState({waiting: false})
+    }
   }
 
-  onLoginPress () {
+  async doLogin () {
+    log(`LoginScene:doLogin`)
+
+    const {toast} = this.refs
+    const {loginActions} = this.props
+    let { accessToken } = await AccessToken.getCurrentAccessToken()
+
+    await this.setState({waiting: true})
+
+    accessToken = accessToken.toString()
+
+    await loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_SUCCEED, accessToken)
+
+    let fbUserId
+
+    try {
+      fbUserId = await FbGraphApi.getProfileId(accessToken)
+    } catch (err) {
+      await loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, err)
+
+      toast.show(`Login Failed!!! Eloyt was't able to fetch from Facebook, Please try again`, DURATION.LENGTH_SHORT)
+
+      return await this.setState({waiting: false})
+    }
+
+    try {
+      const {data: ssoUserData} = await Api.requestSsoLogin(accessToken, fbUserId)
+
+      console.log('SSO Result: ', ssoUserData)
+
+      await loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_SUCCEED, ssoUserData)
+
+      if (!ssoUserData.activated) {
+        // Show Complete Profile scene
+        return Actions.completeProfile({
+          type: ActionConst.REPLACE,
+        })
+      }
+
+      // Show Home Scene
+      Actions.home({
+        type: ActionConst.REPLACE,
+      })
+    } catch (err) {
+      await loginActions.onApiLogIn(LoginActionsConst.ON_SSO_LOGIN_FAILED, err)
+
+      await this.setState({waiting: false})
+
+      console.log('SSO Error: ', err)
+
+      toast.show(err.error, DURATION.LENGTH_SHORT)
+    }
+  }
+
+  async onLoginPress () {
+    log(`LoginScene:onLoginPress`)
+
+    const {toast} = this.refs
     const {loginActions} = this.props
 
-    this.setState({waiting: true})
+    await this.setState({waiting: true})
 
-    Utils.next().then(() => {
-      LoginManager.logOut()
+    LoginManager.logOut()
 
-      LoginManager.logInWithReadPermissions(loginWithReadPermissions)
-        .then(
-          (result) => {
-            if (result.isCancelled) {
-              this.setState({waiting: false})
+    try {
+      const loginResult = await LoginManager.logInWithReadPermissions(loginWithReadPermissions)
 
-              this.refs.toast.show('Canceled', DURATION.LENGTH_SHORT)
+      if (loginResult.isCancelled) {
+        await loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED)
 
-              loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_CANCELED)
+        toast.show('Canceled', DURATION.LENGTH_SHORT)
 
-              return
-            }
+        return await this.setState({waiting: false})
+      }
 
-            this.doLogin()
-          },
-          (error) => {
-            loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, error)
+      await this.doLogin()
+    } catch (err) {
+      loginActions.onFacebookLogIn(LoginActionsConst.ON_FACEBOOK_LOGIN_FAILED, err)
 
-            this.setState({waiting: false})
-          }
-        )
-    })
+      return await this.setState({waiting: false})
+    }
   }
 
   handleLoading (show) {

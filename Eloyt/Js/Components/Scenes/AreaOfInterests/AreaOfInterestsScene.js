@@ -62,7 +62,7 @@ class AreaOfInterestsScene extends Component {
       return;
     }
 
-    Api.requestUpdateProfile(ssoUserData._id, {
+    Api.requestUpdateProfile(ssoUserData.id, {
         hashtags: selectedInterests,
         activated: true,
       })

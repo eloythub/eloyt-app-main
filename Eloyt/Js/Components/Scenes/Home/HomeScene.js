@@ -101,7 +101,7 @@ class HomeScene extends Component {
             <ProfileImage
               width={45}
               height={45}
-              userId={ssoUserData._id}
+              userId={ssoUserData.id}
               avatar={ssoUserData.avatar}
               styles={styles}
               onClick={this.handleUserProfilePress.bind()}/>

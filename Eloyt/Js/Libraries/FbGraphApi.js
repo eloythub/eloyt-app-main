@@ -24,8 +24,12 @@ const fields = [
   'location',
 ];
 
+const {log} = console
+
 export default class FbGraphApi {
   static getProfileData(accessToken) {
+    log(`FbGraphApi:getProfileData`)
+
     return new Promise((fulfill, reject) => {
       const infoRequest = new GraphRequest(
         `/me?fields=${fields.join(',')}`,
@@ -47,6 +51,8 @@ export default class FbGraphApi {
   }
 
   static getProfileId(accessToken) {
+    log(`FbGraphApi:getProfileId`)
+
     return new Promise((fulfill, reject) => {
       const infoRequest = new GraphRequest(
         `/me?fields=id`,

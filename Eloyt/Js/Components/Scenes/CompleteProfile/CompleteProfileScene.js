@@ -1,94 +1,97 @@
-import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, Platform, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as LoginActionsConst from '../Login/LoginActionsConst';
-import * as CompleteProfileActions from './CompleteProfileActions';
-import { LoginManager } from 'react-native-fbsdk';
-import fluidBackground from '../../../../Assets/Images/fluid-background.jpg';
-import pureLogo from '../../../../Assets/Images/pure-logo.png';
-import { styles } from './CompleteProfileStyles';
-import ImageEntity from '../../Misc/CompleteProfile/ImageEntity';
-import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity';
-import GenderEntity from '../../Misc/CompleteProfile/GenderEntity';
-import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity';
-import { Bars } from 'react-native-loader';
-import { Actions, ActionConst } from 'react-native-router-flux';
-import LocalStorage from '../../../Libraries/LocalStorage';
-import Utils from '../../../Libraries/Utils';
-import Api from '../../../Libraries/Api';
+import React, { Component, PropTypes } from 'react'
+import { Image, Platform, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as LoginActionsConst from '../Login/LoginActionsConst'
+import * as CompleteProfileActions from './CompleteProfileActions'
+import fluidBackground from '../../../../Assets/Images/fluid-background.jpg'
+import pureLogo from '../../../../Assets/Images/pure-logo.png'
+import { styles } from './CompleteProfileStyles'
+import ImageEntity from '../../Misc/CompleteProfile/ImageEntity'
+import InputTextBox from '../../Misc/CompleteProfile/InputTextBoxEntity'
+import GenderEntity from '../../Misc/CompleteProfile/GenderEntity'
+import BirthdateEntity from '../../Misc/CompleteProfile/BirthdateEntity'
+import { Bars } from 'react-native-loader'
+import { ActionConst, Actions } from 'react-native-router-flux'
+import LocalStorage from '../../../Libraries/LocalStorage'
+import Utils from '../../../Libraries/Utils'
+import Api from '../../../Libraries/Api'
+
+const {log} = console
 
 class CompleteProfileScene extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    log(`CompleteProfileScene:constructor`)
+
+    super(props)
   }
 
-  componentDidMount() {
-    const {completeProfileActions} = this.props;
+  async componentDidMount () {
+    log(`CompleteProfileScene:componentDidMount`)
 
+    const {completeProfileActions} = this.props
 
-    LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
-      .then((ssoUserData) => {
-        completeProfileActions.setUserLogin({
-          ssoUserData,
-        });
+    const ssoUserData = await LocalStorage.load(LoginActionsConst.ON_SSO_USER_DATA)
 
-        this.firstName = ssoUserData.firstName;
-        this.lastName  = ssoUserData.lastName;
-        this.gender    = ssoUserData.gender;
-        this.birthday  = ssoUserData.birthday;
+    await completeProfileActions.setUserLogin({
+      ssoUserData,
+    })
 
-        completeProfileActions.waiting(false);
-      })
-      .catch((error) => {
-        LoginManager.logOut();
+    this.firstName   = ssoUserData.firstName
+    this.lastName    = ssoUserData.lastName
+    this.gender      = ssoUserData.gender
+    this.dateOfBirth = ssoUserData.dateOfBirth
 
-        Actions.login({
-          type: ActionConst.REPLACE,
-          error,
-        });
-      });
+    completeProfileActions.waiting(false)
+
+      //.catch((error) => {
+      //  LoginManager.logOut()
+      //
+      //  Actions.login({
+      //    type: ActionConst.REPLACE,
+      //    error,
+      //  })
+      //})
   }
 
-  static contextTypes = {
-    routes: PropTypes.object.isRequired,
-  };
+  async onNextButtonPress () {
+    log(`CompleteProfileScene:onNextButtonPress`)
 
-  onNextButtonPress() {
-    const {completeProfileActions, ssoUserData} = this.props;
+    const {completeProfileActions, ssoUserData} = this.props
 
-    if (!this.firstName || !this.lastName || !this.gender || !this.birthday) {
-      Utils.alert('All the fields are required.');
+    if (!this.firstName || !this.lastName || !this.gender || !this.dateOfBirth) {
+      Utils.alert('All the fields are required.')
 
-      return;
+      return
     }
 
-    completeProfileActions.waiting(true);
+    await completeProfileActions.waiting(true)
 
-
-    Api.requestUpdateProfile(ssoUserData._id, {
+    Api.requestUpdateProfile(ssoUserData.id, {
         firstName: this.firstName,
         lastName: this.lastName,
         gender: this.gender,
-        birthday: this.birthday,
+        dateOfBirth: this.dateOfBirth,
       })
       .then((updatedUserRes) => {
-        completeProfileActions.setUserLogin({ssoUserData: updatedUserRes.data});
+        completeProfileActions.setUserLogin({ssoUserData: updatedUserRes.data})
 
-        completeProfileActions.waiting(false);
+        completeProfileActions.waiting(false)
 
         Utils.next().then(() => {
           Actions.areaOfInterests({
             type: ActionConst.REPLACE,
-          });
-        });
+          })
+        })
       })
       .catch(() => {
-        completeProfileActions.waiting(false);
-      });
+        completeProfileActions.waiting(false)
+      })
   }
 
-  postRender() {
+  postRender () {
+    const {ssoUserData} = this.props
+
     return (
       <View style={styles.rootMainPostContainer}>
         <View style={styles.logoContainer}>
@@ -101,15 +104,15 @@ class CompleteProfileScene extends Component {
               <View style={styles.profileEntityContainer}>
                 <ImageEntity
                   imageUrl={Api.getProfileAvatar(
-                          this.props.ssoUserData._id,
-                          this.props.ssoUserData.avatar
-                        )}/>
+                    ssoUserData.id,
+                    ssoUserData.avatar
+                  )}/>
               </View>
               <View style={styles.profileEntityContainer}>
                 <InputTextBox
                   setTextRef={(textRefObj) => this.firstNameRef = textRefObj}
                   onChange={(text) => this.firstName = text}
-                  default={this.props.ssoUserData.firstName}
+                  default={ssoUserData.firstName}
                   caption="FIRST NAME"
                   name="firstname"
                   nextFocusObjectRef={() => this.lastNameRef.focus()}
@@ -119,7 +122,7 @@ class CompleteProfileScene extends Component {
                 <InputTextBox
                   setTextRef={(textRefObj) => this.lastNameRef = textRefObj}
                   onChange={(text) => this.lastName = text}
-                  default={this.props.ssoUserData.lastName}
+                  default={ssoUserData.lastName}
                   caption="LAST NAME"
                   name="lastname"
                 />
@@ -127,13 +130,13 @@ class CompleteProfileScene extends Component {
               <View style={styles.profileEntityContainer}>
                 <GenderEntity
                   onPress={(genderValue) => this.gender = genderValue}
-                  value={this.props.ssoUserData.gender.toLowerCase()}
+                  value={ssoUserData.gender.toLowerCase()}
                 />
               </View>
               <View style={styles.profileEntityContainer}>
                 <BirthdateEntity
-                  onChange={(birthday) => this.birthday = birthday}
-                  date={this.props.ssoUserData.birthday}/>
+                  onChange={(dateOfBirth) => this.dateOfBirth = dateOfBirth}
+                  date={ssoUserData.dateOfBirth}/>
               </View>
             </View>
           </ScrollView>
@@ -142,21 +145,21 @@ class CompleteProfileScene extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 
-  handleLoading(show) {
+  handleLoading (show) {
     if (show) {
       return <View style={styles.loadingContainer}>
         <View style={styles.loading}>
           <Bars size={40} color="#ffffff"/>
         </View>
-      </View>;
+      </View>
     }
   }
 
-  render() {
-    const {waiting} = this.props;
+  render () {
+    const {waiting} = this.props
 
     return (
       <View style={styles.rootContainer}>
@@ -171,7 +174,7 @@ class CompleteProfileScene extends Component {
           {this.props.ssoUserData ? this.postRender() : null}
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -180,26 +183,26 @@ CompleteProfileScene.propTypes = {
   waiting: PropTypes.bool,
   fbAccessToken: PropTypes.string,
   ssoUserData: PropTypes.object,
-};
+}
 
 const mapStateToProps = (state) => {
-  const {CompleteProfileReducers} = state;
+  const {CompleteProfileReducers} = state
 
-  return CompleteProfileReducers;
-};
+  return CompleteProfileReducers
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     completeProfileActions: bindActionCreators(CompleteProfileActions, dispatch),
-  };
-};
+  }
+}
 
 const ConnectedCompleteProfileScene = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CompleteProfileScene);
+)(CompleteProfileScene)
 
-export const CompleteProfileSceneKey   = 'completeProfile';
-export const CompleteProfileSceneTitle = 'Complete Profile';
+export const CompleteProfileSceneKey   = 'completeProfile'
+export const CompleteProfileSceneTitle = 'Complete Profile'
 
-export default ConnectedCompleteProfileScene;
+export default ConnectedCompleteProfileScene

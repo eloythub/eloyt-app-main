@@ -56,10 +56,10 @@ class UserProfileScene extends Component {
 
 
         if (!userId) {
-          userId = ssoUserData._id;
+          userId = ssoUserData.id;
         }
 
-        const requestGetProfile          = await Api.requestGetProfile(ssoUserData._id);
+        const requestGetProfile          = await Api.requestGetProfile(ssoUserData.id);
         const requestGetProfileRequested = await Api.requestGetProfile(userId);
 
         if (requestGetProfile.statusCode && requestGetProfileRequested.statusCode ) {
@@ -68,7 +68,7 @@ class UserProfileScene extends Component {
 
           this.setState({
             ssoUserData,
-            loggedInUserProfile: userProfile._id === userProfileRequested._id,
+            loggedInUserProfile: userProfile.id === userProfileRequested.id,
             userProfile: userProfileRequested,
           });
 
@@ -140,7 +140,7 @@ class UserProfileScene extends Component {
       editWaiting: true,
     });
 
-    Api.requestUpdateProfile(userProfile._id, {
+    Api.requestUpdateProfile(userProfile.id, {
         firstName: this.editFirstName,
         lastName: this.editLastName,
         aboutMe: this.editAboutMe,
@@ -180,7 +180,7 @@ class UserProfileScene extends Component {
             <ScrollView>
               <View style={styles.entitiesContainer}>
                 <View style={styles.profileEntityContainer}>
-                  <ImageEntity imageUrl={Api.getProfileAvatar(userProfile._id, userProfile.avatar)}/>
+                  <ImageEntity imageUrl={Api.getProfileAvatar(userProfile.id, userProfile.avatar)}/>
                 </View>
                 <View style={styles.profileEntityContainer}>
                   <Text style={styles.fullNameText}>{userProfile.firstName} {userProfile.lastName}</Text>

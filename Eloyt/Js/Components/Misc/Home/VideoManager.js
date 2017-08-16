@@ -18,7 +18,7 @@ export default class VideoManager extends Component {
   componentDidMount() {
     const {homeActions, ssoUserData} = this.props;
 
-    homeActions.fetchProducedResources(ssoUserData._id);
+    homeActions.fetchProducedResources(ssoUserData.id);
   }
 
   render() {
@@ -34,7 +34,7 @@ export default class VideoManager extends Component {
                 refreshProps={refreshProps}
                 onNewVideoUploaded={
                   async (video) => {
-                    const uploadedVideoData = await Api.fetchProducedResourcesById(video._id);
+                    const uploadedVideoData = await Api.fetchProducedResourcesById(video.id);
 
                     if (!uploadedVideoData) {
                       return;
@@ -45,46 +45,46 @@ export default class VideoManager extends Component {
                 }
                 onLike={
                   async (video) => {
-                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'like');
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData.id, video, 'like');
 
                     if (likeVideoResponse.statusCode !== 200) {
                       return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
-                    homeActions.likeVideo(ssoUserData._id, video);
+                    homeActions.likeVideo(ssoUserData.id, video);
 
                     if (producedData.length < 2) {
-                      homeActions.fetchProducedResources(ssoUserData._id);
+                      homeActions.fetchProducedResources(ssoUserData.id);
                     }
                   }
                 }
                 onDislike={
                   async (video) => {
-                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'dislike');
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData.id, video, 'dislike');
 
                     if (likeVideoResponse.statusCode !== 200) {
                       return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
-                    homeActions.dislikeVideo(ssoUserData._id, video);
+                    homeActions.dislikeVideo(ssoUserData.id, video);
 
                     if (producedData.length < 2) {
-                      homeActions.fetchProducedResources(ssoUserData._id);
+                      homeActions.fetchProducedResources(ssoUserData.id);
                     }
                   }
                 }
                 onSkip={
                   async (video) => {
-                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData._id, video, 'skip');
+                    const likeVideoResponse = await Api.requestReactToVideo(ssoUserData.id, video, 'skip');
 
                     if (likeVideoResponse.statusCode !== 200) {
                       return Utils.alert('There was a problem on performing this action, please try again few moment later');
                     }
 
-                    homeActions.skipVideo(ssoUserData._id, video);
+                    homeActions.skipVideo(ssoUserData.id, video);
 
                     if (producedData.length < 2) {
-                      homeActions.fetchProducedResources(ssoUserData._id);
+                      homeActions.fetchProducedResources(ssoUserData.id);
                     }
                   }
                 }

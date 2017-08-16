@@ -1,4 +1,4 @@
-import { apiEnv, apiBaseUrl } from '../../app.json';
+import { apiBaseUrl, apiEnv } from '../../app.json'
 
 export const RequestMethodType = {
   get: 'GET',
@@ -8,25 +8,38 @@ export const RequestMethodType = {
   patch: 'PATCH',
 };
 
+const {log} = console
+
 export default class Api {
   static request(url, method, bodyData) {
+    log(`Api:request`)
+
     return new Promise(async(fulfill, reject) => {
-      await fetch(this.url(url), {
-        method: method,
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          //'Authentication': '', // TODO: implement this later for security
-        },
-        body: JSON.stringify(bodyData),
-      })
-        .then((response) => response.json())
-        .then((responseData) => fulfill(responseData))
-        .catch((error) => reject(error.message));
+      try {
+        let response = await fetch(this.url(url), {
+          method: method,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            //'Authentication': '', // TODO: implement this later for security
+          },
+          body: JSON.stringify(bodyData),
+        })
+
+        if (!response.ok) {
+          return reject(await response.json())
+        }
+
+        fulfill(await response.json())
+      } catch(err) {
+        reject(err)
+      }
     });
   }
 
   static postWithProgress(url, opts = {}, onProgress, afterSend) {
+    log(`Api:postWithProgress`)
+
     return new Promise((fulfill, reject) => {
       const xhr = new XMLHttpRequest();
 
@@ -51,19 +64,23 @@ export default class Api {
   }
 
   static url(url) {
+    log(`Api:url`)
+
     return apiBaseUrl[apiEnv] + url;
   }
 
   static resourceStreamUrl(userId, resourceType, resourceId) {
+    log(`Api:resourceStreamUrl`)
+
     return this.url(`/stream/${userId}/${resourceType}/${resourceId}`);
   }
 
-  static requestSsoLogin(token, userId) {
+  static requestSsoLogin(accessToken, facebookUserId) {
+    log(`Api:requestSsoLogin`)
+
     const data = {
-      credentials: {
-        token,
-        userId,
-      },
+      accessToken,
+      facebookUserId,
     };
 
     return new Promise(async(fulfill, reject) => {
@@ -74,10 +91,14 @@ export default class Api {
   }
 
   static getProfileAvatar(userId, avatarResourceId) {
+    log(`Api:getProfileAvatar`)
+
     return this.resourceStreamUrl(userId, 'avatar', avatarResourceId);
   }
 
   static requestUpdateProfile(userId, attributes) {
+    log(`Api:requestUpdateProfile`)
+
     const data = {
       credentials: {
         userId,
@@ -93,6 +114,8 @@ export default class Api {
   }
 
   static requestGetProfile(userId) {
+    log(`Api:requestGetProfile`)
+
     return new Promise(async(fulfill, reject) => {
       return this.request(`/users/${userId}`, RequestMethodType.get)
         .then((res) => fulfill(res))
@@ -101,6 +124,8 @@ export default class Api {
   }
 
   static requestReactToVideo(userId, video, reactType) {
+    log(`Api:requestReactToVideo`)
+
     const {id: resourceId, user: {id: resourceOwnerUserId}} = video;
 
     return new Promise((fulfill, reject) => {
@@ -111,6 +136,8 @@ export default class Api {
   }
 
   static fetchProducedResources(userId, offset = 50) {
+    log(`Api:fetchProducedResources`)
+
     return new Promise(async(fulfill, reject) => {
       return this.request(`/stream/produce/${userId}/${offset}`, RequestMethodType.get)
         .then(
@@ -127,6 +154,8 @@ export default class Api {
   }
 
   static fetchProducedResourcesById(resourceId) {
+    log(`Api:fetchProducedResourcesById`)
+
     return new Promise(async(fulfill, reject) => {
       return this.request(`/stream/produce/${resourceId}`, RequestMethodType.get)
         .then(

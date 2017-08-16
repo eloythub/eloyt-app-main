@@ -70,7 +70,7 @@ class PostingScene extends Component {
 
     const data = new FormData();
 
-    data.append('userId', ssoUserData._id);
+    data.append('userId', ssoUserData.id);
     data.append('description', this.description);
     data.append('hashtags', this.interests.join(','));
     data.append('geoLocationLatitude', 13.7191658); // latitude
