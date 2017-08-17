@@ -156,7 +156,7 @@ const mapStateToProps = (state) => {
     HomeReducers,
     ssoUserData,
     isTutorialWatched,
-    waiting,
+    waitingMain,
   };
 };
 

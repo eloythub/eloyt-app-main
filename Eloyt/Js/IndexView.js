@@ -6,77 +6,77 @@ import thunk from 'redux-thunk'
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux'
 import Reducers from './Reducers'
 // Import Components Scenes Here
-import ConnectedLoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene'
-import ConnectedCompleteProfileScene, {
-  CompleteProfileSceneKey,
-  CompleteProfileSceneTitle
-} from './Components/Scenes/CompleteProfile/CompleteProfileScene'
-import ConnectedAreaOfInterestsScene, {
-  AreaOfInterestsSceneKey,
-  AreaOfInterestsSceneTitle
-} from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene'
-import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene'
-import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene'
-import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene'
-import ConnectedUserProfileScene, { UserProfileSceneKey, UserProfileSceneTitle } from './Components/Scenes/UserProfile/UserProfileScene'
+//import LoginScene, { LoginSceneKey, LoginSceneTitle } from './Components/Scenes/Login/LoginScene'
+//import CompleteProfileScene, {
+//  CompleteProfileSceneKey,
+//  CompleteProfileSceneTitle
+//} from './Components/Scenes/CompleteProfile/CompleteProfileScene'
+//import ConnectedAreaOfInterestsScene, {
+//  AreaOfInterestsSceneKey,
+//  AreaOfInterestsSceneTitle
+//} from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene'
+//import ConnectedHomeScene, { HomeSceneKey, HomeSceneTitle } from './Components/Scenes/Home/HomeScene'
+//import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene'
+//import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene'
+//import ConnectedUserProfileScene, { UserProfileSceneKey, UserProfileSceneTitle } from './Components/Scenes/UserProfile/UserProfileScene'
 
 const Scenes = Actions.create(
   <Scene key='root'>
-    <Scene
-      hideNavBar
-      title={LoginSceneTitle}
-      key={LoginSceneKey}
-      component={ConnectedLoginScene}
-      initial
-    />
-    <Scene
-      hideNavBar
-      title={CompleteProfileSceneTitle}
-      key={CompleteProfileSceneKey}
-      component={ConnectedCompleteProfileScene}
-      type={ActionConst.POP_AND_REPLACE}
-    />
-    <Scene
-      hideNavBar
-      title={AreaOfInterestsSceneTitle}
-      key={AreaOfInterestsSceneKey}
-      component={ConnectedAreaOfInterestsScene}
-      type={ActionConst.POP_AND_REPLACE}
-    />
-    <Scene
-      hideNavBar
-      title={HomeSceneTitle}
-      key={HomeSceneKey}
-      component={ConnectedHomeScene}
-      type={ActionConst.POP_AND_REPLACE}
-    />
-    <Scene
-      hideNavBar
-      title={RecordSceneTitle}
-      key={RecordSceneKey}
-      component={ConnectedRecordScene}
-      type={ActionConst.PUSH_OR_POP}
-      direction='horizontal'
-      duration={300}
-    />
-    <Scene
-      hideNavBar
-      title={PostingSceneTitle}
-      key={PostingSceneKey}
-      component={ConnectedPostingScene}
-      type={ActionConst.PUSH_OR_POP}
-      direction='horizontal'
-      duration={300}
-    />
-    <Scene
-      hideNavBar
-      title={UserProfileSceneTitle}
-      key={UserProfileSceneKey}
-      component={ConnectedUserProfileScene}
-      type={ActionConst.PUSH_OR_POP}
-      direction='horizontal'
-      duration={300}
-    />
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={LoginSceneTitle}*/}
+      {/*key={LoginSceneKey}*/}
+      {/*component={LoginScene}*/}
+      {/*initial*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={CompleteProfileSceneTitle}*/}
+      {/*key={CompleteProfileSceneKey}*/}
+      {/*component={CompleteProfileScene}*/}
+      {/*type={ActionConst.POP_AND_REPLACE}*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={AreaOfInterestsSceneTitle}*/}
+      {/*key={AreaOfInterestsSceneKey}*/}
+      {/*component={ConnectedAreaOfInterestsScene}*/}
+      {/*type={ActionConst.POP_AND_REPLACE}*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={HomeSceneTitle}*/}
+      {/*key={HomeSceneKey}*/}
+      {/*component={ConnectedHomeScene}*/}
+      {/*type={ActionConst.POP_AND_REPLACE}*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={RecordSceneTitle}*/}
+      {/*key={RecordSceneKey}*/}
+      {/*component={ConnectedRecordScene}*/}
+      {/*type={ActionConst.PUSH_OR_POP}*/}
+      {/*direction='horizontal'*/}
+      {/*duration={300}*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={PostingSceneTitle}*/}
+      {/*key={PostingSceneKey}*/}
+      {/*component={ConnectedPostingScene}*/}
+      {/*type={ActionConst.PUSH_OR_POP}*/}
+      {/*direction='horizontal'*/}
+      {/*duration={300}*/}
+    {/*/>*/}
+    {/*<Scene*/}
+      {/*hideNavBar*/}
+      {/*title={UserProfileSceneTitle}*/}
+      {/*key={UserProfileSceneKey}*/}
+      {/*component={ConnectedUserProfileScene}*/}
+      {/*type={ActionConst.PUSH_OR_POP}*/}
+      {/*direction='horizontal'*/}
+      {/*duration={300}*/}
+    {/*/>*/}
   </Scene>
 )
 
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
   }
 })
 
-AppRegistry.registerComponent('Eloyt', () => IndexView)
+AppRegistry.registerComponent('EloytStaging', () => IndexView)

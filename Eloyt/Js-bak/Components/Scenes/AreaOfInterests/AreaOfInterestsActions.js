@@ -18,7 +18,7 @@ export const waiting = (waiting) => {
     dispatch({
       type: AreaOfInterestsActionsConst.ON_AREA_OF_INTERESTS_SCENE_WAITING,
       data: {
-        waiting,
+        waitingMain,
       },
     });
   };

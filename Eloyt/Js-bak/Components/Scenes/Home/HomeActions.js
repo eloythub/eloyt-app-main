@@ -76,7 +76,7 @@ export const waiting = (waiting) => {
     dispatch({
       type: HomeActionsConst.ON_HOME_SCENE_WAITING,
       data: {
-        waiting,
+        waitingMain,
       },
     });
   };

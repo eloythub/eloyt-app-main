@@ -22,7 +22,7 @@ const CompleteProfileReducers = (state = DEFAULT_STATE, {type, data}) => {
     case CompleteProfileActionsConst.ON_COMPLETE_PROFILE_SCENE_WAITING:
       return {
         ...state,
-        waiting: data.waiting,
+        waitingMain: data.waitingMain,
       };
 
     default:

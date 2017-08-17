@@ -176,7 +176,7 @@ const mapStateToProps = (state) => {
     AreaOfInterestsReducers,
     selectedInterests,
     ssoUserData,
-    waiting,
+    waitingMain,
   };
 };
 

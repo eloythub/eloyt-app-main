@@ -23,7 +23,7 @@ const AreaOfInterestsReducers = (state = DEFAULT_STATE, {type, data}) => {
     case AreaOfInterestsActionsConst.ON_AREA_OF_INTERESTS_SCENE_WAITING:
       return {
         ...state,
-        waiting: data.waiting,
+        waitingMain: data.waitingMain,
       };
 
     case AreaOfInterestsActionsConst.TOGGLE_INTEREST_ACTION:

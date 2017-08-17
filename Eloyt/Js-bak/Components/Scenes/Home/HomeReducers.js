@@ -82,7 +82,7 @@ const HomeReducers = (state = DEFAULT_STATE, {type, data}) => {
     case HomeActionsConst.ON_HOME_SCENE_WAITING:
       return {
         ...state,
-        waiting: data.waiting,
+        waitingMain: data.waitingMain,
       };
 
     default:

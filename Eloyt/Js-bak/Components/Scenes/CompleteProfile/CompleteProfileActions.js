@@ -18,7 +18,7 @@ export const waiting = (waiting) => {
     dispatch({
       type: CompleteProfileActionsConst.ON_COMPLETE_PROFILE_SCENE_WAITING,
       data: {
-        waiting,
+        waitingMain,
       },
     });
   };
