@@ -1,3 +1,3 @@
-[submodule "Eloyt/Modules/react-native-eloyt-component-framework"]
-	path = Eloyt/Modules/react-native-eloyt-component-framework
-	url = git@github.com:eloythub/react-native-eloyt-component-framework.git
+[submodule "Eloyt/Modules/react-eloyt"]
+	path = Eloyt/Modules/react-eloyt
+	url = git@github.com:eloythub/react-eloyt.git

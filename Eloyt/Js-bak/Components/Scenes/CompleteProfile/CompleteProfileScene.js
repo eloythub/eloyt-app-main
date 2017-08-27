@@ -164,7 +164,7 @@ class CompleteProfileScene extends Component {
     return (
       <View style={styles.rootContainer}>
         <StatusBar
-          backgroundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
+          backgroUsersRepository:fetchUserByIdundColor={Platform.OS === 'ios' ? '#ffffff' : '#000000'}
           barStyle="light-content"
           hidden={false}
         />

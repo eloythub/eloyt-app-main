@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-npm start -- --reset-cache
+npm start -s -- --reset-cache

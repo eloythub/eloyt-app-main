@@ -1,3 +1,3 @@
-import IndexView from './Js/IndexView';
+import IndexView from './Js';
 
 export default IndexView;
