@@ -47,10 +47,14 @@ export default class GenderEntity extends Component {
   constructor(props) {
     super(props);
 
+    props.value = props.value.toLowerCase()
+
     this.state = props;
   }
 
   componentWillReceiveProps(props) {
+    props.value = props.value.toLowerCase()
+
     this.setState(props);
   }
 

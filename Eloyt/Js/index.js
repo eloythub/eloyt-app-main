@@ -5,11 +5,14 @@ import { AuthEnum } from './Enums'
 import { Debug, LocalStorage } from './Factories'
 // Import Components Scenes Here
 import LoginScreen, { LoginScreenKey, LoginScreenTitle } from './Screens/LoginScreen'
-import CompleteProfileScreen, { CompleteProfileScreenKey, CompleteProfileScreenTitle } from './Screens/CompleteProfileScreen'
-// import ConnectedAreaOfInterestsScene, {
-//  AreaOfInterestsSceneKey,
-//  AreaOfInterestsSceneTitle
-// } from './Components/Scenes/AreaOfInterests/AreaOfInterestsScene'
+import CompleteProfileScreen, {
+  CompleteProfileScreenKey,
+  CompleteProfileScreenTitle
+} from './Screens/CompleteProfileScreen'
+ import ProfileHashtagsScreen, {
+  ProfileHashtagsScreenKey,
+  ProfileHashtagsScreenTitle
+ } from './Screens/ProfileHashtagsScreen'
 import HomeScreen, { HomeScreenKey, HomeScreenTitle } from './Screens/HomeScreen'
 // import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene'
 // import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene'
@@ -88,6 +91,12 @@ export default class IndexView extends Component {
               key={CompleteProfileScreenKey}
               title={CompleteProfileScreenTitle}
               component={CompleteProfileScreen}
+              onEnter={this.RedirectToLoginSceneIfWereNotSignedIn.bind(this)}
+            />
+            <Scene
+              key={ProfileHashtagsScreenKey}
+              title={ProfileHashtagsScreenTitle}
+              component={ProfileHashtagsScreen}
               onEnter={this.RedirectToLoginSceneIfWereNotSignedIn.bind(this)}
             />
           </Scene>

@@ -13,7 +13,7 @@ export default class LoginScreenDelegator extends Delegator {
     Debug.Log('LoginScreenDelegator:componentDidMount')
 
     //LoginManager.logOut()
-    await LocalStorage.unload(AuthEnum.LOGIN_STATUS)
+    //await LocalStorage.unload(AuthEnum.LOGIN_STATUS)
 
     const facebookAccessToken = await AccessToken.getCurrentAccessToken()
 
@@ -64,7 +64,6 @@ export default class LoginScreenDelegator extends Delegator {
 
   async doLogin (facebookAccessTokenObject) {
     Debug.Log('LoginScreenDelegator:doLogin')
-
 
     await LocalStorage.save(AuthEnum.LOGIN_FB_ACCESS_TOKEN, facebookAccessTokenObject)
 

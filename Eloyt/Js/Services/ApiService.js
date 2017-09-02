@@ -3,6 +3,23 @@ import { Debug } from '../Factories'
 import { RequestEnum } from '../Enums'
 
 export default class ApiService extends RequestService {
+  /*
+   * Auth
+   */
+  static async generateAccessToken (userId) {
+    Debug.Log(`ApiService:getOrCreateUser`)
+
+    const data = {
+      userId,
+    }
+
+    return await this.dispatchRequest('/auth/token/generate', RequestEnum.TYPE.POST, data)
+  }
+
+  /*
+   * Users
+   */
+
   static async getOrCreateUser (accessToken, facebookUserId) {
     Debug.Log(`ApiService:getOrCreateUser`)
 
@@ -14,17 +31,7 @@ export default class ApiService extends RequestService {
     return await this.dispatchRequest('/users/create-or-get', RequestEnum.TYPE.PUT, data)
   }
 
-  static async generateAccessToken (userId) {
-    Debug.Log(`ApiService:getOrCreateUser`)
-
-    const data = {
-      userId,
-    }
-
-    return await this.dispatchRequest('/auth/token/generate', RequestEnum.TYPE.POST, data)
-  }
-
-  static async requestUpdateProfile (attributes) {
+  static async updateProfile (attributes) {
     Debug.Log(`ApiService:requestUpdateProfile`)
 
     const data = {
@@ -34,12 +41,40 @@ export default class ApiService extends RequestService {
     return await this.dispatchRequest('/users/profile-update', RequestEnum.TYPE.POST, data)
   }
 
+  static async activateUser () {
+    Debug.Log(`ApiService:requestUpdateProfile`)
+
+    return await this.dispatchRequest('/users/activate', RequestEnum.TYPE.POST)
+  }
+
   static async requestGetProfile (userId) {
     Debug.Log(`ApiService:requestGetProfile`)
 
     return await this.dispatchRequest(`/users/${userId}`, RequestEnum.TYPE.GET)
   }
 
+  /*
+   * Hashtags
+   */
+  static async getAllHashtags () {
+    Debug.Log(`ApiService:getAllHashtags`)
+
+    return await this.dispatchRequest('/hashtags', RequestEnum.TYPE.GET)
+  }
+
+  static async updateProfileHashtags (ids) {
+    Debug.Log(`ApiService:requestUpdateProfile`)
+
+    const data = {
+      ids
+    }
+
+    return await this.dispatchRequest('/hashtags/update/user', RequestEnum.TYPE.POST, data)
+  }
+
+  /*
+   * Stream
+   */
   static async requestReactToVideo (userId, video, reactType) {
     Debug.Log(`ApiService:requestReactToVideo`)
 

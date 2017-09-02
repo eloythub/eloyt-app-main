@@ -44,7 +44,7 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
                 <InputTextBoxEntity
                   setTextRef={(textRefObj) => this.usernameRef = textRefObj}
                   onChange={(text) => this.username = text}
-                  default={ssoUserData.username}
+                  default={this.username}
                   caption="USERNAME"
                   name="username"
                   nextFocusObjectRef={() => this.firstNameRef.focus()}
@@ -54,7 +54,7 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
                 <InputTextBoxEntity
                   setTextRef={(textRefObj) => this.firstNameRef = textRefObj}
                   onChange={(text) => this.firstName = text}
-                  default={ssoUserData.firstName}
+                  default={this.firstName}
                   caption="FIRST NAME"
                   name="firstname"
                   nextFocusObjectRef={() => this.lastNameRef.focus()}
@@ -64,7 +64,7 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
                 <InputTextBoxEntity
                   setTextRef={(textRefObj) => this.lastNameRef = textRefObj}
                   onChange={(text) => this.lastName = text}
-                  default={ssoUserData.lastName}
+                  default={this.lastName}
                   caption="LAST NAME"
                   name="lastname"
                 />
@@ -72,18 +72,18 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
               <View style={CompleteProfileScreenStyles.profileEntityContainer}>
                 <GenderEntity
                   onPress={(genderValue) => this.gender = genderValue}
-                  value={ssoUserData.gender.toLowerCase()}
+                  value={this.gender.toLowerCase()}
                 />
               </View>
               <View style={CompleteProfileScreenStyles.profileEntityContainer}>
                 <BirthdateEntity
                   onChange={(dateOfBirth) => this.dateOfBirth = dateOfBirth}
-                  date={ssoUserData.dateOfBirth}/>
+                  date={this.dateOfBirth}/>
               </View>
             </View>
           </ScrollView>
           <TouchableOpacity disabled={waitingNext} style={CompleteProfileScreenStyles.nextButton}
-                            onPress={this.onNextButtonPress.bind(this)}>
+                            onPress={this.nextButtonPress.bind(this)}>
             {
               !waitingNext
                 ? <Text style={CompleteProfileScreenStyles.nextButtonCaption}>
@@ -99,7 +99,7 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
   }
 
   render () {
-    const {waitingMain} = this.state
+    const {waitingMain, waitingNext} = this.state
 
     return (
       <View style={CompleteProfileScreenStyles.rootContainer}>

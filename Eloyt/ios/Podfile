@@ -9,6 +9,8 @@ target 'Eloyt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+  
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
     
   target 'EloytTests' do
     inherit! :search_paths
