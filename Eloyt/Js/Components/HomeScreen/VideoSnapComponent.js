@@ -32,15 +32,17 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     return (
       <View style={VideoSnapComponentStyles.rootContainer}>
         <Camera
+          style={VideoSnapComponentStyles.camera}
           keepAwake={true}
-          playSoundOnCapture={false}
+          defaultOnFocusComponent={true}
+          //type={camera.type}
           captureAudio={true}
-          type={camera.type}
-          torchMode={camera.torchMode}
-          captureQuality={CaptureQuality.high}
-          captureTarget={CaptureTarget.temp}
+          playSoundOnCapture={false}
+          //torchMode={camera.torchMode}
           captureMode={CaptureMode.video}
+          captureTarget={CaptureTarget.temp}
           orientation={Orientation.portrait}
+          captureQuality={CaptureQuality.high}
           aspect={Aspect.fill}>
         </Camera>
       </View>

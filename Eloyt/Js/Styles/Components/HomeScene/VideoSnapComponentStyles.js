@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native'
 
 import { Utils } from '../../../Factories'
 
-const {width} = Dimensions.get('window')
+const {width, height} = Dimensions.get('window')
 
 export default StyleSheet.create({
   rootContainer: {
@@ -11,6 +11,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   camera: {
+    width,
+    height,
     //position: 'absolute',
     //top: 0,
     //right: 0,
