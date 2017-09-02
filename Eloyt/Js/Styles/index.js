@@ -12,6 +12,7 @@ import BirthdateEntityComponentStyles from './Components/BirthdateEntityComponen
 import GenderEntityComponentStyles from './Components/GenderEntityComponentStyles'
 import ImageEntityComponentStyles from './Components/ImageEntityComponentStyles'
 import HashtagSelectorEntityComponentStyles from './Components/HashtagSelectorEntityComponentStyles'
+import ButtonComponentStyles from './Components/ButtonComponentStyles'
 // Components HomeScreen
 import VideoPlayerComponentStyles from './Components/HomeScene/VideoPlayerComponentStyles'
 import VideoSnapComponentStyles from './Components/HomeScene/VideoSnapComponentStyles'
@@ -33,6 +34,7 @@ export {
   GenderEntityComponentStyles,
   ImageEntityComponentStyles,
   HashtagSelectorEntityComponentStyles,
+  ButtonComponentStyles,
   // Components HomeScreen
   VideoPlayerComponentStyles,
   VideoSnapComponentStyles,

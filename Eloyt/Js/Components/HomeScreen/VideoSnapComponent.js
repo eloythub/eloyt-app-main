@@ -1,10 +1,12 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Text, TouchableHighlight, View } from 'react-native'
+import { Text, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native'
 import Camera from 'react-native-camera'
 import DeviceInfo from 'react-native-device-info'
 // Essentials
+import CloseButton from '../../Components/CloseButton'
+import SnapButton from '../../Components/SnapButton'
 import { HomeScreenStyles, VideoSnapComponentStyles } from '../../Styles'
 import VideoSnapComponentDelegator from '../../Delegators/Components/HomeScene/VideoSnapComponentDelegator'
 
@@ -12,10 +14,14 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
   constructor (props) {
     super(props)
 
-    this.state = props
+    this.state = {
+      isRecording: false,
+      isCameraTypeFront: true,
+    }
   }
 
   render () {
+    const {isRecording, isCameraTypeFront}                                        = this.state
     const {Orientation, Aspect, CaptureTarget, CaptureMode, CaptureQuality, Type} = Camera.constants
 
     if (DeviceInfo.isEmulator()) {
@@ -31,11 +37,11 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     return (
       <View style={VideoSnapComponentStyles.rootContainer}>
         <Camera
-          ref="camera"
+          ref="cameraRef"
           style={VideoSnapComponentStyles.camera}
           keepAwake={true}
           defaultOnFocusComponent={true}
-          //type={camera.type}
+          type={isCameraTypeFront ? Type.front : Type.back}
           captureAudio={true}
           playSoundOnCapture={false}
           //torchMode={camera.torchMode}
@@ -43,17 +49,16 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
           captureTarget={CaptureTarget.temp}
           orientation={Orientation.portrait}
           captureQuality={CaptureQuality.high}
-          aspect={Aspect.fill}>
+          aspect={Aspect.fill}
+        >
+          <TouchableWithoutFeedback onPress={this.onDoubleTapOnScreen.bind(this)}>
+            <View style={VideoSnapComponentStyles.backgroundLayer}/>
+          </TouchableWithoutFeedback>
           <View style={VideoSnapComponentStyles.topSection}>
-
+            <CloseButton hide={isRecording} onPress={this.close.bind(this)}/>
           </View>
           <View style={VideoSnapComponentStyles.bottomSection}>
-            <TouchableHighlight
-              style={VideoSnapComponentStyles.snapButton}
-              onPress={() => {}}
-              underlayColor="rgba(255, 255, 255, 0.5)">
-              <View />
-            </TouchableHighlight>
+            <SnapButton onSnapStarted={this.startSnapping.bind(this)} onSnapEnded={this.finishSnapping.bind(this)}/>
           </View>
         </Camera>
       </View>
@@ -64,4 +69,5 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
 VideoSnapComponent.propTypes = {
   onSnapStarted: PropTypes.func,
   onSnapEnded: PropTypes.func,
+  onClose: PropTypes.func,
 }

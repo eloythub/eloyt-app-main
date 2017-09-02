@@ -23,4 +23,13 @@ export default class HomeScreenDelegator extends Delegator {
       playerSnapScrollEnable: true
     })
   }
+
+  async onSnapClose () {
+    await this.setState({
+      mainSwiperScrollEnable: false,
+      playerSnapScrollEnable: true
+    })
+
+    this.refs.playerSnapSwiperRef.scrollBy(-1)
+  }
 }

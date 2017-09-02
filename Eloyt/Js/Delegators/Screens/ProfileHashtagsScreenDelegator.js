@@ -62,8 +62,6 @@ export default class ProfileHashtagsScreenDelegator extends Delegator {
     try {
       const ids = selectedHashtags.map((hashtag) => hashtag.id)
 
-      console.log(ids)
-
       await ApiService.updateProfileHashtags(ids)
 
       const activatedUser = await ApiService.activateUser(ids)

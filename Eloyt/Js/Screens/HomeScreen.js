@@ -35,6 +35,7 @@ export default class HomeScreen extends HomeScreenDelegator {
     }
 
     this.playerSnapSwiperProperties = {
+      ref: 'playerSnapSwiperRef',
       index: 0,
       loop: false,
       autoplay: false,
@@ -71,7 +72,8 @@ export default class HomeScreen extends HomeScreenDelegator {
                 <VideoPlayerComponent />
               </View>
               <View style={HomeScreenStyles.playerSnapSlide}>
-                <VideoSnapComponent onSnapStarted={this.onSnapStarted.bind(this)}
+                <VideoSnapComponent onClose={this.onSnapClose.bind(this)}
+                                    onSnapStarted={this.onSnapStarted.bind(this)}
                                     onSnapEnded={this.onSnapEnded.bind(this)}/>
               </View>
             </Swiper>

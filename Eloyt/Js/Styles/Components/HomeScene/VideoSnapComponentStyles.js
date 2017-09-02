@@ -18,9 +18,10 @@ export default StyleSheet.create({
     height: 70,
     paddingTop: 20,
     position: 'absolute',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    zIndex: 1,
   },
   bottomSection: {
     bottom: 0,
@@ -32,14 +33,18 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'red',
+    zIndex: 1,
   },
-  snapButton: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 5,
-    borderColor: '#FFF',
-    marginBottom: 15,
+  backgroundLayer: {
+    flex: 1,
+    width,
+    height,
+    position: 'absolute',
+    zIndex: 0,
+    backgroundColor: 'transparent'
+  },
+  text: {
+    color: '#fff',
+    fontSize: 20,
   },
 })

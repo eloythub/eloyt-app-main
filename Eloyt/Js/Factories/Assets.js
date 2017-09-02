@@ -5,12 +5,18 @@ import FacebookLogo from '../../Assets/Images/facebook.png'
 import PureLogo from '../../Assets/Images/pure-logo.png'
 // CompleteProfileScreen
 import DefaultProfileUser from '../../Assets/Images/default-profile-user.png'
+// Buttons
+import CancelIcon from '../../Assets/Images/cancel-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
-  static FluidBackground    = FluidBackground
-  static FacebookLogo       = FacebookLogo
-  static PureLogo           = PureLogo
+  static FluidBackground = FluidBackground
+  static FacebookLogo    = FacebookLogo
+  static PureLogo        = PureLogo
+
   // CompleteProfileScreen
   static DefaultProfileUser = DefaultProfileUser
+
+  // Buttons
+  static CancelIcon = CancelIcon
 }
