@@ -1,7 +1,7 @@
 import path from 'path'
 import { Service } from 'react-eloyt'
 import { Debug, LocalStorage } from '../Factories'
-import { ConfigsEnum, AuthEnum } from '../Enums'
+import { AuthEnum, ConfigsEnum } from '../Enums'
 
 export default class RequestService extends Service {
   static async dispatchRequest (url, method, bodyData) {
@@ -11,7 +11,8 @@ export default class RequestService extends Service {
 
     try {
       authenticationToken = await LocalStorage.load(AuthEnum.LOGIN_API_ACCESS_TOKEN)
-    } catch (err) {}
+    } catch (err) {
+    }
 
     const headers = {
       'Accept': 'application/json',
@@ -21,17 +22,21 @@ export default class RequestService extends Service {
 
     return new Promise(async (fulfill, reject) => {
       try {
+        let success = true
+
         let response = await fetch(this.url(url), {
           headers,
           method: method,
           body: JSON.stringify(bodyData),
+        }).then((res) => {
+          if (!res.ok) {
+            success = false
+          }
+
+          return res.json()
         })
 
-        if (!response.ok) {
-          return reject(await response.json())
-        }
-
-        fulfill(await response.json())
+        success ? fulfill(response) : reject(response)
       } catch (err) {
         reject(err)
       }

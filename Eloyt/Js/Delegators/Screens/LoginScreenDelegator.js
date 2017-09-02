@@ -31,17 +31,13 @@ export default class LoginScreenDelegator extends Delegator {
 
     await this.setState({waitingMain: true})
 
-    let facebookAccessToken
-
-    facebookAccessToken = await AccessToken.getCurrentAccessToken()
+    let facebookAccessToken = await AccessToken.getCurrentAccessToken()
 
     if (facebookAccessToken) {
       await this.doLogin(facebookAccessToken)
 
       return
     }
-
-    Debug.Log(facebookAccessToken)
 
     try {
       const loginResult = await LoginManager.logInWithReadPermissions(AuthEnum.FB_LOGIN_PERMISSION)
@@ -98,6 +94,8 @@ export default class LoginScreenDelegator extends Delegator {
       Debug.Log(err.message)
 
       await this.setState({waitingMain: false})
+
+      Utils.alert(err.message)
     }
   }
 }
