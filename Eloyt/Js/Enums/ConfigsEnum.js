@@ -4,6 +4,6 @@ export default {
   API_BASE_URL: {
     "development": "https://staging-api.eloyt.com",
     "staging": "https://staging-api.eloyt.com",
-    "production": "https://api.eloyt.com"
+    "production": "https://staging-api.eloyt.com" // TODO: change to "https://api.eloyt.com"
   }
 }

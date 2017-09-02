@@ -4,8 +4,19 @@ import { Delegator } from 'react-eloyt'
 import Camera from 'react-native-camera'
 import { Utils, Debug } from '../../../Factories'
 import { GeneralEnum } from '../../../Enums'
+import { ApiService } from '../../../Services'
 
 export default class VideoSnapComponentDelegator extends Delegator {
+  async componentDidMount () {
+    try {
+      const hashtagsSrc = await ApiService.getAllHashtags()
+
+      this.hashtags = hashtagsSrc.data
+    } catch (err) {
+      Debug.Log(err)
+    }
+  }
+
   async startSnapping () {
     const {onSnapStarted} = this.props
     const {cameraRef}     = this.refs
@@ -32,7 +43,8 @@ export default class VideoSnapComponentDelegator extends Delegator {
         return
       }
 
-      // navigate to SnapUploadScene
+      // Go To Upload Mode
+      await this.setState({isUploadMode: true})
     } catch (err) {
       await this.setState({isRecording: false})
 
@@ -86,7 +98,11 @@ export default class VideoSnapComponentDelegator extends Delegator {
     this.lastTapOnScreen = now;
   }
 
-  async close () {
+  close () {
     this.props.onClose()
+  }
+
+  discardUpload () {
+    this.setState({isUploadMode: false})
   }
 }

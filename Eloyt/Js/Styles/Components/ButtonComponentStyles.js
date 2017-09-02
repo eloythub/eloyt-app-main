@@ -15,19 +15,19 @@ export default StyleSheet.create({
   },
   // Cancel Button
   cancelButtonContainer: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     backgroundColor: 'transparent',
   },
   cancelButton: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   cancelButtonIcon: {
-    width: 18,
+    width: 16,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },

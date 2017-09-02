@@ -30,6 +30,6 @@ export default class HomeScreenDelegator extends Delegator {
       playerSnapScrollEnable: true
     })
 
-    this.refs.playerSnapSwiperRef.scrollBy(-1)
+    this.refs.playerSnapSwiperRef.scrollBy(-1, true)
   }
 }

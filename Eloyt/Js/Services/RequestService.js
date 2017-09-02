@@ -1,6 +1,6 @@
 import path from 'path'
 import { Service } from 'react-eloyt'
-import { Debug, LocalStorage } from '../Factories'
+import { Debug, LocalStorage, Utils } from '../Factories'
 import { AuthEnum, ConfigsEnum } from '../Enums'
 
 export default class RequestService extends Service {
@@ -14,10 +14,15 @@ export default class RequestService extends Service {
     } catch (err) {
     }
 
-    const headers = {
+    let headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'authorization': `bearer ${authenticationToken}`
+    }
+
+    if (authenticationToken) {
+      headers = Object.assign({
+        'authorization': `bearer ${authenticationToken}`
+      }, headers)
     }
 
     return new Promise(async (fulfill, reject) => {
@@ -28,12 +33,12 @@ export default class RequestService extends Service {
           headers,
           method: method,
           body: JSON.stringify(bodyData),
-        }).then((res) => {
+        }).then(async (res) => {
           if (!res.ok) {
             success = false
           }
 
-          return res.json()
+          return await res.json()
         })
 
         success ? fulfill(response) : reject(response)

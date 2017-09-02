@@ -15,7 +15,6 @@ export default StyleSheet.create({
     fontSize: Utils.isIOS() ? 18 : 16,
     fontWeight: Utils.isIOS() ? 'normal' : '100',
     color: '#ffffff',
-    height: 50,
     paddingBottom: 0,
   },
 })

@@ -16,7 +16,7 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
   render () {
     return (
       <View style={VideoPlayerComponentStyles.rootContainer}>
-        <Text style={HomeScreenStyles.tempPlaceholder}>Video Player</Text>
+        <Text style={HomeScreenStyles.placeholder}>Video Player</Text>
       </View>
     )
   }

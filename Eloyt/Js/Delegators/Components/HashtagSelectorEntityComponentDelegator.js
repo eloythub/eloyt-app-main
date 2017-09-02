@@ -1,8 +1,20 @@
 // Basics
 import React from 'react'
 import { Delegator } from 'react-eloyt'
+import { ApiService } from '../../Services'
 
 export default class HashtagSelectorEntityComponentDelegator extends Delegator {
+  async componentDidMount () {
+    if (typeof this.state.src !== 'object') {
+      try {
+        const hashtagsSrc = await ApiService.getAllHashtags()
+
+        await this.setState({src: hashtagsSrc.data})
+      } catch (err) {
+      }
+    }
+  }
+
   componentWillReceiveProps (props) {
     this.setState(props)
   }

@@ -23,7 +23,6 @@ export default class ProfileHashtagsScreen extends ProfileHashtagsScreenDelegato
   }
 
   postRender () {
-    const {ssoUserData}                   = this
     const {waitingNext, selectedHashtags} = this.state
 
     return (
@@ -41,6 +40,7 @@ export default class ProfileHashtagsScreen extends ProfileHashtagsScreenDelegato
           <View style={ProfileHashtagsScreenStyles.entitiesContainer}>
             <View style={ProfileHashtagsScreenStyles.hashtagSelectorWrapper}>
               <HashtagSelectorEntity src={this.hashtags}
+                                     initSelected={selectedHashtags}
                                      onChange={(selectedHashtags) => this.setState({selectedHashtags})}/>
             </View>
           </View>

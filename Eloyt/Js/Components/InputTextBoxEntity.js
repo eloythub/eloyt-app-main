@@ -14,13 +14,19 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
   }
 
   render () {
+    const {numberOfLines, maxLength, height, multiline = false} = this.state
+
     return (
       <View style={InputTextBoxEntityComponentStyles.rootContainer}>
         <TextInput
           ref='textRefObj'
-          style={InputTextBoxEntityComponentStyles.inputBox}
+          style={[
+            InputTextBoxEntityComponentStyles.inputBox,
+            {
+              height: height || 50
+            }
+          ]}
           editable={true}
-          multiline={false}
           autoCapitalize="words"
           placeholder={this.state.caption}
           placeholderTextColor="#7d7d7d"
@@ -38,6 +44,11 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
           returnKeyType="next"
           value={this.state.text}
           defaultValue={this.state.default}
+          {...{
+            numberOfLines,
+            maxLength,
+            multiline,
+          }}
         />
       </View>
     )
@@ -51,4 +62,8 @@ InputTextBoxEntity.propTypes = {
   caption: PropTypes.string,
   onChange: PropTypes.func,
   nextFocusObjectRef: PropTypes.func,
+  numberOfLines: PropTypes.number,
+  maxLength: PropTypes.number,
+  height: PropTypes.number,
+  multiline: PropTypes.bool,
 }

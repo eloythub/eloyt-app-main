@@ -11,7 +11,7 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
     super(props)
 
     this.state = Object.assign({
-      selectedHashtags: []
+      selectedHashtags: props.initSelected || []
     }, props)
   }
 

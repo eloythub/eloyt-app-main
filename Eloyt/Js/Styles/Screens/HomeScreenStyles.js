@@ -22,11 +22,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#282828',
   },
-  tempPlaceholder: {
+  placeholder: {
     color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
     fontFamily: 'OpenSans',
+    textAlign: 'center',
   },
   rootContainer: {
     flex: 1,

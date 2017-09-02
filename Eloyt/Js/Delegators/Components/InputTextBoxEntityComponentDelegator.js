@@ -4,7 +4,9 @@ import { Delegator } from 'react-eloyt'
 
 export default class InputTextBoxEntityComponentDelegator extends Delegator {
   componentDidMount () {
-    this.props.setTextRef(this.refs.textRefObj)
+    if (typeof this.refs.textRefObj === 'function') {
+      this.props.setTextRef(this.refs.textRefObj)
+    }
   }
 
   componentWillReceiveProps (props) {

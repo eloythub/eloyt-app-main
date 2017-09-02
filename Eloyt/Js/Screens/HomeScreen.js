@@ -27,9 +27,10 @@ export default class HomeScreen extends HomeScreenDelegator {
     this.mainSwiperProperties = {
       index: 1,
       loop: false,
+      bounces: false,
       autoplay: false,
       horizontal: true,
-      loadMinimal: false,
+      loadMinimal: true,
       showsButtons: false,
       showsPagination: false
     }
@@ -38,6 +39,7 @@ export default class HomeScreen extends HomeScreenDelegator {
       ref: 'playerSnapSwiperRef',
       index: 0,
       loop: false,
+      bounces: false,
       autoplay: false,
       horizontal: false,
       loadMinimal: true,
@@ -61,7 +63,7 @@ export default class HomeScreen extends HomeScreenDelegator {
           scrollEnabled: mainSwiperScrollEnable
         }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
-            <Text style={HomeScreenStyles.tempPlaceholder}>Message/Notifications</Text>
+            <Text style={HomeScreenStyles.placeholder}>Message/Notifications</Text>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
             <Swiper {...Object.assign({
@@ -79,7 +81,7 @@ export default class HomeScreen extends HomeScreenDelegator {
             </Swiper>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
-            <Text style={HomeScreenStyles.tempPlaceholder}>Search</Text>
+            <Text style={HomeScreenStyles.placeholder}>Search</Text>
           </View>
         </Swiper>
       </View>
