@@ -1,6 +1,6 @@
 // Basics
 import React from 'react'
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { Text, View } from 'react-native'
 import Camera from 'react-native-camera';
 import DeviceInfo from 'react-native-device-info'
@@ -50,4 +50,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
   }
 }
 
-VideoSnapComponent.propTypes = {}
+VideoSnapComponent.propTypes = {
+  onSnapStarted: PropTypes.func,
+  onSnapEnded: PropTypes.func,
+}

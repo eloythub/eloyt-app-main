@@ -1,10 +1,9 @@
 // Basics
 import React from 'react'
-import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { StatusBar, Text, View } from 'react-native'
 // Essentials
-import { HomeScreenStyles, WatingComponentStyles } from '../Styles'
-import { Assets, Utils, Debug } from '../Factories'
+import { HomeScreenStyles } from '../Styles'
+import { Debug, Utils } from '../Factories'
 import HomeScreenDelegator from '../Delegators/Screens/HomeScreenDelegator'
 // Components
 import VideoPlayerComponent from '../Components/HomeScreen/VideoPlayerComponent'
@@ -20,7 +19,12 @@ export default class HomeScreen extends HomeScreenDelegator {
 
     super(props)
 
-    this.homeMainSwiperProperties = {
+    this.state = {
+      mainSwiperScrollEnable: true,
+      playerSnapScrollEnable: true
+    }
+
+    this.mainSwiperProperties = {
       index: 1,
       loop: false,
       autoplay: false,
@@ -42,6 +46,8 @@ export default class HomeScreen extends HomeScreenDelegator {
   }
 
   render () {
+    const {mainSwiperScrollEnable, playerSnapScrollEnable} = this.state
+
     return (
       <View style={HomeScreenStyles.baseContainer}>
         <StatusBar
@@ -50,17 +56,23 @@ export default class HomeScreen extends HomeScreenDelegator {
           hidden={false}
         />
 
-        <Swiper {...this.homeMainSwiperProperties}>
+        <Swiper {...Object.assign({
+          scrollEnabled: mainSwiperScrollEnable
+        }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
             <Text style={HomeScreenStyles.tempPlaceholder}>Message/Notifications</Text>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
-            <Swiper {...this.playerSnapSwiperProperties}>
+            <Swiper {...Object.assign({
+              scrollEnabled: playerSnapScrollEnable
+            }, this.playerSnapSwiperProperties)}
+                    onIndexChanged={this.onPlayerSnapSwiperIndexChanged.bind(this)}>
               <View style={HomeScreenStyles.playerSnapSlide}>
                 <VideoPlayerComponent />
               </View>
               <View style={HomeScreenStyles.playerSnapSlide}>
-                <VideoSnapComponent />
+                <VideoSnapComponent onSnapStarted={this.onSnapStarted.bind(this)}
+                                    onSnapEnded={this.onSnapEnded.bind(this)}/>
               </View>
             </Swiper>
           </View>
