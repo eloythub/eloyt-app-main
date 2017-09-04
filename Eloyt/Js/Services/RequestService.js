@@ -1,9 +1,11 @@
 import path from 'path'
 import { Service } from 'react-eloyt'
 import { Debug, LocalStorage, Utils } from '../Factories'
-import { AuthEnum, ConfigsEnum } from '../Enums'
+import { AuthEnum, ConfigsEnum, RequestEnum } from '../Enums'
 
 export default class RequestService extends Service {
+  static xhr = null
+
   static async dispatchRequest (url, method, bodyData) {
     Debug.Log(`RequestService:dispatchRequest`)
 
@@ -51,27 +53,54 @@ export default class RequestService extends Service {
   static dispatchRequestWithProgress (url, opts = {}, onProgress, afterSend) {
     Debug.Log(`RequestService:dispatchRequestWithProgress`)
 
-    return new Promise((fulfill, reject) => {
-      const xhr = new XMLHttpRequest()
+    return new Promise(async (fulfill, reject) => {
+      let authenticationToken
 
-      xhr.open(opts.method || 'get', this.url(url))
+      try {
+        authenticationToken = await LocalStorage.load(AuthEnum.LOGIN_API_ACCESS_TOKEN)
+      } catch (err) {
+      }
+
+      this.xhr = new XMLHttpRequest()
+
+      this.xhr.open(RequestEnum.TYPE.POST, this.url(url))
 
       for (let k in opts.headers || {}) {
-        xhr.setRequestHeader(k, opts.headers[k])
+        this.xhr.setRequestHeader(k, opts.headers[k])
       }
 
-      xhr.onload = e => fulfill(e.target)
-
-      xhr.onerror = reject
-
-      if (xhr.upload && onProgress) {
-        xhr.upload.onprogress = onProgress // event.loaded / event.total * 100 ; //event.lengthComputable
+      if (authenticationToken) {
+        this.xhr.setRequestHeader('authorization', `bearer ${authenticationToken}`)
       }
 
-      xhr.send(opts.body)
+      this.xhr.onload = (e) => {
+        const response = e.target
 
-      afterSend(xhr)
+        if (response.status !== 200) {
+          return reject(response.status)
+        }
+
+        fulfill(e.target)
+      }
+
+      this.xhr.onerror = reject
+
+      if (this.xhr.upload && onProgress) {
+        this.xhr.upload.onprogress = onProgress // event.loaded / event.total * 100 ; //event.lengthComputable
+      }
+
+      this.xhr.send(opts.body)
+
+      if (afterSend) {
+        afterSend(this.xhr)
+      }
     })
+  }
+
+  static abortDispatchedRequestWithProgress () {
+    if (this.xhr) {
+      this.xhr.abort()
+    }
   }
 
   static url (url) {

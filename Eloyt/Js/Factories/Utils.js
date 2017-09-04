@@ -23,4 +23,14 @@ export default class Utils extends Factory {
 
     alertObj.alert(message)
   }
+
+  static next () {
+    return this.wait(0)
+  }
+
+  static wait (time) {
+    return new Promise(async (fulfill) => {
+      setTimeout(fulfill, time)
+    })
+  }
 }

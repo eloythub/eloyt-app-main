@@ -75,6 +75,30 @@ export default class ApiService extends RequestService {
   /*
    * Stream
    */
+  static async uploadSnap (snapObject, description, selectedHashtags, onProgress, afterSend) {
+    Debug.Log(`ApiService:uploadSnap`)
+
+    const hashtagsSlugs = selectedHashtags.map((hashtag) => hashtag.slug).join(',')
+
+    console.log('upload payload:', snapObject.path, description, hashtagsSlugs)
+
+    const body = new FormData()
+
+    body.append('description', description)
+    body.append('hashtags', hashtagsSlugs)
+    body.append('file', {
+      uri: snapObject.path,
+      type: 'image/mov',
+      name: 'file',
+    })
+
+    return await this.dispatchRequestWithProgress('/stream/upload/video', {body}, onProgress, afterSend)
+  }
+
+  static abortSnap () {
+    this.abortDispatchedRequestWithProgress()
+  }
+
   static async requestReactToVideo (userId, video, reactType) {
     Debug.Log(`ApiService:requestReactToVideo`)
 

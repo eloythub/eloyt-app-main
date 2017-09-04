@@ -2,9 +2,9 @@
 import React from 'react'
 import { Delegator } from 'react-eloyt'
 import Camera from 'react-native-camera'
-import { Utils, Debug } from '../../../Factories'
+import { Debug, Utils } from '../../../Factories'
 import { GeneralEnum } from '../../../Enums'
-import { ApiService } from '../../../Services'
+import { ApiService, RequestService } from '../../../Services'
 
 export default class VideoSnapComponentDelegator extends Delegator {
   async componentDidMount () {
@@ -30,6 +30,8 @@ export default class VideoSnapComponentDelegator extends Delegator {
       metadata: {},
     }
 
+    delete this.snapObject
+
     try {
       await this.setState({isRecording: true})
 
@@ -38,10 +40,12 @@ export default class VideoSnapComponentDelegator extends Delegator {
       Debug.Log('VideoSnapComponentDelegator:startSnapping:captureData', captureData)
 
       if (!this.validateCapturedData(captureData)) {
-        Utils.alert('Your Snap must be more than 5 second and less than 3 minute')
+        Utils.alert(`Your Snap must be:\nmore than ${GeneralEnum.SNAP_RECORD_SECOND_MIN} second\nand\nless than ${GeneralEnum.SNAP_RECORD_MINUTE_MAX} minute`)
 
         return
       }
+
+      this.snapObject = captureData
 
       // Go To Upload Mode
       await this.setState({isUploadMode: true})
@@ -56,21 +60,17 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
   async finishSnapping () {
     const {onSnapEnded} = this.props
-    const {cameraRef}     = this.refs
+    const {cameraRef}   = this.refs
 
     onSnapEnded()
 
-    cameraRef.stopCapture();
+    cameraRef.stopCapture()
 
     await this.setState({isRecording: false})
   }
 
-
   validateCapturedData ({duration}) {
-    // check if snap duration:
-    //    is less than 5 sec
-    //    or more than 3 min
-    if (duration < 5 || duration > (3 * 60)) {
+    if (duration < GeneralEnum.SNAP_RECORD_SECOND_MIN || duration > GeneralEnum.SNAP_RECORD_SECOND_MAX) {
       return false
     }
 
@@ -78,24 +78,29 @@ export default class VideoSnapComponentDelegator extends Delegator {
   }
 
   async onDoubleTapOnScreen () {
-    let { isCameraTypeFront } = this.state
+    let {isCameraTypeFront} = this.state
 
-    const now = new Date().getTime();
+    const now = new Date().getTime()
 
     if (this.lastTapOnScreen && (now - this.lastTapOnScreen) < GeneralEnum.DOUBLE_PRESS_DELAY) {
-      delete this.lastTapOnScreen;
+      delete this.lastTapOnScreen
 
       // Switch the camera
       isCameraTypeFront = !isCameraTypeFront
 
+      // Little Effect when camera is switching
+      await this.setState({isCameraFadeFilterAppears: true})
+      await Utils.wait(0.3)
       await this.setState({isCameraTypeFront})
+      await Utils.wait(0.3)
+      await this.setState({isCameraFadeFilterAppears: false})
 
       Debug.Log('VideoSnapComponentDelegator:onDoubleTapOnScreen:SwitchCameraType')
 
       return
     }
 
-    this.lastTapOnScreen = now;
+    this.lastTapOnScreen = now
   }
 
   close () {
@@ -104,5 +109,63 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
   discardUpload () {
     this.setState({isUploadMode: false})
+  }
+
+  async startUploadingSnap () {
+    console.log(this.description, this.selectedHashtags)
+
+    if (!this.description) {
+      return Utils.alert('Description is required')
+    }
+
+    if (!this.selectedHashtags || (
+        this.selectedHashtags.length < GeneralEnum.SNAP_HASHTAG_COUNT_LIMIT_MIN ||
+        this.selectedHashtags.length > GeneralEnum.SNAP_HASHTAG_COUNT_LIMIT_MAX
+      )) {
+      return Utils.alert(`Your must at least ${GeneralEnum.SNAP_HASHTAG_COUNT_LIMIT_MIN} to ${GeneralEnum.SNAP_HASHTAG_COUNT_LIMIT_MAX} tags`)
+    }
+
+    this.refs.uploadSwiperRef.scrollBy(1, true)
+
+
+    // start uploading
+    try {
+      const uploadSnapResponse = await ApiService.uploadSnap(
+        this.snapObject,
+        this.description,
+        this.selectedHashtags,
+        this.onUploadProgress.bind(this)
+      )
+
+      Debug.Log('uploadSnapResponse: ', uploadSnapResponse)
+
+      // get back to Close the snap Scene
+      this.close()
+
+      // normalize uploadSwiperRef back to normal
+      this.refs.uploadSwiperRef.scrollBy(-1, true)
+
+      // normalize UploadModal back to normal
+      await this.setState({isUploadMode: false})
+    } catch (err) {
+      Debug.Log(err)
+
+      Utils.alert('Something went wrong!!!\nPlease try again.')
+
+      this.cancelUpload()
+    }
+  }
+
+  cancelUpload () {
+    ApiService.abortSnap()
+
+    this.refs.uploadSwiperRef.scrollBy(-1, true)
+  }
+
+  async onUploadProgress (progressEvent) {
+    const uploadProgress = progressEvent.loaded / progressEvent.total
+
+    Debug.Log('VideoSnapComponentDelegator:onUploadProgress', `${uploadProgress}%`)
+    await this.setState({uploadProgress})
   }
 }

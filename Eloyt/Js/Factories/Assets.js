@@ -7,6 +7,7 @@ import PureLogo from '../../Assets/Images/pure-logo.png'
 import DefaultProfileUser from '../../Assets/Images/default-profile-user.png'
 // Buttons
 import CancelIcon from '../../Assets/Images/cancel-icon.png'
+import OkIcon from '../../Assets/Images/ok-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -19,4 +20,5 @@ export default class Assets extends Factory {
 
   // Buttons
   static CancelIcon = CancelIcon
+  static OkIcon = OkIcon
 }

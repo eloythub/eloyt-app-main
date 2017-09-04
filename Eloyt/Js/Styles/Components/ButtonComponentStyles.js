@@ -31,4 +31,22 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+  // OK Button
+  okButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  okButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  okButtonIcon: {
+    width: 24,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
 })

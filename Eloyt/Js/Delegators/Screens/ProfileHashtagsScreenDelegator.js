@@ -18,7 +18,7 @@ export default class ProfileHashtagsScreenDelegator extends Delegator {
     try {
       hashtags = await ApiService.getAllHashtags()
     } catch (err) {
-      Utils.alert('Something went wrong!\nPlease try again later')
+      Utils.alert('Something went wrong!!!\nPlease try again.')
 
       Debug.Log(err)
 
@@ -74,7 +74,7 @@ export default class ProfileHashtagsScreenDelegator extends Delegator {
     } catch (err) {
       Debug.Log(err)
 
-      Utils.alert('Something went wrong!\nPlease try again later.')
+      Utils.alert('Something went wrong!!!\nPlease try again.')
 
       await this.setState({waitingNext: false})
     }

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Camera from 'react-native-camera'
 import DeviceInfo from 'react-native-device-info'
-import { BlurView } from 'react-native-blur'
+import { BlurView, VibrancyView } from 'react-native-blur'
+import Swiper from 'react-native-swiper'
 // Essentials
 import InputTextBoxEntity from '../../Components/InputTextBoxEntity'
+import OkButton from '../../Components/OkButton'
 import CloseButton from '../../Components/CloseButton'
 import SnapButton from '../../Components/SnapButton'
 import { HomeScreenStyles, VideoSnapComponentStyles } from '../../Styles'
@@ -24,44 +26,100 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
       isRecording: false,
       isCameraTypeFront: true,
       isUploadMode: false,
+      isCameraFadeFilterAppears: false,
+      uploadProgress: 0,
     }
+  }
+
+  renderUploadProgress () {
+    const {uploadProgress} = this.state
+
+    return (
+      <View style={VideoSnapComponentStyles.uploadSlide}>
+        <View style={VideoSnapComponentStyles.placeholderContainer}>
+          <Text style={VideoSnapComponentStyles.placeholder}>
+            Upload Progress: {uploadProgress}%
+          </Text>
+        </View>
+        <View style={VideoSnapComponentStyles.modalTopSection}>
+          <CloseButton onPress={this.cancelUpload.bind(this)}/>
+        </View>
+      </View>
+    )
+  }
+
+  renderPreUpload () {
+    return (
+      <View style={VideoSnapComponentStyles.uploadSlide}>
+        <View style={VideoSnapComponentStyles.postingEntitiesContainer}>
+          <View style={VideoSnapComponentStyles.entitiesContainer}>
+            <InputTextBoxEntity caption="DESCRIPTION"
+                                name="description"
+                                onChange={(text) => this.description = text}
+                                numberOfLines={3}
+                                maxLength={140}
+                                height={120}
+                                multiline={true}/>
+            <HashtagSelectorEntity src={this.hashtags}
+                                   initSelected={this.selectedHashtags}
+                                   onChange={(selectedHashtags) => this.selectedHashtags = selectedHashtags}/>
+          </View>
+        </View>
+        <View style={VideoSnapComponentStyles.modalTopSection}>
+          <CloseButton onPress={this.discardUpload.bind(this)}/>
+          <OkButton onPress={this.startUploadingSnap.bind(this)}/>
+        </View>
+      </View>
+    )
   }
 
   renderUploadModal () {
     const {isUploadMode} = this.state
 
+    const uploadSwiperProperties = {
+      ref: 'uploadSwiperRef',
+      index: 0,
+      loop: false,
+      bounces: true,
+      autoplay: false,
+      horizontal: true,
+      loadMinimal: true,
+      showsButtons: false,
+      showsPagination: false,
+      scrollEnabled: false
+    }
+
     return (
       <Modal
-        ref="uploadModalRef"
         visible={isUploadMode}
         transparent={true}
-        animationType="slide"
+        animationType="fade"
         onRequestClose={() => this.setState({isUploadMode: false})}>
         <View>
           <BlurView blurType="prominent" overlayColor="#ffffff" blurAmount={10}
                     style={VideoSnapComponentStyles.uploadBlurView}>
-            <View style={VideoSnapComponentStyles.postingEntitiesContainer}>
-              <View style={VideoSnapComponentStyles.entitiesContainer}>
-                <InputTextBoxEntity caption="DESCRIPTION"
-                                    name="description"
-                                    onChange={(text) => this.description = text}
-                                    numberOfLines={3}
-                                    maxLength={140}
-                                    height={120}
-                                    multiline={true}/>
-                <HashtagSelectorEntity src={this.hashtags}
-                                       initSelected={this.selectedHashtags}
-                                       onChange={(selectedHashtags) => this.selectedHashtags = selectedHashtags}/>
-              </View>
-            </View>
-            <View style={VideoSnapComponentStyles.modalTopSection}>
-              <CloseButton onPress={() => {
-                console.log('is upload mode to false')
-                this.setState({isUploadMode: false})
-              }}/>
-              {/*<CloseButton onPress={this.discardUpload.bind(this)}/>*/}
-            </View>
+            <Swiper {...uploadSwiperProperties}>
+              {this.renderPreUpload()}
+              {this.renderUploadProgress()}
+            </Swiper>
           </BlurView>
+        </View>
+      </Modal>
+    )
+  }
+
+  renderCameraFadeFilterModal () {
+    const {isCameraFadeFilterAppears} = this.state
+
+    return (
+      <Modal
+        visible={isCameraFadeFilterAppears}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => this.setState({isCameraFadeFilterAppears: false})}>
+        <View>
+          <VibrancyView blurType="xlight" overlayColor="#ffffff" blurAmount={20}
+                    style={VideoSnapComponentStyles.uploadBlurView}/>
         </View>
       </Modal>
     )
@@ -120,6 +178,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
           </Camera>
         </TouchableWithoutFeedback>
         {this.renderUploadModal()}
+        {this.renderCameraFadeFilterModal()}
       </View>
     )
   }

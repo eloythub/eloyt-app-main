@@ -16,6 +16,9 @@ export default StyleSheet.create({
     width,
     height,
   },
+  uploadSlide: {
+    flex: 1,
+  },
   modalTopSection: {
     top: 0,
     flex: 1,
@@ -66,9 +69,23 @@ export default StyleSheet.create({
   postingEntitiesContainer: {
     flex: 1,
     paddingTop: 70,
+    zIndex: 0,
   },
   entitiesContainer: {
     flex: 1,
     alignItems: 'center',
+  },
+  placeholderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#282828',
+  },
+  placeholder: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontFamily: 'OpenSans',
+    textAlign: 'center',
   },
 })
