@@ -9,14 +9,11 @@ import CompleteProfileScreen, {
   CompleteProfileScreenKey,
   CompleteProfileScreenTitle
 } from './Screens/CompleteProfileScreen'
- import ProfileHashtagsScreen, {
+import ProfileHashtagsScreen, {
   ProfileHashtagsScreenKey,
   ProfileHashtagsScreenTitle
  } from './Screens/ProfileHashtagsScreen'
 import HomeScreen, { HomeScreenKey, HomeScreenTitle } from './Screens/HomeScreen'
-// import ConnectedRecordScene, { RecordSceneKey, RecordSceneTitle } from './Components/Scenes/Record/RecordScene'
-// import ConnectedPostingScene, { PostingSceneKey, PostingSceneTitle } from './Components/Scenes/Posting/PostingScene'
-// import ConnectedUserProfileScene, { UserProfileSceneKey, UserProfileSceneTitle } from './Components/Scenes/UserProfile/UserProfileScene'
 
 export default class IndexView extends Component {
   async isSignedIn () {
@@ -36,19 +33,9 @@ export default class IndexView extends Component {
 
     Debug.Log('IndexView:RedirectToHomeSceneIfWereSignedIn:LoginStatus:', isSignedIn)
 
-    return true
-
     if (isSignedIn) {
-      //if (!isSignedIn.isActivated) {
-      //  Debug.Log('User Not Activated')
-      //  // Show Complete Profile scene
-      //  return Actions.CompleteProfileScene({
-      //    type: ActionConst.REPLACE,
-      //  })
-      //}
-
       await Actions.HomeScene({
-        type: ActionConst.REPLACE,
+        type: ActionConst.REPLACE
       })
     }
   }
@@ -64,7 +51,7 @@ export default class IndexView extends Component {
       LocalStorage.unload(AuthEnum.LOGIN_STATUS)
 
       await Actions.LoginScene({
-        type: ActionConst.REPLACE,
+        type: ActionConst.REPLACE
       })
     }
   }
@@ -101,58 +88,6 @@ export default class IndexView extends Component {
             />
           </Scene>
         </Router>
-        {/*<Router>*/}
-        {/*<Scene key='Root' hideNavBar>*/}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={CompleteProfileSceneTitle} */}
-        {/* key={CompleteProfileSceneKey} */}
-        {/* component={CompleteProfileScene} */}
-        {/* type={ActionConst.POP_AND_REPLACE} */}
-        {/* /> */}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={AreaOfInterestsSceneTitle} */}
-        {/* key={AreaOfInterestsSceneKey} */}
-        {/* component={ConnectedAreaOfInterestsScene} */}
-        {/* type={ActionConst.POP_AND_REPLACE} */}
-        {/* /> */}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={HomeSceneTitle} */}
-        {/* key={HomeSceneKey} */}
-        {/* component={ConnectedHomeScene} */}
-        {/* type={ActionConst.POP_AND_REPLACE} */}
-        {/* /> */}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={RecordSceneTitle} */}
-        {/* key={RecordSceneKey} */}
-        {/* component={ConnectedRecordScene} */}
-        {/* type={ActionConst.PUSH_OR_POP} */}
-        {/* direction='horizontal' */}
-        {/* duration={300} */}
-        {/* /> */}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={PostingSceneTitle} */}
-        {/* key={PostingSceneKey} */}
-        {/* component={ConnectedPostingScene} */}
-        {/* type={ActionConst.PUSH_OR_POP} */}
-        {/* direction='horizontal' */}
-        {/* duration={300} */}
-        {/* /> */}
-        {/* <Scene */}
-        {/* hideNavBar */}
-        {/* title={UserProfileSceneTitle} */}
-        {/* key={UserProfileSceneKey} */}
-        {/* component={ConnectedUserProfileScene} */}
-        {/* type={ActionConst.PUSH_OR_POP} */}
-        {/* direction='horizontal' */}
-        {/* duration={300} */}
-        {/* /> */}
-        {/*</Scene>*/}
-        {/*</Router>*/}
       </View>
     )
   }
