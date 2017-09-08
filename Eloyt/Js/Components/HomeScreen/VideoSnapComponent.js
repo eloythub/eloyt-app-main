@@ -1,19 +1,23 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Dimensions, Modal, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Camera from 'react-native-camera'
 import DeviceInfo from 'react-native-device-info'
 import { BlurView, VibrancyView } from 'react-native-blur'
 import Swiper from 'react-native-swiper'
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
+import { Bars } from 'react-native-loader'
 // Essentials
 import InputTextBoxEntity from '../../Components/InputTextBoxEntity'
 import OkButton from '../../Components/OkButton'
 import CloseButton from '../../Components/CloseButton'
 import SnapButton from '../../Components/SnapButton'
-import { HomeScreenStyles, VideoSnapComponentStyles } from '../../Styles'
+import { HomeScreenStyles, VideoSnapComponentStyles, WaitingComponentStyles } from '../../Styles'
 import VideoSnapComponentDelegator from '../../Delegators/Components/HomeScene/VideoSnapComponentDelegator'
 import HashtagSelectorEntity from '../../Components/HashtagSelectorEntity'
+
+const {width}  = Dimensions.get('window');
 
 export default class VideoSnapComponent extends VideoSnapComponentDelegator {
   constructor (props) {
@@ -37,12 +41,30 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     return (
       <View style={VideoSnapComponentStyles.uploadSlide}>
         <View style={VideoSnapComponentStyles.placeholderContainer}>
-          <Text style={VideoSnapComponentStyles.placeholder}>
-            Upload Progress: {uploadProgress}%
-          </Text>
+          <View style={VideoSnapComponentStyles.progressContainer}>
+            <AnimatedCircularProgress
+              size={width - 50}
+              rotation={0}
+              width={10}
+              fill={uploadProgress}
+              backgroundColor="rgba(0, 0, 0, 0.3)"
+              tintColor="rgba(0, 203, 118, 0.7)"
+              style={VideoSnapComponentStyles.progressBarObject}>
+              {
+                (fill) => (
+                  <Text style={VideoSnapComponentStyles.progressBar}>
+                    { parseInt(fill) }
+                  </Text>
+                )
+              }
+            </AnimatedCircularProgress>
+          </View>
         </View>
         <View style={VideoSnapComponentStyles.modalTopSection}>
           <CloseButton onPress={this.cancelUpload.bind(this)}/>
+          <View style={[WaitingComponentStyles.mainWaiting, {marginRight: 5}]}>
+            <Bars size={8} color="#ffffff"/>
+          </View>
         </View>
       </View>
     )

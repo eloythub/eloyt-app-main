@@ -1,12 +1,14 @@
 import path from 'path'
 import { Service } from 'react-eloyt'
-import { Debug, LocalStorage, Utils } from '../Factories'
+import { Debug, LocalStorage } from '../Factories'
 import { AuthEnum, ConfigsEnum, RequestEnum } from '../Enums'
+
+const esc = encodeURIComponent
 
 export default class RequestService extends Service {
   static xhr = null
 
-  static async dispatchRequest (url, method, bodyData) {
+  static async dispatchRequest (url, method, data) {
     Debug.Log(`RequestService:dispatchRequest`)
 
     let authenticationToken
@@ -27,14 +29,19 @@ export default class RequestService extends Service {
       }, headers)
     }
 
+    const body = JSON.stringify(data)
+
     return new Promise(async (fulfill, reject) => {
       try {
         let success = true
 
-        let response = await fetch(this.url(url), {
+        let response = await fetch(this.url(
+          url,
+          method === RequestEnum.TYPE.GET ? data : null
+        ), {
           headers,
           method: method,
-          body: JSON.stringify(bodyData),
+          body: method !== RequestEnum.TYPE.GET ? body : null,
         }).then(async (res) => {
           if (!res.ok) {
             success = false
@@ -103,8 +110,18 @@ export default class RequestService extends Service {
     }
   }
 
-  static url (url) {
+  static url (url, query) {
     Debug.Log(`RequestService:url`)
+
+    if (query) {
+      query = Object.keys(query)
+        .map((key) => {
+          return `${esc(key)}=${esc(query[key])}`
+        })
+        .join('&')
+
+      return `${path.join(ConfigsEnum.API_BASE_URL[ConfigsEnum.NODE_ENV], url)}?${query}`
+    }
 
     return path.join(ConfigsEnum.API_BASE_URL[ConfigsEnum.NODE_ENV], url)
   }

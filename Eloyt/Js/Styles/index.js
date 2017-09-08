@@ -5,7 +5,7 @@ import CompleteProfileScreenStyles from './Screens/CompleteProfileScreenStyles'
 import ProfileHashtagsScreenStyles from './Screens/ProfileHashtagsScreenStyles'
 import HomeScreenStyles from './Screens/HomeScreenStyles'
 // Components
-import WatingComponentStyles from './Components/WatingComponentStyles'
+import WaitingComponentStyles from './Components/WaitingComponentStyles'
 import TermsAndConditionLinkComponentStyles from './Components/TermsAndConditionLinkComponentStyles'
 import InputTextBoxEntityComponentStyles from './Components/InputTextBoxEntityComponentStyles'
 import BirthdateEntityComponentStyles from './Components/BirthdateEntityComponentStyles'
@@ -13,9 +13,13 @@ import GenderEntityComponentStyles from './Components/GenderEntityComponentStyle
 import ImageEntityComponentStyles from './Components/ImageEntityComponentStyles'
 import HashtagSelectorEntityComponentStyles from './Components/HashtagSelectorEntityComponentStyles'
 import ButtonComponentStyles from './Components/ButtonComponentStyles'
+import ProfileAvatarComponentStyles from './Components/ProfileAvatarComponentStyles'
+import BottomCameraImageComponentStyles from './Components/BottomCameraImageComponentStyles'
 // Components HomeScreen
 import VideoPlayerComponentStyles from './Components/HomeScene/VideoPlayerComponentStyles'
 import VideoSnapComponentStyles from './Components/HomeScene/VideoSnapComponentStyles'
+import SnapPlayerManagerComponentStyle from './Components/HomeScene/SnapPlayerManagerComponentStyles'
+import SnapPlayerComponentStyle from './Components/HomeScene/SnapPlayerComponentStyles'
 
 export {
   CommonStyles,
@@ -27,7 +31,7 @@ export {
   HomeScreenStyles,
 
   // Components
-  WatingComponentStyles,
+  WaitingComponentStyles,
   TermsAndConditionLinkComponentStyles,
   InputTextBoxEntityComponentStyles,
   BirthdateEntityComponentStyles,
@@ -35,7 +39,11 @@ export {
   ImageEntityComponentStyles,
   HashtagSelectorEntityComponentStyles,
   ButtonComponentStyles,
+  ProfileAvatarComponentStyles,
+  BottomCameraImageComponentStyles,
   // Components HomeScreen
   VideoPlayerComponentStyles,
   VideoSnapComponentStyles,
+  SnapPlayerManagerComponentStyle,
+  SnapPlayerComponentStyle,
 }

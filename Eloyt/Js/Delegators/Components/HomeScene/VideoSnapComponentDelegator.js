@@ -4,7 +4,7 @@ import { Delegator } from 'react-eloyt'
 import Camera from 'react-native-camera'
 import { Debug, Utils } from '../../../Factories'
 import { GeneralEnum } from '../../../Enums'
-import { ApiService, RequestService } from '../../../Services'
+import { ApiService } from '../../../Services'
 
 export default class VideoSnapComponentDelegator extends Delegator {
   async componentDidMount () {
@@ -127,7 +127,6 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
     this.refs.uploadSwiperRef.scrollBy(1, true)
 
-
     // start uploading
     try {
       const uploadSnapResponse = await ApiService.uploadSnap(
@@ -141,6 +140,8 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
       // get back to Close the snap Scene
       this.close()
+
+      await Utils.wait(1)
 
       // normalize uploadSwiperRef back to normal
       this.refs.uploadSwiperRef.scrollBy(-1, true)
@@ -163,9 +164,15 @@ export default class VideoSnapComponentDelegator extends Delegator {
   }
 
   async onUploadProgress (progressEvent) {
-    const uploadProgress = progressEvent.loaded / progressEvent.total
+    const uploadProgress = parseInt((progressEvent.loaded / progressEvent.total) * 100)
 
-    Debug.Log('VideoSnapComponentDelegator:onUploadProgress', `${uploadProgress}%`)
-    await this.setState({uploadProgress})
+    // prevent calling setState too much
+    if (uploadProgress !== this.lastUploadProgress) {
+      Debug.Log('VideoSnapComponentDelegator:onUploadProgress', `${uploadProgress}%`)
+
+      await this.setState({uploadProgress})
+    }
+
+    this.lastUploadProgress = uploadProgress
   }
 }

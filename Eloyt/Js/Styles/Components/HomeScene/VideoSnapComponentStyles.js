@@ -79,7 +79,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#282828',
   },
   placeholder: {
     color: '#fff',
@@ -87,5 +86,28 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'OpenSans',
     textAlign: 'center',
+  },
+  progressContainer: {
+    flex: 1,
+    position: 'absolute',
+    top: 70,
+    width,
+    height: height - 140,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  progressBarObject: {
+    flex: 1,
+    position: 'absolute',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  progressBar: {
+    position: 'absolute',
+    fontSize: 24,
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
   },
 })

@@ -2,7 +2,7 @@
 import React from 'react'
 import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native'
 // Essentials
-import { CommonStyles, LoginScreenStyles, WatingComponentStyles } from '../Styles'
+import { CommonStyles, LoginScreenStyles, WaitingComponentStyles } from '../Styles'
 import { Assets, Debug, Utils } from '../Factories'
 import LoginScreenDelegator from '../Delegators/Screens/LoginScreenDelegator'
 // Components
@@ -27,8 +27,8 @@ export default class LoginScreen extends LoginScreenDelegator {
       return
     }
 
-    return <View style={WatingComponentStyles.mainWaitingContainer}>
-      <View style={WatingComponentStyles.mainWaiting}>
+    return <View style={WaitingComponentStyles.mainWaitingContainer}>
+      <View style={WaitingComponentStyles.mainWaiting}>
         <Bars size={30} color="#ffffff"/>
       </View>
     </View>

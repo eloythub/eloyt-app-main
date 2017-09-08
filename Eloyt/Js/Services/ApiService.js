@@ -47,8 +47,8 @@ export default class ApiService extends RequestService {
     return await this.dispatchRequest('/users/activate', RequestEnum.TYPE.POST)
   }
 
-  static async requestGetProfile (userId) {
-    Debug.Log(`ApiService:requestGetProfile`)
+  static async getProfile (userId) {
+    Debug.Log(`ApiService:getProfile`)
 
     return await this.dispatchRequest(`/users/${userId}`, RequestEnum.TYPE.GET)
   }
@@ -107,10 +107,15 @@ export default class ApiService extends RequestService {
     return await this.dispatchRequest(`/stream/${userId}/${resourceId}/${resourceOwnerUserId}/${reactType}`, RequestEnum.TYPE.POST)
   }
 
-  static async fetchProducedResources (userId, offset = 50) {
+  static async fetchProducedResources (offset = 0, limit= 50) {
     Debug.Log(`ApiService:fetchProducedResources`)
 
-    return await this.dispatchRequest(`/stream/produce/${userId}/${offset}`, RequestEnum.TYPE.GET)
+    const producedResources = await this.dispatchRequest(`/stream/produce`, RequestEnum.TYPE.GET, {
+      offset:0,
+      limit:50
+    })
+
+    return producedResources.data
   }
 
   static async fetchProducedResourcesById (resourceId) {

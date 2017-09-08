@@ -1,25 +1,87 @@
 // Basics
 import React from 'react'
-//import PropTypes from 'prop-types'
-import { Text, View } from 'react-native'
+import PropTypes from 'prop-types'
+import { TouchableOpacity, View } from 'react-native'
+import { Bars } from 'react-native-loader'
 // Essentials
-import { HomeScreenStyles, VideoPlayerComponentStyles } from '../../Styles'
+import { VideoPlayerComponentStyles, WaitingComponentStyles } from '../../Styles'
 import VideoPlayerComponentDelegator from '../../Delegators/Components/HomeScene/VideoPlayerComponentDelegator'
+import ProfileAvatar from '../../Components/ProfileAvatar'
+import SearchButton from '../../Components/SearchButton'
+import NotificationButton from '../../Components/NotificationButton'
+import SnapPlayerManagerComponent from './SnapPlayerManagerComponent'
+import BottomCameraImage from '../BottomCameraImage'
 
 export default class VideoPlayerComponent extends VideoPlayerComponentDelegator {
   constructor (props) {
     super(props)
 
-    this.state = props
+    this.state = {
+      waitingMain: true,
+    }
+  }
+
+  renderVideoPlayerQueue () {
+    const { forcePause } = this.props
+
+    return (
+      <View style={VideoPlayerComponentStyles.rootSnapPlayerContainer}>
+        <SnapPlayerManagerComponent forcePause={forcePause} moveSceneToSearch={this.props.moveSceneToSearchScene.bind(this)}/>
+      </View>
+    )
+  }
+
+  renderWaiting () {
+    return <View style={WaitingComponentStyles.mainWaitingContainer}>
+      <View style={WaitingComponentStyles.mainWaiting}>
+        <Bars size={30} color="#ffffff"/>
+      </View>
+    </View>
   }
 
   render () {
+    const {waitingMain} = this.state
+    const {
+            moveSceneToSearchScene,
+            moveSceneToNotificationScene,
+            moveSceneToRecordScene
+          }             = this.props
+
+    if (waitingMain) {
+      return this.renderWaiting()
+    }
+
+    const loggedInUser = this.ssoUserData
+
     return (
-      <View style={VideoPlayerComponentStyles.rootContainer}>
-        <Text style={HomeScreenStyles.placeholder}>Video Player</Text>
+      <View style={VideoPlayerComponentStyles.rootNonFlexContainer}>
+        {this.renderVideoPlayerQueue()}
+        <View style={VideoPlayerComponentStyles.topSection}>
+          <View style={VideoPlayerComponentStyles.notifyListMessageRecipientsSection}>
+            <NotificationButton unreadMessages={true} onPress={moveSceneToNotificationScene.bind(this)}/>
+          </View>
+          <View style={VideoPlayerComponentStyles.profileSection}>
+            <ProfileAvatar onPress={() => console.log('go to ProfileScene')}
+                           imageUrl={loggedInUser.cloudAvatarUrl}
+                           size={40}/>
+          </View>
+          <View style={VideoPlayerComponentStyles.searchSection}>
+            <SearchButton onPress={moveSceneToSearchScene.bind(this)}/>
+          </View>
+        </View>
+        <View style={VideoPlayerComponentStyles.bottomSection}>
+          <TouchableOpacity onPress={moveSceneToRecordScene.bind(this)}>
+            <BottomCameraImage />
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
-VideoPlayerComponent.propTypes = {}
+VideoPlayerComponent.propTypes = {
+  forcePause: PropTypes.bool,
+  moveSceneToRecordScene: PropTypes.func,
+  moveSceneToSearchScene: PropTypes.func,
+  moveSceneToNotificationScene: PropTypes.func,
+}

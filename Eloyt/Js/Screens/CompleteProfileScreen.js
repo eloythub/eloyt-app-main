@@ -2,7 +2,7 @@
 import React from 'react'
 import { Image, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native'
 // Essentials
-import { CommonStyles, CompleteProfileScreenStyles, WatingComponentStyles } from '../Styles'
+import { CommonStyles, CompleteProfileScreenStyles, WaitingComponentStyles } from '../Styles'
 import { Assets, Debug, Utils } from '../Factories'
 import CompleteProfileScreenDelegator from '../Delegators/Screens/CompleteProfileScreenDelegator'
 import ImageEntity from '../Components/ImageEntity'
@@ -124,8 +124,8 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
       return
     }
 
-    return <View style={WatingComponentStyles.mainWaitingContainer}>
-      <View style={WatingComponentStyles.mainWaiting}>
+    return <View style={WaitingComponentStyles.mainWaitingContainer}>
+      <View style={WaitingComponentStyles.mainWaiting}>
         <Bars size={30} color="#ffffff"/>
       </View>
     </View>

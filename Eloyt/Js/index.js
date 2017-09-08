@@ -3,6 +3,7 @@ import { AppRegistry, StyleSheet, View } from 'react-native'
 import { ActionConst, Actions, Router, Scene } from 'react-native-router-flux'
 import { AuthEnum } from './Enums'
 import { Debug, LocalStorage } from './Factories'
+import { ApiService } from './Services'
 // Import Components Scenes Here
 import LoginScreen, { LoginScreenKey, LoginScreenTitle } from './Screens/LoginScreen'
 import CompleteProfileScreen, {
@@ -20,7 +21,23 @@ export default class IndexView extends Component {
     Debug.Log('IndexView:isSignedIn')
 
     try {
-      return await LocalStorage.load(AuthEnum.LOGIN_STATUS)
+      let ssoUserData = await LocalStorage.load(AuthEnum.LOGIN_STATUS)
+
+      if (ssoUserData) {
+        let userProfile = await ApiService.getProfile(ssoUserData.id)
+
+        if (userProfile.statusCode === 401) {
+          const apiAccessToken = await ApiService.generateAccessToken(ssoUserData.id)
+
+          await LocalStorage.save(AuthEnum.LOGIN_API_ACCESS_TOKEN, apiAccessToken.tokenId)
+
+          userProfile = await ApiService.getProfile(ssoUserData.id)
+        }
+
+        await LocalStorage.save(AuthEnum.LOGIN_STATUS, userProfile.data)
+      }
+
+      return ssoUserData
     } catch (e) {
       return false
     }
@@ -44,8 +61,6 @@ export default class IndexView extends Component {
     Debug.Log('IndexView:CheckSignInStatus')
 
     const isSignedIn = await this.isSignedIn()
-
-    Debug.Log('IndexView:CheckSignInStatus:LoginStatus:', isSignedIn)
 
     if (!isSignedIn) {
       LocalStorage.unload(AuthEnum.LOGIN_STATUS)

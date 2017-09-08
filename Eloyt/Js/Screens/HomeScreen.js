@@ -1,17 +1,13 @@
 // Basics
 import React from 'react'
 import { StatusBar, Text, View } from 'react-native'
+import Swiper from 'react-native-swiper'
 // Essentials
 import { HomeScreenStyles } from '../Styles'
 import { Debug, Utils } from '../Factories'
 import HomeScreenDelegator from '../Delegators/Screens/HomeScreenDelegator'
-// Components
 import VideoPlayerComponent from '../Components/HomeScreen/VideoPlayerComponent'
 import VideoSnapComponent from '../Components/HomeScreen/VideoSnapComponent'
-// Modules
-import Swiper from 'react-native-swiper'
-//import { Col, Grid, Row } from 'react-native-easy-grid'
-//import { Bars } from 'react-native-loader'
 
 export default class HomeScreen extends HomeScreenDelegator {
   constructor (props) {
@@ -21,10 +17,12 @@ export default class HomeScreen extends HomeScreenDelegator {
 
     this.state = {
       mainSwiperScrollEnable: true,
-      playerSnapScrollEnable: true
+      playerSnapScrollEnable: true,
+      forcePause: false,
     }
 
     this.mainSwiperProperties = {
+      ref: 'mainSnapSwiperRef',
       index: 1,
       loop: false,
       bounces: false,
@@ -49,7 +47,7 @@ export default class HomeScreen extends HomeScreenDelegator {
   }
 
   render () {
-    const {mainSwiperScrollEnable, playerSnapScrollEnable} = this.state
+    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause} = this.state
 
     return (
       <View style={HomeScreenStyles.baseContainer}>
@@ -59,9 +57,11 @@ export default class HomeScreen extends HomeScreenDelegator {
           hidden={false}
         />
 
-        <Swiper {...Object.assign({
-          scrollEnabled: mainSwiperScrollEnable
-        }, this.mainSwiperProperties)}>
+        <Swiper
+          onIndexChanged={this.onMainSwiperIndexChanged.bind(this)}
+          {...Object.assign({
+            scrollEnabled: mainSwiperScrollEnable
+          }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
             <Text style={HomeScreenStyles.placeholder}>Message/Notifications</Text>
           </View>
@@ -71,7 +71,10 @@ export default class HomeScreen extends HomeScreenDelegator {
             }, this.playerSnapSwiperProperties)}
                     onIndexChanged={this.onPlayerSnapSwiperIndexChanged.bind(this)}>
               <View style={HomeScreenStyles.playerSnapSlide}>
-                <VideoPlayerComponent />
+                <VideoPlayerComponent forcePause={forcePause}
+                                      moveSceneToRecordScene={this.moveSceneToRecordScene.bind(this)}
+                                      moveSceneToSearchScene={this.moveSceneToSearchScene.bind(this)}
+                                      moveSceneToNotificationScene={this.moveSceneToNotificationScene.bind(this)}/>
               </View>
               <View style={HomeScreenStyles.playerSnapSlide}>
                 <VideoSnapComponent onClose={this.onSnapClose.bind(this)}

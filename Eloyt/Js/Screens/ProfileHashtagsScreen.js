@@ -2,7 +2,7 @@
 import React from 'react'
 import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native'
 // Essentials
-import { CommonStyles, ProfileHashtagsScreenStyles, WatingComponentStyles } from '../Styles'
+import { CommonStyles, ProfileHashtagsScreenStyles, WaitingComponentStyles } from '../Styles'
 import { Assets, Debug, Utils } from '../Factories'
 import ProfileHashtagsScreenDelegator from '../Delegators/Screens/ProfileHashtagsScreenDelegator'
 import HashtagSelectorEntity from '../Components/HashtagSelectorEntity'
@@ -60,6 +60,26 @@ export default class ProfileHashtagsScreen extends ProfileHashtagsScreenDelegato
     )
   }
 
+  renderWaiting (show) {
+    if (!show) {
+      return
+    }
+
+    return <View style={WaitingComponentStyles.mainWaitingContainer}>
+      <View style={WaitingComponentStyles.mainWaiting}>
+        <Bars size={30} color="#ffffff"/>
+      </View>
+    </View>
+  }
+
+  renderWaitingNext (show) {
+    if (!show) {
+      return
+    }
+
+    return <Bars size={7} color="#ffffff"/>
+  }
+
   render () {
     const {waitingMain} = this.state
 
@@ -79,26 +99,6 @@ export default class ProfileHashtagsScreen extends ProfileHashtagsScreenDelegato
         </View>
       </View>
     )
-  }
-
-  renderWaiting (show) {
-    if (!show) {
-      return
-    }
-
-    return <View style={WatingComponentStyles.mainWaitingContainer}>
-      <View style={WatingComponentStyles.mainWaiting}>
-        <Bars size={30} color="#ffffff"/>
-      </View>
-    </View>
-  }
-
-  renderWaitingNext (show) {
-    if (!show) {
-      return
-    }
-
-    return <Bars size={7} color="#ffffff"/>
   }
 }
 

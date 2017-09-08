@@ -91,11 +91,11 @@ export default class LoginScreenDelegator extends Delegator {
         type: ActionConst.REPLACE,
       })
     } catch (err) {
-      Debug.Log(err.message)
+      Debug.Log(err)
 
       await this.setState({waitingMain: false})
 
-      Utils.alert(err.message)
+      Utils.alert('Something went wrong!!!\nPlease try again.')
     }
   }
 }
