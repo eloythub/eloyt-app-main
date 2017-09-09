@@ -107,7 +107,7 @@ export default class ApiService extends RequestService {
     return await this.dispatchRequest(`/stream/${userId}/${resourceId}/${resourceOwnerUserId}/${reactType}`, RequestEnum.TYPE.POST)
   }
 
-  static async fetchProducedResources (offset = 0, limit= 50) {
+  static async fetchProducedResources (offset = 0, limit= 2) {
     Debug.Log(`ApiService:fetchProducedResources`)
 
     const producedResources = await this.dispatchRequest(`/stream/produce`, RequestEnum.TYPE.GET, {

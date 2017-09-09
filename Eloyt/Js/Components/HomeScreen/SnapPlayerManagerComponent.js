@@ -22,11 +22,15 @@ export default class SnapPlayerManagerComponent extends SnapPlayerManagerCompone
 
   renderSnapVideo () {
     const {currentSnap} = this.state
-    const {forcePause} = this.props
+    const {forcePause}  = this.props
 
     return (
       <View style={SnapPlayerManagerComponentStyle.rootSnapContainer}>
-        <SnapPlayerComponent forcePause={forcePause} snapVideo={currentSnap}/>
+        <SnapPlayerComponent forcePause={forcePause}
+                             snapVideo={currentSnap}
+                             onSkipTheSnap={this.onSkipTheSnap.bind(this)}
+                             onLikeTheSnap={this.onLikeTheSnap.bind(this)}
+                             onDislikeTheSnap={this.onDislikeTheSnap.bind(this)}/>
       </View>
     )
   }

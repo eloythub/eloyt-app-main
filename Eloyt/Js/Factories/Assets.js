@@ -11,6 +11,7 @@ import OkIcon from '../../Assets/Images/ok-icon.png'
 import SearchIcon from '../../Assets/Images/search-icon.png'
 import NotificationIcon from '../../Assets/Images/notification-icon.png'
 import RecordSceneIcon from '../../Assets/Images/record-scene-icon.png'
+import MoreRoundIcon from '../../Assets/Images/more-round-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -27,4 +28,5 @@ export default class Assets extends Factory {
   static SearchIcon = SearchIcon
   static NotificationIcon = NotificationIcon
   static RecordSceneIcon = RecordSceneIcon
+  static MoreRoundIcon = MoreRoundIcon
 }

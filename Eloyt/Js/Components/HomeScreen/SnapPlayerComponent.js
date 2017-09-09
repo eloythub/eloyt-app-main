@@ -1,15 +1,16 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Text, ScrollView } from 'react-native'
+import { ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { Bars } from 'react-native-loader'
 import Video from 'react-native-video'
 import Swiper from 'react-native-swiper'
-import moment from 'moment';
+import moment from 'moment'
 // Essentials
 import { SnapPlayerComponentStyle, WaitingComponentStyles } from '../../Styles'
 import SnapPlayerComponentDelegator from '../../Delegators/Components/HomeScene/SnapPlayerComponentDelegator'
 import ProfileAvatar from '../../Components/ProfileAvatar'
+import MoreButton from '../../Components/MoreButton'
 
 export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   constructor (props) {
@@ -17,6 +18,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
 
     this.state = {
       waitingMain: true,
+      pause: false,
     }
 
     this.detailsActionsSwiperProperties = {
@@ -66,9 +68,14 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
             <Text style={SnapPlayerComponentStyle.detailsTime}>{uploadedAt}</Text>
           </View>
           <View style={SnapPlayerComponentStyle.detailsSnapDetailsContainer}>
-            <ScrollView>
-              <Text style={SnapPlayerComponentStyle.detailsDescription}>{snapVideo.description}</Text>
-            </ScrollView>
+            <View style={SnapPlayerComponentStyle.detailsSnapDetailsContent}>
+              <ScrollView>
+                <Text style={SnapPlayerComponentStyle.detailsDescription}>{snapVideo.description}</Text>
+              </ScrollView>
+            </View>
+            <View style={SnapPlayerComponentStyle.detailsSnapDetailsAction}>
+              <MoreButton onPress={this.onPressAction.bind(this)}/>
+            </View>
           </View>
         </View>
       </View>
@@ -85,7 +92,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
     return (
       <View style={SnapPlayerComponentStyle.bottomSection}>
         <Swiper {...this.detailsActionsSwiperProperties}>
-          <View style={SnapPlayerComponentStyle.detailsActionSlide} />
+          <View style={SnapPlayerComponentStyle.detailsActionSlide}/>
           <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>
           <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomActions()}</View>
         </Swiper>
@@ -94,34 +101,37 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   }
 
   render () {
-    const {waitingMain}           = this.state
+    const {waitingMain, pause}    = this.state
     const {snapVideo, forcePause} = this.props
 
     return (
       <View style={SnapPlayerComponentStyle.rootContainer}>
-        {this.renderWaiting(waitingMain)}
-        <Video
-          ref="videoRef"
-          style={SnapPlayerComponentStyle.video}
-          poster={snapVideo.cloudThumbnailUrl}
-          source={{uri: snapVideo.cloudVideoUrl}}
-          seek={0}
-          rate={forcePause ? 0 : 1}
-          muted={false}
-          paused={forcePause}
-          resizeMode="cover"
-          repeat={false}
-          playInBackground={false}
-          playWhenInactive={false}
-          progressUpdateInterval={250.0}
+        <TouchableWithoutFeedback onPressIn={this.onPressInOnVideo.bind(this)}
+                                  onPressOut={this.onPressOutOnVideo.bind(this)}>
+          <View>
+            {this.renderWaiting(waitingMain)}
+            <Video
+              ref="videoRef"
+              style={SnapPlayerComponentStyle.video}
+              poster={snapVideo.cloudThumbnailUrl}
+              source={{uri: snapVideo.cloudVideoUrl}}
+              seek={0}
+              rate={forcePause ? 0 : (pause ? 0 : 1)}
+              muted={false}
+              paused={forcePause ? true : pause}
+              resizeMode="cover"
+              repeat={false}
+              playInBackground={false}
+              playWhenInactive={false}
+              progressUpdateInterval={250.0}
 
-          onLoadStart={this.onLoadStart.bind(this)}
-          onLoad={this.onLoad.bind(this)}
-          onEnd={this.onEnd.bind(this)}
-          onError={this.onError.bind(this)}
-          //onProgress={this.handleVideoProgress.bind(this)}
-          //onVideoProgress={this.handleVideoProgress.bind(this)}
-        />
+              onLoadStart={this.onLoadStart.bind(this)}
+              onLoad={this.onLoad.bind(this)}
+              onEnd={this.onEnd.bind(this)}
+              onError={this.onError.bind(this)}
+            />
+          </View>
+        </TouchableWithoutFeedback>
         {this.renderBottom(waitingMain)}
       </View>
     )
@@ -135,4 +145,7 @@ SnapPlayerComponent.propTypes = {
   onVideoStartPlaying: PropTypes.func,
   onVideoEnded: PropTypes.func,
   onVideoError: PropTypes.func,
+  onSkipTheSnap: PropTypes.func,
+  onLikeTheSnap: PropTypes.func,
+  onDislikeTheSnap: PropTypes.func,
 }

@@ -6,6 +6,9 @@ const commonDetailsActionSlide = {
   height: 100,
 }
 
+const detailsSnapDetailsWidth = width - 100
+const detailsSnapDetailsActionWidth = 40
+
 export default StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -54,12 +57,20 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   detailsSnapDetails: {
-    width: width - 100,
+    width: detailsSnapDetailsWidth,
   },
   detailsSnapDetailsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  detailsSnapDetailsContent: {
+    width: detailsSnapDetailsWidth - detailsSnapDetailsActionWidth,
+    //backgroundColor: 'red',
+  },
+  detailsSnapDetailsAction: {
+    width: detailsSnapDetailsActionWidth,
+    //backgroundColor: 'yellow',
   },
   detailsTime: {
     fontSize: 14,

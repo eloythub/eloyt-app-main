@@ -67,6 +67,24 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+  // More Button
+  moreButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  moreButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  moreButtonIcon: {
+    width: 24,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
   // Notification Button
   notificationButtonContainer: {
     width: 45,
