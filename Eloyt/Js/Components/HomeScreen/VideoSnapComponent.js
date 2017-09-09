@@ -183,7 +183,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
           <Camera
             ref="cameraRef"
             style={VideoSnapComponentStyles.camera}
-            keepAwake={true}
+            keepAwake={false}
             type={isCameraTypeFront ? Type.front : Type.back}
             captureAudio={true}
             playSoundOnCapture={false}

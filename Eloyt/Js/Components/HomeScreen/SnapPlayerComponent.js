@@ -123,7 +123,6 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
               repeat={false}
               playInBackground={false}
               playWhenInactive={false}
-              progressUpdateInterval={250.0}
 
               onLoadStart={this.onLoadStart.bind(this)}
               onLoad={this.onLoad.bind(this)}

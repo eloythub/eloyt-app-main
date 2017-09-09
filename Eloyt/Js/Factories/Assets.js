@@ -12,6 +12,7 @@ import SearchIcon from '../../Assets/Images/search-icon.png'
 import NotificationIcon from '../../Assets/Images/notification-icon.png'
 import RecordSceneIcon from '../../Assets/Images/record-scene-icon.png'
 import MoreRoundIcon from '../../Assets/Images/more-round-icon.png'
+import MoreIcon from '../../Assets/Images/more-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -23,10 +24,11 @@ export default class Assets extends Factory {
   static DefaultProfileUser = DefaultProfileUser
 
   // Buttons
-  static CancelIcon = CancelIcon
-  static OkIcon = OkIcon
-  static SearchIcon = SearchIcon
+  static CancelIcon       = CancelIcon
+  static OkIcon           = OkIcon
+  static SearchIcon       = SearchIcon
   static NotificationIcon = NotificationIcon
-  static RecordSceneIcon = RecordSceneIcon
-  static MoreRoundIcon = MoreRoundIcon
+  static RecordSceneIcon  = RecordSceneIcon
+  static MoreRoundIcon    = MoreRoundIcon
+  static MoreIcon         = MoreIcon
 }

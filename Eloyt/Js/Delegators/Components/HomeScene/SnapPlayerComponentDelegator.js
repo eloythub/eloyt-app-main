@@ -1,7 +1,7 @@
 // Basics
 import React from 'react'
 import { Delegator } from 'react-eloyt'
-import { Debug } from '../../../Factories'
+import { Debug, Utils } from '../../../Factories'
 import { GeneralEnum } from '../../../Enums'
 
 export default class SnapPlayerComponentDelegator extends Delegator {
@@ -32,9 +32,15 @@ export default class SnapPlayerComponentDelegator extends Delegator {
   async onEnd (data) {
     Debug.Log(`SnapPlayerComponentDelegator:onEnd`)
 
+    const {onSkipTheSnap} = this.props
+
     if (this.props.onVideoEnded) {
       this.props.onVideoEnded(data)
     }
+
+    await Utils.wait(500)
+
+    onSkipTheSnap()
   }
 
   async onError (err) {
@@ -66,7 +72,7 @@ export default class SnapPlayerComponentDelegator extends Delegator {
   async onPressOutOnVideo () {
     Debug.Log(`SnapPlayerComponentDelegator:onPressOutOnVideo`)
 
-    const { onSkipTheSnap } = this.props
+    const {onSkipTheSnap} = this.props
 
     const now = new Date().getTime()
 

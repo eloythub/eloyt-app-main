@@ -80,8 +80,6 @@ export default class ApiService extends RequestService {
 
     const hashtagsSlugs = selectedHashtags.map((hashtag) => hashtag.slug).join(',')
 
-    console.log('upload payload:', snapObject.path, description, hashtagsSlugs)
-
     const body = new FormData()
 
     body.append('description', description)

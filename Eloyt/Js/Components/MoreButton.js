@@ -17,7 +17,7 @@ export default class MoreButton extends Delegator {
       <View style={ButtonComponentStyles.moreButtonContainer}>
         <TouchableOpacity {...this.props}>
           <View style={ButtonComponentStyles.moreButton}>
-            <Image source={Assets.MoreRoundIcon} style={ButtonComponentStyles.moreButtonIcon}/>
+            <Image source={Assets.MoreIcon} style={ButtonComponentStyles.moreButtonIcon}/>
           </View>
         </TouchableOpacity>
       </View>

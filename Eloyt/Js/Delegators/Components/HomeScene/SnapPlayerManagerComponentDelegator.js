@@ -7,17 +7,15 @@ import { ApiService } from '../../../Services'
 
 export default class SnapPlayerManagerComponentDelegator extends Delegator {
   async componentDidMount () {
-    await this.feedUpTheQueue()
+    if (!this.paginationCheckpoint) {
+      this.paginationCheckpoint = 0
+
+      await this.feedUpTheQueue()
+    }
   }
 
   async feedUpTheQueue () {
     Debug.Log('SnapPlayerManagerComponentDelegator:feedUpTheQueue')
-
-    if (!this.paginationCheckpoint) {
-      this.paginationCheckpoint = 0
-    }
-
-    console.log('fetch the checkpoint: ', this.paginationCheckpoint)
 
     const producedResources = await ApiService.fetchProducedResources(
       this.paginationCheckpoint,

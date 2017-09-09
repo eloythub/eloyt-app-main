@@ -112,8 +112,6 @@ export default class VideoSnapComponentDelegator extends Delegator {
   }
 
   async startUploadingSnap () {
-    console.log(this.description, this.selectedHashtags)
-
     if (!this.description) {
       return Utils.alert('Description is required')
     }
