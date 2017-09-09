@@ -1,10 +1,12 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TextInput, View } from 'react-native'
+import { Dimensions, TextInput, View } from 'react-native'
 // Essentials
 import { InputTextBoxEntityComponentStyles } from '../Styles'
 import InputTextBoxEntityComponentDelegator from '../Delegators/Components/InputTextBoxEntityComponentDelegator'
+
+const {width} = Dimensions.get('window')
 
 export default class InputTextBoxEntity extends InputTextBoxEntityComponentDelegator {
   constructor (props) {
@@ -12,24 +14,41 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
 
     this.state = props
   }
-
   render () {
-    const {numberOfLines, maxLength, height, multiline = false} = this.state
+    const {
+            placeholderColor = '#7d7d7d',
+            autoCapitalize   = 'words',
+            widthOffset      = 60,
+            fontSize         = 18,
+            height           = 50,
+            multiline        = false,
+            numberOfLines,
+            maxLength,
+            caption,
+            default: defaultText,
+          } = this.props
 
     return (
-      <View style={InputTextBoxEntityComponentStyles.rootContainer}>
+      <View style={[
+        InputTextBoxEntityComponentStyles.rootContainer,
+        {
+          borderBottomColor: placeholderColor,
+          width: width - widthOffset
+        }
+      ]}>
         <TextInput
           ref='textRefObj'
           style={[
             InputTextBoxEntityComponentStyles.inputBox,
             {
-              height: height || 50
+              fontSize,
+              height,
             }
           ]}
           editable={true}
-          autoCapitalize="words"
-          placeholder={this.state.caption}
-          placeholderTextColor="#7d7d7d"
+          autoCapitalize={autoCapitalize}
+          placeholder={caption}
+          placeholderTextColor={placeholderColor}
           underlineColorAndroid="transparent"
           enablesReturnKeyAutomatically={true}
           keyboardAppearance="dark"
@@ -43,7 +62,7 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
           onSubmitEditing={() => this.props.nextFocusObjectRef ? this.props.nextFocusObjectRef() : null}
           returnKeyType="next"
           value={this.state.text}
-          defaultValue={this.state.default}
+          defaultValue={defaultText}
           {...{
             numberOfLines,
             maxLength,
@@ -66,4 +85,8 @@ InputTextBoxEntity.propTypes = {
   maxLength: PropTypes.number,
   height: PropTypes.number,
   multiline: PropTypes.bool,
+  placeholderColor: PropTypes.string,
+  autoCapitalize: PropTypes.string,
+  widthOffset: PropTypes.number,
+  fontSize: PropTypes.number,
 }

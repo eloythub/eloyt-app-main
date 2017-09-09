@@ -13,6 +13,9 @@ export default StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
+  keyboardAvoidingViewContainer: {
+    flex: 1,
+  },
   video: {
     width,
     height,
@@ -35,13 +38,15 @@ export default StyleSheet.create({
     width,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   Text: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff'
   },
+
+  // Details Slide
   detailsContainer: {
     ...commonDetailsActionSlide,
     width: width - 10,
@@ -91,5 +96,16 @@ export default StyleSheet.create({
     textAlign: 'justify',
     color: '#ffffff',
     padding: 0,
+  },
+
+  // Actions Slide
+  actionsContainer: {
+    width: width,
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 5,
+    paddingRight: 5,
   },
 })

@@ -11,8 +11,10 @@ import OkIcon from '../../Assets/Images/ok-icon.png'
 import SearchIcon from '../../Assets/Images/search-icon.png'
 import NotificationIcon from '../../Assets/Images/notification-icon.png'
 import RecordSceneIcon from '../../Assets/Images/record-scene-icon.png'
-import MoreRoundIcon from '../../Assets/Images/more-round-icon.png'
 import MoreIcon from '../../Assets/Images/more-icon.png'
+import LeftArrowNoTailIcon from '../../Assets/Images/arrow-left-no-tail-icon.png'
+import LikeIcon from '../../Assets/Images/like-icon.png'
+import DislikeIcon from '../../Assets/Images/dislike-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -24,11 +26,13 @@ export default class Assets extends Factory {
   static DefaultProfileUser = DefaultProfileUser
 
   // Buttons
-  static CancelIcon       = CancelIcon
-  static OkIcon           = OkIcon
-  static SearchIcon       = SearchIcon
-  static NotificationIcon = NotificationIcon
-  static RecordSceneIcon  = RecordSceneIcon
-  static MoreRoundIcon    = MoreRoundIcon
-  static MoreIcon         = MoreIcon
+  static CancelIcon          = CancelIcon
+  static OkIcon              = OkIcon
+  static SearchIcon          = SearchIcon
+  static NotificationIcon    = NotificationIcon
+  static RecordSceneIcon     = RecordSceneIcon
+  static MoreIcon            = MoreIcon
+  static LeftArrowNoTailIcon = LeftArrowNoTailIcon
+  static LikeIcon            = LikeIcon
+  static DislikeIcon         = DislikeIcon
 }

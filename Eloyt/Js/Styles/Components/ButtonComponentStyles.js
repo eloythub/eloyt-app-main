@@ -4,6 +4,7 @@ export default StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
+
   // Snap Button
   snapButton: {
     width: 70,
@@ -13,6 +14,7 @@ export default StyleSheet.create({
     borderColor: '#FFF',
     marginBottom: 15,
   },
+
   // Cancel Button
   cancelButtonContainer: {
     width: 45,
@@ -31,6 +33,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+
   // OK Button
   okButtonContainer: {
     width: 45,
@@ -49,6 +52,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+
   // Search Button
   searchButtonContainer: {
     width: 45,
@@ -67,6 +71,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+
   // More Button
   moreButtonContainer: {
     width: 45,
@@ -85,6 +90,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+
   // Notification Button
   notificationButtonContainer: {
     width: 45,
@@ -103,6 +109,64 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+
+  // Left Arrow Button
+  leftArrowButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  leftArrowButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  leftArrowButtonIcon: {
+    width: 28,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
+  // like Button
+  likeButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  likeButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  likeButtonIcon: {
+    width: 28,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
+  // dislike Button
+  dislikeButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  dislikeButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dislikeButtonIcon: {
+    width: 28,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
   newMessagesIcon: {
     width: 8,
     height: 8,
@@ -122,7 +186,7 @@ export default StyleSheet.create({
     height: 40,
     minWidth: 60,
     alignItems: 'center',
-    flexDirection:'column',
+    flexDirection: 'column',
     borderColor: '#ffffff',
     backgroundColor: '#ffffff',
     borderWidth: 1,

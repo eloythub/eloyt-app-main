@@ -1,7 +1,7 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { KeyboardAvoidingView, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { Bars } from 'react-native-loader'
 import Video from 'react-native-video'
 import Swiper from 'react-native-swiper'
@@ -11,6 +11,10 @@ import { SnapPlayerComponentStyle, WaitingComponentStyles } from '../../Styles'
 import SnapPlayerComponentDelegator from '../../Delegators/Components/HomeScene/SnapPlayerComponentDelegator'
 import ProfileAvatar from '../../Components/ProfileAvatar'
 import MoreButton from '../../Components/MoreButton'
+import LeftArrowButton from '../../Components/LeftArrowButton'
+import LikeButton from '../../Components/LikeButton'
+import DislikeButton from '../../Components/DislikeButton'
+import InputTextBoxEntity from '../../Components/InputTextBoxEntity'
 
 export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   constructor (props) {
@@ -84,19 +88,37 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
 
   renderBottomActions () {
     return (
-      <Text style={SnapPlayerComponentStyle.Text}>Actions</Text>
+      <View style={SnapPlayerComponentStyle.actionsContainer}>
+        <LeftArrowButton onPress={this.onPressBackToDetailSlide.bind(this)}/>
+        <InputTextBoxEntity
+          onChange={(text) => this.directQuickMessage = text}
+          caption="Send Quick Message"
+          name="quickMessage"
+          placeholderColor="#ffffff"
+          autoCapitalize="none"
+          widthOffset={160}
+          fontSize={14}
+          height={45}
+        />
+        <DislikeButton onPress={this.onPressDislike.bind(this)}/>
+        <LikeButton onPress={this.onPressLike.bind(this)}/>
+      </View>
     )
   }
 
   renderBottom () {
     return (
-      <View style={SnapPlayerComponentStyle.bottomSection}>
-        <Swiper {...this.detailsActionsSwiperProperties}>
-          <View style={SnapPlayerComponentStyle.detailsActionSlide}/>
-          <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>
-          <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomActions()}</View>
-        </Swiper>
-      </View>
+      <KeyboardAvoidingView behavior="position"
+                            style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}>
+        <View style={SnapPlayerComponentStyle.bottomSection}>
+          <Swiper {...this.detailsActionsSwiperProperties}
+                  onIndexChanged={this.onDetailsActionsSwiperIndexChanged.bind(this)}>
+            <View style={SnapPlayerComponentStyle.detailsActionSlide}/>
+            <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>
+            <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomActions()}</View>
+          </Swiper>
+        </View>
+      </KeyboardAvoidingView>
     )
   }
 

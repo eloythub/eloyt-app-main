@@ -57,6 +57,12 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     this.refs.detailsActionsSwiperRef.scrollBy(1, true)
   }
 
+  onPressBackToDetailSlide () {
+    Debug.Log(`SnapPlayerComponentDelegator:onPressBackToDetailSlide`)
+
+    this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
+  }
+
   async onPressInOnVideo () {
     Debug.Log(`SnapPlayerComponentDelegator:onPressInOnVideo`)
 
@@ -72,17 +78,39 @@ export default class SnapPlayerComponentDelegator extends Delegator {
   async onPressOutOnVideo () {
     Debug.Log(`SnapPlayerComponentDelegator:onPressOutOnVideo`)
 
-    const {onSkipTheSnap} = this.props
-
     const now = new Date().getTime()
 
     // check if it's a quick tap, go to next video just in case
     if (this.lastTapOnScreen && (now - this.lastTapOnScreen) < GeneralEnum.QUICK_PRESS_DELAY) {
-      return onSkipTheSnap()
+      return this.props.onSkipTheSnap()
     }
 
     await this.setState({
       pause: false
     })
+  }
+
+  async onDetailsActionsSwiperIndexChanged (index) {
+    Debug.Log(`SnapPlayerComponentDelegator:onDetailsActionsSwiperIndexChanged`)
+
+    await this.setState({
+      pause: index === 2
+    })
+  }
+
+  async onPressLike () {
+    Debug.Log(`SnapPlayerComponentDelegator:onPressLike`)
+
+    await this.props.onLikeTheSnap()
+
+    this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
+  }
+
+  async onPressDislike () {
+    Debug.Log(`SnapPlayerComponentDelegator:onPressDislike`)
+
+    await this.props.onDislikeTheSnap()
+
+    this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
   }
 }

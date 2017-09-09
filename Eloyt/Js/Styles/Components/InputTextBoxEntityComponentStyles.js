@@ -12,7 +12,6 @@ export default StyleSheet.create({
   },
   inputBox: {
     fontFamily: 'OpenSans',
-    fontSize: Utils.isIOS() ? 18 : 16,
     fontWeight: Utils.isIOS() ? 'normal' : '100',
     color: '#ffffff',
     paddingBottom: 0,
