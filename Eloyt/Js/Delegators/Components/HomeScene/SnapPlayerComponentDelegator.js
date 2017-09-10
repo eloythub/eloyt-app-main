@@ -94,7 +94,7 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     Debug.Log(`SnapPlayerComponentDelegator:onDetailsActionsSwiperIndexChanged`)
 
     await this.setState({
-      pause: index === 2
+      pause: index === 1
     })
   }
 

@@ -21,12 +21,16 @@ export default StyleSheet.create({
     height,
   },
   detailsActionPagination: {
-    bottom: 0,
+    bottom: 10,
+  },
+  detailsActionPaginationDot: {
+    width: 5,
+    height: 5,
   },
   bottomSection: {
     ...commonDetailsActionSlide,
     width,
-    bottom: 25,
+    bottom: 15,
     position: 'absolute',
     flexDirection: 'column',
     justifyContent: 'center',

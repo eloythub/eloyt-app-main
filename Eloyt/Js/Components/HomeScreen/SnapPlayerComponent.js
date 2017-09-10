@@ -8,6 +8,7 @@ import Swiper from 'react-native-swiper'
 import moment from 'moment'
 // Essentials
 import { SnapPlayerComponentStyle, WaitingComponentStyles } from '../../Styles'
+import { Style } from '../../Factories'
 import SnapPlayerComponentDelegator from '../../Delegators/Components/HomeScene/SnapPlayerComponentDelegator'
 import ProfileAvatar from '../../Components/ProfileAvatar'
 import MoreButton from '../../Components/MoreButton'
@@ -27,7 +28,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
 
     this.detailsActionsSwiperProperties = {
       ref: 'detailsActionsSwiperRef',
-      index: 1,
+      index: 0,
       loop: false,
       bounces: true,
       autoplay: false,
@@ -35,6 +36,8 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
       showsButtons: false,
       showsPagination: true,
       paginationStyle: SnapPlayerComponentStyle.detailsActionPagination,
+      dotStyle: Style.reverseStyleObject(SnapPlayerComponentStyle.detailsActionPaginationDot),
+      activeDotStyle: Style.reverseStyleObject(SnapPlayerComponentStyle.detailsActionPaginationDot),
       dotColor: 'rgba(255, 255, 255, 0.3)',
       activeDotColor: 'rgba(255, 255, 255, 0.8)',
     }
@@ -113,7 +116,6 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
         <View style={SnapPlayerComponentStyle.bottomSection}>
           <Swiper {...this.detailsActionsSwiperProperties}
                   onIndexChanged={this.onDetailsActionsSwiperIndexChanged.bind(this)}>
-            <View style={SnapPlayerComponentStyle.detailsActionSlide}/>
             <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>
             <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomActions()}</View>
           </Swiper>

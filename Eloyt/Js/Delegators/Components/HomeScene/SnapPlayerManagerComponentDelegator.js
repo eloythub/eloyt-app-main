@@ -90,7 +90,9 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
   async onSkipTheSnap () {
     Debug.Log('SnapPlayerManagerComponentDelegator:onSkipTheSnap')
 
-    // TODO: handle skip request
+    const { currentSnap } = this.state
+
+    ApiService.skipVideo(currentSnap.id)
 
     await this.loadNextSnapFromQueue()
   }
@@ -98,7 +100,9 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
   async onLikeTheSnap () {
     Debug.Log('SnapPlayerManagerComponentDelegator:onLikeTheSnap')
 
-    // TODO: handle like request
+    const { currentSnap } = this.state
+
+    ApiService.likeVideo(currentSnap.id)
 
     await this.loadNextSnapFromQueue()
   }
@@ -106,7 +110,9 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
   async onDislikeTheSnap () {
     Debug.Log('SnapPlayerManagerComponentDelegator:onDislikeTheSnap')
 
-    // TODO: handle dislike request
+    const { currentSnap } = this.state
+
+    ApiService.dislikeVideo(currentSnap.id)
 
     await this.loadNextSnapFromQueue()
   }

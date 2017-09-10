@@ -97,12 +97,31 @@ export default class ApiService extends RequestService {
     this.abortDispatchedRequestWithProgress()
   }
 
-  static async requestReactToVideo (userId, video, reactType) {
-    Debug.Log(`ApiService:requestReactToVideo`)
+  static async reactToVideo (resourceId, reactType) {
+    Debug.Log(`ApiService:reactToVideo`)
 
-    const {id: resourceId, user: {id: resourceOwnerUserId}} = video
+    return await this.dispatchRequest(`/stream/react`, RequestEnum.TYPE.POST, {
+      resourceId,
+      reactType
+    })
+  }
 
-    return await this.dispatchRequest(`/stream/${userId}/${resourceId}/${resourceOwnerUserId}/${reactType}`, RequestEnum.TYPE.POST)
+  static async likeVideo (resourceId) {
+    Debug.Log(`ApiService:likeVideo`)
+
+    return await this.reactToVideo(resourceId, 'like')
+  }
+
+  static async dislikeVideo (resourceId) {
+    Debug.Log(`ApiService:dislikeVideo`)
+
+    return await this.reactToVideo(resourceId, 'dislike')
+  }
+
+  static async skipVideo (resourceId) {
+    Debug.Log(`ApiService:skipVideo`)
+
+    return await this.reactToVideo(resourceId, 'skip')
   }
 
   static async fetchProducedResources (offset = 0, limit= 2) {
