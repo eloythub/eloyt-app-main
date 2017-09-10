@@ -5,7 +5,7 @@ import { ActionConst, Actions } from 'react-native-router-flux'
 // Essentials
 import { Debug, LocalStorage, Utils } from '../../Factories'
 import { ApiService } from '../../Services'
-import { AuthEnum } from '../../Enums'
+import { AuthEnum, GeneralEnum } from '../../Enums'
 
 export default class ProfileHashtagsScreenDelegator extends Delegator {
   async componentDidMount () {
@@ -44,17 +44,14 @@ export default class ProfileHashtagsScreenDelegator extends Delegator {
 
     const {selectedHashtags} = this.state
 
-    const selectedHashtagsMinLimit = 1
-    const selectedHashtagsMaxLimit = 5
-
-    if (selectedHashtags.length < selectedHashtagsMinLimit) {
-      Utils.alert(`There is a limit on selected areas.\nMinimum ${selectedHashtagsMinLimit}`)
+    if (selectedHashtags.length < GeneralEnum.PROFILE_HASHTAGS_LIMIT_MIN) {
+      Utils.alert(`There is a limit on selected areas.\nMinimum ${GeneralEnum.PROFILE_HASHTAGS_LIMIT_MIN}`)
 
       return await this.setState({waitingNext: false})
     }
 
-    if (selectedHashtags.length > selectedHashtagsMaxLimit) {
-      Utils.alert(`There is a limit on selected areas.\nMaximum ${selectedHashtagsMaxLimit}`)
+    if (selectedHashtags.length > GeneralEnum.PROFILE_HASHTAGS_LIMIT_MAX) {
+      Utils.alert(`There is a limit on selected areas.\nMaximum ${GeneralEnum.PROFILE_HASHTAGS_LIMIT_MAX}`)
 
       return await this.setState({waitingNext: false})
     }

@@ -12,6 +12,7 @@ import BirthdateEntityComponentStyles from './Components/BirthdateEntityComponen
 import GenderEntityComponentStyles from './Components/GenderEntityComponentStyles'
 import ImageEntityComponentStyles from './Components/ImageEntityComponentStyles'
 import HashtagSelectorEntityComponentStyles from './Components/HashtagSelectorEntityComponentStyles'
+import HashtagViewerEntityComponentStyles from './Components/HashtagViewerEntityComponentStyles'
 import ButtonComponentStyles from './Components/ButtonComponentStyles'
 import ProfileAvatarComponentStyles from './Components/ProfileAvatarComponentStyles'
 import BottomCameraImageComponentStyles from './Components/BottomCameraImageComponentStyles'
@@ -20,6 +21,9 @@ import VideoPlayerComponentStyles from './Components/HomeScene/VideoPlayerCompon
 import VideoSnapComponentStyles from './Components/HomeScene/VideoSnapComponentStyles'
 import SnapPlayerManagerComponentStyle from './Components/HomeScene/SnapPlayerManagerComponentStyles'
 import SnapPlayerComponentStyle from './Components/HomeScene/SnapPlayerComponentStyles'
+import ProfileComponentStyles from './Components/HomeScene/ProfileComponentStyles'
+import ProfilePreviewComponentStyles from './Components/HomeScene/ProfilePreviewComponentStyles'
+import ProfileUpdateComponentStyles from './Components/HomeScene/ProfileUpdateComponentStyles'
 
 export {
   CommonStyles,
@@ -38,6 +42,7 @@ export {
   GenderEntityComponentStyles,
   ImageEntityComponentStyles,
   HashtagSelectorEntityComponentStyles,
+  HashtagViewerEntityComponentStyles,
   ButtonComponentStyles,
   ProfileAvatarComponentStyles,
   BottomCameraImageComponentStyles,
@@ -46,4 +51,7 @@ export {
   VideoSnapComponentStyles,
   SnapPlayerManagerComponentStyle,
   SnapPlayerComponentStyle,
+  ProfileComponentStyles,
+  ProfilePreviewComponentStyles,
+  ProfileUpdateComponentStyles,
 }

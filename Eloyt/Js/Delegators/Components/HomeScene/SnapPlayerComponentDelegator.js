@@ -1,6 +1,7 @@
 // Basics
 import React from 'react'
 import { Delegator } from 'react-eloyt'
+import { ActionConst, Actions } from 'react-native-router-flux'
 import { Debug, Utils } from '../../../Factories'
 import { GeneralEnum } from '../../../Enums'
 
@@ -112,5 +113,11 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     await this.props.onDislikeTheSnap()
 
     this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
+  }
+
+  openProfile (userId) {
+    Debug.Log(`SnapPlayerComponentDelegator:navigateToProfileScene > ${userId}`)
+
+    this.props.openProfile(userId)
   }
 }

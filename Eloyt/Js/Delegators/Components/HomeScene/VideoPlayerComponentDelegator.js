@@ -2,8 +2,7 @@
 import React from 'react'
 import { Delegator } from 'react-eloyt'
 // Essentials
-import { Debug, LocalStorage, Utils } from '../../../Factories'
-import { ApiService } from '../../../Services'
+import { Debug, LocalStorage } from '../../../Factories'
 import { AuthEnum } from '../../../Enums'
 
 export default class VideoPlayerComponentDelegator extends Delegator {
@@ -17,11 +16,23 @@ export default class VideoPlayerComponentDelegator extends Delegator {
     })
   }
 
-  async componentDidUpdate (props) {
-    Debug.Log(`VideoPlayerComponentDelegator:componentDidUpdate`)
+  async componentWillReceiveProps (props) {
+    Debug.Log(`VideoPlayerComponentDelegator:componentWillReceiveProps`)
 
     if (props.forcePause !== this.props.forcePause) {
       await this.setState({})
     }
+  }
+
+  async openProfile (userId) {
+    Debug.Log(`VideoPlayerComponentDelegator:openProfile > ${userId}`)
+
+    this.props.openProfile(userId)
+  }
+
+  async closeProfile () {
+    Debug.Log(`VideoPlayerComponentDelegator:closeProfile`)
+
+    this.props.closeProfile(userId)
   }
 }

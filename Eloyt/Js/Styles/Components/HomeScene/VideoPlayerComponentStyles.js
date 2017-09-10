@@ -1,7 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
-import { Utils } from '../../../Factories'
-
 const {width, height} = Dimensions.get('window')
 
 export default StyleSheet.create({
@@ -37,10 +35,11 @@ export default StyleSheet.create({
     height: 25,
     position: 'absolute',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     zIndex: 1,
-    opacity: .7
+    opacity: .7,
+    paddingRight: 10,
   },
   bottomSectionLine: {
     width: width - 70,

@@ -9,7 +9,7 @@ export default class RequestService extends Service {
   static xhr = null
 
   static async dispatchRequest (url, method, data) {
-    Debug.Log(`RequestService:dispatchRequest`)
+    Debug.Log(`RequestService:dispatchRequest > ${url}`)
 
     let authenticationToken
 

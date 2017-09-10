@@ -40,6 +40,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
       activeDotStyle: Style.reverseStyleObject(SnapPlayerComponentStyle.detailsActionPaginationDot),
       dotColor: 'rgba(255, 255, 255, 0.3)',
       activeDotColor: 'rgba(255, 255, 255, 0.8)',
+      scrollEnabled: false,
     }
   }
 
@@ -66,7 +67,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
           <View style={SnapPlayerComponentStyle.detailsUserAvatarContainer}>
             <ProfileAvatar size={80}
                            imageUrl={snapVideo.videoOwner.avatar}
-                           onPress={() => console.log('navigate to Profile Scene')}/>
+                           onPress={this.openProfile.bind(this, snapVideo.videoOwner.id)}/>
           </View>
         </View>
         <View style={SnapPlayerComponentStyle.detailsSnapDetails}>
@@ -90,12 +91,18 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   }
 
   renderBottomActions () {
+    const {snapVideo} = this.props
+
     return (
       <View style={SnapPlayerComponentStyle.actionsContainer}>
         <LeftArrowButton onPress={this.onPressBackToDetailSlide.bind(this)}/>
         <InputTextBoxEntity
           onChange={(text) => this.directQuickMessage = text}
-          caption="Send Quick Message"
+          caption={`Send${
+            snapVideo.videoOwner.gender === 'other'
+              ? ''
+              : ` ${snapVideo.videoOwner.gender === 'male' ? 'him' : 'her'}`
+            } your quick feedback`}
           name="quickMessage"
           placeholderColor="#ffffff"
           autoCapitalize="none"
@@ -171,4 +178,5 @@ SnapPlayerComponent.propTypes = {
   onSkipTheSnap: PropTypes.func,
   onLikeTheSnap: PropTypes.func,
   onDislikeTheSnap: PropTypes.func,
+  openProfile: PropTypes.func,
 }

@@ -15,6 +15,11 @@ import MoreIcon from '../../Assets/Images/more-icon.png'
 import LeftArrowNoTailIcon from '../../Assets/Images/arrow-left-no-tail-icon.png'
 import LikeIcon from '../../Assets/Images/like-icon.png'
 import DislikeIcon from '../../Assets/Images/dislike-icon.png'
+import EditIcon from '../../Assets/Images/edit-icon.png'
+import SignOutIcon from '../../Assets/Images/sign-out-icon.png'
+// Profile
+import EmailIcon from '../../Assets/Images/email-icon.png'
+import BirthdateIcon from '../../Assets/Images/birthdate-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -35,4 +40,10 @@ export default class Assets extends Factory {
   static LeftArrowNoTailIcon = LeftArrowNoTailIcon
   static LikeIcon            = LikeIcon
   static DislikeIcon         = DislikeIcon
+  static EditIcon            = EditIcon
+  static SignOutIcon         = SignOutIcon
+
+  // Profile
+  static EmailIcon = EmailIcon
+  static BirthdateIcon = BirthdateIcon
 }

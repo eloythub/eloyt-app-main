@@ -1,5 +1,5 @@
 import { Factory } from 'react-eloyt'
-import { Alert, AlertIOS, Platform } from 'react-native'
+import { Alert, AlertIOS, Platform, Vibration } from 'react-native'
 
 export default class Utils extends Factory {
   static getPlatform () {

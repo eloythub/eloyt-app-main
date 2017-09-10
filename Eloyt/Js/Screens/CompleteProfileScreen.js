@@ -141,4 +141,3 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
 }
 
 export const CompleteProfileScreenKey   = 'CompleteProfileScene'
-export const CompleteProfileScreenTitle = 'Complete Profile'

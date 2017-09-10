@@ -6,15 +6,9 @@ import { Debug, LocalStorage } from './Factories'
 import { ApiService } from './Services'
 // Import Components Scenes Here
 import LoginScreen, { LoginScreenKey, LoginScreenTitle } from './Screens/LoginScreen'
-import CompleteProfileScreen, {
-  CompleteProfileScreenKey,
-  CompleteProfileScreenTitle
-} from './Screens/CompleteProfileScreen'
-import ProfileHashtagsScreen, {
-  ProfileHashtagsScreenKey,
-  ProfileHashtagsScreenTitle
- } from './Screens/ProfileHashtagsScreen'
-import HomeScreen, { HomeScreenKey, HomeScreenTitle } from './Screens/HomeScreen'
+import CompleteProfileScreen, { CompleteProfileScreenKey } from './Screens/CompleteProfileScreen'
+import ProfileHashtagsScreen, { ProfileHashtagsScreenKey } from './Screens/ProfileHashtagsScreen'
+import HomeScreen, { HomeScreenKey } from './Screens/HomeScreen'
 
 export default class IndexView extends Component {
   async isSignedIn () {
@@ -48,7 +42,7 @@ export default class IndexView extends Component {
 
     const isSignedIn = await this.isSignedIn()
 
-    Debug.Log('IndexView:RedirectToHomeSceneIfWereSignedIn:LoginStatus:', isSignedIn)
+    Debug.Log('IndexView:RedirectToHomeSceneIfWereSignedIn:LoginStatus >', isSignedIn)
 
     if (isSignedIn) {
       await Actions.HomeScene({
@@ -79,25 +73,21 @@ export default class IndexView extends Component {
             <Scene
               initial
               key={LoginScreenKey}
-              title={LoginScreenTitle}
               component={LoginScreen}
               onEnter={this.RedirectToHomeSceneIfWereSignedIn.bind(this)}
             />
             <Scene
               key={HomeScreenKey}
-              title={HomeScreenTitle}
               component={HomeScreen}
               onEnter={this.RedirectToLoginSceneIfWereNotSignedIn.bind(this)}
             />
             <Scene
               key={CompleteProfileScreenKey}
-              title={CompleteProfileScreenTitle}
               component={CompleteProfileScreen}
               onEnter={this.RedirectToLoginSceneIfWereNotSignedIn.bind(this)}
             />
             <Scene
               key={ProfileHashtagsScreenKey}
-              title={ProfileHashtagsScreenTitle}
               component={ProfileHashtagsScreen}
               onEnter={this.RedirectToLoginSceneIfWereNotSignedIn.bind(this)}
             />

@@ -167,6 +167,44 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
+  // Sign Out Button
+  signOutButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  signOutButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signOutButtonIcon: {
+    width: 20,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
+  // Edit Button
+  editButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  editButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editButtonIcon: {
+    width: 20,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
   newMessagesIcon: {
     width: 8,
     height: 8,

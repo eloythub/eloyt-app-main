@@ -22,12 +22,13 @@ export default class SnapPlayerManagerComponent extends SnapPlayerManagerCompone
 
   renderSnapVideo () {
     const {currentSnap} = this.state
-    const {forcePause}  = this.props
+    const {forcePause, openProfile}  = this.props
 
     return (
       <View style={SnapPlayerManagerComponentStyle.rootSnapContainer}>
         <SnapPlayerComponent forcePause={forcePause}
                              snapVideo={currentSnap}
+                             openProfile={(userId) => openProfile(userId)}
                              onSkipTheSnap={this.onSkipTheSnap.bind(this)}
                              onLikeTheSnap={this.onLikeTheSnap.bind(this)}
                              onDislikeTheSnap={this.onDislikeTheSnap.bind(this)}/>
@@ -94,5 +95,6 @@ export default class SnapPlayerManagerComponent extends SnapPlayerManagerCompone
 
 SnapPlayerManagerComponent.propTypes = {
   forcePause: PropTypes.bool,
-  moveSceneToSearch: PropTypes.func
+  moveSceneToSearch: PropTypes.func,
+  openProfile: PropTypes.func,
 }

@@ -22,11 +22,13 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
   }
 
   renderVideoPlayerQueue () {
-    const { forcePause } = this.props
+    const {forcePause} = this.props
 
     return (
       <View style={VideoPlayerComponentStyles.rootSnapPlayerContainer}>
-        <SnapPlayerManagerComponent forcePause={forcePause} moveSceneToSearch={this.props.moveSceneToSearchScene.bind(this)}/>
+        <SnapPlayerManagerComponent forcePause={forcePause}
+                                    openProfile={(userId) => this.openProfile(userId)}
+                                    moveSceneToSearch={this.props.moveSceneToSearchScene.bind(this)}/>
       </View>
     )
   }
@@ -61,7 +63,7 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
             <NotificationButton unreadMessages={true} onPress={moveSceneToNotificationScene.bind(this)}/>
           </View>
           <View style={VideoPlayerComponentStyles.profileSection}>
-            <ProfileAvatar onPress={() => console.log('go to ProfileScene')}
+            <ProfileAvatar onPress={this.openProfile.bind(this, loggedInUser.id)}
                            imageUrl={loggedInUser.cloudAvatarUrl}
                            size={40}/>
           </View>
@@ -84,4 +86,5 @@ VideoPlayerComponent.propTypes = {
   moveSceneToRecordScene: PropTypes.func,
   moveSceneToSearchScene: PropTypes.func,
   moveSceneToNotificationScene: PropTypes.func,
+  openProfile: PropTypes.func,
 }

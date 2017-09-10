@@ -30,7 +30,7 @@ export default StyleSheet.create({
   bottomSection: {
     ...commonDetailsActionSlide,
     width,
-    bottom: 15,
+    bottom: 0,
     position: 'absolute',
     flexDirection: 'column',
     justifyContent: 'center',

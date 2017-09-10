@@ -103,4 +103,3 @@ export default class ProfileHashtagsScreen extends ProfileHashtagsScreenDelegato
 }
 
 export const ProfileHashtagsScreenKey   = 'ProfileHashtagsScene'
-export const ProfileHashtagsScreenTitle = 'Area Of Interests'

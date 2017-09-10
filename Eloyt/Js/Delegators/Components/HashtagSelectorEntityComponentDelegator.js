@@ -6,13 +6,22 @@ import { ApiService } from '../../Services'
 export default class HashtagSelectorEntityComponentDelegator extends Delegator {
   async componentDidMount () {
     if (typeof this.state.src !== 'object') {
+      await this.setState({isFailedToLoad: false})
+
       try {
         const hashtagsSrc = await ApiService.getAllHashtags()
 
-        await this.setState({src: hashtagsSrc.data})
+        await this.setState({src: hashtagsSrc.data, isFailedToLoad: true})
       } catch (err) {
+        console.log(err)
+
+        await this.setState({isFailedToLoad: true})
       }
     }
+  }
+
+  async retry () {
+    await this.componentDidMount()
   }
 
   componentWillReceiveProps (props) {
@@ -52,7 +61,6 @@ export default class HashtagSelectorEntityComponentDelegator extends Delegator {
   }
 
   toggleHashtag (hashtag) {
-    // TODO: bug here
     !this.isSelected(hashtag.slug)
       ? this.doSelect(hashtag)
       : this.doUnSelect(hashtag)
