@@ -17,7 +17,7 @@ export default class GenderEntity extends GenderEntityComponentDelegator {
   render () {
     return (
       <View style={GenderEntityComponentStyles.rootContainer}>
-        <Text style={GenderEntityComponentStyles.caption}>GENDER</Text>
+        <Text style={GenderEntityComponentStyles.caption}>GENDER:</Text>
         <View>
           <View style={GenderEntityComponentStyles.radioButtonContainer}>
             <RadioButton

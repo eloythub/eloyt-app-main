@@ -10,6 +10,9 @@ export default StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
+  keyboardAvoidingViewContainer: {
+    flex: 1,
+  },
   rootMainContainer: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.8)',

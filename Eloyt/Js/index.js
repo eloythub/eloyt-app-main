@@ -29,6 +29,8 @@ export default class IndexView extends Component {
         }
 
         await LocalStorage.save(AuthEnum.LOGIN_STATUS, userProfile.data)
+
+        ssoUserData = userProfile.data
       }
 
       return ssoUserData
@@ -45,7 +47,13 @@ export default class IndexView extends Component {
     Debug.Log('IndexView:RedirectToHomeSceneIfWereSignedIn:LoginStatus >', isSignedIn)
 
     if (isSignedIn) {
-      await Actions.HomeScene({
+      if (!isSignedIn.isActivated) {
+        return Actions.CompleteProfileScene({
+          type: ActionConst.REPLACE
+        })
+      }
+
+      Actions.HomeScene({
         type: ActionConst.REPLACE
       })
     }
@@ -57,9 +65,11 @@ export default class IndexView extends Component {
     const isSignedIn = await this.isSignedIn()
 
     if (!isSignedIn) {
-      LocalStorage.unload(AuthEnum.LOGIN_STATUS)
+      await LocalStorage.unload(AuthEnum.LOGIN_STATUS)
+      await LocalStorage.unload(AuthEnum.LOGIN_FB_ACCESS_TOKEN)
+      await LocalStorage.unload(AuthEnum.LOGIN_API_ACCESS_TOKEN)
 
-      await Actions.LoginScene({
+      Actions.LoginScene({
         type: ActionConst.REPLACE
       })
     }
