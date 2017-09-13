@@ -23,6 +23,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     zIndex: 1,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#7d7d7d',
   },
   entitiesContainer: {
     flex: 1,

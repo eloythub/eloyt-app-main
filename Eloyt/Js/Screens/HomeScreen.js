@@ -10,6 +10,7 @@ import HomeScreenDelegator from '../Delegators/Screens/HomeScreenDelegator'
 import VideoPlayerComponent from '../Components/HomeScreen/VideoPlayerComponent'
 import VideoSnapComponent from '../Components/HomeScreen/VideoSnapComponent'
 import ProfileComponent from '../Components/HomeScreen/ProfileComponent'
+import SearchComponent from '../Components/HomeScreen/SearchComponent'
 
 export default class HomeScreen extends HomeScreenDelegator {
   constructor (props) {
@@ -23,6 +24,7 @@ export default class HomeScreen extends HomeScreenDelegator {
       forcePause: false,
       isUserProfileModalAppears: false,
       profilePreviewUserId: null,
+      focusOnSearchField: false,
     }
 
     this.mainSwiperProperties = {
@@ -75,7 +77,7 @@ export default class HomeScreen extends HomeScreenDelegator {
   }
 
   render () {
-    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause} = this.state
+    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause, focusOnSearchField} = this.state
 
     return (
       <View style={HomeScreenStyles.baseContainer}>
@@ -110,7 +112,9 @@ export default class HomeScreen extends HomeScreenDelegator {
             </Swiper>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
-            <Text style={HomeScreenStyles.placeholder}>Search</Text>
+            <SearchComponent onClose={this.moveSceneToVideoPlayerFromSearch.bind(this)}
+                             focusOnSearchField={focusOnSearchField}
+                             openProfile={(userId) => this.openProfile(userId)}/>
           </View>
         </Swiper>
         {this.renderProfileModal()}

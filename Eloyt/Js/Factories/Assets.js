@@ -20,6 +20,8 @@ import SignOutIcon from '../../Assets/Images/sign-out-icon.png'
 // Profile
 import EmailIcon from '../../Assets/Images/email-icon.png'
 import BirthdateIcon from '../../Assets/Images/birthdate-icon.png'
+// Search
+import UsersIcon from '../../Assets/Images/users-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -46,4 +48,7 @@ export default class Assets extends Factory {
   // Profile
   static EmailIcon = EmailIcon
   static BirthdateIcon = BirthdateIcon
+
+  // Search
+  static UsersIcon = UsersIcon
 }

@@ -32,6 +32,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: 1,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#7d7d7d',
   },
   topSection: {
     top: 0,

@@ -10,8 +10,19 @@ export default class HomeScreenDelegator extends Delegator {
 
     if (index !== 1) {
       await this.forcePauseSnap()
+
+      await this.setState({
+        focusOnSearchField: false
+      })
     } else {
       await this.releaseForcePauseSnap()
+    }
+
+    // focus on textbox on search field
+    if (index === 2) {
+      await this.setState({
+        focusOnSearchField: true
+      })
     }
   }
 
@@ -83,6 +94,16 @@ export default class HomeScreenDelegator extends Delegator {
     this.refs.playerSnapSwiperRef.scrollBy(1, true)
   }
 
+  async moveSceneToVideoPlayerFromSearch () {
+    Debug.Log(`HomeScreenDelegator:moveSceneToVideoPlayerFromSearch`)
+
+    this.refs.mainSnapSwiperRef.scrollBy(-1, true)
+
+    await this.setState({
+      focusOnSearchField: false
+    })
+  }
+
   async forcePauseSnap () {
     Debug.Log(`HomeScreenDelegator:forcePauseSnap`)
 
@@ -113,7 +134,7 @@ export default class HomeScreenDelegator extends Delegator {
     Debug.Log(`HomeScreenDelegator:closeProfile`)
 
     await this.setState({
-      forcePause: false,
+      forcePause: this.refs.mainSnapSwiperRef.index !== 1,
       isUserProfileModalAppears: false,
       profilePreviewUserId: null,
     })

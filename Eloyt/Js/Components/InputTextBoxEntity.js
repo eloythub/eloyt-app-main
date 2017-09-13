@@ -22,6 +22,7 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
             fontSize         = 18,
             height           = 50,
             multiline        = false,
+            returnKeyType    = 'next',
             numberOfLines,
             maxLength,
             caption,
@@ -60,13 +61,13 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
             }
           }
           onSubmitEditing={() => this.props.nextFocusObjectRef ? this.props.nextFocusObjectRef() : null}
-          returnKeyType="next"
           value={this.state.text}
           defaultValue={defaultText}
           {...{
             numberOfLines,
             maxLength,
             multiline,
+            returnKeyType,
           }}
         />
       </View>
@@ -89,4 +90,5 @@ InputTextBoxEntity.propTypes = {
   autoCapitalize: PropTypes.string,
   widthOffset: PropTypes.number,
   fontSize: PropTypes.number,
+  returnKeyType: PropTypes.string,
 }

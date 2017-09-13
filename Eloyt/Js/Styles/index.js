@@ -24,6 +24,7 @@ import SnapPlayerComponentStyle from './Components/HomeScene/SnapPlayerComponent
 import ProfileComponentStyles from './Components/HomeScene/ProfileComponentStyles'
 import ProfilePreviewComponentStyles from './Components/HomeScene/ProfilePreviewComponentStyles'
 import ProfileUpdateComponentStyles from './Components/HomeScene/ProfileUpdateComponentStyles'
+import SearchComponentStyles from './Components/HomeScene/SearchComponentStyles'
 
 export {
   CommonStyles,
@@ -54,4 +55,5 @@ export {
   ProfileComponentStyles,
   ProfilePreviewComponentStyles,
   ProfileUpdateComponentStyles,
+  SearchComponentStyles,
 }

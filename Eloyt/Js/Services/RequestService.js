@@ -68,19 +68,19 @@ export default class RequestService extends Service {
       } catch (err) {
       }
 
-      this.xhr = new XMLHttpRequest()
+      this.xhrRequestWithProgress = new XMLHttpRequest()
 
-      this.xhr.open(RequestEnum.TYPE.POST, this.url(url))
+      this.xhrRequestWithProgress.open(RequestEnum.TYPE.POST, this.url(url))
 
       for (let k in opts.headers || {}) {
-        this.xhr.setRequestHeader(k, opts.headers[k])
+        this.xhrRequestWithProgress.setRequestHeader(k, opts.headers[k])
       }
 
       if (authenticationToken) {
-        this.xhr.setRequestHeader('authorization', `bearer ${authenticationToken}`)
+        this.xhrRequestWithProgress.setRequestHeader('authorization', `bearer ${authenticationToken}`)
       }
 
-      this.xhr.onload = (e) => {
+      this.xhrRequestWithProgress.onload = (e) => {
         const response = e.target
 
         if (response.status !== 200) {
@@ -90,23 +90,76 @@ export default class RequestService extends Service {
         fulfill(e.target)
       }
 
-      this.xhr.onerror = reject
+      this.xhrRequestWithProgress.onerror = reject
 
-      if (this.xhr.upload && onProgress) {
-        this.xhr.upload.onprogress = onProgress // event.loaded / event.total * 100 ; //event.lengthComputable
+      if (this.xhrRequestWithProgress.upload && onProgress) {
+        this.xhrRequestWithProgress.upload.onprogress = onProgress // event.loaded / event.total * 100 ; //event.lengthComputable
       }
 
-      this.xhr.send(opts.body)
+      this.xhrRequestWithProgress.send(opts.body)
 
       if (afterSend) {
-        afterSend(this.xhr)
+        afterSend(this.xhrRequestWithProgress)
       }
     })
   }
 
-  static abortDispatchedRequestWithProgress () {
-    if (this.xhr) {
-      this.xhr.abort()
+  static abortRequestWithProgress () {
+    if (this.xhrRequestWithProgress) {
+      this.xhrRequestWithProgress.abort()
+    }
+  }
+
+  static dispatchCancelableRequest (url, method, opts = {}, afterSend) {
+    Debug.Log(`RequestService:dispatchRequestWithProgress`)
+
+    return new Promise(async (fulfill, reject) => {
+      let authenticationToken
+
+      try {
+        authenticationToken = await LocalStorage.load(AuthEnum.LOGIN_API_ACCESS_TOKEN)
+      } catch (err) {
+      }
+
+      this.xhrCancelableRequest = new XMLHttpRequest()
+
+      this.xhrCancelableRequest.open(method, this.url(url, opts.query ? opts.query : null))
+
+      if (opts.query) {
+        delete opts.query
+      }
+
+      for (let k in opts.headers || {}) {
+        this.xhrCancelableRequest.setRequestHeader(k, opts.headers[k])
+      }
+
+      if (authenticationToken) {
+        this.xhrCancelableRequest.setRequestHeader('authorization', `bearer ${authenticationToken}`)
+      }
+
+      this.xhrCancelableRequest.onload = (e) => {
+        const response = e.target
+
+        if (response.status !== 200) {
+          return reject(response.status)
+        }
+
+        fulfill(e.target)
+      }
+
+      this.xhrCancelableRequest.onerror = reject
+
+      this.xhrCancelableRequest.send(opts.body)
+
+      if (afterSend) {
+        afterSend(this.xhrCancelableRequest)
+      }
+    })
+  }
+
+  static abortCancelableRequest () {
+    if (this.xhrCancelableRequest) {
+      this.xhrCancelableRequest.abort()
     }
   }
 

@@ -94,7 +94,7 @@ export default class ApiService extends RequestService {
   }
 
   static abortSnap () {
-    this.abortDispatchedRequestWithProgress()
+    this.abortRequestWithProgress()
   }
 
   static async reactToVideo (resourceId, reactType) {
@@ -124,12 +124,12 @@ export default class ApiService extends RequestService {
     return await this.reactToVideo(resourceId, 'skip')
   }
 
-  static async fetchProducedResources (offset = 0, limit= 2) {
+  static async fetchProducedResources (offset = 0, limit = 2) {
     Debug.Log(`ApiService:fetchProducedResources`)
 
     const producedResources = await this.dispatchRequest(`/stream/produce`, RequestEnum.TYPE.GET, {
-      offset:0,
-      limit:50
+      offset: 0,
+      limit: 50
     })
 
     return producedResources.data
@@ -139,5 +139,18 @@ export default class ApiService extends RequestService {
     Debug.Log(`ApiService:fetchProducedResourcesById`)
 
     return await this.dispatchRequest(`/stream/produce/${resourceId}`, RequestEnum.TYPE.GET)
+  }
+
+  /*
+   * Search
+   */
+  static async search (query, afterSend) {
+    Debug.Log(`ApiService:search`)
+
+    return await this.dispatchCancelableRequest('/search', RequestEnum.TYPE.GET, {query: {query}}, afterSend)
+  }
+
+  static abortRequest () {
+    this.abortCancelableRequest()
   }
 }

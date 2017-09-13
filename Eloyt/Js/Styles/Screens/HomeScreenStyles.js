@@ -8,13 +8,13 @@ const statusBarHeight = Utils.isIOS() ? 20 : 0
 export default StyleSheet.create({
   baseContainer: {
     flex: 1,
-    backgroundColor: '#111111'
+    backgroundColor: '#282828'
   },
   mainSlide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4b4b4b',
+    backgroundColor: '#282828',
   },
   playerSnapSlide: {
     flex: 1,
