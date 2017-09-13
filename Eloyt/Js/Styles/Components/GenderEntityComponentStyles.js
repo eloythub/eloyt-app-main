@@ -7,8 +7,6 @@ const {width} = Dimensions.get('window')
 export default StyleSheet.create({
   rootContainer: {
     flex: 1,
-    width: width - 60,
-
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'space-between',

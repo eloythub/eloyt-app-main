@@ -63,18 +63,13 @@ export default class ProfilePreviewComponent extends ProfilePreviewComponentDele
             </View>
 
             <View style={ProfilePreviewComponentStyles.profileEntityContainer}>
+              <View style={ProfilePreviewComponentStyles.usernameContainer}>
+                <Text style={ProfilePreviewComponentStyles.descriptiveText}>
+                  @{this.requestedProfileData.username}
+                </Text>
+              </View>
               <Text style={ProfilePreviewComponentStyles.fullNameText}>
                 {this.requestedProfileData.firstName} {this.requestedProfileData.lastName}
-              </Text>
-            </View>
-
-            <View style={[
-              ProfilePreviewComponentStyles.profileEntityContainer,
-              ProfilePreviewComponentStyles.descriptiveContainer
-            ]}>
-              <Text style={ProfilePreviewComponentStyles.usernameSignText}>@</Text>
-              <Text style={ProfilePreviewComponentStyles.descriptiveText}>
-                {this.requestedProfileData.username}
               </Text>
             </View>
 

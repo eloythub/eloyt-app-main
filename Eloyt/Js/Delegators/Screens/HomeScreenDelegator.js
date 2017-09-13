@@ -104,6 +104,12 @@ export default class HomeScreenDelegator extends Delegator {
     })
   }
 
+  async moveSceneToVideoPlayerFromMessagesNotifications () {
+    Debug.Log(`HomeScreenDelegator:moveSceneToVideoPlayerFromMessagesNotifications`)
+
+    this.refs.mainSnapSwiperRef.scrollBy(1, true)
+  }
+
   async forcePauseSnap () {
     Debug.Log(`HomeScreenDelegator:forcePauseSnap`)
 

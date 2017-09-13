@@ -10,9 +10,11 @@ import CancelIcon from '../../Assets/Images/cancel-icon.png'
 import OkIcon from '../../Assets/Images/ok-icon.png'
 import SearchIcon from '../../Assets/Images/search-icon.png'
 import NotificationIcon from '../../Assets/Images/notification-icon.png'
+import MessagesIcon from '../../Assets/Images/message-icon.png'
 import RecordSceneIcon from '../../Assets/Images/record-scene-icon.png'
 import MoreIcon from '../../Assets/Images/more-icon.png'
 import LeftArrowNoTailIcon from '../../Assets/Images/arrow-left-no-tail-icon.png'
+import RightArrowNoTailIcon from '../../Assets/Images/arrow-right-no-tail-icon.png'
 import LikeIcon from '../../Assets/Images/like-icon.png'
 import DislikeIcon from '../../Assets/Images/dislike-icon.png'
 import EditIcon from '../../Assets/Images/edit-icon.png'
@@ -37,9 +39,11 @@ export default class Assets extends Factory {
   static OkIcon              = OkIcon
   static SearchIcon          = SearchIcon
   static NotificationIcon    = NotificationIcon
+  static MessagesIcon    = MessagesIcon
   static RecordSceneIcon     = RecordSceneIcon
   static MoreIcon            = MoreIcon
   static LeftArrowNoTailIcon = LeftArrowNoTailIcon
+  static RightArrowNoTailIcon = RightArrowNoTailIcon
   static LikeIcon            = LikeIcon
   static DislikeIcon         = DislikeIcon
   static EditIcon            = EditIcon

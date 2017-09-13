@@ -1,11 +1,13 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View } from 'react-native'
+import { Dimensions, View } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 // Essentials
 import { BirthdateEntityComponentStyles } from '../Styles'
 import BirthdateEntityComponentDelegator from '../Delegators/Components/BirthdateEntityComponentDelegator'
+
+const {width} = Dimensions.get('window')
 
 export default class BirthdateEntity extends BirthdateEntityComponentDelegator {
   constructor (props) {
@@ -15,8 +17,15 @@ export default class BirthdateEntity extends BirthdateEntityComponentDelegator {
   }
 
   render () {
+    const {widthOffset = 60} = this.props
+
     return (
-      <View style={BirthdateEntityComponentStyles.rootContainer}>
+      <View style={[
+        BirthdateEntityComponentStyles.rootContainer,
+        {
+          width: width - widthOffset
+        }
+      ]}>
         <DatePicker
           showIcon={false}
           style={BirthdateEntityComponentStyles.datePicker}
@@ -33,9 +42,9 @@ export default class BirthdateEntity extends BirthdateEntityComponentDelegator {
           cancelBtnText="Cancel"
           onDateChange={
             (date) => {
-              this.setState({date});
+              this.setState({date})
 
-              this.props.onChange(date);
+              this.props.onChange(date)
             }
           }
         />
@@ -47,4 +56,5 @@ export default class BirthdateEntity extends BirthdateEntityComponentDelegator {
 BirthdateEntity.propTypes = {
   date: PropTypes.string,
   onChange: PropTypes.func,
+  widthOffset: PropTypes.number,
 }

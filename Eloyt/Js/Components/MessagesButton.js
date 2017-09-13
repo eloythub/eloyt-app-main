@@ -5,28 +5,28 @@ import { Image, Text, TouchableOpacity, View } from 'react-native'
 // Essentials
 import { Assets } from '../Factories'
 import { ButtonComponentStyles } from '../Styles'
-import NotificationComponentDelegator from '../Delegators/Components/NotificationComponentDelegator'
+import MessagesComponentDelegator from '../Delegators/Components/MessagesComponentDelegator'
 
-export default class NotificationButton extends NotificationComponentDelegator {
+export default class MessagesButton extends MessagesComponentDelegator {
   render () {
     const {unread, hide} = this.props
 
     if (hide) {
-      return <View style={ButtonComponentStyles.notificationButtonContainer}/>
+      return <View style={ButtonComponentStyles.messagesButtonContainer}/>
     }
 
     const unreadCount = unread > 99 ? '+99' : unread
 
     return (
-      <View style={ButtonComponentStyles.notificationButtonContainer}>
+      <View style={ButtonComponentStyles.messagesButtonContainer}>
         <TouchableOpacity {...this.props}>
           <View style={ButtonComponentStyles.searchButton}>
-            <Image source={Assets.NotificationIcon} style={ButtonComponentStyles.notificationButtonIcon}/>
+            <Image source={Assets.MessagesIcon} style={ButtonComponentStyles.messagesButtonIcon}/>
             {
               unread
                 ?
-                <View style={ButtonComponentStyles.newNotificationsIcon}>
-                  <Text style={ButtonComponentStyles.newNotificationsText}>{unreadCount}</Text>
+                <View style={ButtonComponentStyles.newMessagesIcon}>
+                  <Text style={ButtonComponentStyles.newMessagesText}>{unreadCount}</Text>
                 </View>
                 : null
             }
@@ -37,7 +37,7 @@ export default class NotificationButton extends NotificationComponentDelegator {
   }
 }
 
-NotificationButton.propTypes = {
+MessagesButton.propTypes = {
   hide: PropTypes.bool,
   onPress: PropTypes.func,
   unread: PropTypes.number,

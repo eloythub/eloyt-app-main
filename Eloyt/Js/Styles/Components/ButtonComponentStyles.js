@@ -109,6 +109,63 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
+  newNotificationsIcon: {
+    minWidth: 17,
+    height: 17,
+    backgroundColor: '#f44336',
+    borderRadius: 8,
+    opacity: 0.9,
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  newNotificationsText: {
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    fontSize: 8,
+    fontWeight: 'normal',
+  },
+
+  // Messages Button
+  messagesButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  messagesButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  messagesButtonIcon: {
+    width: 28,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  newMessagesIcon: {
+    minWidth: 17,
+    height: 17,
+    backgroundColor: '#f44336',
+    borderRadius: 8,
+    opacity: 0.9,
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  newMessagesText: {
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    fontSize: 8,
+    fontWeight: 'normal',
+  },
 
   // Left Arrow Button
   leftArrowButtonContainer: {
@@ -124,7 +181,25 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   leftArrowButtonIcon: {
-    width: 28,
+    width: 22,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+  // Right Arrow Button
+  rightArrowButtonContainer: {
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+  },
+  rightArrowButton: {
+    width: 45,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  rightArrowButtonIcon: {
+    width: 22,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
@@ -203,17 +278,6 @@ export default StyleSheet.create({
     width: 20,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
-  },
-
-  newMessagesIcon: {
-    width: 8,
-    height: 8,
-    backgroundColor: '#f44336',
-    borderRadius: 8,
-    opacity: 0.9,
-    position: 'absolute',
-    right: 10,
-    bottom: 10,
   },
   buttonContainer: {
     height: 40,

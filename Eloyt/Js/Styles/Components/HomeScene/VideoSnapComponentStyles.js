@@ -33,7 +33,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     zIndex: 1,
     borderBottomWidth: 0.5,
-    borderBottomColor: '#7d7d7d',
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   topSection: {
     top: 0,

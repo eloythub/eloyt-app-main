@@ -70,6 +70,7 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
                   default={this.firstName}
                   caption="FIRST NAME"
                   name="firstname"
+                  widthOffset={40}
                   nextFocusObjectRef={() => this.lastNameRef.focus()}
                 />
               </View>
@@ -81,6 +82,7 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
                   default={this.lastName}
                   caption="LAST NAME"
                   name="lastname"
+                  widthOffset={40}
                   nextFocusObjectRef={() => this.aboutMeRef.focus()}
                 />
               </View>
@@ -94,6 +96,7 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
                   name="aboutme"
                   numberOfLines={3}
                   height={120}
+                  widthOffset={40}
                   multiline={true}
                 />
               </View>
@@ -102,20 +105,23 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
                 <GenderEntity
                   onPress={(genderValue) => this.gender = genderValue}
                   value={this.gender.toLowerCase()}
-                />
+                  widthOffset={40}/>
               </View>
 
               <View style={ProfileUpdateComponentStyles.profileEntityContainer}>
                 <BirthdateEntity
                   onChange={(dateOfBirth) => this.dateOfBirth = dateOfBirth}
-                  date={this.dateOfBirth}/>
+                  date={this.dateOfBirth}
+                  widthOffset={40}/>
               </View>
 
               <View style={ProfileUpdateComponentStyles.profileEntityContainer}>
-                <HashtagSelectorEntity initSelected={this.hashtags} onChange={(hashtags) => this.hashtags = hashtags}/>
+                <HashtagSelectorEntity initSelected={this.hashtags}
+                                       onChange={(hashtags) => this.hashtags = hashtags}
+                                       widthOffset={40}/>
               </View>
 
-              <View style={ProfileUpdateComponentStyles.profileEntityContainerBottom} />
+              <View style={ProfileUpdateComponentStyles.profileEntityContainerBottom}/>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>

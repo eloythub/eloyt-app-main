@@ -23,7 +23,7 @@ export default class ProfileComponent extends ProfileComponentDelegator {
       loop: false,
       bounces: true,
       autoplay: false,
-      horizontal: false,
+      horizontal: true,
       showsButtons: false,
       showsPagination: false,
       scrollEnabled: false,

@@ -87,7 +87,7 @@ export default class LoginScreenDelegator extends Delegator {
       }
 
       // Show Home Scene
-      Actions.HomeScene({
+      await Actions.HomeScene({
         type: ActionConst.REPLACE,
       })
     } catch (err) {

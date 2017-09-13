@@ -7,7 +7,6 @@ const {width} = Dimensions.get('window')
 export default StyleSheet.create({
   rootContainer: {
     flex: 1,
-    width: width - 60,
   },
   datePicker: {
     width: width - 60,

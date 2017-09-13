@@ -1,6 +1,6 @@
 // Basics
 import React from 'react'
-import { Modal, StatusBar, Text, View } from 'react-native'
+import { Modal, StatusBar, View } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { BlurView } from 'react-native-blur'
 // Essentials
@@ -11,6 +11,7 @@ import VideoPlayerComponent from '../Components/HomeScreen/VideoPlayerComponent'
 import VideoSnapComponent from '../Components/HomeScreen/VideoSnapComponent'
 import ProfileComponent from '../Components/HomeScreen/ProfileComponent'
 import SearchComponent from '../Components/HomeScreen/SearchComponent'
+import MessagesNotificationsComponent from '../Components/HomeScreen/MessagesNotificationsComponent'
 
 export default class HomeScreen extends HomeScreenDelegator {
   constructor (props) {
@@ -90,7 +91,8 @@ export default class HomeScreen extends HomeScreenDelegator {
                   scrollEnabled: mainSwiperScrollEnable
                 }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
-            <Text style={HomeScreenStyles.placeholder}>Message/Notifications</Text>
+            <MessagesNotificationsComponent onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
+                                            openProfile={(userId) => this.openProfile(userId)}/>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
             <Swiper {...Object.assign({

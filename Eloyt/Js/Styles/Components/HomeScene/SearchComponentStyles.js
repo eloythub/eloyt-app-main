@@ -22,7 +22,8 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     zIndex: 1,
     borderBottomWidth: 0.5,
-    borderBottomColor: '#7d7d7d',
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   entitiesContainer: {
     flex: 1,

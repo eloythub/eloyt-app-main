@@ -8,7 +8,7 @@ import { VideoPlayerComponentStyles, WaitingComponentStyles } from '../../Styles
 import VideoPlayerComponentDelegator from '../../Delegators/Components/HomeScene/VideoPlayerComponentDelegator'
 import ProfileAvatar from '../../Components/ProfileAvatar'
 import SearchButton from '../../Components/SearchButton'
-import NotificationButton from '../../Components/NotificationButton'
+import MessagesButton from '../../Components/MessagesButton'
 import SnapPlayerManagerComponent from './SnapPlayerManagerComponent'
 import BottomCameraImage from '../BottomCameraImage'
 
@@ -60,7 +60,8 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
         {this.renderVideoPlayerQueue()}
         <View style={VideoPlayerComponentStyles.topSection}>
           <View style={VideoPlayerComponentStyles.notifyListMessageRecipientsSection}>
-            <NotificationButton unreadMessages={true} onPress={moveSceneToNotificationScene.bind(this)}/>
+            <MessagesButton unread={0}
+                                onPress={moveSceneToNotificationScene.bind(this)}/>
           </View>
           <View style={VideoPlayerComponentStyles.profileSection}>
             <ProfileAvatar onPress={this.openProfile.bind(this, loggedInUser.id)}

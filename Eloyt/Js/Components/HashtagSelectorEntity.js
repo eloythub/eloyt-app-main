@@ -1,12 +1,14 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Dimensions, ScrollView, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { Bars } from 'react-native-loader'
 // Essentials
 import { HashtagSelectorEntityComponentStyles } from '../Styles'
 import HashtagSelectorEntityComponentDelegator from '../Delegators/Components/HashtagSelectorEntityComponentDelegator'
 import Button from '../Components/Button'
+
+const {width} = Dimensions.get('window')
 
 export default class HashtagSelectorEntity extends HashtagSelectorEntityComponentDelegator {
   constructor (props) {
@@ -20,6 +22,7 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
 
   render () {
     const {src, isFailedToLoad} = this.state
+    const {widthOffset = 60}    = this.props
 
     if (!src) {
       return (
@@ -29,6 +32,9 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
               ? <View style={[
               HashtagSelectorEntityComponentStyles.rootContainer,
               HashtagSelectorEntityComponentStyles.rootWaitingContainer,
+              {
+                width: width - widthOffset
+              }
             ]}>
               <Button onPress={this.retry.bind(this)} caption="Failed To Load Tags!!! Try again please"/>
             </View>
@@ -45,7 +51,12 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
 
     return (
       <ScrollView>
-        <View style={HashtagSelectorEntityComponentStyles.rootContainer}>
+        <View style={[
+          HashtagSelectorEntityComponentStyles.rootContainer,
+          {
+            width: width - widthOffset
+          }
+        ]}>
           {
             src.map((hashtag, index) => {
               const isSelected = this.isSelected(hashtag.slug)
@@ -78,4 +89,5 @@ HashtagSelectorEntity.propTypes = {
   onChange: PropTypes.func,
   initSelected: PropTypes.array,
   src: PropTypes.array,
+  widthOffset: PropTypes.number,
 }

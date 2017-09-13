@@ -1,11 +1,13 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Text, View } from 'react-native'
+import { Text, View, Dimensions } from 'react-native'
 import RadioButton from 'radio-button-react-native'
 // Essentials
 import { GenderEntityComponentStyles } from '../Styles'
 import GenderEntityComponentDelegator from '../Delegators/Components/GenderEntityComponentDelegator'
+
+const {width} = Dimensions.get('window')
 
 export default class GenderEntity extends GenderEntityComponentDelegator {
   constructor (props) {
@@ -15,8 +17,15 @@ export default class GenderEntity extends GenderEntityComponentDelegator {
   }
 
   render () {
+    const {widthOffset = 60} = this.props
+
     return (
-      <View style={GenderEntityComponentStyles.rootContainer}>
+      <View style={[
+        GenderEntityComponentStyles.rootContainer,
+        {
+          width: width - widthOffset
+        }
+      ]}>
         <Text style={GenderEntityComponentStyles.caption}>GENDER:</Text>
         <View>
           <View style={GenderEntityComponentStyles.radioButtonContainer}>
@@ -93,4 +102,5 @@ export default class GenderEntity extends GenderEntityComponentDelegator {
 GenderEntity.propTypes = {
   onPress: PropTypes.func.isRequired,
   value: PropTypes.string,
+  widthOffset: PropTypes.number,
 }
