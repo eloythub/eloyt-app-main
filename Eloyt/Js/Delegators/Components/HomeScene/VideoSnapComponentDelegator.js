@@ -18,24 +18,26 @@ export default class VideoSnapComponentDelegator extends Delegator {
   }
 
   async startSnapping () {
+    Debug.Log('VideoSnapComponentDelegator:startSnapping')
+
     const {onSnapStarted} = this.props
     const {cameraRef}     = this.refs
     const {CaptureMode}   = Camera.constants
 
     onSnapStarted()
 
-    const options = {
-      title: 'Eloyt',
-      mode: CaptureMode.video,
-      metadata: {},
-    }
-
     delete this.snapObject
 
     try {
       await this.setState({isRecording: true})
 
-      const captureData = await cameraRef.capture(options)
+      cameraRef.stopCapture()
+
+      const captureData = await cameraRef.capture({
+        title: 'Eloyt',
+        mode: CaptureMode.video,
+        metadata: {},
+      })
 
       Debug.Log('VideoSnapComponentDelegator:startSnapping:captureData', captureData)
 
@@ -54,11 +56,14 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
       Debug.Log('VideoSnapComponentDelegator:startSnapping:error', err)
 
+      cameraRef.stopCapture()
       Utils.alert('Something went wrong!!!\nPlease try again.')
     }
   }
 
   async finishSnapping () {
+    Debug.Log('VideoSnapComponentDelegator:finishSnapping')
+
     const {onSnapEnded} = this.props
     const {cameraRef}   = this.refs
 

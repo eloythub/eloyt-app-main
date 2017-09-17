@@ -17,7 +17,7 @@ import { HomeScreenStyles, VideoSnapComponentStyles, WaitingComponentStyles } fr
 import VideoSnapComponentDelegator from '../../Delegators/Components/HomeScene/VideoSnapComponentDelegator'
 import HashtagSelectorEntity from '../../Components/HashtagSelectorEntity'
 
-const {width}  = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 export default class VideoSnapComponent extends VideoSnapComponentDelegator {
   constructor (props) {
@@ -141,7 +141,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
         onRequestClose={() => this.setState({isCameraFadeFilterAppears: false})}>
         <View>
           <VibrancyView blurType="xlight" overlayColor="#ffffff" blurAmount={20}
-                    style={VideoSnapComponentStyles.uploadBlurView}/>
+                        style={VideoSnapComponentStyles.uploadBlurView}/>
         </View>
       </Modal>
     )
@@ -156,7 +156,8 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
           <CloseButton hide={isRecording} onPress={this.close.bind(this)}/>
         </View>
         <View style={VideoSnapComponentStyles.bottomSection}>
-          <SnapButton onSnapStarted={this.startSnapping.bind(this)} onSnapEnded={this.finishSnapping.bind(this)}/>
+          <SnapButton onSnapStarted={this.startSnapping.bind(this)}
+                      onSnapEnded={this.finishSnapping.bind(this)}/>
         </View>
       </View>
     )

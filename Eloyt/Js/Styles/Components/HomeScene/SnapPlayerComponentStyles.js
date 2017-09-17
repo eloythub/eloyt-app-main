@@ -47,7 +47,8 @@ export default StyleSheet.create({
   Text: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#ffffff'
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
   },
 
   // Details Slide
@@ -84,12 +85,14 @@ export default StyleSheet.create({
   detailsTime: {
     fontSize: 14,
     fontWeight: 'normal',
+    fontFamily: 'OpenSans',
     color: '#ffffff',
     padding: 0,
   },
   detailsUsername: {
     fontSize: 14,
     fontWeight: 'bold',
+    fontFamily: 'OpenSans',
     color: '#ffffff',
     padding: 0,
   },
@@ -97,6 +100,7 @@ export default StyleSheet.create({
     marginTop: 5,
     fontSize: 12,
     fontWeight: 'normal',
+    fontFamily: 'OpenSans',
     textAlign: 'justify',
     color: '#ffffff',
     padding: 0,

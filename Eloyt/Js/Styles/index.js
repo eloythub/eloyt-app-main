@@ -26,6 +26,8 @@ import ProfilePreviewComponentStyles from './Components/HomeScene/ProfilePreview
 import ProfileUpdateComponentStyles from './Components/HomeScene/ProfileUpdateComponentStyles'
 import SearchComponentStyles from './Components/HomeScene/SearchComponentStyles'
 import MessagesNotificationsComponentStyles from './Components/HomeScene/MessagesNotificationsComponentStyles'
+// Components HomeScreen/MessagesNotifications
+import RecipientsListComponentStyles from './Components/HomeScene/MessagesNotifications/RecipientsListComponentStyles'
 
 export {
   CommonStyles,
@@ -58,4 +60,6 @@ export {
   ProfileUpdateComponentStyles,
   SearchComponentStyles,
   MessagesNotificationsComponentStyles,
+  // Components HomeScreen/MessagesNotifications
+  RecipientsListComponentStyles,
 }

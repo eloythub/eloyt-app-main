@@ -12,8 +12,8 @@ export default class SnapButton extends SnapButtonComponentDelegator {
       <View style={ButtonComponentStyles.rootContainer}>
         <TouchableHighlight
           style={ButtonComponentStyles.snapButton}
-          delayPressIn={100}
-          delayPressOut={100}
+          //delayPressIn={100}
+          //delayPressOut={50}
           onPressIn={this.startSnapping.bind(this)}
           onPressOut={this.finishSnapping.bind(this)}
           underlayColor="rgba(255, 255, 255, 0.5)">

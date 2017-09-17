@@ -154,6 +154,10 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
               repeat={false}
               playInBackground={false}
               playWhenInactive={false}
+              ignoreSilentSwitch="obey"
+              onAudioFocusChanged={(a,b,c) => {
+                console.log(a,b,c)
+              }}
 
               onLoadStart={this.onLoadStart.bind(this)}
               onLoad={this.onLoad.bind(this)}

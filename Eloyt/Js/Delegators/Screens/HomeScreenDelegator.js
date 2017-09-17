@@ -5,6 +5,12 @@ import { Delegator } from 'react-eloyt'
 import { Debug, Utils } from '../../Factories'
 
 export default class HomeScreenDelegator extends Delegator {
+  async componentDidMount () {
+    // there is a fucking bug here, investigate more on it and fix it
+    await Utils.next()
+    await this.refs.mainSnapSwiperRef.scrollBy(1, true)
+  }
+
   async onMainSwiperIndexChanged (index) {
     Debug.Log(`HomeScreenDelegator:onMainSwiperIndexChanged`)
 

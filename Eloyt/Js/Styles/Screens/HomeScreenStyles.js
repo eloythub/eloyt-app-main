@@ -43,6 +43,7 @@ export default StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 30,
+    fontFamily: 'OpenSans',
   },
   userProfileBlurView: {
     width,

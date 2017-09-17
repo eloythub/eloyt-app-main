@@ -24,6 +24,8 @@ import EmailIcon from '../../Assets/Images/email-icon.png'
 import BirthdateIcon from '../../Assets/Images/birthdate-icon.png'
 // Search
 import UsersIcon from '../../Assets/Images/users-icon.png'
+// MessagesNotifications
+import NoActivityIcon from '../../Assets/Images/no-activity-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -55,4 +57,7 @@ export default class Assets extends Factory {
 
   // Search
   static UsersIcon = UsersIcon
+
+  // MessagesNotifications
+  static NoActivityIcon = NoActivityIcon
 }

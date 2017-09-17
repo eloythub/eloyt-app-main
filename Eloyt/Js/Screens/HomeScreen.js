@@ -30,7 +30,7 @@ export default class HomeScreen extends HomeScreenDelegator {
 
     this.mainSwiperProperties = {
       ref: 'mainSnapSwiperRef',
-      index: 1,
+      //index: 1,
       loop: false,
       bounces: false,
       autoplay: false,

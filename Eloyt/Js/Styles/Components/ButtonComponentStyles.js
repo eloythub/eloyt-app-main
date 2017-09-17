@@ -283,6 +283,11 @@ export default StyleSheet.create({
     height: 40,
     backgroundColor: 'transparent',
   },
+
+  // alternative snap
+  rootAlternativeContainer: {
+  },
+
   container: {
     flex: 0,
     height: 40,
