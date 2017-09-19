@@ -1,5 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
+import { Utils } from '../../../Factories'
+
 const {width, height} = Dimensions.get('window')
 
 export default StyleSheet.create({
@@ -39,5 +41,20 @@ export default StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  composerContainer: {
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  textInputStyle: {
+    fontFamily: 'OpenSans',
+    fontWeight: 'normal',
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
+  sendStyle: {
+    backgroundColor: 'red',
+    justifyContent: 'center'
   },
 })

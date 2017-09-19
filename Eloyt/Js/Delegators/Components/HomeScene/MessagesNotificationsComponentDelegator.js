@@ -1,6 +1,7 @@
 // Basics
 import React from 'react'
 import { Delegator } from 'react-eloyt'
+import { GiftedChat } from 'react-native-gifted-chat'
 // Essentials
 import { Debug, LocalStorage } from '../../../Factories'
 import { AuthEnum } from '../../../Enums'
@@ -38,6 +39,8 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     await this.setState({selectedRecipientUserId})
 
     this.refs.messageNotificationSwiperRef.scrollBy(1)
+
+    await this.refs.chatboxRef.focusTextInput()
   }
 
   async onBackButton () {
@@ -45,4 +48,17 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
 
     this.refs.messageNotificationSwiperRef.scrollBy(-1)
   }
+
+  async onSendMessage (messages) {
+    Debug.Log(`MessagesNotificationsComponentDelegator:onSendMessage`)
+
+    console.log(messages)
+
+    await this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+
+    await this.refs.chatboxRef.focusTextInput()
+  }
+
 }

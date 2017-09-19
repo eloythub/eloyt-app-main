@@ -26,6 +26,7 @@ import BirthdateIcon from '../../Assets/Images/birthdate-icon.png'
 import UsersIcon from '../../Assets/Images/users-icon.png'
 // MessagesNotifications
 import NoActivityIcon from '../../Assets/Images/no-activity-icon.png'
+import SendIcon from '../../Assets/Images/send-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -37,22 +38,22 @@ export default class Assets extends Factory {
   static DefaultProfileUser = DefaultProfileUser
 
   // Buttons
-  static CancelIcon          = CancelIcon
-  static OkIcon              = OkIcon
-  static SearchIcon          = SearchIcon
-  static NotificationIcon    = NotificationIcon
-  static MessagesIcon    = MessagesIcon
-  static RecordSceneIcon     = RecordSceneIcon
-  static MoreIcon            = MoreIcon
-  static LeftArrowNoTailIcon = LeftArrowNoTailIcon
+  static CancelIcon           = CancelIcon
+  static OkIcon               = OkIcon
+  static SearchIcon           = SearchIcon
+  static NotificationIcon     = NotificationIcon
+  static MessagesIcon         = MessagesIcon
+  static RecordSceneIcon      = RecordSceneIcon
+  static MoreIcon             = MoreIcon
+  static LeftArrowNoTailIcon  = LeftArrowNoTailIcon
   static RightArrowNoTailIcon = RightArrowNoTailIcon
-  static LikeIcon            = LikeIcon
-  static DislikeIcon         = DislikeIcon
-  static EditIcon            = EditIcon
-  static SignOutIcon         = SignOutIcon
+  static LikeIcon             = LikeIcon
+  static DislikeIcon          = DislikeIcon
+  static EditIcon             = EditIcon
+  static SignOutIcon          = SignOutIcon
 
   // Profile
-  static EmailIcon = EmailIcon
+  static EmailIcon     = EmailIcon
   static BirthdateIcon = BirthdateIcon
 
   // Search
@@ -60,4 +61,5 @@ export default class Assets extends Factory {
 
   // MessagesNotifications
   static NoActivityIcon = NoActivityIcon
+  static SendIcon       = SendIcon
 }

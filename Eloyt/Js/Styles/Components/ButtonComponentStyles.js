@@ -288,6 +288,20 @@ export default StyleSheet.create({
   rootAlternativeContainer: {
   },
 
+  // Send Button
+  sendButtonContainer: {
+    width: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  sendButtonIcon: {
+    width: 26,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent',
+  },
+
   container: {
     flex: 0,
     height: 40,
