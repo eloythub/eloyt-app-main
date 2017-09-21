@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@expo/react-native-action-sheet@github:cribspot/react-native-action-sheet#b422c54f26d30b9e85eb14a882ea9cec38600730":
+"@expo/react-native-action-sheet@cribspot/react-native-action-sheet#b422c54f26d30b9e85eb14a882ea9cec38600730":
   version "1.0.0"
   resolved "https://codeload.github.com/cribspot/react-native-action-sheet/tar.gz/b422c54f26d30b9e85eb14a882ea9cec38600730"
   dependencies:
@@ -4271,7 +4271,7 @@ react-native-invertible-scroll-view@1.0.0:
     react-clone-referenced-element "^1.0.1"
     react-native-scrollable-mixin "^1.0.1"
 
-"react-native-lightbox@github:oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875":
+react-native-lightbox@oblador/react-native-lightbox#c84a8543d4511fe6a44c3d7820747c9c1bddd875:
   version "0.6.0"
   resolved "https://codeload.github.com/oblador/react-native-lightbox/tar.gz/c84a8543d4511fe6a44c3d7820747c9c1bddd875"
   dependencies:
@@ -4286,6 +4286,13 @@ react-native-linear-gradient@^2.2.0:
 react-native-loader@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.1.0.tgz#9e87e88d5b0a03a26b28591b23da73408a189e47"
+
+react-native-notifications@^1.1.16:
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/react-native-notifications/-/react-native-notifications-1.1.16.tgz#78e423745727aeb48e5c5bc650c06224da94c15f"
+  dependencies:
+    core-js "^1.0.0"
+    uuid "^2.0.3"
 
 react-native-parsed-text@0.0.18:
   version "0.0.18"
@@ -5350,6 +5357,10 @@ uuid@3.0.1:
 uuid@3.1.0, uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+
+uuid@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"

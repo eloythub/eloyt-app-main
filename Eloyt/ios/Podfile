@@ -12,6 +12,8 @@ target 'Eloyt' do
 
   pod 'WindowsAzureMessaging'
   
+  pod 'RNNotifications'
+  
   target 'EloytTests' do
     inherit! :search_paths
     # Pods for testing

@@ -28,6 +28,7 @@
     "react-native-i18n": "^2.0.4",
     "react-native-linear-gradient": "^2.2.0",
     "react-native-loader": "^1.1.0",
+    "react-native-notifications": "^1.1.16",
     "react-native-router-flux": "4.0.0-beta.21",
     "react-native-status-bar-size": "^0.3.2",
     "react-native-swiper": "^1.5.12",
