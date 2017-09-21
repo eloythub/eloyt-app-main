@@ -16,14 +16,20 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#import "RNNotifications.h"
+
+#import <WindowsAzureMessaging/WindowsAzureMessaging.h>
+#import "HubInfo.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  
+  // FACEBOOK SDK
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
   
+  // AUDIO SESSION
   [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient
                                    withOptions: AVAudioSessionCategoryOptionMixWithOthers
                                          error:nil];
@@ -31,6 +37,14 @@
   [[AVAudioSession sharedInstance] setActive: YES
                                        error: nil];
   
+  // PUSH NOTIFICATION
+  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound |
+                                          UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
+  
+  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  
+  // REACT NATIVE
   NSURL *jsCodeLocation;
   
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
@@ -67,4 +81,48 @@
   [FBSDKAppEvents activateApp];
 }
 
+// Required to register for notifications
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+  [RNNotifications didRegisterUserNotificationSettings:notificationSettings];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
+  SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
+                                                           notificationHubPath:HUBNAME];
+  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+  
+  [hub registerNativeWithDeviceToken:deviceToken tags:nil completion:^(NSError* error) {
+    if (error != nil) {
+      NSLog(@"Error registering for notifications: %@", error);
+    }
+    else {
+      NSLog(@"Registered");
+    }
+  }];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+// Required for the notification event.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification {
+  [RNNotifications didReceiveRemoteNotification:notification];
+}
+
+// Required for the localNotification event.
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+  [RNNotifications didReceiveLocalNotification:notification];
+}
+
+-(void)MessageBox:(NSString *)title message:(NSString *)messageText
+{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
+                                        cancelButtonTitle:@"OK" otherButtonTitles: nil];
+  [alert show];
+}
+
 @end
+
