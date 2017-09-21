@@ -59,6 +59,7 @@
 		C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */; };
 		C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */; };
 		C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */; };
+		C08F9B7B1F74090B00C20118 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */; };
 		C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */; };
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
 		D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */; };
@@ -335,6 +336,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTVideo;
 		};
+		C08F9B5A1F7408F900C20118 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
+		C08F9B5C1F7408F900C20118 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
+			remoteInfo = "RCTPushNotification-tvOS";
+		};
 		C0C252CC1F73FD1E00137A73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBC4E8726DC14E1F9ECD6DD8 /* RNI18n.xcodeproj */;
@@ -461,6 +476,7 @@
 		C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterAnalytics.framework; sourceTree = "<group>"; };
 		C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterCrashes.framework; sourceTree = "<group>"; };
 		C07311AE328E4CDE9BED093E /* libRNNotifications.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNotifications.a; sourceTree = "<group>"; };
+		C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
@@ -493,6 +509,7 @@
 			files = (
 				C031BD491E9934390083E241 /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
+				C08F9B7B1F74090B00C20118 /* libRCTPushNotification.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -710,6 +727,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */,
 				C031BD251E9934270083E241 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -832,6 +850,15 @@
 			children = (
 				C07FD1D21EAC736D00DED834 /* libRCTVideo.a */,
 				C07176231F5A972200BD2D4E /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C08F9B461F7408F800C20118 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */,
+				C08F9B5D1F7408F900C20118 /* libRCTPushNotification-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1063,6 +1090,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = C08F9B461F7408F800C20118 /* Products */;
+					ProjectRef = C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1370,6 +1401,20 @@
 			fileType = archive.ar;
 			path = libRCTVideo.a;
 			remoteRef = C07FD1D11EAC736D00DED834 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = C08F9B5A1F7408F900C20118 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C08F9B5D1F7408F900C20118 /* libRCTPushNotification-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTPushNotification-tvOS.a";
+			remoteRef = C08F9B5C1F7408F900C20118 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C0C252CD1F73FD1E00137A73 /* libRNI18n.a */ = {
@@ -1861,6 +1906,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1899,6 +1945,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-notifications/RNNotifications",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = Eloyt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
