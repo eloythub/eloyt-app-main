@@ -11,33 +11,22 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.20.0):
     - FBSDKCoreKit
-  - MobileCenter (0.4.2):
-    - MobileCenter/MobileCenterAnalytics (= 0.4.2)
-    - MobileCenter/MobileCenterCrashes (= 0.4.2)
-  - MobileCenter/MobileCenter (0.4.2)
-  - MobileCenter/MobileCenterAnalytics (0.4.2):
-    - MobileCenter/MobileCenter
-  - MobileCenter/MobileCenterCrashes (0.4.2):
-    - MobileCenter/MobileCenter
-  - RNMobileCenter (0.2.1):
-    - MobileCenter (~> 0.4.0)
+  - WindowsAzureMessaging (1.0.2)
 
 DEPENDENCIES:
   - Bolts
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - MobileCenter
-  - RNMobileCenter
+  - WindowsAzureMessaging
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 2d16979b28fe28c2b95af0d275ad5f9703c6c8de
   FBSDKLoginKit: a9d9391506c687e2304a590bf9312837fce7f375
   FBSDKShareKit: 1b91af62a603d67f392bc7fde63bc4a0705dde31
-  MobileCenter: 058d64d0a01ab13f4034822d4e09e63f149e6772
-  RNMobileCenter: c1adcb1e4aeecc59763ae4d7a64a19b91321b769
+  WindowsAzureMessaging: 3ec1c2ca507508e9595c34f6cf977e0c447fdd87
 
-PODFILE CHECKSUM: 3a93efdb893ce64ddd53603c1792e49c48da63ff
+PODFILE CHECKSUM: 6bb201f0b7bafcb63d9de5b0dea0f31e721a7aa1
 
 COCOAPODS: 1.2.1.rc.1

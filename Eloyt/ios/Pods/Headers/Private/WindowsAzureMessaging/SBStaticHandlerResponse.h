@@ -1,0 +1,1 @@
+../../../WindowsAzureMessaging/iOS/WindowsAzureMessaging/WindowsAzureMessaging/Helpers/SBStaticHandlerResponse.h

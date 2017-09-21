@@ -9,9 +9,8 @@ target 'Eloyt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-  
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  pod 'react-native-camera', path: '../node_modules/react-native-camera'
+
+  pod 'WindowsAzureMessaging'
   
   target 'EloytTests' do
     inherit! :search_paths

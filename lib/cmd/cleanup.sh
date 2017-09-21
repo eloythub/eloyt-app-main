@@ -12,3 +12,5 @@ npm cache verify 1>/dev/null
 yarn
 yarn add react-native-fbsdk@0.6.0
 react-native link
+react-native link react-native-device-info
+react-native link react-native-camera
