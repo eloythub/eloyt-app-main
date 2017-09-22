@@ -1,6 +1,7 @@
 // Basics
 import React from 'react'
 import { Delegator } from 'react-eloyt'
+import NotificationsIOS from 'react-native-notifications';
 // Essentials
 import { Debug, Utils } from '../../Factories'
 
@@ -9,6 +10,46 @@ export default class HomeScreenDelegator extends Delegator {
     // there is a fucking bug here, investigate more on it and fix it
     await Utils.next()
     await this.refs.mainSnapSwiperRef.scrollBy(1, true)
+
+    NotificationsIOS.addEventListener('remoteNotificationsRegistered', this.onPushRegistered.bind(this));
+    NotificationsIOS.addEventListener('remoteNotificationsRegistrationFailed', this.onPushRegistrationFailed.bind(this));
+    NotificationsIOS.addEventListener('notificationReceivedForeground', this.onNotificationReceivedForeground.bind(this));
+    NotificationsIOS.addEventListener('notificationReceivedBackground', this.onNotificationReceivedBackground.bind(this));
+    NotificationsIOS.addEventListener('notificationOpened', this.onNotificationOpened.bind(this));
+    NotificationsIOS.requestPermissions();
+    const currentPermissions = await NotificationsIOS.checkPermissions()
+
+    if (!currentPermissions.badge || !currentPermissions.sound || !currentPermissions.alert) {
+      Utils.alert('permission issue')
+    }
+  }
+
+  onPushRegistered(deviceToken) {
+    Utils.alert("Device Token Received", deviceToken);
+  }
+
+  onPushRegistrationFailed(error) {
+    Utils.alert('error', error);
+  }
+
+  onNotificationReceivedForeground(notification) {
+    Utils.alert("Notification Received - Foreground", notification);
+  }
+
+  onNotificationReceivedBackground(notification) {
+    Utils.alert("Notification Received - Background", notification);
+  }
+
+  onNotificationOpened(notification) {
+    Utils.alert("Notification opened by device user", notification);
+  }
+
+  componentWillUnmount() {
+    NotificationsIOS.removeEventListener('remoteNotificationsRegistered', this.onPushRegistered.bind(this));
+    NotificationsIOS.removeEventListener('remoteNotificationsRegistrationFailed', this.onPushRegistrationFailed.bind(this));
+    NotificationsIOS.removeEventListener('notificationReceivedForeground', this.onNotificationReceivedForeground.bind(this));
+    NotificationsIOS.removeEventListener('notificationReceivedBackground', this.onNotificationReceivedBackground.bind(this));
+    NotificationsIOS.removeEventListener('notificationOpened', this.onNotificationOpened.bind(this));
   }
 
   async onMainSwiperIndexChanged (index) {

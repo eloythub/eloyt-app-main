@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -479,6 +480,7 @@
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
+		C0EBEEA71F7413AF00BA866F /* Eloyt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Eloyt.entitlements; path = Eloyt/Eloyt.entitlements; sourceTree = "<group>"; };
 		C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
 		C5AC79C9AB86410DA9B1FA2A /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 		13B07FAE1A68108700A75B9A /* Eloyt */ = {
 			isa = PBXGroup;
 			children = (
+				C0EBEEA71F7413AF00BA866F /* Eloyt.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -1026,6 +1029,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = LV9VYA43P3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1886,6 +1894,7 @@
 			baseConfigurationReference = 89A78D9A21CAA21BCB3D58DA /* Pods-Eloyt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Eloyt/Eloyt.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LV9VYA43P3;
@@ -1917,6 +1926,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.eloyt.eloyt;
 				PRODUCT_NAME = Eloyt;
+				PROVISIONING_PROFILE = "cbafded6-01a4-4f6f-be0e-7fd4a088ecb1";
+				PROVISIONING_PROFILE_SPECIFIER = "Notification Hub";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1926,6 +1937,7 @@
 			baseConfigurationReference = 073B2D206F1F66089008415D /* Pods-Eloyt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Eloyt/Eloyt.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV9VYA43P3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1956,6 +1968,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.eloyt.eloyt;
 				PRODUCT_NAME = Eloyt;
+				PROVISIONING_PROFILE = "5af021e4-b31c-46e1-ba76-973f4c075703";
+				PROVISIONING_PROFILE_SPECIFIER = "Notification Hub";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

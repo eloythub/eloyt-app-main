@@ -88,16 +88,16 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
+  // SETUP MICROSOFT AZURE
   SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
                                                            notificationHubPath:HUBNAME];
-  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
   
   [hub registerNativeWithDeviceToken:deviceToken tags:nil completion:^(NSError* error) {
     if (error != nil) {
       NSLog(@"Error registering for notifications: %@", error);
     }
     else {
-      NSLog(@"Registered");
+      [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
     }
   }];
 }
@@ -115,13 +115,6 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
   [RNNotifications didReceiveLocalNotification:notification];
-}
-
--(void)MessageBox:(NSString *)title message:(NSString *)messageText
-{
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
-                                        cancelButtonTitle:@"OK" otherButtonTitles: nil];
-  [alert show];
 }
 
 @end
