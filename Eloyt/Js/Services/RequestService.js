@@ -166,6 +166,17 @@ export default class RequestService extends Service {
   static url (url, query) {
     Debug.Log(`RequestService:url`)
 
+    let baseUrlObject
+
+    switch (this.service) {
+      case 'api':
+        baseUrlObject = ConfigsEnum.API_BASE_URL
+        break
+      case 'com':
+        baseUrlObject = ConfigsEnum.COM_BASE_URL
+        break
+    }
+
     if (query) {
       query = Object.keys(query)
         .map((key) => {
@@ -173,9 +184,9 @@ export default class RequestService extends Service {
         })
         .join('&')
 
-      return `${path.join(ConfigsEnum.API_BASE_URL[ConfigsEnum.NODE_ENV], url)}?${query}`
+      return `${path.join(baseUrlObject[ConfigsEnum.NODE_ENV], url)}?${query}`
     }
 
-    return path.join(ConfigsEnum.API_BASE_URL[ConfigsEnum.NODE_ENV], url)
+    return path.join(baseUrlObject[ConfigsEnum.NODE_ENV], url)
   }
 }

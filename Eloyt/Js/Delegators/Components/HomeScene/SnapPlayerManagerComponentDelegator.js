@@ -97,22 +97,30 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
     await this.loadNextSnapFromQueue()
   }
 
-  async onLikeTheSnap () {
+  async onLikeTheSnap (message) {
     Debug.Log('SnapPlayerManagerComponentDelegator:onLikeTheSnap')
 
     const { currentSnap } = this.state
 
     ApiService.likeVideo(currentSnap.id)
 
+    if (message) {
+      ApiService.sendMessage(currentSnap.videoOwner.id, 'text', message)
+    }
+
     await this.loadNextSnapFromQueue()
   }
 
-  async onDislikeTheSnap () {
+  async onDislikeTheSnap (message) {
     Debug.Log('SnapPlayerManagerComponentDelegator:onDislikeTheSnap')
 
     const { currentSnap } = this.state
 
     ApiService.dislikeVideo(currentSnap.id)
+
+    if (message) {
+      ApiService.sendMessage(currentSnap.videoOwner.id, 'text', message)
+    }
 
     await this.loadNextSnapFromQueue()
   }

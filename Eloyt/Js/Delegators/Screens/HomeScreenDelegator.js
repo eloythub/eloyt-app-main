@@ -4,6 +4,7 @@ import { Delegator } from 'react-eloyt'
 import NotificationsIOS, { NotificationAction, NotificationCategory } from 'react-native-notifications';
 // Essentials
 import { Debug, Utils } from '../../Factories'
+import { ComService } from '../../Services'
 
 export default class HomeScreenDelegator extends Delegator {
   constructor (props) {
@@ -38,8 +39,10 @@ export default class HomeScreenDelegator extends Delegator {
     NotificationsIOS.removeEventListener('notificationOpened', this.onNotificationOpened.bind(this));
   }
 
-  onPushRegistered(deviceToken) {
-    console.log('Device Token Received', deviceToken);
+  async onPushRegistered(deviceToken) {
+    console.log('Device Token Received', deviceToken)
+
+    await ComService.pushNotificationTokenRegister(deviceToken)
   }
 
   onPushRegistrationFailed(error) {
@@ -47,7 +50,7 @@ export default class HomeScreenDelegator extends Delegator {
   }
 
   onNotificationReceivedForeground(notification) {
-    console.log("Notification Received - Foreground: ", notification);
+    Utils.alert(`Notification Received - Foreground: ${JSON.stringify(notification)}`);
   }
 
   onNotificationReceivedBackground(notification) {

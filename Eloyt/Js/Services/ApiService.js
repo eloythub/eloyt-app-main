@@ -3,6 +3,8 @@ import { Debug } from '../Factories'
 import { RequestEnum } from '../Enums'
 
 export default class ApiService extends RequestService {
+  static service = 'api'
+
   /*
    * Auth
    */
@@ -152,5 +154,23 @@ export default class ApiService extends RequestService {
 
   static abortRequest () {
     this.abortCancelableRequest()
+  }
+
+  /*
+   * Messages
+   */
+  /*
+   * Search
+   */
+  static async sendMessage (receiverUserId, type, message) {
+    Debug.Log(`ApiService:search`)
+
+    const data = {
+      receiverUserId,
+      type,
+      message
+    }
+
+    return await this.dispatchRequest('/messages/send', RequestEnum.TYPE.POST, data)
   }
 }

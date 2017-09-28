@@ -102,7 +102,7 @@ export default class SnapPlayerComponentDelegator extends Delegator {
   async onPressLike () {
     Debug.Log(`SnapPlayerComponentDelegator:onPressLike`)
 
-    await this.props.onLikeTheSnap()
+    await this.props.onLikeTheSnap(this.directQuickMessage)
 
     this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
   }
@@ -110,7 +110,7 @@ export default class SnapPlayerComponentDelegator extends Delegator {
   async onPressDislike () {
     Debug.Log(`SnapPlayerComponentDelegator:onPressDislike`)
 
-    await this.props.onDislikeTheSnap()
+    await this.props.onDislikeTheSnap(this.directQuickMessage)
 
     this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
   }
