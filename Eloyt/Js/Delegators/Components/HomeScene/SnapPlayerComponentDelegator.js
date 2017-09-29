@@ -104,6 +104,10 @@ export default class SnapPlayerComponentDelegator extends Delegator {
 
     await this.props.onLikeTheSnap(this.directQuickMessage)
 
+    this.setState({
+      directQuickMessageText: ''
+    })
+
     this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
   }
 
@@ -111,6 +115,10 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     Debug.Log(`SnapPlayerComponentDelegator:onPressDislike`)
 
     await this.props.onDislikeTheSnap(this.directQuickMessage)
+
+    this.setState({
+      directQuickMessageText: ''
+    })
 
     this.refs.detailsActionsSwiperRef.scrollBy(-1, true)
   }

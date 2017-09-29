@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.gcrabtree.rctsocketio.SocketIoPackage;
 import com.wix.reactnativenotifications.RNNotificationsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.cmcewen.blurview.BlurViewPackage;
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new SocketIoPackage(),
             new RNNotificationsPackage(),
             new RNDeviceInfo(),
             new BlurViewPackage(),

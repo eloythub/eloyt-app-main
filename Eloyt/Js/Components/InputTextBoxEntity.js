@@ -77,6 +77,7 @@ export default class InputTextBoxEntity extends InputTextBoxEntityComponentDeleg
 
 InputTextBoxEntity.propTypes = {
   setTextRef: PropTypes.func,
+  text: PropTypes.string,
   name: PropTypes.string,
   default: PropTypes.string,
   caption: PropTypes.string,

@@ -59,6 +59,8 @@
 		C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */; };
 		C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */; };
 		C08F9B7B1F74090B00C20118 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */; };
+		C0936A291F7E348F00D8213D /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0936A281F7E348F00D8213D /* Swift.swift */; };
+		C0936A2D1F7E357600D8213D /* RNSwiftSocketIO in Resources */ = {isa = PBXBuildFile; fileRef = C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */; };
 		C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */; };
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
 		D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */; };
@@ -476,6 +478,9 @@
 		C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterCrashes.framework; sourceTree = "<group>"; };
 		C07311AE328E4CDE9BED093E /* libRNNotifications.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNotifications.a; sourceTree = "<group>"; };
 		C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		C09369F01F7E309800D8213D /* Eloyt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eloyt-Bridging-Header.h"; sourceTree = "<group>"; };
+		C0936A281F7E348F00D8213D /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
+		C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNSwiftSocketIO; path = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO"; sourceTree = "<group>"; };
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
@@ -657,6 +662,8 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				C019BAA61F7405FB00119070 /* HubInfo.h */,
+				C09369F01F7E309800D8213D /* Eloyt-Bridging-Header.h */,
+				C0936A281F7E348F00D8213D /* Swift.swift */,
 			);
 			name = Eloyt;
 			sourceTree = "<group>";
@@ -766,6 +773,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */,
 				C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */,
 				C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */,
 				C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */,
@@ -1028,6 +1036,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = LV9VYA43P3;
+						LastSwiftMigration = 900;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1501,6 +1510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C0936A2D1F7E357600D8213D /* RNSwiftSocketIO in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */,
 				C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */,
@@ -1754,6 +1764,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				C0936A291F7E348F00D8213D /* Swift.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1807,6 +1818,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63CC70A7CB2BAF181B79A18D /* Pods-EloytTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1851,6 +1863,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61B014A6972FF904E4E41F09 /* Pods-EloytTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1893,6 +1906,7 @@
 			baseConfigurationReference = 89A78D9A21CAA21BCB3D58DA /* Pods-Eloyt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Eloyt/Eloyt.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1927,6 +1941,9 @@
 				PRODUCT_NAME = Eloyt;
 				PROVISIONING_PROFILE = "cbafded6-01a4-4f6f-be0e-7fd4a088ecb1";
 				PROVISIONING_PROFILE_SPECIFIER = "Notification Hub";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eloyt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1936,6 +1953,7 @@
 			baseConfigurationReference = 073B2D206F1F66089008415D /* Pods-Eloyt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Eloyt/Eloyt.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV9VYA43P3;
@@ -1969,6 +1987,8 @@
 				PRODUCT_NAME = Eloyt;
 				PROVISIONING_PROFILE = "5af021e4-b31c-46e1-ba76-973f4c075703";
 				PROVISIONING_PROFILE_SPECIFIER = "Notification Hub";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eloyt-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2146,7 +2166,7 @@
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2181,17 +2201,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-socketio/ios/RNSwiftSocketIO";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
 			};
 			name = Debug;
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2219,9 +2241,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-socketio/ios/RNSwiftSocketIO";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

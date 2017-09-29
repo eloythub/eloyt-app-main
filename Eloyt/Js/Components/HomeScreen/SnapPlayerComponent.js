@@ -24,6 +24,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
     this.state = {
       waitingMain: true,
       pause: false,
+      directQuickMessageText: ''
     }
 
     this.detailsActionsSwiperProperties = {
@@ -97,7 +98,14 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
       <View style={SnapPlayerComponentStyle.actionsContainer}>
         <LeftArrowButton onPress={this.onPressBackToDetailSlide.bind(this)}/>
         <InputTextBoxEntity
-          onChange={(text) => this.directQuickMessage = text}
+          text={this.state.directQuickMessageText}
+          onChange={(text) => {
+            this.directQuickMessage = text
+
+            this.setState({
+              directQuickMessageText: text
+            })
+          }}
           caption={`Send${
             snapVideo.videoOwner.gender === 'other'
               ? ''
