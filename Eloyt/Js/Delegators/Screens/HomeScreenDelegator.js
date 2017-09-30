@@ -4,7 +4,7 @@ import { Delegator } from 'react-eloyt'
 import NotificationsIOS, { NotificationAction, NotificationCategory } from 'react-native-notifications';
 // Essentials
 import { Debug, Utils } from '../../Factories'
-import { ComService } from '../../Services'
+import { ComService, SocketService } from '../../Services'
 
 export default class HomeScreenDelegator extends Delegator {
   constructor (props) {
@@ -24,10 +24,15 @@ export default class HomeScreenDelegator extends Delegator {
 
     await this.refs.mainSnapSwiperRef.scrollBy(1, true)
 
+    // push notification preparation
     await NotificationsIOS.requestPermissions()
     await NotificationsIOS.checkPermissions()
 
     NotificationsIOS.consumeBackgroundQueue()
+
+    // socket preparation
+    await SocketService.createSocket()
+    SocketService.connect()
   }
 
   componentWillUnmount() {
@@ -37,6 +42,8 @@ export default class HomeScreenDelegator extends Delegator {
     NotificationsIOS.removeEventListener('notificationReceivedForeground', this.onNotificationReceivedForeground.bind(this));
     NotificationsIOS.removeEventListener('notificationReceivedBackground', this.onNotificationReceivedBackground.bind(this));
     NotificationsIOS.removeEventListener('notificationOpened', this.onNotificationOpened.bind(this));
+
+    SocketService.disconnect()
   }
 
   async onPushRegistered(deviceToken) {
@@ -51,6 +58,7 @@ export default class HomeScreenDelegator extends Delegator {
 
   onNotificationReceivedForeground(notification) {
     Utils.alert(`Notification Received - Foreground: ${JSON.stringify(notification)}`);
+    console.log('Notification Received - Foreground: ', notification);
   }
 
   onNotificationReceivedBackground(notification) {

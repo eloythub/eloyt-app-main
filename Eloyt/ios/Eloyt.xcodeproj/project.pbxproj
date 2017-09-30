@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -23,7 +24,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1E825C30008B4D2AA704446B /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA99E235D40D49B585622A02 /* libcxxreact.a */; };
 		26267CF6C5AB4F5DA1237357 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADB6F60FD14DE5BA344639 /* libReact.a */; };
-		29E7F501E4BDFCB903C17638 /* libPods-Eloyt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -36,7 +36,6 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* EloytTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EloytTests.m */; };
-		38BCF7B2AE55A4AB4ADB07FB /* libPods-EloytTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */; };
 		43D31F870A884A3BA235C3B5 /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */; };
 		44165732B84B97813E378F6F /* libPods-Eloyt-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */; };
 		4F9586DA32CC4BFA970D971C /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E89CC1F56C044E09604E646 /* libRNDeviceInfo.a */; };
@@ -47,23 +46,25 @@
 		7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */; };
 		7EC690378C2449B4BFC41B32 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A859E29F99A840C1A4D8DF3D /* libRCTCamera.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		86D2536FD6BC9BBE268108B7 /* libPods-Eloyt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 393299FFBFDE1833AC22C660 /* libPods-Eloyt.a */; };
 		8A6079925F494347B5C6AC14 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD97D1089F4C48589F892CE9 /* libRNFS.a */; };
 		9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */; };
 		A0292F7213814DF0AD89FC45 /* OpenSans_light_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */; };
 		A9F45498136543BC966F7A8B /* OpenSans_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223A2D50B2714361B8196B69 /* OpenSans_italic.ttf */; };
 		B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */; };
 		B9871CA6E4564B519E783F03 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */; };
+		C002E1EB1F7F812600134D41 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E1EA1F7F812600134D41 /* Misc.swift */; };
 		C031BD491E9934390083E241 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C031BD2A1E9934270083E241 /* libART.a */; };
 		C05C4DD81E6469A5008F1A3D /* RNMobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */; };
 		C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */; };
 		C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */; };
 		C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */; };
 		C08F9B7B1F74090B00C20118 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */; };
-		C0936A291F7E348F00D8213D /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0936A281F7E348F00D8213D /* Swift.swift */; };
 		C0936A2D1F7E357600D8213D /* RNSwiftSocketIO in Resources */ = {isa = PBXBuildFile; fileRef = C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */; };
 		C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */; };
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
 		D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */; };
+		DA6182A6529A3A61E391F6F0 /* libPods-EloytTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A5AA11577AC094C983F65B /* libPods-EloytTests.a */; };
 		DAE9EA8D875E4F28A76AA726 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187B30F4260A4B30B02971CA /* libjschelpers.a */; };
 		E378E668784C4E3888906BA8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F66340A5224E54B27858DE /* libRCTVideo.a */; };
 		E3C428E91BF8479E9FE4BC43 /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07311AE328E4CDE9BED093E /* libRNNotifications.a */; };
@@ -445,9 +446,9 @@
 		26EFCD28D6CD4EFCB85FBD46 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libyoga.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Eloyt-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eloyt-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Eloyt-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eloyt-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		393299FFBFDE1833AC22C660 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E57B2170ED97705ECCB92D9 /* Pods-Eloyt-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOS/Pods-Eloyt-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3F4F652D0B164402BB9656E1 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
-		52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EloytTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54486D4964594651A5EE02CF /* OpenSans_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans_bold.ttf; path = ../Assets/Fonts/OpenSans_bold.ttf; sourceTree = "<group>"; };
 		57E086A9D1314B8F9D420654 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -470,6 +471,7 @@
 		AF9CFD765242A47FC13B61BB /* Pods-Eloyt-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD97D1089F4C48589F892CE9 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
+		C002E1EA1F7F812600134D41 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		C019BAA61F7405FB00119070 /* HubInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HubInfo.h; path = Eloyt/HubInfo.h; sourceTree = "<group>"; };
 		C031BD251E9934270083E241 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RNMobileCenter.framework; sourceTree = "<group>"; };
@@ -479,7 +481,6 @@
 		C07311AE328E4CDE9BED093E /* libRNNotifications.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNotifications.a; sourceTree = "<group>"; };
 		C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		C09369F01F7E309800D8213D /* Eloyt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eloyt-Bridging-Header.h"; sourceTree = "<group>"; };
-		C0936A281F7E348F00D8213D /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNSwiftSocketIO; path = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO"; sourceTree = "<group>"; };
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
@@ -489,9 +490,9 @@
 		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
 		C5AC79C9AB86410DA9B1FA2A /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		C6C3A008BD414876990F87D6 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
-		D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Eloyt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F27504D2594DDFAD1D9F6F /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNotifications.xcodeproj; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; };
 		DBC4E8726DC14E1F9ECD6DD8 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
+		E3A5AA11577AC094C983F65B /* libPods-EloytTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EloytTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTActionSheet.a; sourceTree = "<group>"; };
 		EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../Assets/Fonts/OpenSans.ttf; sourceTree = "<group>"; };
@@ -504,7 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				38BCF7B2AE55A4AB4ADB07FB /* libPods-EloytTests.a in Frameworks */,
+				DA6182A6529A3A61E391F6F0 /* libPods-EloytTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +530,6 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */,
 				C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */,
-				29E7F501E4BDFCB903C17638 /* libPods-Eloyt.a in Frameworks */,
 				9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */,
 				26267CF6C5AB4F5DA1237357 /* libReact.a in Frameworks */,
 				7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */,
@@ -544,6 +544,7 @@
 				4F9586DA32CC4BFA970D971C /* libRNDeviceInfo.a in Frameworks */,
 				67B7DCFA161C4F3F9195F734 /* libRNI18n.a in Frameworks */,
 				E3C428E91BF8479E9FE4BC43 /* libRNNotifications.a in Frameworks */,
+				86D2536FD6BC9BBE268108B7 /* libPods-Eloyt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,7 +664,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				C019BAA61F7405FB00119070 /* HubInfo.h */,
 				C09369F01F7E309800D8213D /* Eloyt-Bridging-Header.h */,
-				C0936A281F7E348F00D8213D /* Swift.swift */,
+				C002E1EA1F7F812600134D41 /* Misc.swift */,
 			);
 			name = Eloyt;
 			sourceTree = "<group>";
@@ -715,10 +716,10 @@
 				C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */,
 				C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */,
 				C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */,
-				D1EE5340A1071250D899AAD5 /* libPods-Eloyt.a */,
 				BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */,
 				1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */,
-				52206A1F89B34B751B9BFD1C /* libPods-EloytTests.a */,
+				393299FFBFDE1833AC22C660 /* libPods-Eloyt.a */,
+				E3A5AA11577AC094C983F65B /* libPods-EloytTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1619,9 +1620,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Eloyt/Pods-Eloyt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/WindowsAzureMessaging/WindowsAzureMessaging.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WindowsAzureMessaging.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1634,13 +1650,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eloyt-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C6D92299D04F0E61D0DC90E /* [CP] Copy Pods Resources */ = {
@@ -1649,9 +1668,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Eloyt/Pods-Eloyt-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1664,13 +1686,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eloyt-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		863CEBE314F5103154B939D7 /* [CP] Copy Pods Resources */ = {
@@ -1724,13 +1749,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eloyt-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B93278B1F1F7EE68C3F574B9 /* [CP] Check Pods Manifest.lock */ = {
@@ -1739,13 +1767,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EloytTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1763,8 +1794,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C002E1EB1F7F812600134D41 /* Misc.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				C0936A291F7E348F00D8213D /* Swift.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2206,7 +2237,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eloyt-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -2245,7 +2276,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO/SocketBridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eloyt-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

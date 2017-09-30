@@ -21,6 +21,8 @@
 
 #import "RNNotifications.h"
 
+//#import "SocketBridge.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -40,7 +42,7 @@
 //  // PUSH NOTIFICATION
 //  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound |
 //                                          UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
-//  
+//
 //  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 //  [[UIApplication sharedApplication] registerForRemoteNotifications];
   

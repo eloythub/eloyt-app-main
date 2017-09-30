@@ -1,0 +1,6 @@
+framework module Pods_EloytTests {
+  umbrella header "Pods-EloytTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

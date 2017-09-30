@@ -1,9 +1,10 @@
 import { Service } from 'react-eloyt'
+import { Debug } from '../Factories'
 import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk'
 
 export default class FacebookService extends Service {
   static getProfileData (accessToken) {
-    log(`FacebookService:getProfileData`)
+    Debug.Log(`FacebookService:getProfileData`)
 
     return new Promise((fulfill, reject) => {
       const fields = [

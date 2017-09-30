@@ -1846,8 +1846,8 @@ eslint@^3.19.0, eslint@~3.19.0:
     user-home "^2.0.0"
 
 eslint@^4.4.1:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.2.tgz#ff6f5f5193848a27ee9b627be3e73fb9cb5e662e"
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.8.0.tgz#229ef0e354e0e61d837c7a80fdfba825e199815e"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -2059,7 +2059,7 @@ fbjs-scripts@^0.7.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@0.8.12, fbjs@^0.8.9:
+fbjs@0.8.12:
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.12.tgz#10b5d92f76d45575fd63a217d4ea02bea2f8ed04"
   dependencies:
@@ -2071,7 +2071,7 @@ fbjs@0.8.12, fbjs@^0.8.9:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
-fbjs@^0.8.16:
+fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -4414,9 +4414,9 @@ react-native-video@^2.0.0:
     keymirror "0.1.1"
     prop-types "^15.5.10"
 
-react-native@0.48.2:
-  version "0.48.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.48.2.tgz#9907d5a73640ade3920701e7096fc109ba9cc6e4"
+react-native@0.48.4:
+  version "0.48.4"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.48.4.tgz#f305e9fef069a5b3f6a7250ddd50f603cf30ab2d"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
