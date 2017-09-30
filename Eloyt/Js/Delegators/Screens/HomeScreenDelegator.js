@@ -30,9 +30,10 @@ export default class HomeScreenDelegator extends Delegator {
 
     NotificationsIOS.consumeBackgroundQueue()
 
+    // TODO: fix the issue with swift socket.io client and empower the socket.io
     // socket preparation
-    await SocketService.createSocket()
-    SocketService.connect()
+    //await SocketService.createSocket()
+    //SocketService.connect()
   }
 
   componentWillUnmount() {
@@ -43,7 +44,7 @@ export default class HomeScreenDelegator extends Delegator {
     NotificationsIOS.removeEventListener('notificationReceivedBackground', this.onNotificationReceivedBackground.bind(this));
     NotificationsIOS.removeEventListener('notificationOpened', this.onNotificationOpened.bind(this));
 
-    SocketService.disconnect()
+    //SocketService.disconnect()
   }
 
   async onPushRegistered(deviceToken) {
