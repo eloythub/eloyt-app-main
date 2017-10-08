@@ -26,11 +26,12 @@ export default class HomeScreen extends HomeScreenDelegator {
       isUserProfileModalAppears: false,
       profilePreviewUserId: null,
       focusOnSearchField: false,
+      doLoadRecipiets: false,
     }
 
     this.mainSwiperProperties = {
       ref: 'mainSnapSwiperRef',
-      //index: 1,
+      index: 1,
       loop: false,
       bounces: false,
       autoplay: false,
@@ -78,7 +79,7 @@ export default class HomeScreen extends HomeScreenDelegator {
   }
 
   render () {
-    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause, focusOnSearchField} = this.state
+    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause, focusOnSearchField, doLoadRecipiets} = this.state
 
     return (
       <View style={HomeScreenStyles.baseContainer}>
@@ -87,17 +88,21 @@ export default class HomeScreen extends HomeScreenDelegator {
                    hidden={false}/>
 
         <Swiper onIndexChanged={this.onMainSwiperIndexChanged.bind(this)}
+                keyboardShouldPersistTaps="handled"
                 {...Object.assign({
                   scrollEnabled: mainSwiperScrollEnable
                 }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
             <MessagesNotificationsComponent onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
+                                            doLoadRecipiets={doLoadRecipiets}
+                                            onSnapButton={this.moveSceneToSnapFromMessagesNotifications.bind(this)}
                                             openProfile={(userId) => this.openProfile(userId)}/>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
             <Swiper {...Object.assign({
               scrollEnabled: playerSnapScrollEnable
             }, this.playerSnapSwiperProperties)}
+                    keyboardShouldPersistTaps="handled"
                     onIndexChanged={this.onPlayerSnapSwiperIndexChanged.bind(this)}>
               <View style={HomeScreenStyles.playerSnapSlide}>
                 <VideoPlayerComponent forcePause={forcePause}

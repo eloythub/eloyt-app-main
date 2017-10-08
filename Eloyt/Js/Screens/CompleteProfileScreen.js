@@ -37,7 +37,7 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
         <View style={CompleteProfileScreenStyles.profileEntitiesContainer}>
           <KeyboardAvoidingView behavior="padding"
                                 style={CompleteProfileScreenStyles.keyboardAvoidingViewContainer}>
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps="handled">
               <View style={CompleteProfileScreenStyles.entitiesContainer}>
                 <View style={CompleteProfileScreenStyles.profileEntityContainer}>
                   <ImageEntity imageUrl={ssoUserData.cloudAvatarUrl}/>

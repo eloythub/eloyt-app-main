@@ -18,7 +18,7 @@ export default class SearchComponentDelegator extends Delegator {
   async componentWillReceiveProps (props) {
     Debug.Log(`SearchComponentDelegator:componentWillReceiveProps`)
 
-    if (props.focusOnSearchField === true) {
+    if (!!props.focusOnSearchField) {
       this.serachRef.focus()
     }
   }

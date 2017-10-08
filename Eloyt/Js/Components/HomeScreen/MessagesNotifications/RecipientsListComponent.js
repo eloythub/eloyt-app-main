@@ -1,7 +1,7 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 // Essentials
 import { Assets } from '../../../Factories'
 import { RecipientsListComponentStyles } from '../../../Styles'
@@ -51,10 +51,10 @@ export default class RecipientsListComponent extends RecipientsListComponentDele
           <View style={RecipientsListComponentStyles.detailsUserAvatar}>
             <ProfileAvatar size={60}
                            imageUrl={recipient.cloudAvatarUrl}
-                           onPress={this.openProfile.bind(this, recipient.id)}
+                           onPress={this.openProfile.bind(this, recipient)}
             />
           </View>
-          <TouchableOpacity onPress={this.openProfile.bind(this, recipient.id)}>
+          <TouchableOpacity onPress={this.openProfile.bind(this, recipient)}>
             <View style={RecipientsListComponentStyles.detailsUserInfo}>
               <Text style={RecipientsListComponentStyles.detailsUserInfoTextUsername}>
                 @{recipient.username}{'\n'}
@@ -70,14 +70,19 @@ export default class RecipientsListComponent extends RecipientsListComponentDele
   }
 
   render () {
-    const {recipients} = this.props
+    const {recipients, refreshing} = this.props
 
     return (
       <View style={RecipientsListComponentStyles.rootContainer}>
-        <ScrollView contentContainerStyle={[
-          RecipientsListComponentStyles.rootScrollView,
-          recipients.length === 0 ? RecipientsListComponentStyles.rootScrollNoActivityView : {}
-        ]}>
+        <ScrollView keyboardShouldPersistTaps="handled"
+                    refreshControl={
+                      <RefreshControl refreshing={refreshing}
+                                      onRefresh={this.onRefresh.bind(this)}/>
+                    }
+                    contentContainerStyle={[
+                      RecipientsListComponentStyles.rootScrollView,
+                      recipients.length === 0 ? RecipientsListComponentStyles.rootScrollNoActivityView : {}
+                    ]}>
           <View style={RecipientsListComponentStyles.rootScrollViewContainer}>
             {this.renderRecipients()}
           </View>
@@ -88,6 +93,8 @@ export default class RecipientsListComponent extends RecipientsListComponentDele
 }
 
 RecipientsListComponent.propTypes = {
+  refreshing: PropTypes.bool,
+  loadRecipients: PropTypes.func,
   recipients: PropTypes.array,
   onPressGoNeworking: PropTypes.func,
   onPressSnap: PropTypes.func,

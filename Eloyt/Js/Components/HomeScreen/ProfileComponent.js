@@ -40,7 +40,8 @@ export default class ProfileComponent extends ProfileComponentDelegator {
 
     return (
       <View style={ProfileComponentStyles.rootContainer}>
-        <Swiper {...this.profileSwiperProperties}>
+        <Swiper keyboardShouldPersistTaps="handled"
+                {...this.profileSwiperProperties}>
           <View style={ProfileComponentStyles.slide}>
             <ProfilePreviewComponent {...this.props} updateProfile={this.updateProfile.bind(this)} isUpdated={isUpdated}/>
           </View>

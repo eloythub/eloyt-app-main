@@ -55,7 +55,7 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
       <View style={ProfileUpdateComponentStyles.profileEntitiesContainer}>
         <KeyboardAvoidingView behavior="padding"
                               style={ProfileUpdateComponentStyles.keyboardAvoidingViewContainer}>
-          <ScrollView>
+          <ScrollView keyboardShouldPersistTaps="handled">
             <View style={ProfileUpdateComponentStyles.entitiesContainer}>
               <View style={ProfileUpdateComponentStyles.profileEntityContainer}>
                 <TouchableOpacity onPress={this.notImplementedFeature.bind(this)}>

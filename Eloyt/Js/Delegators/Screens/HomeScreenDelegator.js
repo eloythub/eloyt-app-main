@@ -7,6 +7,8 @@ import { Debug, Utils } from '../../Factories'
 import { ComService, SocketService } from '../../Services'
 
 export default class HomeScreenDelegator extends Delegator {
+  static socket
+
   constructor (props) {
     super(props)
 
@@ -20,9 +22,9 @@ export default class HomeScreenDelegator extends Delegator {
 
   async componentDidMount () {
     // there is a fucking bug here, investigate more on it and fix it
-    await Utils.next()
-
-    await this.refs.mainSnapSwiperRef.scrollBy(1, true)
+    //await Utils.next()
+    //
+    //await this.refs.mainSnapSwiperRef.scrollBy(1, true)
 
     // push notification preparation
     await NotificationsIOS.requestPermissions()
@@ -32,8 +34,12 @@ export default class HomeScreenDelegator extends Delegator {
 
     // TODO: fix the issue with swift socket.io client and empower the socket.io
     // socket preparation
-    //await SocketService.createSocket()
-    //SocketService.connect()
+    this.socket = await SocketService.connect()
+
+    await SocketService.on('connect', this.onSocketConnect.bind(this))
+    await SocketService.on('auth-ping', this.onSocketAuthPing.bind(this))
+    await SocketService.on('auth-green-light', this.onSocketAuthGreenLight.bind(this))
+    await SocketService.on('disconnect', this.onSocketDisconnect.bind(this))
   }
 
   componentWillUnmount() {
@@ -44,29 +50,63 @@ export default class HomeScreenDelegator extends Delegator {
     NotificationsIOS.removeEventListener('notificationReceivedBackground', this.onNotificationReceivedBackground.bind(this));
     NotificationsIOS.removeEventListener('notificationOpened', this.onNotificationOpened.bind(this));
 
-    //SocketService.disconnect()
+    SocketService.disconnect()
+  }
+
+  async onSocketConnect() {
+    Debug.Log(`HomeScreenDelegator:onSocketConnect`)
+
+    console.log('socket: ', this.socket.id)
+  }
+
+
+  async onSocketAuthPing() {
+    Debug.Log(`HomeScreenDelegator:onSocketAuthPing`)
+
+    SocketService.emitAuthPong()
+  }
+
+  async onSocketAuthGreenLight (data) {
+    Debug.Log(`HomeScreenDelegator:onSocketAuthGreenLight`)
+
+    console.log('got green light from server to start working :D', data)
+  }
+
+  async onSocketDisconnect () {
+    Debug.Log(`HomeScreenDelegator:onSocketDisconnect`)
+
+    console.log('oops, i lost connection')
   }
 
   async onPushRegistered(deviceToken) {
+    Debug.Log(`HomeScreenDelegator:onPushRegistered`)
+
     console.log('Device Token Received', deviceToken)
 
     await ComService.pushNotificationTokenRegister(deviceToken)
   }
 
   onPushRegistrationFailed(error) {
+    Debug.Log(`HomeScreenDelegator:onPushRegistrationFailed`)
+
     console.log('error: ', error);
   }
 
   onNotificationReceivedForeground(notification) {
-    Utils.alert(`Notification Received - Foreground: ${JSON.stringify(notification)}`);
+    Debug.Log(`HomeScreenDelegator:onNotificationReceivedForeground`)
+
     console.log('Notification Received - Foreground: ', notification);
   }
 
   onNotificationReceivedBackground(notification) {
+    Debug.Log(`HomeScreenDelegator:onNotificationReceivedBackground`)
+
     console.log('Notification Received - Background: ', notification);
   }
 
   onNotificationOpened(notification) {
+    Debug.Log(`HomeScreenDelegator:onNotificationOpened`)
+
     console.log('Notification opened by device user: ', notification);
   }
 
@@ -77,7 +117,8 @@ export default class HomeScreenDelegator extends Delegator {
       await this.forcePauseSnap()
 
       await this.setState({
-        focusOnSearchField: false
+        focusOnSearchField: false,
+        doLoadRecipiets: false
       })
     } else {
       await this.releaseForcePauseSnap()
@@ -87,6 +128,13 @@ export default class HomeScreenDelegator extends Delegator {
     if (index === 2) {
       await this.setState({
         focusOnSearchField: true
+      })
+    }
+
+    // load recipients
+    if (index === 0) {
+      await this.setState({
+        doLoadRecipiets: true
       })
     }
   }
@@ -173,6 +221,13 @@ export default class HomeScreenDelegator extends Delegator {
     Debug.Log(`HomeScreenDelegator:moveSceneToVideoPlayerFromMessagesNotifications`)
 
     this.refs.mainSnapSwiperRef.scrollBy(1, true)
+  }
+
+  async moveSceneToSnapFromMessagesNotifications () {
+    Debug.Log(`HomeScreenDelegator:moveSceneToSnapFromMessagesNotifications`)
+
+    this.refs.mainSnapSwiperRef.scrollBy(1, true)
+    this.refs.playerSnapSwiperRef.scrollBy(1, true)
   }
 
   async forcePauseSnap () {

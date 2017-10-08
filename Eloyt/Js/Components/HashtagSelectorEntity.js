@@ -26,7 +26,7 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
 
     if (!src) {
       return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled">
           {
             isFailedToLoad
               ? <View style={[
@@ -50,7 +50,7 @@ export default class HashtagSelectorEntity extends HashtagSelectorEntityComponen
     }
 
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View style={[
           HashtagSelectorEntityComponentStyles.rootContainer,
           {

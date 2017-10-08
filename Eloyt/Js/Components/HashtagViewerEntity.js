@@ -17,7 +17,7 @@ export default class HashtagViewerEntity extends HashtagViewerEntityComponentDel
     const {src} = this.state
 
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View style={HashtagViewerEntityComponentStyles.rootContainer}>
           {src.map((hashtag, index) => {
             return <View key={index}

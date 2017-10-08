@@ -94,7 +94,7 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
 
     ApiService.skipVideo(currentSnap.id)
 
-    await this.loadNextSnapFromQueue()
+    this.loadNextSnapFromQueue()
   }
 
   async onLikeTheSnap (message) {
@@ -104,6 +104,7 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
 
     ApiService.likeVideo(currentSnap.id)
 
+    console.log(message)
     if (message) {
       ApiService.sendMessage(currentSnap.videoOwner.id, 'text', message)
     }
@@ -122,6 +123,6 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
       ApiService.sendMessage(currentSnap.videoOwner.id, 'text', message)
     }
 
-    await this.loadNextSnapFromQueue()
+    this.loadNextSnapFromQueue()
   }
 }

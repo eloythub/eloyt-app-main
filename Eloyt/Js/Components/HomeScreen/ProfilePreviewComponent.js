@@ -56,7 +56,7 @@ export default class ProfilePreviewComponent extends ProfilePreviewComponentDele
 
     return (
       <View style={ProfilePreviewComponentStyles.profileEntitiesContainer}>
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled">
           <View style={ProfilePreviewComponentStyles.entitiesContainer}>
             <View style={ProfilePreviewComponentStyles.profileEntityContainer}>
               <ImageEntity imageUrl={this.requestedProfileData.cloudAvatarUrl}/>

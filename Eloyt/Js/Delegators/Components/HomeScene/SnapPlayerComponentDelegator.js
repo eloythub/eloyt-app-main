@@ -104,6 +104,8 @@ export default class SnapPlayerComponentDelegator extends Delegator {
 
     await this.props.onLikeTheSnap(this.directQuickMessage)
 
+    delete this.directQuickMessage
+
     this.setState({
       directQuickMessageText: ''
     })
@@ -115,6 +117,8 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     Debug.Log(`SnapPlayerComponentDelegator:onPressDislike`)
 
     await this.props.onDislikeTheSnap(this.directQuickMessage)
+
+    delete this.directQuickMessage
 
     this.setState({
       directQuickMessageText: ''

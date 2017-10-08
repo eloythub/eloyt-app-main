@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Text } from 'react-native';
-
-const moment = require('moment');
+import moment from 'moment';
 
 export default class TimeFormat extends Component {
   constructor(props) {

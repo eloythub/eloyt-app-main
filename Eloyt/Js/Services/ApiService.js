@@ -159,6 +159,24 @@ export default class ApiService extends RequestService {
   /*
    * Messages
    */
+  static async getRecipients () {
+    Debug.Log(`ApiService:getRecipients`)
+
+    const data = {}
+
+    return await this.dispatchRequest('/messages/recipients', RequestEnum.TYPE.GET, data)
+  }
+
+  static async getMessages (selectedRecipientUser, offset, limit) {
+    Debug.Log(`ApiService:getMessages`)
+
+    const data = {
+      offset, limit
+    }
+
+    return await this.dispatchRequest(`/messages/${selectedRecipientUser}`, RequestEnum.TYPE.GET, data)
+  }
+
   /*
    * Search
    */

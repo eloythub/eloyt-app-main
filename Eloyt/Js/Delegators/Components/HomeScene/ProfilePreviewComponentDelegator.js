@@ -6,7 +6,7 @@ import { ActionConst, Actions } from 'react-native-router-flux'
 // Essentials
 import { Debug, LocalStorage, Utils } from '../../../Factories'
 import { ApiService } from '../../../Services'
-import { AuthEnum, ProfileEnum } from '../../../Enums'
+import { AuthEnum, ProfileEnum, GeneralEnum } from '../../../Enums'
 
 export default class ProfilePreviewComponentDelegator extends Delegator {
   async componentDidMount () {
@@ -68,6 +68,8 @@ export default class ProfilePreviewComponentDelegator extends Delegator {
     await LocalStorage.unload(AuthEnum.LOGIN_STATUS)
     await LocalStorage.unload(AuthEnum.LOGIN_API_ACCESS_TOKEN)
     await LocalStorage.unload(AuthEnum.LOGIN_FB_ACCESS_TOKEN)
+    await LocalStorage.unload(GeneralEnum.CATCHED_RECIPIENTS)
+    await LocalStorage.unload(GeneralEnum.CATCHED_MESSAGE)
 
     Actions.LoginScene({
       type: ActionConst.REPLACE,

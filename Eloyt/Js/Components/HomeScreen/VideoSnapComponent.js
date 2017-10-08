@@ -120,7 +120,8 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
         <View>
           <BlurView blurType="prominent" overlayColor="#ffffff" blurAmount={10}
                     style={VideoSnapComponentStyles.uploadBlurView}>
-            <Swiper {...uploadSwiperProperties}>
+            <Swiper keyboardShouldPersistTaps="handled"
+                    {...uploadSwiperProperties}>
               {this.renderPreUpload()}
               {this.renderUploadProgress()}
             </Swiper>

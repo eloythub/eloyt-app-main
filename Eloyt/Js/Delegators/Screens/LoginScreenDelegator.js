@@ -4,13 +4,16 @@ import { Delegator } from 'react-eloyt'
 import { ActionConst, Actions } from 'react-native-router-flux'
 // Essentials
 import { Debug, LocalStorage, Utils } from '../../Factories'
-import { AuthEnum } from '../../Enums'
+import { AuthEnum, GeneralEnum } from '../../Enums'
 import { ApiService } from '../../Services'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 
 export default class LoginScreenDelegator extends Delegator {
   async componentDidMount () {
     Debug.Log('LoginScreenDelegator:componentDidMount')
+
+    await LocalStorage.init(GeneralEnum.CATCHED_RECIPIENTS, [])
+    await LocalStorage.init(GeneralEnum.CATCHED_MESSAGE, {})
 
     //LoginManager.logOut()
     //await LocalStorage.unload(AuthEnum.LOGIN_STATUS)
@@ -91,7 +94,7 @@ export default class LoginScreenDelegator extends Delegator {
         type: ActionConst.REPLACE,
       })
     } catch (err) {
-      Debug.Log(err)
+      Debug.Log('error', err)
 
       await this.setState({waitingMain: false})
 

@@ -100,7 +100,7 @@ export default class SearchComponent extends SearchComponentDelegator {
             />
           </View>
           <View style={SearchComponentStyles.searchResultEntityContainer}>
-            <ScrollView style={SearchComponentStyles.searchResultScrollView}>
+            <ScrollView style={SearchComponentStyles.searchResultScrollView} keyboardShouldPersistTaps="handled">
               {this.renderWaiting()}
               {this.renderResults()}
             </ScrollView>

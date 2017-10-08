@@ -2,6 +2,16 @@ import { AsyncStorage } from 'react-native'
 import Debug from './Debug'
 
 export default class LocalStorage {
+  static async init (key, value) {
+    Debug.Log(`LocalStorage:init`)
+
+    try {
+      return await this.load(key)
+    } catch (err) {
+      return await this.save(key, value)
+    }
+  }
+
   static save (key, value) {
     Debug.Log(`LocalStorage:save`)
 

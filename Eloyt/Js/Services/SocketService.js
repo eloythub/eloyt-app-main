@@ -1,34 +1,31 @@
-import SocketIO from 'react-native-socketio'
+import io from 'socket.io-client'
 import { Debug, LocalStorage } from '../Factories'
 import { AuthEnum, ConfigsEnum } from '../Enums'
 
 export default class SocketService {
-  static async createSocket () {
-    if (this.socket) {
+  static socket
+  static authToken
+
+  static async connect () {
+    Debug.Log('SocketService:connect')
+
+    if (this.socket && this.isConnected()) {
       return this.socket
     }
 
     this.authToken = await LocalStorage.load(AuthEnum.LOGIN_API_ACCESS_TOKEN)
 
-    this.socket = new SocketIO(ConfigsEnum.COM_BASE_URL[ConfigsEnum.NODE_ENV], {})
+    this.socket =  io(ConfigsEnum.COM_BASE_URL[ConfigsEnum.NODE_ENV], {
+      transports: ['websocket'],
+    })
+
+    this.socket.connect()
 
     return this.socket
   }
 
-  static connect () {
-    Debug('SocketService:connect')
-
-    if (this.isConnected()) {
-      return
-    }
-
-    this.socket.connect()
-
-    this.emitAuthPong()
-  }
-
   static emitAuthPong () {
-    Debug('SocketService:emitAuthPong')
+    Debug.Log('SocketService:emitAuthPong')
 
     this.emit('auth-pong', {
       authToken: this.authToken,
@@ -37,15 +34,15 @@ export default class SocketService {
   }
 
   static reconnect () {
-    Debug('SocketService:reconnect')
+    Debug.Log('SocketService:reconnect')
 
     this.socket.reconnect()
   }
 
   static emit (event, data) {
-    Debug(`SocketService:emit:${event}`)
+    Debug.Log(`SocketService:emit:${event}`)
 
-    if (!this.isConnected()) {
+    if (!this.socket || !this.isConnected()) {
       return false
     }
 
@@ -55,20 +52,20 @@ export default class SocketService {
   }
 
   static on (event, handler) {
-    Debug(`SocketService:on:${event}`)
+    Debug.Log(`SocketService:on:${event}`)
 
     this.socket.on(event, handler)
   }
 
   static disconnect () {
-    Debug('SocketService:disconnect')
+    Debug.Log('SocketService:disconnect')
 
     this.socket.disconnect()
   }
 
   static isConnected () {
-    Debug('SocketService:disconnect')
+    Debug.Log('SocketService:disconnect')
 
-    return this.socket.isConnected
+    return this.socket.connected
   }
 }

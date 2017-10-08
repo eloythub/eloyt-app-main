@@ -42,6 +42,20 @@ export default StyleSheet.create({
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
+  topSectionUserInfo: {
+    flex: 1,
+    top: -7,
+    height: 33,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topSectionUserAvatar: {
+    marginRight: 10,
+    top: -7,
+    width: 33,
+    height: 33,
+  },
   composerContainer: {
     borderTopWidth: 0.5,
     borderTopColor: 'rgba(0, 0, 0, 0.1)',
@@ -53,8 +67,33 @@ export default StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
+  topUsername: {
+    fontFamily: 'OpenSans',
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontSize: 16,
+    marginRight: 5
+  },
   sendStyle: {
     backgroundColor: 'red',
     justifyContent: 'center'
   },
+  profileImageContainer: {
+    width: 20,
+    height: 20,
+  },
+  chatBubbleWrapperLeft: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 2
+  },
+  chatBubbleTextLeft: {
+    color: '#ffffff'
+  },
+  chatBubbleLinkLeft: {
+    color: '#ffffff'
+  },
+  chatBubbleWrapperRight: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 2
+  }
 })

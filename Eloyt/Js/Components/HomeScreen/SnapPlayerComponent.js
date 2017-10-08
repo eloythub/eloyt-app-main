@@ -78,7 +78,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
           </View>
           <View style={SnapPlayerComponentStyle.detailsSnapDetailsContainer}>
             <View style={SnapPlayerComponentStyle.detailsSnapDetailsContent}>
-              <ScrollView>
+              <ScrollView keyboardShouldPersistTaps="handled">
                 <Text style={SnapPlayerComponentStyle.detailsDescription}>{snapVideo.description}</Text>
               </ScrollView>
             </View>
@@ -130,6 +130,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
                             style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}>
         <View style={SnapPlayerComponentStyle.bottomSection}>
           <Swiper {...this.detailsActionsSwiperProperties}
+                  keyboardShouldPersistTaps="handled"
                   onIndexChanged={this.onDetailsActionsSwiperIndexChanged.bind(this)}>
             <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>
             <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomActions()}</View>
@@ -163,9 +164,6 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
               playInBackground={false}
               playWhenInactive={false}
               ignoreSilentSwitch="obey"
-              onAudioFocusChanged={(a,b,c) => {
-                console.log(a,b,c)
-              }}
 
               onLoadStart={this.onLoadStart.bind(this)}
               onLoad={this.onLoad.bind(this)}
