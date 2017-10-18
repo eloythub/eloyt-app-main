@@ -9,11 +9,6 @@ import { ComService, SocketService } from '../../Services'
 export default class HomeScreenDelegator extends Delegator {
   static socket
 
-  constructor (props) {
-    super(props)
-
-  }
-
   async componentDidMount () {
     // TODO: fix the issue with swift socket.io client and empower the socket.io
     // SOCKET.IO
@@ -61,10 +56,12 @@ export default class HomeScreenDelegator extends Delegator {
   }
 
   onReceived(notification) {
+    // TODO: make it work
     console.log("Notification received: ", notification);
   }
 
   onOpened(openResult) {
+    // TODO: make it work
     console.log('Message: ', openResult.notification.payload.body);
     console.log('Data: ', openResult.notification.payload.additionalData);
     console.log('isActive: ', openResult.notification.isAppInFocus);
@@ -72,13 +69,14 @@ export default class HomeScreenDelegator extends Delegator {
   }
 
   onRegistered(notifData) {
+    // TODO: make it work
     console.log("Device had been registered for push notifications!", notifData);
   }
 
-  onIds ({pushToken}) {
+  async onIds ({pushToken}) {
     Debug.Log(`HomeScreenDelegator:onIds`, pushToken)
 
-    ComService.pushNotificationTokenRegister(pushToken)
+    await ComService.pushNotificationTokenRegister(pushToken)
   }
 
   async onSocketConnect () {
