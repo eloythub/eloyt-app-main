@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-onesignal')
     compile project(':react-native-socketio')
     compile project(':react-native-notifications')
     compile project(':react-native-device-info')
