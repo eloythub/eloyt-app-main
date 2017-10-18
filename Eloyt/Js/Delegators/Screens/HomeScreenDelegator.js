@@ -73,10 +73,10 @@ export default class HomeScreenDelegator extends Delegator {
     console.log("Device had been registered for push notifications!", notifData);
   }
 
-  async onIds ({pushToken}) {
-    Debug.Log(`HomeScreenDelegator:onIds`, pushToken)
+  async onIds ({pushToken, userId}) {
+    Debug.Log(`HomeScreenDelegator:onIds`, pushToken, userId)
 
-    await ComService.pushNotificationTokenRegister(pushToken)
+    await ComService.pushNotificationTokenRegister(userId)
   }
 
   async onSocketConnect () {

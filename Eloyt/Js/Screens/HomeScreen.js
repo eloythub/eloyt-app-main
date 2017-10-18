@@ -93,7 +93,8 @@ export default class HomeScreen extends HomeScreenDelegator {
                   scrollEnabled: mainSwiperScrollEnable
                 }, this.mainSwiperProperties)}>
           <View style={HomeScreenStyles.mainSlide}>
-            <MessagesNotificationsComponent onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
+            <MessagesNotificationsComponent ref="messagesNotificationsComponent"
+                                            onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
                                             doLoadRecipiets={doLoadRecipiets}
                                             onSnapButton={this.moveSceneToSnapFromMessagesNotifications.bind(this)}
                                             openProfile={(userId) => this.openProfile(userId)}/>
