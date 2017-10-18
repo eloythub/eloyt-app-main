@@ -21,6 +21,7 @@
 #import "RNNotifications.h"
 
 @implementation AppDelegate
+@synthesize oneSignal = _oneSignal;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,6 +54,11 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  // ONE SIGNAL
+  self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+                                                         appId:@"2ee45ea5-343f-47cd-917c-b27ab5757984"
+                                                      settings:@{kOSSettingsKeyInFocusDisplayOption : @(OSNotificationDisplayTypeNone), kOSSettingsKeyAutoPrompt : @NO}];
+  
   return YES;
 }
 
@@ -71,71 +77,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [FBSDKAppEvents activateApp];
-}
-
-// Required to register for notifications
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
-  [RNNotifications didRegisterUserNotificationSettings:notificationSettings];
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
-  // SETUP MICROSOFT AZURE
-//  SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
-//                                                           notificationHubPath:HUBNAME];
-//
-//  NSString * deviceTokenString = [[[[deviceToken description]
-//                                    stringByReplacingOccurrencesOfString: @"<" withString: @""]
-//                                   stringByReplacingOccurrencesOfString: @">" withString: @""]
-//                                  stringByReplacingOccurrencesOfString: @" " withString: @""];
-//
-//  NSMutableArray* tagArray = [[NSMutableArray alloc] init];
-//
-//  [tagArray addObject:@"apple_apn"];
-//  [tagArray addObject:deviceTokenString];
-//
-//  NSSet* tagSet = [[NSSet alloc] initWithArray:tagArray];
-//
-//  [hub registerNativeWithDeviceToken:deviceToken tags:tagSet completion:^(NSError* error) {
-//    if (error != nil) {
-//      NSLog(@"Error registering for notifications: %@", error);
-//    }
-//    else {
-//      [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-//    }
-//  }];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  NSLog(@"didFailToRegisterForRemoteNotificationsWithError: %@", error);
-  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
-}
-
-// Required for the notification event.
-- (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
-  NSLog(@"didReceiveRemoteNotification: %@", userInfo);
-  [RNNotifications didReceiveRemoteNotification:userInfo];
-}
-
-// Required for the localNotification event.
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-  NSLog(@"didReceiveLocalNotification: %@", notification);
-  [RNNotifications didReceiveLocalNotification:notification];
-}
-
-// Required for the notification actions.
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
-{
-  NSLog(@"handleActionWithIdentifier => forLocalNotification");
-  
-  [RNNotifications handleActionWithIdentifier:identifier forLocalNotification:notification withResponseInfo:responseInfo completionHandler:completionHandler];
-}
-
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
-{
-  NSLog(@"handleActionWithIdentifier => forRemoteNotification");
-  
-  [RNNotifications handleActionWithIdentifier:identifier forRemoteNotification:userInfo withResponseInfo:responseInfo completionHandler:completionHandler];
 }
 
 @end
