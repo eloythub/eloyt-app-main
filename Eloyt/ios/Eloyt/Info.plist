@@ -46,39 +46,39 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsForMedia</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>api.eloyt.com</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
 				<true/>
 				<key>NSRequiresCertificateTransparency</key>
 				<false/>
 			</dict>
 		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSAllowsArbitraryLoadsForMedia</key>
-		<true/>
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need your permission to access Camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>NSCameraUsageDescription</key>
-	<string>We need your permission to access Camera</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need your permission on Photo</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need your permission to access Microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need your permission on Photo</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans_bold_italic.ttf</string>
@@ -87,6 +87,11 @@
 		<string>OpenSans_light_italic.ttf</string>
 		<string>OpenSans_light.ttf</string>
 		<string>OpenSans.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

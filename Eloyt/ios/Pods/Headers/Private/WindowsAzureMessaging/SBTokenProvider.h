@@ -1,1 +1,0 @@
-../../../WindowsAzureMessaging/iOS/WindowsAzureMessaging/WindowsAzureMessaging/Helpers/SBTokenProvider.h

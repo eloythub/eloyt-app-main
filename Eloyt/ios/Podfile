@@ -9,11 +9,6 @@ target 'Eloyt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-
-  pod 'WindowsAzureMessaging'
-
-#  use_frameworks!
-#  pod 'Socket.IO-Client-Swift', '~> 12.0.0'
   
   target 'EloytTests' do
     inherit! :search_paths

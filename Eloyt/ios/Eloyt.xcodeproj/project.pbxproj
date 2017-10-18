@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -51,16 +50,10 @@
 		9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BCD2CC86424927A11F7064 /* libRCTFBSDK.a */; };
 		A0292F7213814DF0AD89FC45 /* OpenSans_light_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DC6B21218654F8D82043646 /* OpenSans_light_italic.ttf */; };
 		A9F45498136543BC966F7A8B /* OpenSans_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223A2D50B2714361B8196B69 /* OpenSans_italic.ttf */; };
-		B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */; };
 		B9871CA6E4564B519E783F03 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */; };
 		C002E1EB1F7F812600134D41 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E1EA1F7F812600134D41 /* Misc.swift */; };
 		C031BD491E9934390083E241 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C031BD2A1E9934270083E241 /* libART.a */; };
-		C05C4DD81E6469A5008F1A3D /* RNMobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */; };
-		C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */; };
-		C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */; };
-		C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */; };
 		C08F9B7B1F74090B00C20118 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08F9B5B1F7408F900C20118 /* libRCTPushNotification.a */; };
-		C0936A2D1F7E357600D8213D /* RNSwiftSocketIO in Resources */ = {isa = PBXBuildFile; fileRef = C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */; };
 		C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30A29CE8C674E658F431282 /* OpenSans_bold_italic.ttf */; };
 		D46AAE840F794999836534A4 /* libPods-Eloyt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC102A7F8AAEAC0044FAE8E6 /* libPods-Eloyt-tvOS.a */; };
 		D4C54A022C1F42BFA2A95594 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 688568E0ADBB410BB53F9987 /* libBVLinearGradient.a */; };
@@ -475,20 +468,14 @@
 		C002E1EA1F7F812600134D41 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		C019BAA61F7405FB00119070 /* HubInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HubInfo.h; path = Eloyt/HubInfo.h; sourceTree = "<group>"; };
 		C031BD251E9934270083E241 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
-		C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RNMobileCenter.framework; sourceTree = "<group>"; };
-		C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenter.framework; sourceTree = "<group>"; };
-		C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterAnalytics.framework; sourceTree = "<group>"; };
-		C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileCenterCrashes.framework; sourceTree = "<group>"; };
 		C07311AE328E4CDE9BED093E /* libRNNotifications.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNotifications.a; sourceTree = "<group>"; };
 		C08F9B451F7408F800C20118 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		C09369F01F7E309800D8213D /* Eloyt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eloyt-Bridging-Header.h"; sourceTree = "<group>"; };
-		C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNSwiftSocketIO; path = "../node_modules/react-native-socketio/ios/RNSwiftSocketIO"; sourceTree = "<group>"; };
 		C0CBBCF51E6A9C5400316537 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKCoreKit/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
 		C0CBBCF61E6A9C5400316537 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKLoginKit/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		C0CBBCF71E6A9C5400316537 /* libFBSDKShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKShareKit.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Eloyt-dyftfjazjgkfxhenclglrumbhchp/Build/Products/Debug-iphoneos/FBSDKShareKit/libFBSDKShareKit.a"; sourceTree = "<group>"; };
 		C0EBEEA71F7413AF00BA866F /* Eloyt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Eloyt.entitlements; path = Eloyt/Eloyt.entitlements; sourceTree = "<group>"; };
 		C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
-		C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "MobileCenter-Config.plist"; path = "Eloyt/MobileCenter-Config.plist"; sourceTree = "<group>"; };
 		C5AC79C9AB86410DA9B1FA2A /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		C6C3A008BD414876990F87D6 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		D8F27504D2594DDFAD1D9F6F /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNotifications.xcodeproj; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; };
@@ -523,14 +510,10 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				C05C4DD81E6469A5008F1A3D /* RNMobileCenter.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				C05C4DEA1E6469C7008F1A3D /* MobileCenterCrashes.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				C05C4DE81E6469C7008F1A3D /* MobileCenter.framework in Frameworks */,
-				C05C4DE91E6469C7008F1A3D /* MobileCenterAnalytics.framework in Frameworks */,
 				9FEC6294F24E4FA29A44B0BD /* libRCTFBSDK.a in Frameworks */,
 				26267CF6C5AB4F5DA1237357 /* libReact.a in Frameworks */,
 				7EB34662A48F48429B38D540 /* libyoga.a in Frameworks */,
@@ -775,16 +758,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C0936A2C1F7E357600D8213D /* RNSwiftSocketIO */,
-				C05C4DE51E6469C7008F1A3D /* MobileCenter.framework */,
-				C05C4DE61E6469C7008F1A3D /* MobileCenterAnalytics.framework */,
-				C05C4DE71E6469C7008F1A3D /* MobileCenterCrashes.framework */,
-				C05C4DD71E6469A5008F1A3D /* RNMobileCenter.framework */,
 				13B07FAE1A68108700A75B9A /* Eloyt */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* EloytTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				C3620688D13C4E6AB763B2C4 /* MobileCenter-Config.plist */,
 				EB55F75DD06C9486839952C8 /* Pods */,
 				75B5CE3F84C0F7F3AB082D73 /* Frameworks */,
 				389254D64E3F460699F3F335 /* Resources */,
@@ -1041,6 +1018,9 @@
 						DevelopmentTeam = LV9VYA43P3;
 						LastSwiftMigration = 900;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1513,9 +1493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				C0936A2D1F7E357600D8213D /* RNSwiftSocketIO in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B6AB8E5B33C3480DAEF661AF /* MobileCenter-Config.plist in Resources */,
 				C1D9DA5272D94293B3BB3441 /* OpenSans_bold_italic.ttf in Resources */,
 				71DF8C454B6B4545A4695135 /* OpenSans_bold.ttf in Resources */,
 				A9F45498136543BC966F7A8B /* OpenSans_italic.ttf in Resources */,

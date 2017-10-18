@@ -16,12 +16,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import <WindowsAzureMessaging/WindowsAzureMessaging.h>
 #import "HubInfo.h"
 
 #import "RNNotifications.h"
-
-//#import "SocketBridge.h"
 
 @implementation AppDelegate
 
@@ -38,14 +35,7 @@
   
   [[AVAudioSession sharedInstance] setActive: YES
                                        error: nil];
-  
-//  // PUSH NOTIFICATION
-//  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound |
-//                                          UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
-//
-//  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-//  [[UIApplication sharedApplication] registerForRemoteNotifications];
-  
+
   // REACT NATIVE
   NSURL *jsCodeLocation;
   
@@ -91,29 +81,29 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
   // SETUP MICROSOFT AZURE
-  SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
-                                                           notificationHubPath:HUBNAME];
-  
-  NSString * deviceTokenString = [[[[deviceToken description]
-                                    stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                                   stringByReplacingOccurrencesOfString: @">" withString: @""]
-                                  stringByReplacingOccurrencesOfString: @" " withString: @""];
-  
-  NSMutableArray* tagArray = [[NSMutableArray alloc] init];
-  
-  [tagArray addObject:@"apple_apn"];
-  [tagArray addObject:deviceTokenString];
-  
-  NSSet* tagSet = [[NSSet alloc] initWithArray:tagArray];
-  
-  [hub registerNativeWithDeviceToken:deviceToken tags:tagSet completion:^(NSError* error) {
-    if (error != nil) {
-      NSLog(@"Error registering for notifications: %@", error);
-    }
-    else {
-      [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-    }
-  }];
+//  SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
+//                                                           notificationHubPath:HUBNAME];
+//
+//  NSString * deviceTokenString = [[[[deviceToken description]
+//                                    stringByReplacingOccurrencesOfString: @"<" withString: @""]
+//                                   stringByReplacingOccurrencesOfString: @">" withString: @""]
+//                                  stringByReplacingOccurrencesOfString: @" " withString: @""];
+//
+//  NSMutableArray* tagArray = [[NSMutableArray alloc] init];
+//
+//  [tagArray addObject:@"apple_apn"];
+//  [tagArray addObject:deviceTokenString];
+//
+//  NSSet* tagSet = [[NSSet alloc] initWithArray:tagArray];
+//
+//  [hub registerNativeWithDeviceToken:deviceToken tags:tagSet completion:^(NSError* error) {
+//    if (error != nil) {
+//      NSLog(@"Error registering for notifications: %@", error);
+//    }
+//    else {
+//      [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+//    }
+//  }];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
