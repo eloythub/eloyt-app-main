@@ -16,15 +16,6 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     this.setState({})
   }
 
-  async componentWillReceiveProps (props) {
-    Debug.Log(`MessagesNotificationsComponentDelegator:componentWillReceiveProps`)
-
-    this.setState({})
-    if (!!props.doLoadRecipiets) {
-      this.loadRecipients()
-    }
-  }
-
   async swiperIndexChanged (index) {
     Debug.Log(`MessagesNotificationsComponentDelegator:swiperIndexChanged`)
 
@@ -143,6 +134,10 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     await this.refs.chatboxRef.focusTextInput()
 
     ApiService.sendMessage(this.state.selectedRecipientUser.id, 'text', messageObject.text)
+  }
+
+  async onNewMessageRecievedFromSocket (msg) {
+
   }
 
   async loadRecipients (refreshAction) {

@@ -153,7 +153,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
             <Video
               ref="videoRef"
               style={SnapPlayerComponentStyle.video}
-              poster={snapVideo.cloudThumbnailUrl}
+              //poster={snapVideo.cloudThumbnailUrl}
               source={{uri: snapVideo.cloudVideoUrl}}
               seek={0}
               rate={forcePause ? 0 : (pause ? 0 : 1)}

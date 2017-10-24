@@ -18,6 +18,7 @@ export default class HomeScreenDelegator extends Delegator {
     await SocketService.on('auth-ping', this.onSocketAuthPing.bind(this))
     await SocketService.on('auth-green-light', this.onSocketAuthGreenLight.bind(this))
     await SocketService.on('recipients-update', this.onSocketRecipientsUpdate.bind(this))
+    await SocketService.on('message-new', this.onSocketMessageNew.bind(this))
     await SocketService.on('disconnect', this.onSocketDisconnect.bind(this))
 
     // PUSH NOTIFICATION
@@ -97,6 +98,12 @@ export default class HomeScreenDelegator extends Delegator {
     console.log('got green light from server to start working :D', data)
   }
 
+  async onSocketMessageNew (msg) {
+    Debug.Log(`HomeScreenDelegator:onSocketMessageNew`)
+
+    this.refs.messagesNotificationsComponent.onNewMessageRecievedFromSocket(msg)
+  }
+
   async onSocketDisconnect () {
     Debug.Log(`HomeScreenDelegator:onSocketDisconnect`)
 
@@ -117,7 +124,6 @@ export default class HomeScreenDelegator extends Delegator {
 
       await this.setState({
         focusOnSearchField: false,
-        doLoadRecipiets: false
       })
     } else {
       await this.releaseForcePauseSnap()
@@ -132,9 +138,7 @@ export default class HomeScreenDelegator extends Delegator {
 
     // load recipients
     if (index === 0) {
-      await this.setState({
-        doLoadRecipiets: true
-      })
+      this.refs.messagesNotificationsComponent.loadRecipients()
     }
   }
 

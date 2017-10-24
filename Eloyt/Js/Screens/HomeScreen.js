@@ -26,7 +26,6 @@ export default class HomeScreen extends HomeScreenDelegator {
       isUserProfileModalAppears: false,
       profilePreviewUserId: null,
       focusOnSearchField: false,
-      doLoadRecipiets: false,
     }
 
     this.mainSwiperProperties = {
@@ -79,7 +78,7 @@ export default class HomeScreen extends HomeScreenDelegator {
   }
 
   render () {
-    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause, focusOnSearchField, doLoadRecipiets} = this.state
+    const {mainSwiperScrollEnable, playerSnapScrollEnable, forcePause, focusOnSearchField} = this.state
 
     return (
       <View style={HomeScreenStyles.baseContainer}>
@@ -95,7 +94,6 @@ export default class HomeScreen extends HomeScreenDelegator {
           <View style={HomeScreenStyles.mainSlide}>
             <MessagesNotificationsComponent ref="messagesNotificationsComponent"
                                             onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
-                                            doLoadRecipiets={doLoadRecipiets}
                                             onSnapButton={this.moveSceneToSnapFromMessagesNotifications.bind(this)}
                                             openProfile={(userId) => this.openProfile(userId)}/>
           </View>

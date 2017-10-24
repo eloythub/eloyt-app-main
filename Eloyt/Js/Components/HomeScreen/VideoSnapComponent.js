@@ -11,6 +11,7 @@ import { Bars } from 'react-native-loader'
 // Essentials
 import InputTextBoxEntity from '../../Components/InputTextBoxEntity'
 import OkButton from '../../Components/OkButton'
+import RecordIcon from '../../Components/RecordIcon'
 import CloseButton from '../../Components/CloseButton'
 import SnapButton from '../../Components/SnapButton'
 import { HomeScreenStyles, VideoSnapComponentStyles, WaitingComponentStyles } from '../../Styles'
@@ -27,6 +28,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     this.selectedHashtags = []
 
     this.state = {
+      waitingMain: false,
       isRecording: false,
       isCameraTypeFront: true,
       isUploadMode: false,
@@ -154,7 +156,8 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     return (
       <View style={VideoSnapComponentStyles.rootContainer}>
         <View style={VideoSnapComponentStyles.topSection}>
-          <CloseButton hide={isRecording} onPress={this.close.bind(this)}/>
+          <CloseButton onPress={this.close.bind(this)}/>
+          <RecordIcon show={isRecording}/>
         </View>
         <View style={VideoSnapComponentStyles.bottomSection}>
           <SnapButton onSnapStarted={this.startSnapping.bind(this)}
@@ -162,6 +165,20 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
         </View>
       </View>
     )
+  }
+
+  renderWaiting () {
+    const {waitingMain} = this.state
+
+    if (!waitingMain) {
+      return
+    }
+
+    return <View style={WaitingComponentStyles.mainWaitingContainer}>
+      <View style={WaitingComponentStyles.mainWaiting}>
+        <Bars size={30} color="#ffffff"/>
+      </View>
+    </View>
   }
 
   render () {
@@ -201,6 +218,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
             {this.renderControllers()}
           </Camera>
         </TouchableWithoutFeedback>
+        {this.renderWaiting()}
         {this.renderUploadModal()}
         {this.renderCameraFadeFilterModal()}
       </View>

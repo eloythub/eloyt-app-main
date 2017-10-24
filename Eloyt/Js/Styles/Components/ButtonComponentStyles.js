@@ -5,6 +5,23 @@ export default StyleSheet.create({
     flex: 1,
   },
 
+  recordIconContainer: {
+    flex: 1,
+    width: 45,
+    height: 45,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  recordIcon: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 0, 0, 1)',
+    opacity: .6,
+  },
   // Snap Button
   snapButton: {
     width: 70,

@@ -21,6 +21,7 @@ export default class VideoSnapComponentDelegator extends Delegator {
     Debug.Log('VideoSnapComponentDelegator:startSnapping')
 
     const {onSnapStarted} = this.props
+    const {isRecording} = this.state
     const {cameraRef}     = this.refs
     const {CaptureMode}   = Camera.constants
 
@@ -28,37 +29,60 @@ export default class VideoSnapComponentDelegator extends Delegator {
 
     delete this.snapObject
 
-    try {
-      await this.setState({isRecording: true})
+    if (isRecording) {
+      return
+    }
 
-      cameraRef.stopCapture()
+    await this.setState({isRecording: true})
 
-      const captureData = await cameraRef.capture({
+    cameraRef.stopCapture()
+
+    cameraRef.capture({
         title: 'Eloyt',
         mode: CaptureMode.video,
         metadata: {},
       })
+      .then(this.doneSnapping.bind(this), this.failedSnapping.bind(this))
+      .catch(this.failedSnapping.bind(this))
+  }
 
-      Debug.Log('VideoSnapComponentDelegator:startSnapping:captureData', captureData)
+  async doneSnapping (captureData) {
+    Debug.Log('VideoSnapComponentDelegator:doneSnapping:captureData', captureData)
 
-      if (!this.validateCapturedData(captureData)) {
-        Utils.alert(`Your Snap must be:\nmore than ${GeneralEnum.SNAP_RECORD_SECOND_MIN} second\nand\nless than ${GeneralEnum.SNAP_RECORD_MINUTE_MAX} minute`)
+    if (!this.validateCapturedData(captureData)) {
+      await this.setState({
+        isUploadMode: false,
+        isRecording: false,
+        waitingMain: false
+      })
 
-        return
-      }
+      Utils.alert(`Your Snap must be:\nmore than ${GeneralEnum.SNAP_RECORD_SECOND_MIN} second\nand\nless than ${GeneralEnum.SNAP_RECORD_MINUTE_MAX} minute`)
 
-      this.snapObject = captureData
-
-      // Go To Upload Mode
-      await this.setState({isUploadMode: true})
-    } catch (err) {
-      await this.setState({isRecording: false})
-
-      Debug.Log('VideoSnapComponentDelegator:startSnapping:error', err)
-
-      cameraRef.stopCapture()
-      Utils.alert('Something went wrong!!!\nPlease try again.')
+      return
     }
+
+    this.snapObject = captureData
+
+    // Go To Upload Mode
+    await this.setState({
+      isUploadMode: true,
+      isRecording: false,
+      waitingMain: false
+    })
+  }
+
+  async failedSnapping (err) {
+    const {cameraRef} = this.refs
+
+    Debug.Log('VideoSnapComponentDelegator:startSnapping:error', err)
+
+    await this.setState({
+      isRecording: false,
+      waitingMain: false
+    })
+
+    Utils.alert('Something went wrong!!!\nPlease try again.')
+
   }
 
   async finishSnapping () {
@@ -67,11 +91,14 @@ export default class VideoSnapComponentDelegator extends Delegator {
     const {onSnapEnded} = this.props
     const {cameraRef}   = this.refs
 
-    onSnapEnded()
+    await this.setState({
+      isRecording: false,
+      waitingMain: true,
+    })
 
     cameraRef.stopCapture()
 
-    await this.setState({isRecording: false})
+    onSnapEnded()
   }
 
   validateCapturedData ({duration}) {

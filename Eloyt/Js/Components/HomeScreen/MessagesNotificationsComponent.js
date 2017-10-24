@@ -188,7 +188,6 @@ export default class MessagesNotificationsComponent extends MessagesNotification
 
 MessagesNotificationsComponent.propTypes = {
   onClose: PropTypes.func,
-  doLoadRecipiets: PropTypes.bool,
   onSnapButton: PropTypes.func,
   openProfile: PropTypes.func,
 }
