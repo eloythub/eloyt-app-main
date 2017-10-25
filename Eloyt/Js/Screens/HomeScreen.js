@@ -104,7 +104,8 @@ export default class HomeScreen extends HomeScreenDelegator {
                     keyboardShouldPersistTaps="handled"
                     onIndexChanged={this.onPlayerSnapSwiperIndexChanged.bind(this)}>
               <View style={HomeScreenStyles.playerSnapSlide}>
-                <VideoPlayerComponent forcePause={forcePause}
+                <VideoPlayerComponent ref="VideoPlayerComponent"
+                                      forcePause={forcePause}
                                       openProfile={(userId) => this.openProfile(userId)}
                                       moveSceneToRecordScene={this.moveSceneToRecordScene.bind(this)}
                                       moveSceneToSearchScene={this.moveSceneToSearchScene.bind(this)}

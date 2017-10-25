@@ -76,15 +76,29 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
       return await this.feedUpTheQueue()
     }
 
-    const currentSnap = snapQueue[0]
+    const currentSnap = snapQueue.shift()
 
-    snapQueue.splice(0, 1)
+    console.log(currentSnap)
 
     await this.setState({
       snapQueue,
       currentSnap,
       waitingMain: currentSnap ? false : true,
     })
+  }
+
+  async appendSnapToQueue (uploadedSnap) {
+    Debug.Log('SnapPlayerManagerComponentDelegator:appendSnapToQueue', uploadedSnap)
+
+    const {snapQueue} = this.state
+
+    snapQueue.unshift(uploadedSnap)
+
+    await this.setState({
+      snapQueue
+    })
+
+    this.loadNextSnapFromQueue()
   }
 
   async onSkipTheSnap () {

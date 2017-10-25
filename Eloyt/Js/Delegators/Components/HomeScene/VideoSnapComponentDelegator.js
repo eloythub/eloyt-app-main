@@ -135,8 +135,8 @@ export default class VideoSnapComponentDelegator extends Delegator {
     this.lastTapOnScreen = now
   }
 
-  close () {
-    this.props.onClose()
+  close (uploadedSnap) {
+    this.props.onClose(uploadedSnap)
   }
 
   discardUpload () {
@@ -166,10 +166,18 @@ export default class VideoSnapComponentDelegator extends Delegator {
         this.onUploadProgress.bind(this)
       )
 
-      Debug.Log('uploadSnapResponse: ', uploadSnapResponse)
+      Debug.Log('uploadSnapResponse: ', uploadSnapResponse.responseText)
+
+      let uploadedSnap
+
+      try {
+        uploadedSnap = JSON.parse(uploadSnapResponse.responseText)
+      } catch (err) {
+        console.log(err.message)
+      }
 
       // get back to Close the snap Scene
-      this.close()
+      this.close(uploadedSnap.data)
 
       await Utils.wait(1)
 

@@ -174,8 +174,13 @@ export default class HomeScreenDelegator extends Delegator {
     })
   }
 
-  async onSnapClose () {
+  async onSnapClose (uploadedSnap) {
     Debug.Log(`HomeScreenDelegator:onSnapClose`)
+
+    // add the uploaded snap to snap player
+    if (uploadedSnap) {
+      await this.refs.VideoPlayerComponent.refs.SnapPlayerManagerComponent.appendSnapToQueue(uploadedSnap)
+    }
 
     await this.setState({
       mainSwiperScrollEnable: false,

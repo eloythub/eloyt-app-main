@@ -26,7 +26,8 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
 
     return (
       <View style={VideoPlayerComponentStyles.rootSnapPlayerContainer}>
-        <SnapPlayerManagerComponent forcePause={forcePause}
+        <SnapPlayerManagerComponent ref="SnapPlayerManagerComponent"
+                                    forcePause={forcePause}
                                     openProfile={(userId) => this.openProfile(userId)}
                                     moveSceneToSearch={this.props.moveSceneToSearchScene.bind(this)}/>
       </View>
