@@ -37,6 +37,11 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
   async openMessage (selectedRecipientUser) {
     Debug.Log(`MessagesNotificationsComponentDelegator:openMessage`)
 
+    // check if selectedRecipientUser is existed in recipientsList
+    if (!this.isUserExistsInRecipientsList(selectedRecipientUser.id)) {
+      return
+    }
+
     await this.setState({selectedRecipientUser})
 
     this.refs.messageNotificationSwiperRef.scrollBy(1)
@@ -167,5 +172,17 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
       Debug.Log(err)
       this.setState({refreshing: false})
     }
+  }
+
+  isUserExistsInRecipientsList (userId) {
+    const {recipientsList} = this.state
+
+    for (let recipient of recipientsList) {
+      if (recipient.id === userId) {
+        return true
+      }
+    }
+
+    return false
   }
 }

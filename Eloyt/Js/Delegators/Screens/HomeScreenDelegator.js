@@ -39,10 +39,9 @@ export default class HomeScreenDelegator extends Delegator {
 
     OneSignal.registerForPushNotifications()
 
-    OneSignal.addEventListener('received', this.onReceived)
-    OneSignal.addEventListener('opened', this.onOpened)
-    OneSignal.addEventListener('registered', this.onRegistered)
-    OneSignal.addEventListener('ids', this.onIds)
+    OneSignal.addEventListener('opened', this.onOpened.bind(this))
+    OneSignal.addEventListener('registered', this.onRegistered.bind(this))
+    OneSignal.addEventListener('ids', this.onIds.bind(this))
   }
 
   componentWillUnmount () {
@@ -50,23 +49,24 @@ export default class HomeScreenDelegator extends Delegator {
     SocketService.disconnect()
 
     // PUSH NOTIFICATION
-    OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
-    OneSignal.removeEventListener('registered', this.onRegistered);
-    OneSignal.removeEventListener('ids', this.onIds);
+    OneSignal.removeEventListener('opened', this.onOpened.bind(this));
+    OneSignal.removeEventListener('registered', this.onRegistered.bind(this));
+    OneSignal.removeEventListener('ids', this.onIds.bind(this));
   }
 
-  onReceived(notification) {
-    // TODO: make it work
-    console.log("Notification received: ", notification);
-  }
+  async onOpened(openResult) {
+    // visit following link for more accurate information: https://github.com/geektimecoil/react-native-onesignal
+    const {additionalData} = openResult.notification.payload
 
-  onOpened(openResult) {
-    // TODO: make it work
-    console.log('Message: ', openResult.notification.payload.body);
-    console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
-    console.log('openResult: ', openResult);
+    if (!additionalData || !additionalData.hasOwnProperty('messageId')) {
+      return
+    }
+
+    switch (additionalData.messageId) {
+      case 'NEW_MESSAGE':
+        await this.newMessagePushNofifyOpen(additionalData.messageObject)
+        break
+    }
   }
 
   onRegistered(notifData) {
@@ -114,6 +114,14 @@ export default class HomeScreenDelegator extends Delegator {
     Debug.Log(`HomeScreenDelegator:onSocketRecipientsUpdate`)
 
     this.refs.messagesNotificationsComponent.loadRecipients()
+  }
+
+  async newMessagePushNofifyOpen (message) {
+    Debug.Log(`HomeScreenDelegator:newMessagePushNofifyOpen`)
+
+    await this.refs.messagesNotificationsComponent.loadRecipients()
+    await this.moveSceneToNotificationScene()
+    await this.refs.messagesNotificationsComponent.openMessage(message.senderUser)
   }
 
   async onMainSwiperIndexChanged (index) {
