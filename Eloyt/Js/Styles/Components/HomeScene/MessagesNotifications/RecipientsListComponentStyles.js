@@ -102,4 +102,24 @@ export default StyleSheet.create({
     fontFamily: 'OpenSans',
     lineHeight: 17,
   },
+  unreadIcon: {
+    minWidth: 22,
+    height: 20,
+    backgroundColor: '#f44336',
+    borderRadius: 9,
+    opacity: 0.9,
+    position: 'absolute',
+    right: 30,
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  unreadText: {
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+
 })

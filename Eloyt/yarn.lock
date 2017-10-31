@@ -4569,6 +4569,10 @@ react-native-linear-gradient@^2.2.0:
 "react-native-loader@file:Modules/react-native-loader":
   version "1.1.1"
 
+react-native-message-bar@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-message-bar/-/react-native-message-bar-2.0.6.tgz#2b25d197d587ab870261c786c04920ba1276e03b"
+
 react-native-notifications@^1.1.16:
   version "1.1.16"
   resolved "https://registry.yarnpkg.com/react-native-notifications/-/react-native-notifications-1.1.16.tgz#78e423745727aeb48e5c5bc650c06224da94c15f"

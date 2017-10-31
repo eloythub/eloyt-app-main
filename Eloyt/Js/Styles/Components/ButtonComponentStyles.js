@@ -165,13 +165,13 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
   },
   newMessagesIcon: {
-    minWidth: 17,
-    height: 17,
+    minWidth: 22,
+    height: 20,
     backgroundColor: '#f44336',
-    borderRadius: 8,
+    borderRadius: 15,
     opacity: 0.9,
     position: 'absolute',
-    right: 5,
+    right: 2,
     bottom: 5,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -180,8 +180,8 @@ export default StyleSheet.create({
   newMessagesText: {
     color: '#ffffff',
     fontFamily: 'OpenSans',
-    fontSize: 8,
-    fontWeight: 'normal',
+    fontSize: 10,
+    fontWeight: 'bold',
   },
 
   // Left Arrow Button

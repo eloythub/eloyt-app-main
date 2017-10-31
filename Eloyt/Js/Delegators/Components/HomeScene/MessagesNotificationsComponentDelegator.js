@@ -20,6 +20,14 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     Debug.Log(`MessagesNotificationsComponentDelegator:swiperIndexChanged`)
 
     this.setState({swiperScrollEnable: index > 0})
+
+    if (index === 0) {
+      await this.setState({
+        selectedRecipientUser: null
+      })
+
+      await this.loadRecipients()
+    }
   }
 
   async onCloseButton () {
@@ -84,6 +92,8 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
 
       await LocalStorage.save(GeneralEnum.CATCHED_MESSAGE, cashedMessages)
 
+      await ApiService.readMessages(selectedRecipientUser.id)
+
       await this.setState({
         messages: this.parseMessage(cashedMessages[selectedRecipientUser.id])
       })
@@ -124,11 +134,17 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
   async onBackButton () {
     Debug.Log(`MessagesNotificationsComponentDelegator:onBackButton`)
 
-    this.refs.messageNotificationSwiperRef.scrollBy(-1)
+    await this.refs.messageNotificationSwiperRef.scrollBy(-1)
+
+    await this.setState({
+      selectedRecipientUser: null
+    })
+
+    await this.loadRecipients()
   }
 
   async onSendMessage (messagesObject) {
-    Debug.Log(`MessagesNotificationsComponentDelegator:onSendMessage`)
+    Debug.Log(`MessagesNotificationsComponentDelegator:onSendMessage`, messagesObject)
 
     await this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messagesObject),
@@ -141,11 +157,29 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     ApiService.sendMessage(this.state.selectedRecipientUser.id, 'text', messageObject.text)
   }
 
-  async onNewMessageRecievedFromSocket (msg) {
+  async onNewMessageRecievedFromSocket ({messageObject}) {
+    console.log('recievedNewMessage', messageObject)
+    // check if message is open
+    if (this.state.selectedRecipientUser && this.state.selectedRecipientUser.id === messageObject.senderUser.id) {
+      try {
+        await this.setState((previousState) => ({
+          messages: GiftedChat.append(previousState.messages, this.parseMessage([messageObject])),
+        }));
 
+        await ApiService.readMessages(this.state.selectedRecipientUser.id)
+
+        return
+      } catch (err) {
+        Debug.Log(err)
+
+        return
+      }
+    }
+
+    this.loadRecipients()
   }
 
-  async loadRecipients (refreshAction) {
+  async loadRecipients () {
     Debug.Log(`MessagesNotificationsComponentDelegator:loadRecipients`)
 
     try {
@@ -155,8 +189,10 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
         recipientsList,
         refreshing: false
       })
-    } catch (err) {
 
+      await this.updateUnreadNotification()
+    } catch (err) {
+      // just ignore
     }
 
     try {
@@ -164,14 +200,26 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
 
       await LocalStorage.save(GeneralEnum.CATCHED_RECIPIENTS, recipients.data)
 
-      this.setState({
+      await this.setState({
         recipientsList: recipients.data,
         refreshing: false
       })
+
+      await this.updateUnreadNotification()
     } catch (err) {
       Debug.Log(err)
       this.setState({refreshing: false})
     }
+  }
+
+  async updateUnreadNotification () {
+    let unreadNotificationCount = 0
+
+    for (let recipients of this.state.recipientsList) {
+      unreadNotificationCount += recipients.unreadMessagesCount
+    }
+
+    await this.props.notificationUpdated(unreadNotificationCount)
   }
 
   isUserExistsInRecipientsList (userId) {

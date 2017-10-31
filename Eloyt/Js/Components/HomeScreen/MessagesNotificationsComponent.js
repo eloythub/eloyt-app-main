@@ -190,4 +190,5 @@ MessagesNotificationsComponent.propTypes = {
   onClose: PropTypes.func,
   onSnapButton: PropTypes.func,
   openProfile: PropTypes.func,
+  notificationUpdated: PropTypes.func,
 }

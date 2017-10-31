@@ -28,6 +28,7 @@
     "react-native-i18n": "^2.0.4",
     "react-native-linear-gradient": "^2.2.0",
     "react-native-loader": "file:Modules/react-native-loader",
+    "react-native-message-bar": "^2.0.6",
     "react-native-notifications": "^1.1.16",
     "react-native-onesignal": "^3.0.6",
     "react-native-router-flux": "4.0.0-beta.21",

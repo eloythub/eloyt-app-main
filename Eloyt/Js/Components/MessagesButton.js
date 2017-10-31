@@ -25,7 +25,10 @@ export default class MessagesButton extends MessagesComponentDelegator {
             {
               unread
                 ?
-                <View style={ButtonComponentStyles.newMessagesIcon}>
+                <View style={[
+                  ButtonComponentStyles.newMessagesIcon,
+                  unread < 10 ? {minWidth: 20} : {}
+                ]}>
                   <Text style={ButtonComponentStyles.newMessagesText}>{unreadCount}</Text>
                 </View>
                 : null

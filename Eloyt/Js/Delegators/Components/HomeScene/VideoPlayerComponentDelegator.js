@@ -35,4 +35,10 @@ export default class VideoPlayerComponentDelegator extends Delegator {
 
     this.props.closeProfile(userId)
   }
+
+  async updateUnreadNotificationCount (unreadNotificationCount) {
+    Debug.Log(`VideoPlayerComponentDelegator:updateUnreadNotificationCount`)
+
+    this.setState({unreadNotificationCount})
+  }
 }

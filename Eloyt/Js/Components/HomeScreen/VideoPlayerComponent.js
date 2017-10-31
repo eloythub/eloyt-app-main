@@ -18,6 +18,7 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
 
     this.state = {
       waitingMain: true,
+      unreadNotificationCount: 0,
     }
   }
 
@@ -43,7 +44,7 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
   }
 
   render () {
-    const {waitingMain} = this.state
+    const {waitingMain, unreadNotificationCount} = this.state
     const {
             moveSceneToSearchScene,
             moveSceneToNotificationScene,
@@ -61,8 +62,8 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
         {this.renderVideoPlayerQueue()}
         <View style={VideoPlayerComponentStyles.topSection}>
           <View style={VideoPlayerComponentStyles.notifyListMessageRecipientsSection}>
-            <MessagesButton unread={0}
-                                onPress={moveSceneToNotificationScene.bind(this)}/>
+            <MessagesButton unread={unreadNotificationCount}
+                            onPress={moveSceneToNotificationScene.bind(this)}/>
           </View>
           <View style={VideoPlayerComponentStyles.profileSection}>
             <ProfileAvatar onPress={this.openProfile.bind(this, loggedInUser.id)}

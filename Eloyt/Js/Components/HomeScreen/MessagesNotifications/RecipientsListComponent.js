@@ -53,6 +53,21 @@ export default class RecipientsListComponent extends RecipientsListComponentDele
                            imageUrl={recipient.cloudAvatarUrl}
                            onPress={this.openProfile.bind(this, recipient)}
             />
+            {
+              recipient.unreadMessagesCount
+                ?
+                <View style={[
+                  RecipientsListComponentStyles.unreadIcon,
+                  recipient.unreadMessagesCount < 10 ? {minWidth: 20} : {}
+                ]}>
+                  <Text style={RecipientsListComponentStyles.unreadText}>{
+                    recipient.unreadMessagesCount <= 99
+                      ? recipient.unreadMessagesCount
+                      : '+99'
+                  }</Text>
+                </View>
+                : null
+            }
           </View>
           <TouchableOpacity onPress={this.openProfile.bind(this, recipient)}>
             <View style={RecipientsListComponentStyles.detailsUserInfo}>

@@ -42,6 +42,8 @@ export default class HomeScreenDelegator extends Delegator {
     OneSignal.addEventListener('opened', this.onOpened.bind(this))
     OneSignal.addEventListener('registered', this.onRegistered.bind(this))
     OneSignal.addEventListener('ids', this.onIds.bind(this))
+
+    await this.refs.messagesNotificationsComponent.loadRecipients()
   }
 
   componentWillUnmount () {

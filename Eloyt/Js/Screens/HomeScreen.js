@@ -95,7 +95,12 @@ export default class HomeScreen extends HomeScreenDelegator {
             <MessagesNotificationsComponent ref="messagesNotificationsComponent"
                                             onClose={this.moveSceneToVideoPlayerFromMessagesNotifications.bind(this)}
                                             onSnapButton={this.moveSceneToSnapFromMessagesNotifications.bind(this)}
-                                            openProfile={(userId) => this.openProfile(userId)}/>
+                                            openProfile={(userId) => this.openProfile(userId)}
+                                            notificationUpdated={
+                                              (unreadNotificationCount) => {
+                                                this.refs.VideoPlayerComponent.updateUnreadNotificationCount(unreadNotificationCount)
+                                              }
+                                            }/>
           </View>
           <View style={HomeScreenStyles.mainSlide}>
             <Swiper {...Object.assign({
