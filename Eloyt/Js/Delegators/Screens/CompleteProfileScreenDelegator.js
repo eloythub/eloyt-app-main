@@ -22,6 +22,10 @@ export default class CompleteProfileScreenDelegator extends Delegator {
     await this.setState({waitingMain: false})
   }
 
+  async nextSlide () {
+    await this.refs.introSwiperRef.scrollBy(1)
+  }
+
   async nextButtonPress () {
     Debug.Log(`CompleteProfileScreen:nextButtonPress`)
 

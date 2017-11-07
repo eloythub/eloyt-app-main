@@ -12,6 +12,7 @@ import VideoSnapComponent from '../Components/HomeScreen/VideoSnapComponent'
 import ProfileComponent from '../Components/HomeScreen/ProfileComponent'
 import SearchComponent from '../Components/HomeScreen/SearchComponent'
 import MessagesNotificationsComponent from '../Components/HomeScreen/MessagesNotificationsComponent'
+import UsingForFirstTimeTutorialComponent from '../Components/HomeScreen/Tutorial/UsingForFirstTimeTutorialComponent'
 
 export default class HomeScreen extends HomeScreenDelegator {
   constructor (props) {
@@ -130,6 +131,8 @@ export default class HomeScreen extends HomeScreenDelegator {
           </View>
         </Swiper>
         {this.renderProfileModal()}
+        <UsingForFirstTimeTutorialComponent show={this.onFirstTimeTutorialShows.bind(this)}
+                                            hide={this.onFirstTimeTutorialHides.bind(this)}/>
       </View>
     )
   }

@@ -28,6 +28,8 @@ import SearchComponentStyles from './Components/HomeScene/SearchComponentStyles'
 import MessagesNotificationsComponentStyles from './Components/HomeScene/MessagesNotificationsComponentStyles'
 // Components HomeScreen/MessagesNotifications
 import RecipientsListComponentStyles from './Components/HomeScene/MessagesNotifications/RecipientsListComponentStyles'
+// Components HomeScreen/Tutorial
+import UsingForFirstTimeTutorialComponentStyles from './Components/HomeScene/Tutorial/UsingForFirstTimeTutorialComponentStyles'
 
 export {
   CommonStyles,
@@ -62,4 +64,6 @@ export {
   MessagesNotificationsComponentStyles,
   // Components HomeScreen/MessagesNotifications
   RecipientsListComponentStyles,
+  // Components HomeScreen/Tutorial
+  UsingForFirstTimeTutorialComponentStyles,
 }

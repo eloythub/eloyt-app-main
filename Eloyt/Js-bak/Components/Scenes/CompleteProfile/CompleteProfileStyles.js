@@ -56,6 +56,7 @@ export const styles = StyleSheet.create({
       justifyContent: 'space-between',
       paddingTop: 20,
       paddingBottom: 20,
+
     },
     nextButtonCaption: {
       color: '#ffffff',

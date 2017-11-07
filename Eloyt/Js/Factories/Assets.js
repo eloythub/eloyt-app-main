@@ -27,6 +27,12 @@ import UsersIcon from '../../Assets/Images/users-icon.png'
 // MessagesNotifications
 import NoActivityIcon from '../../Assets/Images/no-activity-icon.png'
 import SendIcon from '../../Assets/Images/send-icon.png'
+// Tutorial
+import TutorialSnapPreview from '../../Assets/Images/Tutorial/snap-preview.jpg'
+import TutorialNotification from '../../Assets/Images/Tutorial/notification.png'
+import TutorialPreReact from '../../Assets/Images/Tutorial/pre-react.png'
+import TutorialReact from '../../Assets/Images/Tutorial/react.png'
+import TutorialNewNotification from '../../Assets/Images/Tutorial/new-notification.jpg'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -62,4 +68,11 @@ export default class Assets extends Factory {
   // MessagesNotifications
   static NoActivityIcon = NoActivityIcon
   static SendIcon       = SendIcon
+
+  // Tutorial
+  static TutorialSnapPreview     = TutorialSnapPreview
+  static TutorialNotification    = TutorialNotification
+  static TutorialPreReact        = TutorialPreReact
+  static TutorialReact           = TutorialReact
+  static TutorialNewNotification = TutorialNewNotification
 }

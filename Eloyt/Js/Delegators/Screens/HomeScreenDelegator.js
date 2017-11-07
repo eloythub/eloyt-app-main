@@ -283,4 +283,20 @@ export default class HomeScreenDelegator extends Delegator {
       profilePreviewUserId: null,
     })
   }
+
+  async onFirstTimeTutorialShows () {
+    Debug.Log(`HomeScreenDelegator:onFirstTimeTutorialShows`)
+
+    await this.setState({
+      forcePause: true,
+    })
+  }
+
+  async onFirstTimeTutorialHides () {
+    Debug.Log(`HomeScreenDelegator:onFirstTimeTutorialHides`)
+
+    await this.setState({
+      forcePause: false,
+    })
+  }
 }

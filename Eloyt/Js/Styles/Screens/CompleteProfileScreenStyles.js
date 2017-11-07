@@ -83,4 +83,35 @@ export default StyleSheet.create({
   nextWaitingContainer: {
     //height: 10,
   },
+  descriptionTextWrapper: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  descriptionText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'OpenSans',
+    textAlign: 'justify'
+  },
+  descriptionTextBold: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'OpenSans',
+    textAlign: 'justify'
+  },
+  termsAndConditionsWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 30,
+  },
+  termsAndConditions: {
+    flex: 1,
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'OpenSans',
+  }
 })
