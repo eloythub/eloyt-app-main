@@ -49,7 +49,7 @@ export default class VideoPlayerComponent extends VideoPlayerComponentDelegator 
             moveSceneToSearchScene,
             moveSceneToNotificationScene,
             moveSceneToRecordScene
-          }             = this.props
+          } = this.props
 
     if (waitingMain) {
       return this.renderWaiting()

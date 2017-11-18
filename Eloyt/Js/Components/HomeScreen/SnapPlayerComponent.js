@@ -144,6 +144,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
     const {waitingMain, pause}    = this.state
     const {snapVideo, forcePause} = this.props
 
+    // poster={snapVideo.cloudThumbnailUrl}
     return (
       <View style={SnapPlayerComponentStyle.rootContainer}>
         <TouchableWithoutFeedback onPressIn={this.onPressInOnVideo.bind(this)}
@@ -153,7 +154,6 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
             <Video
               ref="videoRef"
               style={SnapPlayerComponentStyle.video}
-              //poster={snapVideo.cloudThumbnailUrl}
               source={{uri: snapVideo.cloudVideoUrl}}
               seek={0}
               rate={forcePause ? 0 : (pause ? 0 : 1)}

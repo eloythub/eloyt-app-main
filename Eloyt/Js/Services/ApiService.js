@@ -1,6 +1,6 @@
 import RequestService from './RequestService'
-import { Debug } from '../Factories'
-import { RequestEnum } from '../Enums'
+import { Debug, LocalStorage } from '../Factories'
+import { GeneralEnum, RequestEnum } from '../Enums'
 
 export default class ApiService extends RequestService {
   static service = 'api'
@@ -129,9 +129,20 @@ export default class ApiService extends RequestService {
   static async fetchProducedResources (offset = 0, limit = 2) {
     Debug.Log(`ApiService:fetchProducedResources`)
 
+    let settings = await LocalStorage.load(GeneralEnum.CATCHED_SETTINGS)
+
+    if (!settings) {
+      settings = {}
+    }
+
+    const {lat = null, lng = null, radius = 50} = settings.currentLocation || {}
+
     const producedResources = await this.dispatchRequest(`/stream/produce`, RequestEnum.TYPE.GET, {
       offset: 0,
-      limit: 50
+      limit: 50,
+      lat,
+      lng,
+      radius
     })
 
     return producedResources.data
@@ -196,5 +207,23 @@ export default class ApiService extends RequestService {
     }
 
     return await this.dispatchRequest('/messages/send', RequestEnum.TYPE.POST, data)
+  }
+
+  /*
+   * Location
+   */
+  static async updateCurrentLocation (lat, lng) {
+    Debug.Log(`ApiService:updateCurrentLocation`)
+
+    const data = {
+      lat,
+      lng
+    }
+
+    if (!lat || !lng) {
+      return
+    }
+
+    return await this.dispatchRequest('/location', RequestEnum.TYPE.PATCH, data)
   }
 }

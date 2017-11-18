@@ -17,12 +17,31 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
   async feedUpTheQueue () {
     Debug.Log('SnapPlayerManagerComponentDelegator:feedUpTheQueue')
 
-    const producedResources = await ApiService.fetchProducedResources(
-      this.paginationCheckpoint,
-      GeneralEnum.SNAP_QUEUE_FEEDER_LENGTH
-    )
+    await this.setState({
+      waitingMain: true
+    })
 
-    const {snapQueue} = this.state
+    let producedResources
+
+    try {
+      producedResources = await ApiService.fetchProducedResources(
+        this.paginationCheckpoint,
+        GeneralEnum.SNAP_QUEUE_FEEDER_LENGTH
+      )
+    } catch (err) {
+      // show some error or something later
+      console.log(err.message)
+    }
+
+    await this.setState({
+      waitingMain: false
+    })
+
+    if (!producedResources) {
+      return
+    }
+
+    let {snapQueue} = this.state
 
     producedResources.map((producedResource) => {
       snapQueue.push(producedResource)
@@ -36,21 +55,17 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
 
       return await this.setState({
         snapQueue,
-        currentSnap,
-        waitingMain: false,
+        currentSnap
       })
     }
 
     this.paginationCheckpoint += snapQueue.length - 1
 
-    currentSnap = snapQueue[0]
-
-    snapQueue.splice(0, 1)
+    currentSnap = snapQueue.shift()
 
     await this.setState({
       snapQueue,
-      currentSnap,
-      waitingMain: currentSnap ? false : true,
+      currentSnap
     })
   }
 
@@ -106,7 +121,8 @@ export default class SnapPlayerManagerComponentDelegator extends Delegator {
 
     const { currentSnap } = this.state
 
-    ApiService.skipVideo(currentSnap.id)
+    // disable sending request for skip video
+    //ApiService.skipVideo(currentSnap.id)
 
     this.loadNextSnapFromQueue()
   }

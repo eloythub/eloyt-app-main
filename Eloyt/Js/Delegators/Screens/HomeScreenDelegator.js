@@ -3,11 +3,15 @@ import React from 'react'
 import { Delegator } from 'react-eloyt'
 import OneSignal from 'react-native-onesignal'
 // Essentials
-import { Debug } from '../../Factories'
-import { ComService, SocketService } from '../../Services'
+import { Debug, LocalStorage } from '../../Factories'
+import { ComService, SocketService, ApiService } from '../../Services'
+import { ConfigsEnum, GeneralEnum } from '../../Enums'
+
+const {geolocation} = navigator
 
 export default class HomeScreenDelegator extends Delegator {
   static socket
+  static locationWatchId
 
   async componentDidMount () {
     // TODO: fix the issue with swift socket.io client and empower the socket.io
@@ -43,6 +47,19 @@ export default class HomeScreenDelegator extends Delegator {
     OneSignal.addEventListener('registered', this.onRegistered.bind(this))
     OneSignal.addEventListener('ids', this.onIds.bind(this))
 
+    // Location
+    geolocation.requestAuthorization()
+    geolocation.getCurrentPosition(
+      this.updateCurrentGPSLocation.bind(this),
+      this.failedGPSLocation.bind(this),
+      ConfigsEnum.GPS_OPTIONS
+    )
+    this.locationWatchId = geolocation.watchPosition(
+      this.updateCurrentGPSLocation.bind(this),
+      this.failedGPSLocation.bind(this),
+      ConfigsEnum.GPS_OPTIONS
+    )
+
     await this.refs.messagesNotificationsComponent.loadRecipients()
   }
 
@@ -54,6 +71,54 @@ export default class HomeScreenDelegator extends Delegator {
     OneSignal.removeEventListener('opened', this.onOpened.bind(this));
     OneSignal.removeEventListener('registered', this.onRegistered.bind(this));
     OneSignal.removeEventListener('ids', this.onIds.bind(this));
+
+    // Location
+    geolocation.clearWatch(this.locationWatchId)
+  }
+
+  async updateCurrentGPSLocation ({coords}) {
+    const {latitude, longitude} = coords
+
+    let settings = await LocalStorage.load(GeneralEnum.CATCHED_SETTINGS)
+
+    if (!settings) {
+      settings = {
+        currentLocation: {
+          lat: latitude,
+          lng: longitude
+        }
+      }
+
+      await LocalStorage.save(GeneralEnum.CATCHED_SETTINGS, settings)
+
+      try {
+        await ApiService.updateCurrentLocation(latitude, longitude)
+      } catch (err) {
+        // do nothing for now
+      }
+
+      return
+    }
+
+
+    if (settings.currentLocation.lat === latitude && settings.currentLocation.lng === longitude) {
+      return
+    }
+
+    settings.currentLocation.lat = latitude
+    settings.currentLocation.lng = longitude
+
+    await LocalStorage.save(GeneralEnum.CATCHED_SETTINGS, settings)
+
+    try {
+      await ApiService.updateCurrentLocation(latitude, longitude)
+    } catch (err) {
+      // do nothing for now
+    }
+  }
+
+  async failedGPSLocation (err) {
+    console.log('error', err)
   }
 
   async onOpened(openResult) {

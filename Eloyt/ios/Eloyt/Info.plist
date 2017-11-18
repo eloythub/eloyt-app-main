@@ -71,8 +71,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need your permission to access Camera</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your permission to access Location on background</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>We need your permission to access Location</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSMicrophoneUsageDescription</key>

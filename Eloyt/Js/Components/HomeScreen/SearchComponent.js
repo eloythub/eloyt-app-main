@@ -1,6 +1,6 @@
 // Basics
 import React from 'react'
-import { ScrollView, Text, TouchableOpacity, View, Image } from 'react-native'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Bars } from 'react-native-loader'
 // Essentials
@@ -18,7 +18,7 @@ export default class SearchComponent extends SearchComponentDelegator {
     this.state = {
       searchWaiting: false,
       searchResults: [],
-      searchQuery: '',
+      searchQuery: ''
     }
   }
 
@@ -78,12 +78,6 @@ export default class SearchComponent extends SearchComponentDelegator {
   }
 
   renderSearch () {
-    const {searchQuery, searchResults} = this.state
-
-    if (!this.ssoUserData) {
-      return
-    }
-
     return (
       <View style={SearchComponentStyles.searchEntitiesContainer}>
         <View style={SearchComponentStyles.entitiesContainer}>

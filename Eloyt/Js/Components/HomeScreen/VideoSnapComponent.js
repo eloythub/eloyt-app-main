@@ -156,7 +156,7 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
     return (
       <View style={VideoSnapComponentStyles.rootContainer}>
         <View style={VideoSnapComponentStyles.topSection}>
-          <CloseButton onPress={this.close.bind(this)}/>
+          <CloseButton onPress={this.close.bind(this, null)}/>
           <RecordIcon show={isRecording}/>
         </View>
         <View style={VideoSnapComponentStyles.bottomSection}>

@@ -10,5 +10,10 @@ export default {
     "development": "https://staging-com.eloyt.com",
     "staging": "https://staging-com.eloyt.com",
     "production": "https://staging-com.eloyt.com" // TODO: change to "https://com.eloyt.com"
+  },
+  GPS_OPTIONS: {
+    enableHighAccuracy: true,
+    timeout: 3000,
+    maximumAge: 0
   }
 }

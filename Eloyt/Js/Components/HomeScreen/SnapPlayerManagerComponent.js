@@ -14,7 +14,7 @@ export default class SnapPlayerManagerComponent extends SnapPlayerManagerCompone
     super(props)
 
     this.state = {
-      waitingMain: true,
+      waitingMain: false,
       snapQueue: [],
       currentSnap: null,
     }

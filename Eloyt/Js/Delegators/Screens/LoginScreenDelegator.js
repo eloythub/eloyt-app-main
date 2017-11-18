@@ -14,6 +14,7 @@ export default class LoginScreenDelegator extends Delegator {
 
     await LocalStorage.init(GeneralEnum.CATCHED_RECIPIENTS, [])
     await LocalStorage.init(GeneralEnum.CATCHED_MESSAGE, {})
+    await LocalStorage.init(GeneralEnum.CATCHED_SETTINGS, {})
 
     //LoginManager.logOut()
     //await LocalStorage.unload(AuthEnum.LOGIN_STATUS)

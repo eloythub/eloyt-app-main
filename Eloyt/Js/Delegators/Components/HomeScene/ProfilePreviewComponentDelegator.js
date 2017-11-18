@@ -70,6 +70,7 @@ export default class ProfilePreviewComponentDelegator extends Delegator {
     await LocalStorage.unload(AuthEnum.LOGIN_FB_ACCESS_TOKEN)
     await LocalStorage.unload(GeneralEnum.CATCHED_RECIPIENTS)
     await LocalStorage.unload(GeneralEnum.CATCHED_MESSAGE)
+    await LocalStorage.unload(GeneralEnum.CATCHED_SETTINGS)
 
     Actions.LoginScene({
       type: ActionConst.REPLACE,

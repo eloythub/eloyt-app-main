@@ -33,6 +33,13 @@ import TutorialNotification from '../../Assets/Images/Tutorial/notification.png'
 import TutorialPreReact from '../../Assets/Images/Tutorial/pre-react.png'
 import TutorialReact from '../../Assets/Images/Tutorial/react.png'
 import TutorialNewNotification from '../../Assets/Images/Tutorial/new-notification.jpg'
+import TutorialHandTouch from '../../Assets/Images/Tutorial/hand-touch.png'
+import TutorialSlideHandForMessage from '../../Assets/Images/Tutorial/slide-hand-for-message.png'
+import TutorialSlideHandForSearch from '../../Assets/Images/Tutorial/slide-hand-for-search.png'
+import TutorialAttention from '../../Assets/Images/Tutorial/attention.png'
+import TutorialSlideVerticaly from '../../Assets/Images/Tutorial/slide-verticaly.png'
+import TutorialRecording from '../../Assets/Images/Tutorial/recording.png'
+import TutorialSharing from '../../Assets/Images/Tutorial/sharing.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -70,9 +77,16 @@ export default class Assets extends Factory {
   static SendIcon       = SendIcon
 
   // Tutorial
-  static TutorialSnapPreview     = TutorialSnapPreview
-  static TutorialNotification    = TutorialNotification
-  static TutorialPreReact        = TutorialPreReact
-  static TutorialReact           = TutorialReact
-  static TutorialNewNotification = TutorialNewNotification
+  static TutorialSnapPreview         = TutorialSnapPreview
+  static TutorialNotification        = TutorialNotification
+  static TutorialPreReact            = TutorialPreReact
+  static TutorialReact               = TutorialReact
+  static TutorialNewNotification     = TutorialNewNotification
+  static TutorialHandTouch           = TutorialHandTouch
+  static TutorialSlideHandForMessage = TutorialSlideHandForMessage
+  static TutorialSlideHandForSearch  = TutorialSlideHandForSearch
+  static TutorialAttention           = TutorialAttention
+  static TutorialSlideVerticaly      = TutorialSlideVerticaly
+  static TutorialRecording           = TutorialRecording
+  static TutorialSharing             = TutorialSharing
 }

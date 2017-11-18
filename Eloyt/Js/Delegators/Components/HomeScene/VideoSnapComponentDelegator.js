@@ -21,7 +21,7 @@ export default class VideoSnapComponentDelegator extends Delegator {
     Debug.Log('VideoSnapComponentDelegator:startSnapping')
 
     const {onSnapStarted} = this.props
-    const {isRecording} = this.state
+    const {isRecording}   = this.state
     const {cameraRef}     = this.refs
     const {CaptureMode}   = Camera.constants
 

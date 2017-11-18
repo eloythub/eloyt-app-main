@@ -19,6 +19,7 @@ export default StyleSheet.create({
   pureLogo: {
     width: 180,
     height: 210.00,
+    marginTop: -40
   },
   sceneTitle: {
     color: '#ffffff',
@@ -79,14 +80,40 @@ export default StyleSheet.create({
   descriptionTextWrapper: {
     flex: 1,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+  },
+  descriptionTextWrapperNonFlex: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  gridDescriptionTextWrapper: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  descriptionTextNoWidth: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'OpenSans',
+    lineHeight: 25,
+    textAlign: 'center'
+  },
+  descriptionTextNoWithSmall: {
+    color: '#ffffff',
+    fontSize: 13,
+    fontWeight: 'normal',
+    fontFamily: 'OpenSans',
+    textAlign: 'justify',
+    lineHeight: 25
   },
   descriptionText: {
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'normal',
     fontFamily: 'OpenSans',
-    textAlign: 'auto'
+    textAlign: 'justify',
+    width: width - 40,
+    lineHeight: 25
   },
   descriptionTextBold: {
     color: '#ffffff',
@@ -98,12 +125,12 @@ export default StyleSheet.create({
   tutorialSnapPreviewWrapper: {
     width: 250,
     height: 444.67,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#777',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top:110
+    top: 110
   },
   tutorialSnapPreview: {
     width: 250,
@@ -112,12 +139,12 @@ export default StyleSheet.create({
   tutorialPreReactWrapper: {
     width: 250,
     height: 66.67,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#777',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top:150
+    top: 130,
   },
   tutorialPreReact: {
     width: 250,
@@ -126,26 +153,27 @@ export default StyleSheet.create({
   tutorialReactWrapper: {
     width: 250,
     height: 66.67,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#777',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top:280
+    top: 180,
   },
   tutorialReact: {
     width: 250,
     height: 66.67,
+    marginTop: 20
   },
   tutorialNewNotificationWrapper: {
     width: 80,
     height: 73.10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#777',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top:120
+    top: 380
   },
   tutorialNewNotification: {
     width: 80,
@@ -154,15 +182,47 @@ export default StyleSheet.create({
   tutorialNotificationWrapper: {
     width: 250,
     height: 50.67,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#777',
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top:190
+    top: 480
   },
   tutorialNotification: {
     width: 250,
     height: 50.67,
   },
+  tutorialHandTouch: {
+    width: 40,
+    height: 58.1,
+  },
+  tutorialEmptyHandTouch: {
+    width: 40,
+    height: 40,
+    marginLeft: 15
+
+  },
+  tutorialAttentionWrapper: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: 90,
+  },
+  tutorialAttentionPreview: {
+    width: 150,
+    height: 134,
+  },
+  swiperSlide: {
+    padding: 40,
+    paddingTop: 0,
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    display: 'flex'
+  },
+  slideImage: {
+    marginBottom: 20
+  }
 })
