@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, View } from 'react-native'
 import { ActionConst, Actions, Router, Scene } from 'react-native-router-flux'
-import { AuthEnum } from './Enums'
+import { AuthEnum, GeneralEnum } from './Enums'
 import { Debug, LocalStorage } from './Factories'
 import { ApiService } from './Services'
 // Import Components Scenes Here
+import PermissionScreen, { PermissionScreenKey } from './Screens/PermissionScreen'
 import LoginScreen, { LoginScreenKey } from './Screens/LoginScreen'
 import CompleteProfileScreen, { CompleteProfileScreenKey } from './Screens/CompleteProfileScreen'
 import ProfileHashtagsScreen, { ProfileHashtagsScreenKey } from './Screens/ProfileHashtagsScreen'
@@ -53,7 +54,15 @@ export default class IndexView extends Component {
         })
       }
 
-      Actions.HomeScene({
+      const hasPermissionPageAppearedBefore = await LocalStorage.load(GeneralEnum.CATCHED_PERMISSION)
+
+      if (hasPermissionPageAppearedBefore) {
+        return Actions.HomeScene({
+          type: ActionConst.REPLACE,
+        })
+      }
+
+      Actions.PermissionScene({
         type: ActionConst.REPLACE
       })
     }
@@ -75,6 +84,18 @@ export default class IndexView extends Component {
     }
   }
 
+  async RedirectToHomeSceneIfPermissionClaimed () {
+    Debug.Log('IndexView:RedirectToHomeSceneIfPermissionClaimed')
+
+    const hasPermissionPageAppearedBefore = await LocalStorage.load(GeneralEnum.CATCHED_PERMISSION)
+
+    if (hasPermissionPageAppearedBefore) {
+      Actions.HomeScene({
+        type: ActionConst.REPLACE,
+      })
+    }
+  }
+
   render () {
     return (
       <View style={styles.appContainer}>
@@ -85,6 +106,11 @@ export default class IndexView extends Component {
               key={LoginScreenKey}
               component={LoginScreen}
               onEnter={this.RedirectToHomeSceneIfWereSignedIn.bind(this)}
+            />
+            <Scene
+              key={PermissionScreenKey}
+              component={PermissionScreen}
+              onEnter={this.RedirectToHomeSceneIfPermissionClaimed.bind(this)}
             />
             <Scene
               key={HomeScreenKey}

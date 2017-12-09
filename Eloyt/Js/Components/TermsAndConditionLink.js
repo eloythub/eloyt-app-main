@@ -15,9 +15,8 @@ export default class TermsAndConditionLink extends TermsAndConditionLinkComponen
             ? (
               <View>
                 <Text style={TermsAndConditionLinkComponentStyles.termsAndServicesText}>
-                  By Using This App You Agreed Our
+                  by using this app you agreed to our{' '}
                 </Text>
-                <Text>{' '}</Text>
               </View>
             )
             : null
@@ -27,7 +26,7 @@ export default class TermsAndConditionLink extends TermsAndConditionLinkComponen
             TermsAndConditionLinkComponentStyles.termsAndServicesText,
             TermsAndConditionLinkComponentStyles.termsAndServicesLink,
             this.props.linkStyle || {}
-          ]}>{this.props.linkText || 'Terms Of Services'}</Text>
+          ]}>{this.props.linkText || 'Terms and Conditions'}</Text>
         </TouchableOpacity>
       </View>
     )

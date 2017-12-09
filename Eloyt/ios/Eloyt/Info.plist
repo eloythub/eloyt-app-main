@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>1091320674278413</string>
 	<key>FacebookDisplayName</key>
@@ -70,17 +70,17 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need your permission to access Camera</string>
+	<string>We need your permission on camera in order to record you.  have in mind, one of important aspects of networking is to people like reality of your life</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We need your permission to access Location on background</string>
+	<string>We need your permission on location(background) in order to show you the related videos about people around your area</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your permission to access Location</string>
+	<string>We need your permission on location in order to show you the related videos about people around your area</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We need your permission to access Microphone</string>
+	<string>We need your permission on microphone in order to have your voice in the recorder video. Without your voice, you cannot express yourself</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need your permission on Photo</string>
+	<string>We need your permission on Photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans_bold_italic.ttf</string>

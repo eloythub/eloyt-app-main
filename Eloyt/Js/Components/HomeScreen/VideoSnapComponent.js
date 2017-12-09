@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, Modal, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Camera from 'react-native-camera'
-import DeviceInfo from 'react-native-device-info'
+//import DeviceInfo from 'react-native-device-info'
 import { BlurView, VibrancyView } from 'react-native-blur'
 import Swiper from 'react-native-swiper'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
@@ -186,15 +186,21 @@ export default class VideoSnapComponent extends VideoSnapComponentDelegator {
 
     const {Orientation, Aspect, CaptureTarget, CaptureMode, CaptureQuality, Type} = Camera.constants
 
-    if (DeviceInfo.isEmulator()) {
-      console.log('dev mode cannot work with camera, please use a phone')
-
-      return (
-        <View style={VideoSnapComponentStyles.rootPlaceholderContainer}>
-          <Text style={HomeScreenStyles.placeholder}>Dev mode cannot work with camera.{'\n'}Please use a phone</Text>
-        </View>
-      )
-    }
+    //if (DeviceInfo.isEmulator()) {
+    //  console.log('dev mode cannot work with camera, please use a phone')
+    //
+    //  return (
+    //
+    //    <View style={VideoSnapComponentStyles.rootContainer}>
+    //      <View style={VideoSnapComponentStyles.topSection}>
+    //        <CloseButton onPress={this.close.bind(this, null)}/>
+    //      </View>
+    //      <View style={VideoSnapComponentStyles.rootPlaceholderContainer}>
+    //        <Text style={HomeScreenStyles.placeholder}>Dev mode cannot work with camera.{'\n'}Please use a phone</Text>
+    //      </View>
+    //    </View>
+    //  )
+    //}
 
     return (
       <View style={VideoSnapComponentStyles.rootContainer}>

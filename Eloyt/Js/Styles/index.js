@@ -3,6 +3,7 @@ import CommonStyles from './CommonStyles'
 import LoginScreenStyles from './Screens/LoginScreenStyles'
 import CompleteProfileScreenStyles from './Screens/CompleteProfileScreenStyles'
 import ProfileHashtagsScreenStyles from './Screens/ProfileHashtagsScreenStyles'
+import PermissionScreenStyles from './Screens/PermissionScreenStyles'
 import HomeScreenStyles from './Screens/HomeScreenStyles'
 // Components
 import WaitingComponentStyles from './Components/WaitingComponentStyles'
@@ -38,6 +39,7 @@ export {
   LoginScreenStyles,
   CompleteProfileScreenStyles,
   ProfileHashtagsScreenStyles,
+  PermissionScreenStyles,
   HomeScreenStyles,
 
   // Components

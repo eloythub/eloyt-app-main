@@ -1,6 +1,7 @@
 // Basics
 import React from 'react'
 import { Image, Text, View } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
 import { GiftedChat, InputToolbar, Send, Bubble } from 'react-native-gifted-chat'
@@ -26,7 +27,8 @@ export default class MessagesNotificationsComponent extends MessagesNotification
       swiperScrollEnable: false,
       messages: [],
       refreshing: false,
-      recipientsList: []
+      recipientsList: [],
+      isKeyboardOpen: true
     }
 
     this.messageNotificationSwiper = {
@@ -62,7 +64,7 @@ export default class MessagesNotificationsComponent extends MessagesNotification
   }
 
   renderMessages () {
-    const {messages, recipientsList} = this.state
+    const {messages, recipientsList, isKeyboardOpen} = this.state
 
     if (!recipientsList || !this.ssoUserData) {
       return
@@ -74,7 +76,11 @@ export default class MessagesNotificationsComponent extends MessagesNotification
     }
 
     return (
-      <View style={MessagesNotificationsComponentStyles.rootContainer}>
+      <View style={
+        isKeyboardOpen
+          ? MessagesNotificationsComponentStyles.rootContainerOpenKeyboard
+          : MessagesNotificationsComponentStyles.rootContainer
+      }>
         <GiftedChat ref="chatboxRef"
                     messages={messages}
                     onSend={this.onSendMessage.bind(this)}
@@ -108,7 +114,11 @@ export default class MessagesNotificationsComponent extends MessagesNotification
                     keyboardShouldPersistTaps="handled"
                     renderInputToolbar={(inputToolbarProps) => {
                       return (
-                        <InputToolbar containerStyle={MessagesNotificationsComponentStyles.composerContainer}
+                        <InputToolbar containerStyle={
+                                        isKeyboardOpen
+                                          ? MessagesNotificationsComponentStyles.composerContainerOpenKeyboard
+                                          : MessagesNotificationsComponentStyles.composerContainer
+                                      }
                                       textInputStyle={MessagesNotificationsComponentStyles.textInputStyle}
                                       {...inputToolbarProps} />
                       )

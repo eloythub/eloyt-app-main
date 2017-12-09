@@ -40,6 +40,10 @@ import TutorialAttention from '../../Assets/Images/Tutorial/attention.png'
 import TutorialSlideVerticaly from '../../Assets/Images/Tutorial/slide-verticaly.png'
 import TutorialRecording from '../../Assets/Images/Tutorial/recording.png'
 import TutorialSharing from '../../Assets/Images/Tutorial/sharing.png'
+// Permission
+import PermissionCamera from '../../Assets/Images/Permission/permission-camera-icon.png'
+import PermissionMicrophone from '../../Assets/Images/Permission/permission-microphone-icon.png'
+import PermissionLocation from '../../Assets/Images/Permission/permission-location-icon.png'
 
 export default class Assets extends Factory {
   // LoginScreen
@@ -89,4 +93,9 @@ export default class Assets extends Factory {
   static TutorialSlideVerticaly      = TutorialSlideVerticaly
   static TutorialRecording           = TutorialRecording
   static TutorialSharing             = TutorialSharing
+
+  // Permission
+  static PermissionCamera     = PermissionCamera
+  static PermissionMicrophone = PermissionMicrophone
+  static PermissionLocation   = PermissionLocation
 }

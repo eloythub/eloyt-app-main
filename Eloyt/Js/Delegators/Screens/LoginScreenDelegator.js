@@ -90,8 +90,17 @@ export default class LoginScreenDelegator extends Delegator {
         return
       }
 
-      // Show Home Scene
-      await Actions.HomeScene({
+
+      const hasPermissionPageAppearedBefore = await LocalStorage.load(GeneralEnum.CATCHED_PERMISSION)
+
+      if (hasPermissionPageAppearedBefore) {
+        return Actions.HomeScene({
+          type: ActionConst.REPLACE,
+        })
+      }
+
+      // Show Permission Scene
+      Actions.PermissionScene({
         type: ActionConst.REPLACE,
       })
     } catch (err) {

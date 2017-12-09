@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 const {width, height} = Dimensions.get('window')
 
@@ -24,6 +25,10 @@ export default StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    ...ifIphoneX({
+      height: 90,
+      paddingTop: 50,
+    })
   },
   entitiesContainer: {
     flex: 1,
@@ -33,6 +38,9 @@ export default StyleSheet.create({
     width,
     height,
     paddingTop: 65,
+    ...ifIphoneX({
+      paddingTop: 90,
+    })
   },
   searchEntityContainer: {
     alignItems: 'center',

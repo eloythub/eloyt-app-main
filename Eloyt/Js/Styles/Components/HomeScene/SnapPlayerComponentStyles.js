@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 const {width, height} = Dimensions.get('window')
 
@@ -36,6 +37,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
+    ...ifIphoneX({
+      bottom: 30
+    })
   },
   detailsActionSlide: {
     ...commonDetailsActionSlide,

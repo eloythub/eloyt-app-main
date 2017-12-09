@@ -1,10 +1,14 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 const {width, height} = Dimensions.get('window')
 
 export default StyleSheet.create({
   rootContainer: {
     flex: 1,
+    ...ifIphoneX({
+      marginTop: 0,
+    })
   },
   rootScrollViewContainer: {
     flex: 1,
@@ -37,6 +41,9 @@ export default StyleSheet.create({
     width,
     justifyContent: 'center',
     alignItems: 'center',
+    ...ifIphoneX({
+      marginTop: 140,
+    })
   },
   noActivityImage: {
     alignItems: 'center',

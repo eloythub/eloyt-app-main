@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 const {width, height} = Dimensions.get('window')
 
@@ -40,6 +41,10 @@ export default StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    ...ifIphoneX({
+      paddingTop: 20,
+      paddingBottom: 40,
+    })
   },
   nextButtonCaption: {
     color: '#ffffff',
@@ -58,6 +63,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     zIndex: 1,
+    ...ifIphoneX({
+      height: 90,
+      paddingTop: 50,
+    })
   },
   entitiesContainer: {
     flex: 1,
@@ -66,7 +75,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingTop: 45
+    paddingTop: 45,
+    ...ifIphoneX({
+      paddingTop: 90,
+    })
   },
   entitiesScene2Container: {
     flex: 1,
@@ -76,6 +88,9 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: 45,
+    ...ifIphoneX({
+      paddingTop: 90,
+    })
   },
   descriptionTextWrapper: {
     flex: 1,
@@ -130,7 +145,10 @@ export default StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top: 110
+    top: 110,
+    ...ifIphoneX({
+      top: 170,
+    })
   },
   tutorialSnapPreview: {
     width: 250,
@@ -145,6 +163,9 @@ export default StyleSheet.create({
     shadowRadius: 10,
     position: 'absolute',
     top: 130,
+    ...ifIphoneX({
+      top: 190,
+    })
   },
   tutorialPreReact: {
     width: 250,
@@ -159,6 +180,9 @@ export default StyleSheet.create({
     shadowRadius: 10,
     position: 'absolute',
     top: 180,
+    ...ifIphoneX({
+      top: 240,
+    })
   },
   tutorialReact: {
     width: 250,
@@ -173,7 +197,10 @@ export default StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top: 380
+    top: 380,
+    ...ifIphoneX({
+      top: 480,
+    })
   },
   tutorialNewNotification: {
     width: 80,
@@ -187,7 +214,10 @@ export default StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 10,
     position: 'absolute',
-    top: 480
+    top: 480,
+    ...ifIphoneX({
+      top: 580,
+    })
   },
   tutorialNotification: {
     width: 250,

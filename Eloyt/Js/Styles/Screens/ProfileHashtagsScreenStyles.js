@@ -1,5 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
+import {ifIphoneX} from 'react-native-iphone-x-helper'
+
 import { Utils } from '../../Factories'
 
 const {width, height}     = Dimensions.get('window')
@@ -33,6 +35,9 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: logoContainerHeight,
+    ...ifIphoneX({
+      paddingTop: 40,
+    })
   },
   pureLogo: {
     width: 30,
@@ -48,6 +53,9 @@ export default StyleSheet.create({
     flex: 1,
     width,
     height: (height - logoContainerHeight) - (Utils.isIOS() ? 0 : 24),
+    ...ifIphoneX({
+      paddingTop: 20,
+    })
   },
   doneButton: {
     width,
@@ -57,6 +65,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingTop: 20,
     paddingBottom: 20,
+    ...ifIphoneX({
+      paddingTop: 20,
+      paddingBottom: 40,
+    })
   },
   doneButtonCaption: {
     color: '#ffffff',
@@ -77,6 +89,9 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingTop: 10,
+    ...ifIphoneX({
+      paddingTop: 40,
+    })
   },
   descriptionDescription: {
     color: '#ffffff',

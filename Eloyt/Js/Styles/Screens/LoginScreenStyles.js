@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 import { Utils } from '../../Factories'
 
@@ -20,6 +21,13 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingTop: 20,
     paddingBottom: 20,
+    ...ifIphoneX({
+      position: 'absolute',
+      bottom: 40,
+      left: 0,
+      right: 0,
+      height: 150,
+    })
   },
   loginButtonContainer: {
     width: 250,
@@ -90,6 +98,9 @@ export default StyleSheet.create({
     color: '#ffffff',
     fontFamily: 'OpenSans',
     marginTop: 30,
+    ...ifIphoneX({
+      marginBottom: 10
+    })
   },
   loadingContainer: {
     width,

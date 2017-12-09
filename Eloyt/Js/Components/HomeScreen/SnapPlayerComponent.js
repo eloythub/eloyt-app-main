@@ -27,15 +27,15 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
       directQuickMessageText: ''
     }
 
-    this.detailsActionsSwiperProperties = {
+    this.swiperProperties = {
       ref: 'detailsActionsSwiperRef',
       index: 0,
       loop: false,
-      bounces: true,
+      bounces: false,
       autoplay: false,
       horizontal: true,
       showsButtons: false,
-      showsPagination: true,
+      showsPagination: false,
       paginationStyle: SnapPlayerComponentStyle.detailsActionPagination,
       dotStyle: Style.reverseStyleObject(SnapPlayerComponentStyle.detailsActionPaginationDot),
       activeDotStyle: Style.reverseStyleObject(SnapPlayerComponentStyle.detailsActionPaginationDot),
@@ -60,6 +60,10 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   renderBottomDetails () {
     const {snapVideo} = this.props
 
+    if (!this.ssoUserData) {
+      return
+    }
+
     const uploadedAt = moment(new Date(snapVideo.uploadedAt)).fromNow()
 
     return (
@@ -78,12 +82,13 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
           </View>
           <View style={SnapPlayerComponentStyle.detailsSnapDetailsContainer}>
             <View style={SnapPlayerComponentStyle.detailsSnapDetailsContent}>
-              <ScrollView keyboardShouldPersistTaps="handled">
+              <ScrollView pagingEnabled={false}
+                          keyboardShouldPersistTaps="handled">
                 <Text style={SnapPlayerComponentStyle.detailsDescription}>{snapVideo.description}</Text>
               </ScrollView>
             </View>
             <View style={SnapPlayerComponentStyle.detailsSnapDetailsAction}>
-              <MoreButton onPress={this.onPressAction.bind(this)}/>
+              <MoreButton hide={this.ssoUserData.id === snapVideo.videoOwner.id} onPress={this.onPressAction.bind(this)}/>
             </View>
           </View>
         </View>
@@ -129,7 +134,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
       <KeyboardAvoidingView behavior="position"
                             style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}>
         <View style={SnapPlayerComponentStyle.bottomSection}>
-          <Swiper {...this.detailsActionsSwiperProperties}
+          <Swiper {...this.swiperProperties}
                   keyboardShouldPersistTaps="handled"
                   onIndexChanged={this.onDetailsActionsSwiperIndexChanged.bind(this)}>
             <View style={SnapPlayerComponentStyle.detailsActionSlide}>{this.renderBottomDetails()}</View>

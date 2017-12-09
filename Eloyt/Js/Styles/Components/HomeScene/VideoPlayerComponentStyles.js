@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 const {width, height} = Dimensions.get('window')
 
@@ -27,6 +28,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     zIndex: 1,
+    ...ifIphoneX({
+      height: 90,
+      paddingTop: 50,
+    })
   },
   bottomSection: {
     bottom: 0,
@@ -40,6 +45,9 @@ export default StyleSheet.create({
     zIndex: 1,
     opacity: .7,
     paddingRight: 10,
+    ...ifIphoneX({
+      bottom: 30
+    })
   },
   bottomSectionLine: {
     width: width - 70,

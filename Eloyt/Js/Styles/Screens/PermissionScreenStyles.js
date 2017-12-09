@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+
 import {ifIphoneX} from 'react-native-iphone-x-helper'
 
 import { Utils } from '../../Factories'
@@ -11,9 +12,6 @@ export default StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
-  keyboardAvoidingViewContainer: {
-    flex: 1,
-  },
   rootMainContainer: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -21,6 +19,15 @@ export default StyleSheet.create({
   },
   rootMainPostContainer: {
     flex: 1,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    position: 'absolute',
+    left: -310,
+    top: 0,
+    width: width + 310,
+    height: height,
   },
   logoContainer: {
     paddingTop: 10,
@@ -44,14 +51,14 @@ export default StyleSheet.create({
   },
   profileEntitiesContainer: {
     flex: 1,
-    width: width,
+    width,
     height: (height - logoContainerHeight) - (Utils.isIOS() ? 0 : 24),
     ...ifIphoneX({
       paddingTop: 20,
     })
   },
-  nextButton: {
-    width: Dimensions.get('window').width,
+  doneButton: {
+    width,
     backgroundColor: '#00b651',
     alignItems: 'center',
     flexDirection: 'column',
@@ -63,7 +70,7 @@ export default StyleSheet.create({
       paddingBottom: 40,
     })
   },
-  nextButtonCaption: {
+  doneButtonCaption: {
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
@@ -72,10 +79,28 @@ export default StyleSheet.create({
   entitiesContainer: {
     flex: 1,
   },
-  profileEntityContainer: {
-    flex: 1,
-    alignItems: 'center',
+  hashtagSelectorWrapper: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  descriptionContainer: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingLeft: 20,
     paddingTop: 10,
+    ...ifIphoneX({
+      paddingTop: 40,
+    })
+  },
+  descriptionDescription: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'OpenSans',
+  },
+  entity: {
+    color: '#ffffff',
   },
   loadingContainer: {
     width,
@@ -90,38 +115,75 @@ export default StyleSheet.create({
     opacity: 0.5,
     backgroundColor: 'transparent',
   },
-  nextWaitingContainer: {
-    //height: 10,
-  },
-  descriptionTextWrapper: {
+  slide: {
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10
+    width,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  icons: {
+    width: 150,
+    height: 150,
+    marginTop: 30,
+    ...ifIphoneX({
+      marginTop: 90,
+    })
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontFamily: 'OpenSans',
+    marginTop: 20
   },
   descriptionText: {
-    color: '#ffffff',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'normal',
+    color: '#ffffff',
     fontFamily: 'OpenSans',
-    textAlign: 'justify'
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 10
   },
-  descriptionTextBold: {
+  button: {
+    width,
+    backgroundColor: '#00b651',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    paddingBottom: 20,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    ...ifIphoneX({
+      paddingTop: 20,
+      paddingBottom: 40,
+    })
+  },
+  askButton: {
+    width,
+    backgroundColor: '#f44336',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    paddingBottom: 20,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    ...ifIphoneX({
+      paddingTop: 20,
+      paddingBottom: 40,
+    })
+  },
+  buttonCaption: {
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'OpenSans',
-    textAlign: 'justify'
   },
-  termsAndConditionsWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 30,
-  },
-  termsAndConditions: {
-    flex: 1,
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'OpenSans',
-  }
 })

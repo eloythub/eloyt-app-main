@@ -2,8 +2,8 @@
 import React from 'react'
 import { Delegator } from 'react-eloyt'
 import { ActionConst, Actions } from 'react-native-router-flux'
-import { Debug, Utils } from '../../../Factories'
-import { GeneralEnum } from '../../../Enums'
+import { Debug, Utils, LocalStorage } from '../../../Factories'
+import { GeneralEnum, AuthEnum } from '../../../Enums'
 
 export default class SnapPlayerComponentDelegator extends Delegator {
   async onLoadStart () {
@@ -12,6 +12,8 @@ export default class SnapPlayerComponentDelegator extends Delegator {
     if (this.props.onVideoLoadingStarted) {
       this.props.onVideoLoadingStarted()
     }
+
+    this.ssoUserData = await LocalStorage.load(AuthEnum.LOGIN_STATUS)
 
     await this.setState({
       waitingMain: true

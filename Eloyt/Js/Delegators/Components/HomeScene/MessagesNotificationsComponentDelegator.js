@@ -1,5 +1,6 @@
 // Basics
 import React from 'react'
+import { Keyboard } from 'react-native'
 import { Delegator } from 'react-eloyt'
 import { GiftedChat } from 'react-native-gifted-chat'
 // Essentials
@@ -11,9 +12,25 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
   async componentDidMount () {
     Debug.Log(`MessagesNotificationsComponentDelegator:componentDidMount`)
 
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      this.setState({
+        isKeyboardOpen: true
+      })
+    })
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      this.setState({
+        isKeyboardOpen: false
+      })
+    })
+
     this.ssoUserData = await LocalStorage.load(AuthEnum.LOGIN_STATUS)
 
     this.setState({})
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
 
   async swiperIndexChanged (index) {
