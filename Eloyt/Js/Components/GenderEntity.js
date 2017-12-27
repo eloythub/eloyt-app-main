@@ -16,6 +16,32 @@ export default class GenderEntity extends GenderEntityComponentDelegator {
     this.state = props
   }
 
+  radioButton (value, caption) {
+    return (
+      <View style={GenderEntityComponentStyles.radioButtonContainer}>
+        <RadioButton
+          value={value}
+          currentValue={this.state.value}
+          outerCircleColor={this.state.value === value ? '#ffffff' : '#7d7d7d'}
+          outerCircleSize={24}
+          outerCircleWidth={3}
+          innerCircleColor="#ffffff"
+          innerCircleSize={14}
+          onPress={this.radioButtonOnPress.bind(this)}>
+          <Text
+            style={
+              [
+                GenderEntityComponentStyles.radioButtonText,
+                (this.state.value === value ? GenderEntityComponentStyles.radioButtonTextSelected : {}),
+              ]
+            }>
+            {caption.toUpperCase()}
+          </Text>
+        </RadioButton>
+      </View>
+    )
+  }
+
   render () {
     const {widthOffset = 60} = this.props
 
@@ -28,71 +54,12 @@ export default class GenderEntity extends GenderEntityComponentDelegator {
       ]}>
         <Text style={GenderEntityComponentStyles.caption}>GENDER:</Text>
         <View>
-          <View style={GenderEntityComponentStyles.radioButtonContainer}>
-            <RadioButton
-              value="male"
-              currentValue={this.state.value}
-              outerCircleColor={this.state.value === 'male' ? '#ffffff' : '#7d7d7d'}
-              outerCircleSize={24}
-              outerCircleWidth={3}
-              innerCircleColor="#ffffff"
-              innerCircleSize={14}
-              onPress={this.radioButtonOnPress.bind(this)}>
-              <Text
-                style={
-                  [
-                    GenderEntityComponentStyles.radioButtonText,
-                    (this.state.value === 'male' ? GenderEntityComponentStyles.radioButtonTextSelected : {}),
-                  ]
-                }>
-                MALE
-              </Text>
-            </RadioButton>
-          </View>
-          <View style={GenderEntityComponentStyles.radioButtonContainer}>
-            <RadioButton
-              value="other"
-              currentValue={this.state.value}
-              outerCircleColor={this.state.value === 'other' ? '#ffffff' : '#7d7d7d'}
-              outerCircleSize={24}
-              outerCircleWidth={3}
-              innerCircleColor="#ffffff"
-              innerCircleSize={14}
-              onPress={this.radioButtonOnPress.bind(this)}>
-              <Text
-                style={
-                  [
-                    GenderEntityComponentStyles.radioButtonText,
-                    (this.state.value === 'other' ? GenderEntityComponentStyles.radioButtonTextSelected : {}),
-                  ]
-                }>
-                OTHER
-              </Text>
-            </RadioButton>
-          </View>
+          {this.radioButton('male', 'male')}
+          {this.radioButton('other', 'other')}
         </View>
         <View>
-          <View style={GenderEntityComponentStyles.radioButtonContainer}>
-            <RadioButton
-              value="female"
-              currentValue={this.state.value}
-              outerCircleColor={this.state.value === 'female' ? '#ffffff' : '#7d7d7d'}
-              outerCircleSize={24}
-              outerCircleWidth={3}
-              innerCircleColor="#ffffff"
-              innerCircleSize={14}
-              onPress={this.radioButtonOnPress.bind(this)}>
-              <Text
-                style={
-                  [
-                    GenderEntityComponentStyles.radioButtonText,
-                    (this.state.value === 'female' ? GenderEntityComponentStyles.radioButtonTextSelected : {}),
-                  ]
-                }>
-                FEMALE
-              </Text>
-            </RadioButton>
-          </View>
+          {this.radioButton('female', 'female')}
+          {this.radioButton(null, 'not now')}
         </View>
       </View>
     )

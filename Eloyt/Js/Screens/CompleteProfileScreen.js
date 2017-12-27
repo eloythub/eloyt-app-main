@@ -144,13 +144,13 @@ export default class CompleteProfileScreen extends CompleteProfileScreenDelegato
                 <View style={CompleteProfileScreenStyles.profileEntityContainer}>
                   <GenderEntity
                     onPress={(genderValue) => this.gender = genderValue}
-                    value={this.gender.toLowerCase()}
+                    value={this.gender ? this.gender.toLowerCase() : null}
                   />
                 </View>
                 <View style={CompleteProfileScreenStyles.profileEntityContainer}>
                   <BirthdateEntity
                     onChange={(dateOfBirth) => this.dateOfBirth = dateOfBirth}
-                    date={this.dateOfBirth}/>
+                    date={this.dateOfBirth || null}/>
                 </View>
               </View>
             </ScrollView>

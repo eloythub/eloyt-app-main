@@ -112,6 +112,9 @@ export default class SearchComponent extends SearchComponentDelegator {
         {this.renderSearch()}
         <View style={SearchComponentStyles.topSection}>
           <LeftArrowButton onPress={this.onCloseButton.bind(this)}/>
+
+          {/* add filter */}
+
           {
             searchResults.length > 0
               ?

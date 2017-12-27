@@ -45,8 +45,6 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
   }
 
   renderProfileDetails () {
-    const {mode} = this.state
-
     if (!this.requestedProfileData) {
       return
     }
@@ -104,7 +102,7 @@ export default class ProfileUpdateComponent extends ProfileUpdateComponentDelega
               <View style={ProfileUpdateComponentStyles.profileEntityContainer}>
                 <GenderEntity
                   onPress={(genderValue) => this.gender = genderValue}
-                  value={this.gender.toLowerCase()}
+                  value={this.gender ? this.gender.toLowerCase() : null}
                   widthOffset={40}/>
               </View>
 

@@ -16,13 +16,16 @@ export default class PermissionScreenDelegator extends Delegator {
 
   async process () {
     await Camera.checkDeviceAuthorizationStatus()
+    await Utils.next()
     await Camera.checkAudioAuthorizationStatus()
+    await Utils.next()
     await Camera.checkVideoAuthorizationStatus()
+    await Utils.next()
     await geolocation.requestAuthorization()
-
+    await Utils.next()
     await LocalStorage.save(GeneralEnum.CATCHED_PERMISSION, true)
 
-    await Utils.next()
+    await Utils.wait(2000)
 
     Actions.HomeScene({
       type: ActionConst.REPLACE,

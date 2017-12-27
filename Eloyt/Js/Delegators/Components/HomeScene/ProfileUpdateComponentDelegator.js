@@ -59,9 +59,13 @@ export default class ProfileUpdateComponentDelegator extends Delegator {
     this.props.discard()
   }
 
+  hasChanged (key) {
+    return this.requestedProfileData[key] !== this[key]
+  }
+
   async onSaveButton () {
-    if (!this.firstName || !this.lastName || !this.gender || !this.dateOfBirth || !this.aboutMe) {
-      return Utils.alert('All the fields are required.')
+    if (!this.firstName || !this.lastName) {
+      return Utils.alert('* First Name \n* Last Name\nare required.')
     }
 
     if (this.hashtags.length < GeneralEnum.PROFILE_HASHTAGS_LIMIT_MIN) {
@@ -76,11 +80,11 @@ export default class ProfileUpdateComponentDelegator extends Delegator {
 
     try {
       const updatedUsed = await ApiService.updateProfile({
-        firstName: this.firstName,
-        lastName: this.lastName,
-        gender: this.gender,
-        dateOfBirth: this.dateOfBirth,
-        aboutMe: this.aboutMe,
+        firstName: this.hasChanged('firstName') ? this.firstName : undefined,
+        lastName: this.hasChanged('lastName') ? this.lastName : undefined,
+        gender: this.hasChanged('gender') ? this.gender : undefined,
+        dateOfBirth: this.hasChanged('dateOfBirth') ? this.dateOfBirth : undefined,
+        aboutMe: this.hasChanged('aboutMe') ? this.aboutMe : undefined
       })
 
       await LocalStorage.save(AuthEnum.LOGIN_STATUS, updatedUsed.data)

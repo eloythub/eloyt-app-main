@@ -1,10 +1,11 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Dimensions, View } from 'react-native'
+import { Dimensions, View, Image, TouchableOpacity } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 // Essentials
 import { BirthdateEntityComponentStyles } from '../Styles'
+import { Assets } from '../Factories'
 import BirthdateEntityComponentDelegator from '../Delegators/Components/BirthdateEntityComponentDelegator'
 
 const {width} = Dimensions.get('window')
@@ -48,6 +49,13 @@ export default class BirthdateEntity extends BirthdateEntityComponentDelegator {
             }
           }
         />
+        <TouchableOpacity style={BirthdateEntityComponentStyles.empty} onPress={() => {
+          this.setState({date: null})
+
+          this.props.onChange(null)
+        }}>
+          <Image source={Assets.DeleteIcon} style={BirthdateEntityComponentStyles.emptyImage}/>
+        </TouchableOpacity>
       </View>
     )
   }

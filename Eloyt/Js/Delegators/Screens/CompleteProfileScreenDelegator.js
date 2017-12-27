@@ -29,8 +29,8 @@ export default class CompleteProfileScreenDelegator extends Delegator {
   async nextButtonPress () {
     Debug.Log(`CompleteProfileScreen:nextButtonPress`)
 
-    if (!this.username || !this.firstName || !this.lastName || !this.gender || !this.dateOfBirth) {
-      Utils.alert('All the fields are required.')
+    if (!this.username || !this.firstName || !this.lastName) {
+      Utils.alert('* Username \n* First Name \n* Last Name\nare required.')
 
       return
     }
@@ -40,12 +40,21 @@ export default class CompleteProfileScreenDelegator extends Delegator {
     try {
       const username = this.username.replace(/\W/g, '') // strip any non alphanumeric chars from username
 
+      let additionalAttr = {}
+
+      if (this.gender) {
+        additionalAttr['gender'] = this.gender
+      }
+
+      if (this.dateOfBirth) {
+        additionalAttr['dateOfBirth'] = this.dateOfBirth
+      }
+
       const updatedUsed = await ApiService.updateProfile({
           username,
           firstName: this.firstName,
           lastName: this.lastName,
-          gender: this.gender,
-          dateOfBirth: this.dateOfBirth,
+          ...additionalAttr
         })
 
       await LocalStorage.save(AuthEnum.LOGIN_STATUS, updatedUsed.data)

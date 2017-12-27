@@ -6,6 +6,7 @@ import PureLogo from '../../Assets/Images/pure-logo.png'
 // CompleteProfileScreen
 import DefaultProfileUser from '../../Assets/Images/default-profile-user.png'
 // Buttons
+import DeleteIcon from '../../Assets/Images/delete.png'
 import CancelIcon from '../../Assets/Images/cancel-icon.png'
 import OkIcon from '../../Assets/Images/ok-icon.png'
 import SearchIcon from '../../Assets/Images/search-icon.png'
@@ -55,6 +56,7 @@ export default class Assets extends Factory {
   static DefaultProfileUser = DefaultProfileUser
 
   // Buttons
+  static DeleteIcon           = DeleteIcon
   static CancelIcon           = CancelIcon
   static OkIcon               = OkIcon
   static SearchIcon           = SearchIcon

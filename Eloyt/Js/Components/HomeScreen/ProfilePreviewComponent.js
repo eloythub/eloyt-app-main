@@ -52,7 +52,7 @@ export default class ProfilePreviewComponent extends ProfilePreviewComponentDele
       return
     }
 
-    const dateOfBirth = moment(this.requestedProfileData.dateOfBirth)
+    const dateOfBirth = this.requestedProfileData.dateOfBirth ? moment(this.requestedProfileData.dateOfBirth) : null
 
     return (
       <View style={ProfilePreviewComponentStyles.profileEntitiesContainer}>
@@ -81,15 +81,21 @@ export default class ProfilePreviewComponent extends ProfilePreviewComponentDele
               <Text style={ProfilePreviewComponentStyles.descriptiveText}>{this.requestedProfileData.email}</Text>
             </View>
 
-            <View style={[
-              ProfilePreviewComponentStyles.profileEntityContainer,
-              ProfilePreviewComponentStyles.descriptiveContainer
-            ]}>
-              <Image source={Assets.BirthdateIcon} style={ProfilePreviewComponentStyles.birthdateImage}/>
-              <Text style={ProfilePreviewComponentStyles.descriptiveText}>
-                {dateOfBirth.format('Y/MMM/DD')}
-              </Text>
-            </View>
+            {
+              dateOfBirth
+                ? (
+                <View style={[
+                  ProfilePreviewComponentStyles.profileEntityContainer,
+                  ProfilePreviewComponentStyles.descriptiveContainer
+                ]}>
+                  <Image source={Assets.BirthdateIcon} style={ProfilePreviewComponentStyles.birthdateImage}/>
+                  <Text style={ProfilePreviewComponentStyles.descriptiveText}>
+                    {dateOfBirth.format('Y/MMM/DD')}
+                  </Text>
+                </View>
+              )
+                : null
+            }
 
             <View style={[
               ProfilePreviewComponentStyles.profileEntityContainer,

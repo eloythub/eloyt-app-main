@@ -7,9 +7,11 @@ const {width} = Dimensions.get('window')
 export default StyleSheet.create({
   rootContainer: {
     flex: 1,
+    flexDirection: 'row'
   },
   datePicker: {
-    width: width - 60,
+    width: width - 60 - 40,
+    marginRight: 8
   },
   datePickerPlaceHolderText: {
     flex: 1,
@@ -39,4 +41,14 @@ export default StyleSheet.create({
     paddingLeft: Utils.isIOS() ? 0 : 3,
     height: Utils.isIOS() ? 40 : 32,
   },
+  empty: {
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    width: 32
+  },
+  emptyImage: {
+    width: 32,
+    height: 18
+  }
 })

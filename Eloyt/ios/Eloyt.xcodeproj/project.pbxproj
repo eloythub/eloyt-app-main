@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -38,7 +37,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* EloytTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EloytTests.m */; };
 		43D31F870A884A3BA235C3B5 /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */; };
 		44165732B84B97813E378F6F /* libPods-Eloyt-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1729FB40170DC88CE3939333 /* libPods-Eloyt-tvOSTests.a */; };
-		4F9586DA32CC4BFA970D971C /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E89CC1F56C044E09604E646 /* libRNDeviceInfo.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		67B7DCFA161C4F3F9195F734 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5AC79C9AB86410DA9B1FA2A /* libRNI18n.a */; };
 		71DF8C454B6B4545A4695135 /* OpenSans_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54486D4964594651A5EE02CF /* OpenSans_bold.ttf */; };
@@ -319,13 +317,6 @@
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
 		};
-		C07176391F5A972200BD2D4E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8383A460149473A8FF57741 /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
-			remoteInfo = RNDeviceInfo;
-		};
 		C07FD1CA1EAC736D00DED834 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */;
@@ -495,7 +486,6 @@
 		E9E44890A8B7BE03AC190D27 /* Pods-Eloyt-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eloyt-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eloyt-tvOSTests/Pods-Eloyt-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC8343131ABE464AA452DDE5 /* libRCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTActionSheet.a; sourceTree = "<group>"; };
 		EF02A9ABAFE34A01A184A64D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../Assets/Fonts/OpenSans.ttf; sourceTree = "<group>"; };
-		F8383A460149473A8FF57741 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,7 +526,6 @@
 				7EC690378C2449B4BFC41B32 /* libRCTCamera.a in Frameworks */,
 				B9871CA6E4564B519E783F03 /* libRCTActionSheet.a in Frameworks */,
 				EB4FADAE1A1C40B4B97DE8FF /* libRNBlur.a in Frameworks */,
-				4F9586DA32CC4BFA970D971C /* libRNDeviceInfo.a in Frameworks */,
 				67B7DCFA161C4F3F9195F734 /* libRNI18n.a in Frameworks */,
 				E3C428E91BF8479E9FE4BC43 /* libRNNotifications.a in Frameworks */,
 				86D2536FD6BC9BBE268108B7 /* libPods-Eloyt.a in Frameworks */,
@@ -751,7 +740,6 @@
 				6BE36E1140684A6091D00D65 /* RCTVideo.xcodeproj */,
 				C6C3A008BD414876990F87D6 /* RCTCamera.xcodeproj */,
 				3F4F652D0B164402BB9656E1 /* RNBlur.xcodeproj */,
-				F8383A460149473A8FF57741 /* RNDeviceInfo.xcodeproj */,
 				DBC4E8726DC14E1F9ECD6DD8 /* RNI18n.xcodeproj */,
 				D8F27504D2594DDFAD1D9F6F /* RNNotifications.xcodeproj */,
 				E1A02D2CAC164E8CA5F97D0F /* RCTOneSignal.xcodeproj */,
@@ -833,14 +821,6 @@
 			isa = PBXGroup;
 			children = (
 				C0671DFB1F979801000C8C32 /* libRCTOneSignal.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C07176071F5A972200BD2D4E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C071763A1F5A972200BD2D4E /* libRNDeviceInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1149,10 +1129,6 @@
 					ProjectRef = 3F4F652D0B164402BB9656E1 /* RNBlur.xcodeproj */;
 				},
 				{
-					ProductGroup = C07176071F5A972200BD2D4E /* Products */;
-					ProjectRef = F8383A460149473A8FF57741 /* RNDeviceInfo.xcodeproj */;
-				},
-				{
 					ProductGroup = C07FD1A91EAC736D00DED834 /* Products */;
 					ProjectRef = C113D5A503C64021B9BF7EAF /* RNFS.xcodeproj */;
 				},
@@ -1412,13 +1388,6 @@
 			fileType = archive.ar;
 			path = "libdouble-conversion.a";
 			remoteRef = C07176341F5A972200BD2D4E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C071763A1F5A972200BD2D4E /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = C07176391F5A972200BD2D4E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C07FD1CB1EAC736D00DED834 /* libRNFS.a */ = {
