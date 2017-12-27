@@ -57,7 +57,7 @@ export default class MessagesNotificationsComponent extends MessagesNotification
                                    onPressSnap={onSnapButton.bind(this)}
                                    refreshing={refreshing}
                                    loadRecipients={this.loadRecipients.bind(this)}
-                                   recipients={this.ssoUserData ? recipientsList : []}/>
+                                   recipients={this.ssoUserData ? recipientsList || [] : []}/>
         </View>
       </View>
     )

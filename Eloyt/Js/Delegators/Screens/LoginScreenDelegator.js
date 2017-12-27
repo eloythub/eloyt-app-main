@@ -90,7 +90,6 @@ export default class LoginScreenDelegator extends Delegator {
         return
       }
 
-
       const hasPermissionPageAppearedBefore = await LocalStorage.load(GeneralEnum.CATCHED_PERMISSION)
 
       if (hasPermissionPageAppearedBefore) {
