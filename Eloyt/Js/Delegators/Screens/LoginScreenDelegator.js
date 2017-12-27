@@ -107,7 +107,8 @@ export default class LoginScreenDelegator extends Delegator {
 
       await this.setState({waitingMain: false})
 
-      Utils.alert('Something went wrong!!!\nPlease try again.')
+      Utils.alert(err.message)
+      //Utils.alert('Something went wrong!!!\nPlease try again.'.)
     }
   }
 }

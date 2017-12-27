@@ -87,4 +87,4 @@ export default class LoginScreen extends LoginScreenDelegator {
   }
 }
 
-export const LoginScreenKey   = 'LoginScene'
+export const LoginScreenKey = 'LoginScene'
