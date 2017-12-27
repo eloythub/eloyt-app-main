@@ -1,4 +1,4 @@
-import { apiBaseUrl, apiEnv } from '../../app.json'
+import { apiBaseUrl, apiEnv } from '../../manifest.json'
 
 export const RequestMethodType = {
   get: 'GET',

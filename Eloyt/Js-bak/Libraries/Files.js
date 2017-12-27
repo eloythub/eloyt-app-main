@@ -1,4 +1,4 @@
-import { apiEnv, apiBaseUrl } from '../../app.json';
+import { apiEnv, apiBaseUrl } from '../../manifest.json';
 import Api from './Api';
 import sha1 from 'sha1';
 import { CachesDirectoryPath, DocumentDirectoryPath, TemporaryDirectoryPath, downloadFile, exists } from 'react-native-fs';

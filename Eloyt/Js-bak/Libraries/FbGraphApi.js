@@ -1,5 +1,5 @@
 import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
-import { apiEnv, apiBaseUrl } from '../../app.json';
+import { apiEnv, apiBaseUrl } from '../../manifest.json';
 
 export const RequestMethodType = {
   get: 'GET',
