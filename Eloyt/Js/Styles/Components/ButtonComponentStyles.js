@@ -312,13 +312,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    paddingTop: 0,
+    paddingBottom: 0
+  },
+  sendButtonInnerContainer: {
   },
   sendButtonIcon: {
     width: 26,
     resizeMode: 'contain',
     backgroundColor: 'transparent',
   },
-
   container: {
     flex: 0,
     height: 40,

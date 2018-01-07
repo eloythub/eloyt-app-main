@@ -36,6 +36,8 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    paddingTop: 10,
     zIndex: 1,
     ...ifIphoneX({
       bottom: 30
@@ -113,7 +115,7 @@ export default StyleSheet.create({
   // Actions Slide
   actionsContainer: {
     width: width,
-    height: 50,
+    height: 65,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',

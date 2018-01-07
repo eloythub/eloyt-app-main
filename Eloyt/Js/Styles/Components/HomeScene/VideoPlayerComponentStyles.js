@@ -20,7 +20,7 @@ export default StyleSheet.create({
     top: 0,
     flex: 1,
     width,
-    height: 65,
+    height: 75,
     paddingTop: 25,
     paddingRight: 5,
     position: 'absolute',
@@ -28,9 +28,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     zIndex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
     ...ifIphoneX({
       height: 90,
-      paddingTop: 50,
+      paddingTop: 40,
     })
   },
   bottomSection: {
@@ -64,12 +65,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: width / 3,
     paddingLeft: 5,
+    paddingBottom: 5,
   },
   profileSection: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: width / 3
+    width: width / 3,
   },
   searchSection: {
     flexDirection: 'column',
@@ -77,5 +79,6 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     width: width / 3,
     paddingRight: 5,
+    paddingBottom: 5
   },
 })

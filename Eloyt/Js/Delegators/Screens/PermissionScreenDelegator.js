@@ -25,7 +25,7 @@ export default class PermissionScreenDelegator extends Delegator {
     await Utils.next()
     await LocalStorage.save(GeneralEnum.CATCHED_PERMISSION, true)
 
-    await Utils.wait(2000)
+    await Utils.wait(1000)
 
     Actions.HomeScene({
       type: ActionConst.REPLACE,

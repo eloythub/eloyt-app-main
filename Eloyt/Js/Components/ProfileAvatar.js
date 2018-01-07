@@ -18,7 +18,10 @@ export default class ProfileAvatar extends Component {
           <Image
             source={{uri: imageUrl}}
             style={[ProfileAvatarComponentStyles.profileUserImage, {
-              borderRadius: size / 2,
+              //borderRadius: size / 2,
+              //height: 40,
+              //width: 40,
+              borderRadius: 3,
               width: size,
               height: size,
             }]}/>

@@ -10,8 +10,10 @@
     "standard-fix": "standard ./**/*.js --fix --verbose"
   },
   "dependencies": {
+    "emoji-utils": "^1.0.1",
     "moment": "^2.20.1",
     "path": "^0.12.7",
+    "qs": "^6.5.1",
     "radio-button-react-native": "^1.1.6",
     "react": "16.2.0",
     "react-eloyt": "file:Modules/react-eloyt",

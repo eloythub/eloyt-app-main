@@ -12,14 +12,15 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
   async componentDidMount () {
     Debug.Log(`MessagesNotificationsComponentDelegator:componentDidMount`)
 
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (e) => {
       this.setState({
-        isKeyboardOpen: true
+        keyboardHeight: e.endCoordinates.height
       })
     })
+
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
       this.setState({
-        isKeyboardOpen: false
+        keyboardHeight: 0
       })
     })
 
@@ -62,6 +63,10 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
   async openMessage (selectedRecipientUser) {
     Debug.Log(`MessagesNotificationsComponentDelegator:openMessage`)
 
+    if (!selectedRecipientUser) {
+      return
+    }
+
     // check if selectedRecipientUser is existed in recipientsList
     if (!this.isUserExistsInRecipientsList(selectedRecipientUser.id)) {
       return
@@ -76,11 +81,16 @@ export default class MessagesNotificationsComponentDelegator extends Delegator {
     // load messages
     //await LocalStorage.save(GeneralEnum.CATCHED_MESSAGE, {})
     let messages = {}
+    let cashedMessages = {}
 
     messages[selectedRecipientUser.id] = []
 
     try {
       cashedMessages = await LocalStorage.load(GeneralEnum.CATCHED_MESSAGE)
+
+      if (!cashedMessages) {
+        cashedMessages = {}
+      }
 
       if (!cashedMessages.hasOwnProperty(selectedRecipientUser.id)) {
         cashedMessages[selectedRecipientUser.id] = []

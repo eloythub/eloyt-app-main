@@ -1,7 +1,7 @@
 // Basics
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native'
 import { Bars } from 'react-native-loader'
 import moment from 'moment'
 // Essentials
@@ -73,13 +73,15 @@ export default class ProfilePreviewComponent extends ProfilePreviewComponentDele
               </Text>
             </View>
 
-            <View style={[
-              ProfilePreviewComponentStyles.profileEntityContainer,
-              ProfilePreviewComponentStyles.descriptiveContainer
-            ]}>
-              <Image source={Assets.EmailIcon} style={ProfilePreviewComponentStyles.emailImage}/>
-              <Text style={ProfilePreviewComponentStyles.descriptiveText}>{this.requestedProfileData.email}</Text>
-            </View>
+            <TouchableWithoutFeedback onPress={async () => await this.sendEmail(this.requestedProfileData.email)}>
+              <View style={[
+                ProfilePreviewComponentStyles.profileEntityContainer,
+                ProfilePreviewComponentStyles.descriptiveContainer
+              ]}>
+                <Image source={Assets.EmailIcon} style={ProfilePreviewComponentStyles.emailImage}/>
+                <Text style={ProfilePreviewComponentStyles.descriptiveText}>{this.requestedProfileData.email}</Text>
+              </View>
+            </TouchableWithoutFeedback>
 
             {
               dateOfBirth

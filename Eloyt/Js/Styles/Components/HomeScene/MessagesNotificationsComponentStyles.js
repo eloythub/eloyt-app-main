@@ -1,8 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import {ifIphoneX} from 'react-native-iphone-x-helper'
 
-import { Utils } from '../../../Factories'
-
 const {width, height} = Dimensions.get('window')
 
 export default StyleSheet.create({
@@ -19,13 +17,12 @@ export default StyleSheet.create({
       paddingBottom: 30,
     })
   },
-  rootContainerOpenKeyboard: {
-    flex: 1,
+  rootContainerConversation: {
     marginTop: 65,
     height: height - 65,
     ...ifIphoneX({
       marginTop: 90,
-      paddingBottom: 0,
+      //paddingBottom: 0,
     })
   },
   notificationContainer: {
@@ -75,17 +72,23 @@ export default StyleSheet.create({
     height: 33,
   },
   composerContainer: {
-    borderTopWidth: 0.5,
-    borderTopColor: 'rgba(0, 0, 0, 0.1)',
+    //borderTopWidth: 0.5,
+    //borderTopColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+
+
+    //display: 'flex',
+    //bottom: 0,
+    //right: 0,
+    //top: 0,
+    //position: 'absolute',
+    //flex: 0,
 
     ...ifIphoneX({
       paddingBottom: 50
     })
   },
   composerContainerOpenKeyboard: {
-    borderTopWidth: 0.5,
-    borderTopColor: 'rgba(0, 0, 0, 0.1)',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
 
     ...ifIphoneX({

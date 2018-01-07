@@ -132,7 +132,8 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
   renderBottom () {
     return (
       <KeyboardAvoidingView behavior="position"
-                            style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}>
+                            style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}
+                            keyboardVerticalOffset={-30}>
         <View style={SnapPlayerComponentStyle.bottomSection}>
           <Swiper {...this.swiperProperties}
                   keyboardShouldPersistTaps="handled"
