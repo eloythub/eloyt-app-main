@@ -129,5 +129,21 @@ export default StyleSheet.create({
   chatBubbleWrapperRight: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     padding: 2
+  },
+  loadEarlierView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 70
+  },
+  loadEarlierButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'OpenSans',
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontSize: 16,
+    textDecorationLine: 'underline'
   }
 })

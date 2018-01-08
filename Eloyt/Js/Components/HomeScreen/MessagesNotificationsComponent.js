@@ -1,11 +1,12 @@
 // Basics
 import React from 'react'
-import { Image, Text, View, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { Image, Text, View, Dimensions, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import {ifIphoneX} from 'react-native-iphone-x-helper'
 import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
 import { GiftedChat, Send, Bubble } from 'react-native-gifted-chat'
 import emojiUtils from 'emoji-utils'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 // Essentials
 import { Assets, Style } from '../../Factories'
@@ -110,8 +111,6 @@ export default class MessagesNotificationsComponent extends MessagesNotification
                     onPressAvatar={(avatarUser) => this.openProfile({id: avatarUser._id})}
                     placeholder="MESSAGE"
                     placeholderTextColor="#ffffff"
-                    loadEarlier={false}
-                    isLoadingEarlier={false}
                     renderAvatarOnTop={true}
                     containerStyle={{
                       backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -126,16 +125,28 @@ export default class MessagesNotificationsComponent extends MessagesNotification
                     renderMessage={this.renderMessageBox}
                     isAnimated={true}
                     keyboardShouldPersistTaps="handled"
+                    loadEarlier={false}
+                    renderLoadEarlier={() => {
+                      return (
+                        <View style={MessagesNotificationsComponentStyles.loadEarlierView}>
+                          <TouchableOpacity>
+                            <Text style={MessagesNotificationsComponentStyles.loadEarlierButton}>Press To Load More</Text>
+                          </TouchableOpacity>
+                        </View>
+                      )
+                    }}
                     renderInputToolbar={(props) => {
                       delete props['containerStyle']
 
                       return (
                         <View style={{
                           position: 'relative',
-                          height: props.composerHeight + 11
+                          height: props.composerHeight + 10
                         }}>
                           <InputToolbar textInputStyle={Style.reverseStyleObject(MessagesNotificationsComponentStyles.textInputStyle)}
                                         containerStyle={{
+                                          borderTopWidth: 0.5,
+                                          borderTopColor: 'rgba(0, 0, 0, 0.2)',
                                           backgroundColor: 'rgba(0, 0, 0, 0.2)',
                                           position: 'absolute',
                                           bottom: 0
@@ -165,6 +176,7 @@ export default class MessagesNotificationsComponent extends MessagesNotification
                       )
                     }}
         />
+        <KeyboardSpacer />
       </View>
     )
   }

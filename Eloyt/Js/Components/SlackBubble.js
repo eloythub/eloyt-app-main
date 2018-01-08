@@ -185,12 +185,13 @@ const styles = StyleSheet.create({
   },
   username: {
     fontWeight: 'bold',
-    color: 'rgba(255, 255, 255, 0.8)'
-
+    color: 'rgba(255, 255, 255, 0.8)',
+    justifyContent: 'flex-start',
   },
   time: {
     textAlign: 'left',
     fontSize: 12,
+    justifyContent: 'flex-start',
   },
   timeContainer: {
     marginLeft: 0,
@@ -214,6 +215,7 @@ const styles = StyleSheet.create({
   /* eslint-enable react-native/no-color-literals */
   tickView: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   slackImage: {
     borderRadius: 3,

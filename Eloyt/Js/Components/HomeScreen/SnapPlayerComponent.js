@@ -5,6 +5,7 @@ import { KeyboardAvoidingView, ScrollView, Text, TouchableWithoutFeedback, View 
 import { Bars } from 'react-native-loader'
 import Video from 'react-native-video'
 import Swiper from 'react-native-swiper'
+import {isIphoneX} from 'react-native-iphone-x-helper'
 import moment from 'moment'
 // Essentials
 import { SnapPlayerComponentStyle, WaitingComponentStyles } from '../../Styles'
@@ -133,7 +134,7 @@ export default class SnapPlayerComponent extends SnapPlayerComponentDelegator {
     return (
       <KeyboardAvoidingView behavior="position"
                             style={SnapPlayerComponentStyle.keyboardAvoidingViewContainer}
-                            keyboardVerticalOffset={-30}>
+                            keyboardVerticalOffset={isIphoneX() ? -30 : 0}>
         <View style={SnapPlayerComponentStyle.bottomSection}>
           <Swiper {...this.swiperProperties}
                   keyboardShouldPersistTaps="handled"
