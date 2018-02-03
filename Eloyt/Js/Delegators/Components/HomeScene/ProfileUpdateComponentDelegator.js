@@ -64,7 +64,7 @@ export default class ProfileUpdateComponentDelegator extends Delegator {
   }
 
   async onSaveButton () {
-    if (!this.firstName || !this.lastName) {
+    if ((this.hasChanged('firstName') && this.hasChanged('lastName')) && (!this.firstName || !this.lastName)) {
       return Utils.alert('* First Name \n* Last Name\nare required.')
     }
 
