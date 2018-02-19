@@ -58,7 +58,7 @@ export default class IndexView extends Component {
 
       if (hasPermissionPageAppearedBefore) {
         return Actions.HomeScene({
-          type: ActionConst.REPLACE,
+          type: ActionConst.REPLACE
         })
       }
 
@@ -91,7 +91,7 @@ export default class IndexView extends Component {
 
     if (hasPermissionPageAppearedBefore) {
       Actions.HomeScene({
-        type: ActionConst.REPLACE,
+        type: ActionConst.REPLACE
       })
     }
   }
