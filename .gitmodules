@@ -1,6 +1,6 @@
-[submodule "Eloyt/Modules/react-eloyt"]
-	path = Eloyt/Modules/react-eloyt
+[submodule "v0-Eloyt/Modules/react-eloyt"]
+	path = v0-Eloyt/Modules/react-eloyt
 	url = git@github.com:eloythub/react-eloyt.git
-[submodule "Eloyt/Modules/react-native-loader"]
-	path = Eloyt/Modules/react-native-loader
+[submodule "v0-Eloyt/Modules/react-native-loader"]
+	path = v0-Eloyt/Modules/react-native-loader
 	url = git@github.com:eloythub/react-native-loader.git

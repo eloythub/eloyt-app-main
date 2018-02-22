@@ -9,6 +9,10 @@ rm -rf ios/build 1>/dev/null
 npm cache clear --force -s 1>/dev/null
 npm cache verify 1>/dev/null
 
+# cd ../Eloyt/android
+# ./gradlew clean 2> /dev/null
+# cd -
+
 yarn
 
 react-native link
