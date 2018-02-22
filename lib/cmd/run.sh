@@ -2,7 +2,7 @@
 
 if [ "${EL_CMD_RUN}" = "ios" ];
 then
-    react-native run-ios ${EL_CMD_RUN_ARG}
+    yarn ios ${EL_CMD_RUN_ARG}
 else
-    react-native run-android
+    yarn android
 fi
