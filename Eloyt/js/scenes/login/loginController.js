@@ -6,7 +6,7 @@ export default class LoginController extends Controller {
   onPressSignInByFacebook () {
     log('onPress', 'onPressSignInByFacebook')
 
-    this.navigate('replace', 'Username')
+    this.navigate('reset', 'Username')
   }
 
   onPressSignInByGoogle () {

@@ -25,7 +25,7 @@ export default {
   badgePadding: platform === "ios" ? 3 : 0,
 
   // Button
-  btnFontFamily: platform === "ios" ? "OpenSans" : "OpenSans",
+  btnFontFamily: platform === "ios" ? "Open-Sans" : "Open-Sans",
   btnDisabledBg: "#b5b5b5",
   buttonPadding: 5,
   get btnPrimaryBg() {
@@ -157,11 +157,11 @@ export default {
   iconHeaderSize: platform === "ios" ? 33 : 24,
 
   // InputGroup
-  inputFontSize: 17,
+  inputFontSize: 15,
   inputBorderColor: "#D9D5DC",
   inputSuccessBorderColor: "#2b8339",
   inputErrorBorderColor: "#ed2f2f",
-  inputHeightBase: 50,
+  inputHeightBase: 35,
   get inputColor() {
     return this.textColor;
   },

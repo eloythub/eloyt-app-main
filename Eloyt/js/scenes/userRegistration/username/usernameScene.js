@@ -1,7 +1,7 @@
 import React from 'react'
 import { BlurView } from 'expo'
 import { Button, Form, Item } from 'native-base'
-import { View, Image, Text, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView } from 'react-native'
+import { View, Image, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native'
 import commonStyle, {transparentHeader} from '../../../styles/commonStyle'
 import commonAssets from '../../../styles/commonAssets'
 import usernameStyle from './usernameStyle'
@@ -17,19 +17,15 @@ export default class UsernameScene extends UsernameController {
   render () {
     return (
       <View style={commonStyle.splashBackgroundView}>
-        <StatusBar
-          backgroundColor={'#ffffff'}
-          barStyle="light-content"
-          hidden={false}
-        />
-
         <Image source={commonAssets.backgroundBlur} style={commonStyle.backgroundImage}/>
 
         <View style={commonStyle.starterView}/>
 
-        <View style={commonStyle.rowView}>
-          <Input placeholder="Username" />
-        </View>
+        <ScrollView>
+          <View style={commonStyle.rowView}>
+            <Input title="Username"/>
+          </View>
+        </ScrollView>
 
         <SafeAreaView style={commonStyle.footerWrapper}>
           <View style={usernameStyle.buttonsSection}>

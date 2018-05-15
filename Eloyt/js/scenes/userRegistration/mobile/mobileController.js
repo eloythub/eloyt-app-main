@@ -6,6 +6,6 @@ export default class MobileController extends Controller {
   onPressNext () {
     log('onPress', 'onPressNext')
 
-    this.navigate('push', 'MobileVerification')
+    this.navigate('navigate', 'MobileVerification')
   }
 }

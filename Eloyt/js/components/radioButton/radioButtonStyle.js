@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  inputWrapper: {
+  radioButtonWrapper: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     paddingTop: 0,
     paddingBottom: 10,
@@ -9,12 +9,12 @@ export default StyleSheet.create({
     paddingRight: 10,
     borderRadius: 5
   },
-  label: {
+  lable: {
     color: '#fff',
     fontFamily: 'open-sans',
-    fontSize: 12,
+    marginBottom: 10
   },
-  input: {
+  lableWrap: {
     color: '#fff',
     fontFamily: 'open-sans',
   }

@@ -1,18 +1,44 @@
+import React from 'react'
 import { Dimensions, StyleSheet } from 'react-native'
+import configs from '../libs/configs'
+import commonAssets from '../styles/commonAssets'
+import NormalHeader from '../components/header/normal'
 
 const {width, height} = Dimensions.get('window')
 
+let paddingMargin = {}
+
+for (let x = 1; x <= 1000; x++) {
+  paddingMargin[`padding${x}`]       = {padding: x}
+  paddingMargin[`paddingLeft${x}`]   = {paddingLeft: x}
+  paddingMargin[`paddingRight${x}`]  = {paddingRight: x}
+  paddingMargin[`paddingTop${x}`]    = {paddingTop: x}
+  paddingMargin[`paddingBottom${x}`] = {paddingBottom: x}
+  paddingMargin[`margin${x}`]        = {margin: x}
+  paddingMargin[`marginLeft${x}`]    = {marginLeft: x}
+  paddingMargin[`marginRight${x}`]   = {marginRight: x}
+  paddingMargin[`marginTop${x}`]     = {marginTop: x}
+  paddingMargin[`marginBottom${x}`]  = {marginBottom: x}
+}
+
 export default StyleSheet.create({
+  flexView: {
+    flex: 1
+  },
   splashBackgroundView: {
     flex: 1,
     backgroundColor: '#010101'
+  },
+  backgroundView: {
+    flex: 1,
+    backgroundColor: '#E6E6E6'
   },
   starterView: {
     padding: 10
   },
   rowView: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: configs.rowViewPaddingSize,
+    paddingRight: configs.rowViewPaddingSize,
   },
   backgroundImage: {
     flex: 1,
@@ -51,10 +77,11 @@ export default StyleSheet.create({
   },
   footerWrapper: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     left: 0,
     right: 0
   },
+  ...paddingMargin
 })
 
 export const transparentHeader = {
@@ -64,5 +91,16 @@ export const transparentHeader = {
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontFamily: 'open-sans',
+  },
+}
+
+export const normalHeader = {
+  headerStyle: {
+    backgroundColor: '#4B6CB7'
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 18,
   },
 }

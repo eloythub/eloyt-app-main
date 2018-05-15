@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text, TouchableOpacity, StatusBar, SafeAreaView } from 'react-native'
+import { View, Image, Text, TouchableOpacity, SafeAreaView } from 'react-native'
 import { Button } from 'native-base'
 import commonStyle from '../../styles/commonStyle'
 import commonAssets from '../../styles/commonAssets'
@@ -14,12 +14,6 @@ export default class LoginScene extends LoginController  {
   render () {
     return (
       <View style={commonStyle.splashBackgroundView}>
-        <StatusBar
-          backgroundColor={'#ffffff'}
-          barStyle="light-content"
-          hidden={false}
-        />
-
         <Image source={commonAssets.background} style={commonStyle.backgroundImage}/>
 
         <View style={appStyle.logoWrapper}>

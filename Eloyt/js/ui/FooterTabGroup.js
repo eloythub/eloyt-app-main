@@ -20,6 +20,7 @@ export default class FooterTabGroup extends React.Component {
                 key={key}
                 ref={button.icon}
                 name={button.icon}
+                isActive={button.isActive || false}
                 onPress={() => {
                   button.onPress && button.onPress()
 

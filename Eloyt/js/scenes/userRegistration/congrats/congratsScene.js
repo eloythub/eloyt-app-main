@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'native-base'
-import { Image, SafeAreaView, StatusBar, Text, View } from 'react-native'
+import { Image, SafeAreaView, Text, View } from 'react-native'
 import commonStyle, { transparentHeader } from '../../../styles/commonStyle'
 import commonAssets from '../../../styles/commonAssets'
 import congratsStyle from './congratsStyle'
@@ -14,12 +14,6 @@ export default class CongratsScene extends CongratsController {
   render () {
     return (
       <View style={commonStyle.splashBackgroundView}>
-        <StatusBar
-          backgroundColor={'#ffffff'}
-          barStyle="light-content"
-          hidden={false}
-        />
-
         <Image source={commonAssets.backgroundBlur} style={commonStyle.backgroundImage}/>
 
         <View style={congratsStyle.logoWrapper}>

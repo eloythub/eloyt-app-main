@@ -1,6 +1,7 @@
 import React from 'React'
 import PropTypes from 'prop-types'
-import { Button, Icon } from 'native-base'
+import { Button } from 'native-base'
+import { FontAwesome } from '@expo/vector-icons'
 
 export default class FooterButton extends React.Component {
   constructor (props) {
@@ -35,11 +36,11 @@ export default class FooterButton extends React.Component {
           })
         }}
       >
-        {
-          this.state.isActive
-            ? <Icon name={`ios-${this.props.name}`} />
-            : <Icon name={`ios-${this.props.name}-outline`} />
-        }
+        <FontAwesome
+          name={this.props.name}
+          size={25}
+          color={this.props.isActive || this.state.isActive ? '#000' : 'rgba(0, 0, 0, 0.4)'}
+        />
       </Button>
     )
   }
@@ -47,5 +48,6 @@ export default class FooterButton extends React.Component {
 
 FooterButton.propTypes = {
   name: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  isActive: PropTypes.bool
 }
