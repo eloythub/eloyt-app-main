@@ -9,13 +9,18 @@ export default StyleSheet.create({
     paddingRight: 10,
     borderRadius: 5
   },
-  label: {
-    color: '#fff',
-    fontFamily: 'open-sans',
-    fontSize: 12,
+  waitingWrapper: {
+    flex: 1
   },
-  input: {
-    color: '#fff',
-    fontFamily: 'open-sans',
+  waitingMockedProfilePicture: {
+    width: 40,
+    height: 40,
+    borderRadius:20,
+    backgroundColor: '#E6E6E6'
+  },
+  waitingMockedText: {
+    flex: 1,
+    backgroundColor: '#E6E6E6',
+    height: 15
   }
 })

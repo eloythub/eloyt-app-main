@@ -41,4 +41,10 @@ export default class Controller extends React.Component {
 
     return items
   }
+
+  async logOut () {
+    await LocalStorage.unload(LocalStorage.keys.authentication)
+
+    await this.navigate('reset', 'Auth')
+  }
 }

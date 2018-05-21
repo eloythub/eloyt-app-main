@@ -3,8 +3,8 @@ import Controller from '../../../libs/controller'
 import {log} from '../../../libs/logs'
 
 export default class MobileVerificationController extends Controller {
-  onPressNext () {
-    log('onPress', 'onPressNext')
+  onCheckCode () {
+    log('onPress', 'onCheckCode')
 
     this.navigate('navigate', 'ProfileInfo')
   }

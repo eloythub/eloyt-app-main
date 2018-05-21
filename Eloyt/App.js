@@ -62,7 +62,7 @@ const RootStack = createStackNavigator({
   },
   {
     initialRouteName: 'Feed',
-    initialRouteName: 'Login',
+    //initialRouteName: 'ProfileInfo',
     transitionConfig
   }
 )

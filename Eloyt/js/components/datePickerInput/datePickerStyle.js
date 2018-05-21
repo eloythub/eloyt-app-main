@@ -25,7 +25,7 @@ export default StyleSheet.create({
   datePickerDateInput: {
     borderColor: 'transparent',
     alignItems: 'flex-start',
-    paddingLeft: 5,
+    paddingLeft: 0,
     height: 35,
   },
   empty: {
@@ -47,5 +47,21 @@ export default StyleSheet.create({
   input: {
     color: '#fff',
     fontFamily: 'open-sans',
+  },
+  closeIconButton: {
+    position: 'absolute',
+    width: 30,
+    right: -5,
+    bottom: -2,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  closeIcon: {
+    fontSize: 40,
+    color: 'rgba(255, 255, 255, 0.8)',
+    padding: 0,
+    margin: 0,
+    position: 'absolute',
+    right: -7
   }
 })

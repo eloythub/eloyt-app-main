@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, View, Image, TouchableOpacity } from 'react-native'
-import { Input, Item, Label } from 'native-base'
+import { Input, Item, Label, Icon, Button } from 'native-base'
 import DatePicker from 'react-native-datepicker'
 // Essentials
 import datePickerStyle from './datePickerStyle'
@@ -15,7 +15,8 @@ export default class TransparentDatePickerInput extends React.Component {
     super(props)
 
     this.state = {
-      dateLayoutWidth: null
+      dateLayoutWidth: null,
+      date: null
     }
   }
 
@@ -29,7 +30,7 @@ export default class TransparentDatePickerInput extends React.Component {
           <DatePicker
             showIcon={false}
             style={{
-              width: this.state.dateLayoutWidth - 22
+              width: this.state.dateLayoutWidth - 22,
             }}
             customStyles={{
               placeholderText: datePickerStyle.datePickerPlaceHolderText,
@@ -45,18 +46,22 @@ export default class TransparentDatePickerInput extends React.Component {
               (date) => {
                 this.setState({date})
 
-                //this.props.onChange(date)
+                this.props.onChange && this.props.onChange(date)
               }
             }
           />
-        </Item>
-        {/*<TouchableOpacity style={datePickerStyle.empty} onPress={() => {*/}
-          {/*this.setState({date: null})*/}
+          <Button
+            transparent
+            small
+            style={datePickerStyle.closeIconButton}
+            onPress={() => {
+              this.setState({date: null})
 
-          {/*this.props.onChange(null)*/}
-        {/*}}>*/}
-          {/*<Image source={commonAssets.delete} style={datePickerStyle.emptyImage}/>*/}
-        {/*</TouchableOpacity>*/}
+              this.props.onChange && this.props.onChange(null)
+            }}>
+            <Icon name="close" style={datePickerStyle.closeIcon} />
+          </Button>
+        </Item>
       </View>
     )
   }

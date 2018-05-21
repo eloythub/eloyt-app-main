@@ -6,7 +6,7 @@ import commonStyle, {transparentHeader} from '../../../styles/commonStyle'
 import commonAssets from '../../../styles/commonAssets'
 import mobileVerificationStyle from './mobileVerificationStyle'
 import MobileVerificationController from './mobileVerificationController'
-import Input from '../../../components/input/transparent'
+import PhoneVerification from '../../../components/input/phoneVerification'
 
 export default class MobileVerificationScene extends MobileVerificationController {
   static navigationOptions = {
@@ -23,17 +23,9 @@ export default class MobileVerificationScene extends MobileVerificationControlle
 
         <ScrollView>
           <View style={commonStyle.rowView}>
-            <Input title="Verification Code" keyboardType="numeric" />
+            <PhoneVerification onCheckCode={this.onCheckCode.bind(this)} />
           </View>
         </ScrollView>
-
-        <SafeAreaView style={commonStyle.footerWrapper}>
-          <View style={mobileVerificationStyle.buttonsSection}>
-            <Button block success onPress={this.onPressNext.bind(this)}>
-              <Text style={commonStyle.buttonText}>Complete the Profile</Text>
-            </Button>
-          </View>
-        </SafeAreaView>
       </View>
     )
   }

@@ -10,6 +10,7 @@ export default class TransparentRadioButton extends React.Component {
       <View style={radioButtonStyle.radioButtonWrapper}>
         <Text style={radioButtonStyle.lable}>{this.props.title.toUpperCase()}:</Text>
         <RadioForm
+          style={radioButtonStyle.radioForm}
           radio_props={this.props.items}
           buttonColor="#fff"
           selectedButtonColor="#fff"
@@ -19,6 +20,7 @@ export default class TransparentRadioButton extends React.Component {
           selectedLabelColor="#fff"
           buttonSize={10}
           labelWrapStyle={radioButtonStyle.lableWrap}
+          labelStyle={radioButtonStyle.labelStyle}
           onPress={(value) => {this.setState({value:value})}}
         />
       </View>

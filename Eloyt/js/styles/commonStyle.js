@@ -36,6 +36,9 @@ export default StyleSheet.create({
   starterView: {
     padding: 10
   },
+  container: {
+    padding: 10,
+  },
   rowView: {
     paddingLeft: configs.rowViewPaddingSize,
     paddingRight: configs.rowViewPaddingSize,
